@@ -24,6 +24,15 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
+        .slide-enter {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        .slide-active {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.5s ease-out;
+        }
     </style>
 </head>
 <body>
@@ -32,7 +41,7 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // Lucide icons as React components
+        // Lucide icons
         const ChevronLeft = () => <svg className="lucide"><polyline points="15,18 9,12 15,6"></polyline></svg>;
         const ChevronRight = () => <svg className="lucide"><polyline points="9,18 15,12 9,6"></polyline></svg>;
         const BarChart3 = () => <svg className="lucide"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>;
@@ -45,6 +54,8 @@
         const Shield = () => <svg className="lucide"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path></svg>;
         const Target = () => <svg className="lucide"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>;
         const Rocket = () => <svg className="lucide"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>;
+        const Clock = () => <svg className="lucide"><circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline></svg>;
+        const Building = () => <svg className="lucide"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M6 12h4"></path><path d="M6 16h4"></path><path d="M10 6h4"></path><path d="M10 10h4"></path><path d="M10 14h4"></path><path d="M10 18h4"></path></svg>;
 
         const KiiSPitchPresentation = () => {
             const [currentSlide, setCurrentSlide] = useState(0);
@@ -67,7 +78,7 @@
                                     "Transforming patient access to Dental Implant treatments to those that need it the most"
                                 </div>
                                 <div className="mt-12 w-32 h-32 mx-auto bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
-                                    <Zap />
+                                    <div className="text-4xl">🦷</div>
                                 </div>
                             </div>
                             <div className="absolute bottom-8 left-8 text-sm text-gray-400">
@@ -86,6 +97,889 @@
                             
                             <div className="flex justify-center mb-8">
                                 <div className="grid grid-cols-3 gap-8 max-w-5xl">
+                                    <div className="bg-blue-600 p-6 rounded-lg text-center">
+                                        <div className="text-4xl font-bold text-yellow-400">178M</div>
+                                        <div className="text-lg mt-2">Tooth Loss Sufferers</div>
+                                        <div className="text-sm text-blue-200">needing implants in the US</div>
+                                    </div>
+                                    <div className="bg-blue-600 p-6 rounded-lg text-center">
+                                        <div className="text-4xl font-bold text-yellow-400">5.7%</div>
+                                        <div className="text-lg mt-2">Implant Penetration Rate</div>
+                                        <div className="text-sm text-blue-200">Lowest among developed countries</div>
+                                    </div>
+                                    <div className="bg-blue-600 p-6 rounded-lg text-center">
+                                        <div className="text-4xl font-bold text-yellow-400">$1.5B</div>
+                                        <div className="text-lg mt-2">Current Implant Market</div>
+                                        <div className="text-sm text-blue-200">the biggest with 1/3 of global value</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex-1 flex justify-between">
+                                <div className="w-1/2 pr-4">
+                                    <table className="w-full text-sm bg-slate-800 rounded-lg overflow-hidden">
+                                        <thead className="bg-slate-700">
+                                            <tr>
+                                                <th className="p-3 text-left">Country</th>
+                                                <th className="p-3 text-center">Penetration (%)</th>
+                                                <th className="p-3 text-center">Ave. Patient Fee (USD)</th>
+                                                <th className="p-3 text-center">Market Size (USD 100M)</th>
+                                                <th className="p-3 text-center">Population (M)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {[
+                                                ['Switzerland', '38.0%', '$4,000', '0.35', '8.7'],
+                                                ['Germany', '25.0%', '$2,800', '3.0', '83.2'],
+                                                ['South Korea', '13.3%', '$1,500', '0.95', '52'],
+                                                ['Netherlands', '9.0%', '$3,000', '1.3', '17.9'],
+                                                ['Japan', '7.2%', '$3,200', '2.7', '125'],
+                                                ['USA', '5.7%', '$4,500', '15.0', '330']
+                                            ].map((row, i) => (
+                                                <tr key={i} className={row[0] === 'USA' ? 'bg-yellow-400/20' : ''}>
+                                                    <td className="p-3">{row[0]}</td>
+                                                    <td className="p-3 text-center">{row[1]}</td>
+                                                    <td className="p-3 text-center">{row[2]}</td>
+                                                    <td className="p-3 text-center">{row[3]}</td>
+                                                    <td className="p-3 text-center">{row[4]}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div className="w-1/2 pl-4 flex flex-col justify-center">
+                                    <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black p-6 rounded-lg">
+                                        <div className="text-2xl font-bold mb-4">$1.5B to $3.0B by 2030</div>
+                                        <div className="text-xl font-semibold mb-4">10-11% CAGR driven by</div>
+                                        <ul className="space-y-2">
+                                            <li>- Baby Boomer Silver Tsunami</li>
+                                            <li>- Post-COVID Pent-Up Demand</li>
+                                            <li>- Accelerated Digital Technology</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 3: Three Barriers
+                {
+                    id: 'barriers',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-4xl font-bold mb-8 text-center">3 Barriers hindering Implant access and growth potential</h1>
+                            
+                            <div className="flex-1 grid grid-cols-3 gap-6">
+                                <div className="bg-blue-600 p-6 rounded-lg">
+                                    <div className="flex items-center mb-4">
+                                        <div className="w-8 h-8 text-yellow-400 mr-3">
+                                            <DollarSign />
+                                        </div>
+                                        <h3 className="text-2xl font-bold">Cost Burden</h3>
+                                    </div>
+                                    <div className="space-y-3 text-sm mb-6">
+                                        <p>• High Upfront Cost $3,000–$6,000/Tooth</p>
+                                        <p>• Bone Graft +$1,500–$3,000</p>
+                                        <p>• Premium products > 60% of market</p>
+                                    </div>
+                                    <div className="mt-6 h-32 bg-slate-700 rounded flex items-center justify-center mb-4">
+                                        <div className="w-16 h-16 text-blue-300">
+                                            <Users />
+                                        </div>
+                                    </div>
+                                    <p className="text-center font-semibold">Premium costs limit patient accessibility</p>
+                                </div>
+
+                                <div className="bg-blue-600 p-6 rounded-lg">
+                                    <div className="flex items-center mb-4">
+                                        <div className="w-8 h-8 text-yellow-400 mr-3">
+                                            <Clock />
+                                        </div>
+                                        <h3 className="text-2xl font-bold">Procedure Inefficiency</h3>
+                                    </div>
+                                    <div className="space-y-3 text-sm mb-6">
+                                        <p>• Lengthy 4-9 month process</p>
+                                        <p>• Dropout risk w/ multi-phase treatment</p>
+                                        <p>• Opportunity Loss w/ diagnostic exclusion</p>
+                                    </div>
+                                    <div className="mt-6 h-32 bg-slate-700 rounded flex items-center justify-center mb-4">
+                                        <div className="w-16 h-16 text-blue-300">
+                                            <TrendingUp />
+                                        </div>
+                                    </div>
+                                    <p className="text-center font-semibold">Lengthy extended process burdens all parties</p>
+                                </div>
+
+                                <div className="bg-blue-600 p-6 rounded-lg">
+                                    <div className="flex items-center mb-4">
+                                        <div className="w-8 h-8 text-yellow-400 mr-3">
+                                            <Shield />
+                                        </div>
+                                        <h3 className="text-2xl font-bold">Treatment Limitations</h3>
+                                    </div>
+                                    <div className="space-y-3 text-sm mb-6">
+                                        <p>• Limited bone eligibility</p>
+                                        <p>• High complexity of bone grafting</p>
+                                        <p>• Health burden (aging, chronic diseases)</p>
+                                    </div>
+                                    <div className="mt-6 h-32 bg-slate-700 rounded flex items-center justify-center mb-4">
+                                        <div className="w-16 h-16 text-blue-300">
+                                            <Target />
+                                        </div>
+                                    </div>
+                                    <p className="text-center font-semibold">Low bone density excludes many patients</p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 4: KiiS Innovation
+                {
+                    id: 'innovation',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-4xl font-bold mb-8 text-center">
+                                <span className="text-yellow-400">KiiS Innovation:</span> US Patented New to the world Dental Implant
+                            </h1>
+                            
+                            <div className="flex-1 flex">
+                                <div className="w-1/2 pr-8 flex flex-col justify-center">
+                                    <div className="bg-slate-800 p-8 rounded-lg mb-6">
+                                        <div className="w-full h-64 bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mb-4">
+                                            <div className="text-center">
+                                                <div className="text-6xl mb-4">📄</div>
+                                                <div className="text-lg">US Patent Document</div>
+                                                <div className="text-sm text-blue-200">US 9757213B2</div>
+                                                <div className="text-sm text-blue-200 mt-2">Sep 12, 2017</div>
+                                            </div>
+                                        </div>
+                                        <div className="text-center">
+                                            <div className="text-sm text-gray-400">HuMed Lifesciences KiiS</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="w-1/2 pl-8">
+                                    <div className="space-y-6">
+                                        <div className="bg-blue-600 p-6 rounded-lg">
+                                            <h3 className="text-2xl font-bold text-yellow-400 mb-4">Spiral Side Opening</h3>
+                                            <ul className="space-y-2 text-sm">
+                                                <li>• First-Ever Revolutionary bone ingrowth technology</li>
+                                                <li>• *FDA 510K Ready - Clear Path to Market Approval</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div className="bg-blue-600 p-6 rounded-lg">
+                                            <h3 className="text-2xl font-bold text-yellow-400 mb-4">Hallow Inner Channel</h3>
+                                            <ul className="space-y-2 text-sm">
+                                                <li>• Only implant with built-in medication delivery system for targeted healing</li>
+                                                <li>• *De Novo Pathway for Injectable Platform (Phase 2 Expansion)</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div className="bg-slate-700 p-4 rounded-lg text-xs">
+                                            <p>* FDA 510K: Proven regulatory pathway - minimal risk, faster commercialization</p>
+                                            <p>* De Novo Pathway: Breakthrough device designation for unmet medical needs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 8: Go-To-Market Strategy
+                {
+                    id: 'strategy',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">Go-To-Market Strategy</h1>
+                            
+                            <div className="flex-1 flex items-center justify-center">
+                                <div className="w-1/2 pr-8">
+                                    <div className="space-y-6 text-lg">
+                                        <div className="flex items-center">
+                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                                            <div>Product Positioning for Dual Market Expansion</div>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                                            <div>Superiority Claims Marketing</div>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                                            <div>Digital First Sales Channel</div>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">4</div>
+                                            <div>Manufacturing Partnership in Korea</div>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">5</div>
+                                            <div>Seasoned Leadership in global Life sciences</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="w-1/2 pl-8 flex justify-center">
+                                    <div className="w-64 h-64 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                                        <div className="text-6xl">🦷</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 9: Product Positioning
+                {
+                    id: 'product-positioning',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-3xl font-bold mb-6 text-center">1. Product Positioning for Dual Market Expansion</h1>
+                            <p className="text-center mb-8 text-yellow-400">- KiiS will play in Mid (KiiS-P) and Premium (KiiS-R) with differentiated products</p>
+                            
+                            <div className="flex-1 flex">
+                                <div className="w-1/2 pr-4">
+                                    <table className="w-full text-sm bg-slate-800 rounded-lg overflow-hidden">
+                                        <thead className="bg-slate-700">
+                                            <tr>
+                                                <th className="p-3 text-left">Brand</th>
+                                                <th className="p-3 text-center">Price Segment</th>
+                                                <th className="p-3 text-center">*Patient Type</th>
+                                                <th className="p-3 text-center">US Share (%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {[
+                                                ['Straumann', 'Premium', 'Type 1-2', '30'],
+                                                ['Nobel Biocare', 'Premium', 'Type 1-2', '25'],
+                                                ['Astra Tech', 'Premium', 'Type 1-2', '20'],
+                                                ['Zimmer Biomet', 'Premium', 'Type 3-4', '15'],
+                                                ['Neodent', 'Value', 'Type 1-2', '5'],
+                                                ['Medentika', 'Value', 'Type 1-2', '2'],
+                                                ['Implant Direct', 'Value', 'Type 1-2', '7'],
+                                                ['MIS', 'Value', 'Type 1-2', '5'],
+                                                ['Osstem', 'Value', 'Type 3-4', '5'],
+                                                ['Hiossen', 'Value', 'Type 3-4', '2'],
+                                                ['Dentium', 'Value', 'Type 1-2', '3'],
+                                                ['BioHorizons', 'Value', 'Type 3-4', '4']
+                                            ].map((row, i) => (
+                                                <tr key={i}>
+                                                    <td className="p-3">{row[0]}</td>
+                                                    <td className="p-3 text-center">{row[1]}</td>
+                                                    <td className="p-3 text-center">{row[2]}</td>
+                                                    <td className="p-3 text-center">{row[3]}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                    <div className="text-xs text-gray-400 mt-4">
+                                        <p>* Type 1-2: Patients with healthy jawbone - standard treatment (60%)</p>
+                                        <p>* Type 3-4: Patients with weak jawbone - advanced solutions required (40%)</p>
+                                    </div>
+                                </div>
+                                
+                                <div className="w-1/2 pl-4">
+                                    <div className="bg-slate-800 p-6 rounded-lg">
+                                        <h3 className="text-xl font-bold mb-4 text-center">Product Positioning for U.S. Dental Implant</h3>
+                                        <div className="flex justify-center mb-4">
+                                            <div className="flex items-center space-x-4">
+                                                <div className="flex items-center">
+                                                    <div className="w-4 h-4 bg-blue-600 rounded-full mr-2"></div>
+                                                    <span className="text-sm">Premium</span>
+                                                </div>
+                                                <div className="flex items-center">
+                                                    <div className="w-4 h-4 bg-orange-600 rounded-full mr-2"></div>
+                                                    <span className="text-sm">Value</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="relative h-64 bg-slate-700 rounded-lg">
+                                            {/* Positioning Chart */}
+                                            <div className="absolute bottom-2 left-2 text-xs">Type 1-2</div>
+                                            <div className="absolute bottom-2 right-2 text-xs">Type 3-4</div>
+                                            
+                                            {/* Straumann */}
+                                            <div className="absolute top-8 left-16 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                                                <span className="text-xs text-center">Straumann</span>
+                                            </div>
+                                            
+                                            {/* KiiS-P */}
+                                            <div className="absolute top-20 left-32 w-12 h-12 bg-red-500 rotate-45 flex items-center justify-center">
+                                                <span className="text-xs -rotate-45">KiiS-P</span>
+                                            </div>
+                                            
+                                            {/* KiiS-R */}
+                                            <div className="absolute top-8 right-16 w-12 h-12 bg-red-500 rotate-45 flex items-center justify-center">
+                                                <span className="text-xs -rotate-45">KiiS-R</span>
+                                            </div>
+                                            
+                                            {/* Other companies */}
+                                            <div className="absolute bottom-16 left-8 w-8 h-8 bg-orange-600 rounded-full"></div>
+                                            <div className="absolute bottom-8 right-8 w-8 h-8 bg-orange-600 rounded-full"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 10: KiiS-Plus vs KiiS-Relax
+                {
+                    id: 'product-lines',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-3xl font-bold mb-8 text-center">1. Product Positioning for Dual Market Expansion</h1>
+                            
+                            <div className="flex-1 flex">
+                                <div className="w-1/2 pr-4">
+                                    <div className="text-center mb-6">
+                                        <div className="w-48 h-48 bg-slate-700 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                                            <div className="text-6xl">👨‍💼</div>
+                                        </div>
+                                        <div className="text-lg font-semibold mb-2">Type 1-2 Mid/value</div>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• 35-65 aged</li>
+                                            <li>• Value-conscious</li>
+                                            <li>• Seeking affordable & effective solutions</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-blue-600 p-6 rounded-lg">
+                                        <h3 className="text-xl font-bold text-yellow-400 mb-4 text-center">KiiS-Plus (510K)</h3>
+                                        <div className="text-center mb-4">
+                                            <p className="text-lg font-semibold">"Delivers premium implant performance at affordable price"</p>
+                                            <p className="text-md">"Premium technology made accessible"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="w-1/2 pl-4">
+                                    <div className="text-center mb-6">
+                                        <div className="w-48 h-48 bg-slate-700 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                                            <div className="text-6xl">👩‍🦳</div>
+                                        </div>
+                                        <div className="text-lg font-semibold mb-2">Type 3-4 Premium</div>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• 50-70 aged</li>
+                                            <li>• High income ($75k+)</li>
+                                            <li>• Weak bone eligibility</li>
+                                            <li>• Worried about surgical pains</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-blue-600 p-6 rounded-lg">
+                                        <h3 className="text-xl font-bold text-yellow-400 mb-4 text-center">KiiS-Relax (510K+De Novo)</h3>
+                                        <div className="text-center mb-4">
+                                            <p className="text-lg font-semibold">"No bone graft. No stress. Makes complex implants refreshingly simple."</p>
+                                            <p className="text-md">"Offers a premium solution with faster healing and lower failure risk"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 11: Superiority Claims Marketing
+                {
+                    id: 'superiority-claims',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-3xl font-bold mb-6 text-center">2. Superiority Claims Marketing</h1>
+                            <p className="text-center mb-8 text-yellow-400">- KiiS will leverage OSU Spinoff Advantage for Powerful Claims Marketing execution</p>
+                            
+                            <div className="flex-1">
+                                <table className="w-full text-sm bg-slate-800 rounded-lg overflow-hidden">
+                                    <thead className="bg-slate-700">
+                                        <tr>
+                                            <th className="p-4 text-left">Customer Value</th>
+                                            <th className="p-4 text-left">Superiority Marketing Claims</th>
+                                            <th className="p-4 text-left">Validation & Strengthening Plan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td className="p-4 align-top font-semibold">Treatment Success</td>
+                                            <td className="p-4 align-top">
+                                                <div className="space-y-2">
+                                                    <p className="text-yellow-400 font-bold">"40% More Bone Integration"</p>
+                                                    <p className="text-xs">- Proven BIC enhancement with 3D holding power</p>
+                                                    <p className="text-yellow-400 font-bold">"3 months Healing vs 4 months Standard"</p>
+                                                    <p className="text-xs">- Accelerated recovery for patient satisfaction</p>
+                                                    <p className="text-yellow-400 font-bold">"Works Where Others Fail"</p>
+                                                    <p className="text-xs">- Type 3-4 patient success in challenging cases</p>
+                                                </div>
+                                            </td>
+                                            <td className="p-4 align-top">
+                                                <div className="text-yellow-400 font-bold mb-2">OSU Academic Authority:</div>
+                                                <ul className="text-xs space-y-1">
+                                                    <li>• Multi-center trials via OSU dental network</li>
+                                                    <li>• Inventor-led presentations at major conferences</li>
+                                                    <li>• Peer-reviewed publications with OSU co-authors</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-4 align-top font-semibold">Access Expansion</td>
+                                            <td className="p-4 align-top">
+                                                <div className="space-y-2">
+                                                    <p className="text-yellow-400 font-bold">"Treatment for Previously Ineligible Patients"</p>
+                                                    <p className="text-xs">- Diabetic, smoking, elderly patient eligibility</p>
+                                                    <p className="text-yellow-400 font-bold">"No More 'Insufficient Bone' Rejections"</p>
+                                                    <p className="text-xs">- Lower bone density threshold expansion</p>
+                                                </div>
+                                            </td>
+                                            <td className="p-4 align-top">
+                                                <div className="text-yellow-400 font-bold mb-2">OSU Clinical Network:</div>
+                                                <ul className="text-xs space-y-1">
+                                                    <li>• High-risk patient cohorts through OSU hospitals</li>
+                                                    <li>• Specialty clinic partnerships for complex cases</li>
+                                                    <li>• OSU alumni practitioner network validation</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-4 align-top font-semibold">Practice Efficiency</td>
+                                            <td className="p-4 align-top">
+                                                <div className="space-y-2">
+                                                    <p className="text-yellow-400 font-bold">"Reduce Chair Time by 30%"</p>
+                                                    <p className="text-xs">- Simplified surgical protocol with no grafting</p>
+                                                    <p className="text-yellow-400 font-bold">"Faster Learning Curve for New Procedures"</p>
+                                                    <p className="text-xs">- Intuitive surgical compatibility with loosened precision</p>
+                                                    <p className="text-yellow-400 font-bold">"One Implant System for All Cases"</p>
+                                                    <p className="text-xs">- Inventory consolidation benefits</p>
+                                                </div>
+                                            </td>
+                                            <td className="p-4 align-top">
+                                                <div className="text-yellow-400 font-bold mb-2">OSU Training Hub:</div>
+                                                <ul className="text-xs space-y-1">
+                                                    <li>• OSU continuing education course integration</li>
+                                                    <li>• Residency training program adoption</li>
+                                                    <li>• OSU simulation lab protocol development</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 12: Digital First Sales Channel
+                {
+                    id: 'digital-sales',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-3xl font-bold mb-6 text-center">3. Digital First Sales Channel</h1>
+                            <p className="text-center mb-8 text-yellow-400">- The Capital-Efficient Path to Rapid Market Penetration</p>
+                            
+                            <div className="flex-1 flex">
+                                <div className="w-1/2 pr-6">
+                                    <div className="space-y-4 text-sm">
+                                        <div className="flex items-center mb-4">
+                                            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                                                <Building />
+                                            </div>
+                                            <div>
+                                                <div className="font-bold">Founded by Dr. Gerald Niznick in 2004</div>
+                                                <div>Pioneered online implant sales in 2006</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-center mb-4">
+                                            <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                                                <TrendingUp />
+                                            </div>
+                                            <div>
+                                                <div className="font-bold">Rapid growth with disruptive pricing</div>
+                                                <div>(50%-70% lower than premium brands)</div>
+                                                <div>In 2010, acquired by Danaher for $225M</div>
+                                                <div>In 2024, annual sales est. $100-150M</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-center mb-4">
+                                            <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center mr-3">
+                                                <DollarSign />
+                                            </div>
+                                            <div>
+                                                <div className="font-bold">Cost Advantage: 65-70% Savings</div>
+                                                <div>Eliminate middlemen (Distri. Reps)</div>
+                                                <div>selling directly to clinicians online</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="mt-6 bg-slate-800 p-4 rounded-lg">
+                                        <div className="w-full h-48 bg-slate-700 rounded flex items-center justify-center">
+                                            <div className="text-center">
+                                                <div className="text-4xl mb-2">🖥️</div>
+                                                <div className="text-sm">Implant Direct Website</div>
+                                                <div className="text-xs text-gray-400">Direct online sales platform</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="w-1/2 pl-6 space-y-4">
+                                    <div className="bg-blue-600 p-4 rounded-lg">
+                                        <h4 className="font-bold mb-2">Price Competition Excellence</h4>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• Direct challenge to premium pricing</li>
+                                            <li>• Clear communication of cost advantage</li>
+                                            <li>• Building trust in expertise</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-blue-600 p-4 rounded-lg">
+                                        <h4 className="font-bold mb-2">Comprehensive Portfolio offering</h4>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• Extensive 429 SKU covering all clinical scenarios</li>
+                                            <li>• Strategic naming "Simply Iconic, SMARTbase"</li>
+                                            <li>• Integrated solution for complete workflow</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-blue-600 p-4 rounded-lg">
+                                        <h4 className="font-bold mb-2">Practical Clinical Education</h4>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• Comprehensive hands-on training and courses</li>
+                                            <li>• Clinical skill enhancement programs</li>
+                                            <li>• Confidence-centric messaging</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-blue-600 p-4 rounded-lg">
+                                        <h4 className="font-bold mb-2">Professional Shopping experience</h4>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• Detailed 8 filtering system</li>
+                                            <li>• All-in-one for complete procedure</li>
+                                            <li>• 24 hours online ordering</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 13: KiiS's Differentiated Strategy
+                {
+                    id: 'kiis-strategy',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-3xl font-bold mb-6 text-center">3. Digital First Sales Channel</h1>
+                            <p className="text-center mb-8 text-yellow-400">- KiiS's differentiated Online strategy benchmarking Implant Direct</p>
+                            
+                            <div className="flex-1 grid grid-cols-2 gap-6">
+                                <div className="space-y-6">
+                                    <div className="bg-blue-600 p-4 rounded-lg">
+                                        <h4 className="font-bold text-yellow-400 mb-2">New Technology Paradigm</h4>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• Innovative Bone In-growth technology</li>
+                                            <li>• "Engineered for Excellence" message</li>
+                                            <li>• Positioning Mid-Premium</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-blue-600 p-4 rounded-lg">
+                                        <h4 className="font-bold text-yellow-400 mb-2">Surgical Compatibility Education</h4>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• "Learn When, Not How" approach</li>
+                                            <li>• Clinical indication expansion guidance</li>
+                                            <li>• Success case-based learning + OSU evidence</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div className="space-y-6">
+                                    <div className="bg-blue-600 p-4 rounded-lg">
+                                        <h4 className="font-bold text-yellow-400 mb-2">Curated Minimal SKU Strategy</h4>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• KiiS-Plus & KiiS-Relax dual product lines</li>
+                                            <li>• 80/20 rule focusing on core sizes</li>
+                                            <li>• Production/logistic efficiency</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-blue-600 p-4 rounded-lg">
+                                        <h4 className="font-bold text-yellow-400 mb-2">Smart Recommendation Shopping</h4>
+                                        <ul className="text-sm space-y-1">
+                                            <li>• "Think Less, Choose Better" philosophy</li>
+                                            <li>• Patient type-based optimal product recommend</li>
+                                            <li>• One-click ordering+ case-based shopping</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="mt-6 bg-slate-800 p-6 rounded-lg">
+                                <div className="grid grid-cols-3 gap-4 text-center">
+                                    <div>
+                                        <div className="text-2xl font-bold text-yellow-400">40%</div>
+                                        <div className="text-sm">Enhanced BIC</div>
+                                        <div className="text-xs text-gray-400">Superior bone integration through advanced spiral geometry</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-2xl font-bold text-yellow-400">360°</div>
+                                        <div className="text-sm">Contact Surface</div>
+                                        <div className="text-xs text-gray-400">Maximized osseointegration area for optimal stability</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-2xl font-bold text-yellow-400">95%</div>
+                                        <div className="text-sm">Success Rate</div>
+                                        <div className="text-xs text-gray-400">Proven reliability even in challenging clinical cases</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 14: Manufacturing Partnership
+                {
+                    id: 'manufacturing',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-3xl font-bold mb-6 text-center">4. Manufacturing Partnership in Korea</h1>
+                            <p className="text-center mb-8 text-yellow-400">- Scale for market coverage, Focus for untapped market through KR OEM advantage</p>
+                            
+                            <div className="flex-1">
+                                <div className="grid grid-cols-2 gap-8 mb-6">
+                                    <div className="bg-slate-800 p-6 rounded-lg">
+                                        <h3 className="text-xl font-bold text-yellow-400 mb-4 text-center">KiiS-Plus (510K)</h3>
+                                        <div className="space-y-3 text-sm">
+                                            <div><strong>Target segment:</strong></div>
+                                            <ul className="space-y-1">
+                                                <li>• Type 1-2</li>
+                                                <li>• Value Premium (20-30% lower vs. Premium)</li>
+                                                <li>• "Better Results, Same Investment"</li>
+                                            </ul>
+                                            <div><strong>SKU strategy:</strong> 70%+ coverage at optimal SKU efficiency</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="bg-slate-800 p-6 rounded-lg">
+                                        <h3 className="text-xl font-bold text-yellow-400 mb-4 text-center">KiiS-Relax (510K+De Novo)</h3>
+                                        <div className="space-y-3 text-sm">
+                                            <div><strong>Target segment:</strong></div>
+                                            <ul className="space-y-1">
+                                                <li>• Type 3-4</li>
+                                                <li>• Premium</li>
+                                                <li>• "Complex cases made simple and safe"</li>
+                                            </ul>
+                                            <div><strong>SKU strategy:</strong> Hero SKUs focusing on challenging conditions</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="grid grid-cols-2 gap-8">
+                                    <div>
+                                        <h4 className="font-bold mb-4">Diameter & Length - KiiS-Plus</h4>
+                                        <table className="w-full text-sm bg-slate-800 rounded-lg overflow-hidden">
+                                            <thead className="bg-slate-700">
+                                                <tr>
+                                                    <th className="p-2 text-left">DM</th>
+                                                    <th className="p-2 text-center">Length(mm)</th>
+                                                    <th className="p-2 text-center">Units</th>
+                                                    <th className="p-2 text-center">Market Coverage</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {[
+                                                    ['3.5mm', '10, 12', '2', 'Incisors, small molars (20%)'],
+                                                    ['4.0mm', '8, 10, 12', '3', 'Standard molars (50%)'],
+                                                    ['4.5mm', '10, 12,14', '3', 'Large molars (25%)'],
+                                                    ['5.0mm', '10, 12', '2', 'Special cases (5%)']
+                                                ].map((row, i) => (
+                                                    <tr key={i}>
+                                                        <td className="p-2">{row[0]}</td>
+                                                        <td className="p-2 text-center">{row[1]}</td>
+                                                        <td className="p-2 text-center">{row[2]}</td>
+                                                        <td className="p-2 text-center">{row[3]}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <div>
+                                        <h4 className="font-bold mb-4">Diameter & Length - KiiS-Relax</h4>
+                                        <table className="w-full text-sm bg-slate-800 rounded-lg overflow-hidden">
+                                            <thead className="bg-slate-700">
+                                                <tr>
+                                                    <th className="p-2 text-left">DM x Length</th>
+                                                    <th className="p-2 text-center">Units</th>
+                                                    <th className="p-2 text-center">Tapping in challenges</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {[
+                                                    ['3.5mm x 8mm (Narrow)', '1', 'Weak bone in anterior/small molar areas'],
+                                                    ['4.0mm x 8mm (Standard)', '1', 'Weak bone in general molar areas'],
+                                                    ['5.0mm x 8mm (Wide)', '1', 'Weak bone in large molar areas']
+                                                ].map((row, i) => (
+                                                    <tr key={i}>
+                                                        <td className="p-2">{row[0]}</td>
+                                                        <td className="p-2 text-center">{row[1]}</td>
+                                                        <td className="p-2 text-center">{row[2]}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                                <div className="mt-6 text-center">
+                                    <div className="bg-slate-700 p-4 rounded-lg">
+                                        <div className="text-sm mb-2">Following Standards to maximize scale and compatibility</div>
+                                        <div className="text-xs">• Internal Hex connection / Standard Thread / SLA / Market packaging & Procedure protocol</div>
+                                    </div>
+                                </div>
+                                
+                                <div className="mt-6 flex justify-center space-x-8">
+                                    <div className="bg-blue-500 px-6 py-3 rounded-lg text-center">
+                                        <div className="font-bold">KR OEM to KiiS</div>
+                                        <div className="text-yellow-400">($20-25)</div>
+                                    </div>
+                                    <div className="bg-yellow-500 text-black px-6 py-3 rounded-lg text-center">
+                                        <div className="font-bold">KiiS to Clinician</div>
+                                        <div>($200-250)</div>
+                                    </div>
+                                    <div className="bg-blue-500 px-6 py-3 rounded-lg text-center">
+                                        <div className="font-bold">Clinician to Patient</div>
+                                        <div className="text-yellow-400">($2,500-3,000)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+
+                // Slide 15: Team
+                {
+                    id: 'team',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-3xl font-bold mb-8 text-center">5. Seasoned Leadership in global Life sciences</h1>
+                            
+                            <div className="text-center mb-6">
+                                <h2 className="text-xl font-bold text-yellow-400">ADVISORY BOARD & CEO</h2>
+                            </div>
+                            
+                            <div className="flex-1">
+                                <div className="grid grid-cols-2 gap-8 mb-8">
+                                    <div className="bg-slate-800 p-6 rounded-lg">
+                                        <div className="flex items-center mb-4">
+                                            <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                                <div className="w-8 h-8">
+                                                    <Users />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold">Do-Gyoon Kim</h3>
+                                                <p className="text-sm text-yellow-400">Co-Founder & CSA</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-sm space-y-1">
+                                            <p>Professor, College of Dentistry Orthodontics, Ohio State University</p>
+                                            <p>Inventor of Hybrid Dental Implant (US 9757213B2)</p>
+                                            <p>PhD, Mechanical Engineering, Rensselaer Polytechnic Institute (RPI)</p>
+                                            <p>MS/BS, Biology, Yonsei University</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="bg-slate-800 p-6 rounded-lg">
+                                        <div className="flex items-center mb-4">
+                                            <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                                <div className="w-8 h-8">
+                                                    <Award />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold">Hongsuk Kim</h3>
+                                                <p className="text-sm text-yellow-400">CEO</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-sm space-y-1">
+                                            <p>Samsung, J&J, AB InBev, and P&G</p>
+                                            <p>Global commercialization leader with $700M+ P&L experience</p>
+                                            <p>Medical device commercialization expertise at J&J China</p>
+                                            <p>Scaled mid-size companies to record-breaking growth rates</p>
+                                            <p>Harvard A.M. Statistics / Korea University B.A. Business</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="grid grid-cols-2 gap-8 mb-6">
+                                    <div className="bg-slate-800 p-6 rounded-lg">
+                                        <div className="flex items-center mb-4">
+                                            <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                                <div className="w-8 h-8">
+                                                    <Globe />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold">Jinyong Oh</h3>
+                                                <p className="text-sm text-yellow-400">Co-Founder & Strategic advisor</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-sm space-y-1">
+                                            <p>J&J (Medical Devices, Pharm) P&G</p>
+                                            <p>Angel Investor & Mentor to start-up companies</p>
+                                            <p>MBA, Massachusetts Institute of Technology</p>
+                                            <p>AMP, Harvard Business School, BA, Seoul National University</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="bg-slate-800 p-6 rounded-lg">
+                                        <div className="flex items-center mb-4">
+                                            <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                                <div className="w-8 h-8">
+                                                    <Building />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold">John Y. Hong</h3>
+                                                <p className="text-sm text-yellow-400">advisor CEO and board of directors</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-sm space-y-1">
+                                            <p>Dentist, Entrepreneur, Real Estate developer, Investor</p>
+                                            <p>DDS, University of Oklahoma</p>
+                                            <p>Masters in Industrial Engineering, Georgia Institute of Technology</p>
+                                            <p>BS, Biomechanical Engineering, Northwestern University</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="text-center mb-4">
+                                    <h2 className="text-xl font-bold text-yellow-400">ADVISORS</h2>
+                                </div>
+                                
+                                <div className="grid grid-cols-3 gap-6">
+                                    <div className="bg-slate-700 p-4 rounded-lg text-center">
+                                        <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                            <div className="w-6 h-6">
+                                                <Globe />
+                                            </div>
+                                        </div>
+                                        <h4 className="font-bold text-sm">Paul Fagan</h4>
+                                        <p className="text-xs text-gray-300">Business Advisor & Board Member</p>
+                                        <p className="text-xs">Serial Entrepreneur in Life sciences</p>
+                                        <p className="text-xs">sold his first venture for $270M</p>
+                                        <p className="text-xs">CEO, ECM Therapeutics</p>
+                                        <p className="text-xs">MIT MBA, Lawyer & CPA</p>
+                                    </div>
+                                    
                                     <div className="bg-slate-700 p-4 rounded-lg text-center">
                                         <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
                                             <div className="w-6 h-6">
@@ -94,7 +988,10 @@
                                         </div>
                                         <h4 className="font-bold text-sm">Dr. Sreenivas Koka</h4>
                                         <p className="text-xs text-gray-300">Clinical Advisor</p>
-                                        <p className="text-xs">Dean, University of Mississippi</p>
+                                        <p className="text-xs">Dean at School of Dentistry, University of Mississippi</p>
+                                        <p className="text-xs">Chairman, Dental Specialties, Mayo Clinic in Minnesota</p>
+                                        <p className="text-xs">PhD in Oral Biology from University of Nebraska</p>
+                                        <p className="text-xs">MBA from MIT Sloan</p>
                                     </div>
                                     
                                     <div className="bg-slate-700 p-4 rounded-lg text-center">
@@ -105,7 +1002,10 @@
                                         </div>
                                         <h4 className="font-bold text-sm">Tomas Cole</h4>
                                         <p className="text-xs text-gray-300">Business Advisor</p>
-                                        <p className="text-xs">VP Operations at Inkbit, MIT MBA</p>
+                                        <p className="text-xs">VP of Operations at Inkbit (3D printing)</p>
+                                        <p className="text-xs">VP, Operations at Dentsply Sirona</p>
+                                        <p className="text-xs">Co-founder, Atlantis Components</p>
+                                        <p className="text-xs">BS, Mechanical Engineering and MBA from MIT</p>
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +1013,7 @@
                     )
                 },
 
-                // Slide 8: Financial Projection (Placeholder)
+                // Slide 16: Financial Projection (Placeholder)
                 {
                     id: 'financial',
                     component: (
@@ -183,6 +1083,11 @@
                     } else if (e.key === 'ArrowLeft') {
                         e.preventDefault();
                         prevSlide();
+                    } else if (e.key >= '1' && e.key <= '9') {
+                        const slideIndex = parseInt(e.key) - 1;
+                        if (slideIndex < slides.length) {
+                            goToSlide(slideIndex);
+                        }
                     }
                 };
 
@@ -241,7 +1146,7 @@
 
                     {/* Instructions */}
                     <div className="absolute bottom-6 left-6 text-white/70 text-sm z-50">
-                        Use ← → keys or click to navigate
+                        Use ← → keys, 1-9 numbers, or click to navigate
                     </div>
                 </div>
             );
@@ -250,65 +1155,99 @@
         ReactDOM.render(<KiiSPitchPresentation />, document.getElementById('root'));
     </script>
 </body>
-</html>-blue-600 p-6 rounded-lg text-center">
-                                        <div className="text-4xl font-bold text-yellow-400">178M</div>
-                                        <div className="text-lg mt-2">Tooth Loss Sufferers</div>
-                                        <div className="text-sm text-blue-200">needing implants in the US</div>
+</html>
+
+                // Slide 5: FDA Results
+                {
+                    id: 'fda-results',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <div className="text-center mb-8">
+                                <h1 className="text-3xl font-bold mb-4">Results from pre-submission to FDA: <span className="text-green-400">Positive to 510K</span></h1>
+                                <div className="flex justify-center space-x-16">
+                                    <div className="text-center">
+                                        <div className="text-blue-300 mb-2">1st FDA pre-submission</div>
+                                        <div className="text-lg font-semibold">KiiS (Kim's <span className="text-red-400">injectable</span> implant System)</div>
                                     </div>
-                                    <div className="bg-blue-600 p-6 rounded-lg text-center">
-                                        <div className="text-4xl font-bold text-yellow-400">5.7%</div>
-                                        <div className="text-lg mt-2">Implant Penetration Rate</div>
-                                        <div className="text-sm text-blue-200">Lowest among developed countries</div>
-                                    </div>
-                                    <div className="bg-blue-600 p-6 rounded-lg text-center">
-                                        <div className="text-4xl font-bold text-yellow-400">$1.5B</div>
-                                        <div className="text-lg mt-2">Current Implant Market</div>
-                                        <div className="text-sm text-blue-200">the biggest with 1/3 of global value</div>
+                                    <div className="text-center">
+                                        <div className="text-blue-300 mb-2">2nd and 3rd FDA pre-submission</div>
+                                        <div className="text-lg font-semibold">KiiS (Kim's <span className="text-green-400">ingrowth</span> Implant System)</div>
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div className="flex-1 flex items-center justify-center">
+                                <div className="grid grid-cols-7 gap-4 max-w-7xl">
+                                    {[
+                                        'KiiS',
+                                        'KiiS with abutment',
+                                        'Micro-CT (10μ) image of KiiS with abutment',
+                                        'Micro-CT (10μ) image of KiiS with abutment and block',
+                                        'KiiS with abutment',
+                                        'KiiS',
+                                        'Predicate (Zimmer TSV) (K133339)) - 510K'
+                                    ].map((label, index) => (
+                                        <div key={index} className="text-center">
+                                            <div className="w-24 h-32 bg-slate-700 rounded mb-2 flex items-center justify-center">
+                                                <div className="text-4xl">🦷</div>
+                                            </div>
+                                            <div className="text-xs">{label}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            <div className="text-center">
+                                <div className="text-sm text-gray-400 rotate-90 absolute left-4 top-1/2 transform -translate-y-1/2">
+                                    No predicate (202304)<br/>Nobel Rep cat 6<br/>based - De Novo
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
 
-                            <div className="flex-1 flex justify-between">
-                                <div className="w-1/2 pr-4">
-                                    <table className="w-full text-sm bg-slate-800 rounded-lg overflow-hidden">
-                                        <thead className="bg-slate-700">
-                                            <tr>
-                                                <th className="p-3 text-left">Country</th>
-                                                <th className="p-3 text-center">Penetration (%)</th>
-                                                <th className="p-3 text-center">Ave. Patient Fee (USD)</th>
-                                                <th className="p-3 text-center">Market Size (USD 100M)</th>
-                                                <th className="p-3 text-center">Population (M)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {[
-                                                ['Switzerland', '38.0%', '$4,000', '0.35', '8.7'],
-                                                ['Germany', '25.0%', '$2,800', '3.0', '83.2'],
-                                                ['South Korea', '13.3%', '$1,500', '0.95', '52'],
-                                                ['Netherlands', '9.0%', '$3,000', '1.3', '17.9'],
-                                                ['Japan', '7.2%', '$3,200', '2.7', '125'],
-                                                ['USA', '5.7%', '$4,500', '15.0', '330']
-                                            ].map((row, i) => (
-                                                <tr key={i} className={row[0] === 'USA' ? 'bg-yellow-400/20' : ''}>
-                                                    <td className="p-3">{row[0]}</td>
-                                                    <td className="p-3 text-center">{row[1]}</td>
-                                                    <td className="p-3 text-center">{row[2]}</td>
-                                                    <td className="p-3 text-center">{row[3]}</td>
-                                                    <td className="p-3 text-center">{row[4]}</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                // Slide 6: Paradigm Shift
+                {
+                    id: 'paradigm-shift',
+                    component: (
+                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
+                            <h1 className="text-4xl font-bold mb-8 text-center">
+                                <span className="text-yellow-400">Kim's Ingrowth Implant System</span> for Implant Paradigm Shift
+                            </h1>
+                            
+                            <div className="flex-1 flex">
+                                <div className="w-1/2 pr-8 flex items-center justify-center">
+                                    <div className="bg-slate-800 p-6 rounded-lg">
+                                        <div className="w-96 h-64 bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
+                                            <div className="text-center text-white">
+                                                <div className="text-lg mb-4">Traditional vs KiiS Comparison</div>
+                                                <div className="text-6xl mb-4">🔬</div>
+                                                <div className="text-sm">Bone ingrowth microscopy images</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 
-                                <div className="w-1/2 pl-4 flex flex-col justify-center">
-                                    <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black p-6 rounded-lg">
-                                        <div className="text-2xl font-bold mb-4">$1.5B to $3.0B by 2030</div>
-                                        <div className="text-xl font-semibold mb-4">10-11% CAGR driven by</div>
-                                        <ul className="space-y-2">
-                                            <li>• Baby Boomer Silver Tsunami</li>
-                                            <li>• Post-COVID Pent-Up Demand</li>
-                                            <li>• Accelerated Digital Technology</li>
+                                <div className="w-1/2 pl-8 space-y-6">
+                                    <div className="bg-blue-600 p-6 rounded-lg">
+                                        <h3 className="text-2xl font-bold text-yellow-400 mb-4">Bone In-Growth</h3>
+                                        <ul className="space-y-2 text-sm">
+                                            <li>• Increase in structural stability of the implant system by increasing in bone implant contact (>40% surface space vs. traditional implant) and 3D holding power</li>
+                                            <li>• Enhance stability of small diameter implant at the limited area in clinically difficult cases</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-blue-600 p-6 rounded-lg">
+                                        <h3 className="text-2xl font-bold text-yellow-400 mb-4">Facilitate more Oxygen and Nutrients</h3>
+                                        <ul className="space-y-2 text-sm">
+                                            <li>• Accelerate osseointegration for immediate implantation after tooth extraction</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-blue-600 p-6 rounded-lg">
+                                        <h3 className="text-2xl font-bold text-yellow-400 mb-4">Surgical & Restorative Compatibility</h3>
+                                        <ul className="space-y-2 text-sm">
+                                            <li>• Enables dental office to use existing tools</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -317,133 +1256,7 @@
                     )
                 },
 
-                // Slide 3: Three Barriers
-                {
-                    id: 'barriers',
-                    component: (
-                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
-                            <h1 className="text-4xl font-bold mb-8 text-center">3 Barriers hindering Implant access and growth potential</h1>
-                            
-                            <div className="flex-1 grid grid-cols-3 gap-6">
-                                <div className="bg-blue-600 p-6 rounded-lg">
-                                    <div className="flex items-center mb-4">
-                                        <div className="w-8 h-8 text-yellow-400 mr-3">
-                                            <DollarSign />
-                                        </div>
-                                        <h3 className="text-2xl font-bold">Cost Burden</h3>
-                                    </div>
-                                    <div className="space-y-3 text-sm">
-                                        <p>• High Upfront Cost $3,000–$6,000/Tooth</p>
-                                        <p>• Bone Graft +$1,500–$3,000</p>
-                                        <p>• Premium products > 60% of market</p>
-                                    </div>
-                                    <div className="mt-6 h-32 bg-slate-700 rounded flex items-center justify-center">
-                                        <div className="w-16 h-16 text-blue-300">
-                                            <Users />
-                                        </div>
-                                    </div>
-                                    <p className="text-center mt-4 font-semibold">Premium costs limit patient accessibility</p>
-                                </div>
-
-                                <div className="bg-blue-600 p-6 rounded-lg">
-                                    <div className="flex items-center mb-4">
-                                        <div className="w-8 h-8 text-yellow-400 mr-3">
-                                            <BarChart3 />
-                                        </div>
-                                        <h3 className="text-2xl font-bold">Procedure Inefficiency</h3>
-                                    </div>
-                                    <div className="space-y-3 text-sm">
-                                        <p>• Lengthy 4-9 month process</p>
-                                        <p>• Dropout risk w/ multi-phase treatment</p>
-                                        <p>• Opportunity Loss w/ diagnostic exclusion</p>
-                                    </div>
-                                    <div className="mt-6 h-32 bg-slate-700 rounded flex items-center justify-center">
-                                        <div className="w-16 h-16 text-blue-300">
-                                            <TrendingUp />
-                                        </div>
-                                    </div>
-                                    <p className="text-center mt-4 font-semibold">Lengthy extended process burdens all parties</p>
-                                </div>
-
-                                <div className="bg-blue-600 p-6 rounded-lg">
-                                    <div className="flex items-center mb-4">
-                                        <div className="w-8 h-8 text-yellow-400 mr-3">
-                                            <Shield />
-                                        </div>
-                                        <h3 className="text-2xl font-bold">Treatment Limitations</h3>
-                                    </div>
-                                    <div className="space-y-3 text-sm">
-                                        <p>• Limited bone eligibility</p>
-                                        <p>• High complexity of bone grafting</p>
-                                        <p>• Health burden (aging, chronic diseases)</p>
-                                    </div>
-                                    <div className="mt-6 h-32 bg-slate-700 rounded flex items-center justify-center">
-                                        <div className="w-16 h-16 text-blue-300">
-                                            <Target />
-                                        </div>
-                                    </div>
-                                    <p className="text-center mt-4 font-semibold">Low bone density excludes many patients</p>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                },
-
-                // Slide 4: KiiS Innovation
-                {
-                    id: 'innovation',
-                    component: (
-                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
-                            <h1 className="text-4xl font-bold mb-8 text-center">
-                                <span className="text-yellow-400">KiiS Innovation:</span> US Patented New to the world Dental Implant
-                            </h1>
-                            
-                            <div className="flex-1 flex">
-                                <div className="w-1/2 pr-8 flex flex-col justify-center">
-                                    <div className="bg-slate-800 p-8 rounded-lg mb-6">
-                                        <div className="w-full h-64 bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mb-4">
-                                            <div className="text-center">
-                                                <div className="text-6xl mb-4">🦷</div>
-                                                <div className="text-lg">US Patent Document</div>
-                                                <div className="text-sm text-blue-200">US 9757213B2</div>
-                                            </div>
-                                        </div>
-                                        <div className="text-center">
-                                            <div className="text-sm text-gray-400">HuMed Lifesciences KiiS</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div className="w-1/2 pl-8">
-                                    <div className="space-y-6">
-                                        <div className="bg-blue-600 p-6 rounded-lg">
-                                            <h3 className="text-2xl font-bold text-yellow-400 mb-4">Spiral Side Opening</h3>
-                                            <ul className="space-y-2 text-sm">
-                                                <li>• First-Ever Revolutionary bone ingrowth technology</li>
-                                                <li>• *FDA 510K Ready - Clear Path to Market Approval</li>
-                                            </ul>
-                                        </div>
-                                        
-                                        <div className="bg-blue-600 p-6 rounded-lg">
-                                            <h3 className="text-2xl font-bold text-yellow-400 mb-4">Hallow Inner Channel</h3>
-                                            <ul className="space-y-2 text-sm">
-                                                <li>• Only implant with built-in medication delivery system for targeted healing</li>
-                                                <li>• *De Novo Pathway for Injectable Platform (Phase 2 Expansion)</li>
-                                            </ul>
-                                        </div>
-                                        
-                                        <div className="bg-slate-700 p-4 rounded-lg text-xs">
-                                            <p>* FDA 510K: Proven regulatory pathway - minimal risk, faster commercialization</p>
-                                            <p>* De Novo Pathway: Breakthrough device designation for unmet medical needs</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                },
-
-                // Slide 5: Breaking Barriers
+                // Slide 7: Breaking Barriers
                 {
                     id: 'solution',
                     component: (
@@ -458,36 +1271,31 @@
                                         <div className="bg-blue-600 p-6 rounded-lg text-center">
                                             <h3 className="text-xl font-bold mb-4">Cost Burden</h3>
                                             <div className="w-full h-32 bg-slate-700 rounded flex items-center justify-center mb-4">
-                                                <div className="w-16 h-16 text-blue-300">
-                                                    <Users />
-                                                </div>
+                                                <div className="text-4xl">👨‍⚕️</div>
                                             </div>
                                         </div>
                                         
                                         <div className="bg-blue-600 p-6 rounded-lg text-center">
                                             <h3 className="text-xl font-bold mb-4">Procedure Inefficiency</h3>
                                             <div className="w-full h-32 bg-slate-700 rounded flex items-center justify-center mb-4">
-                                                <div className="w-16 h-16 text-blue-300">
-                                                    <BarChart3 />
-                                                </div>
+                                                <div className="text-4xl">👨‍⚕️</div>
                                             </div>
                                         </div>
                                         
                                         <div className="bg-blue-600 p-6 rounded-lg text-center">
                                             <h3 className="text-xl font-bold mb-4">Treatment Limitations</h3>
                                             <div className="w-full h-32 bg-slate-700 rounded flex items-center justify-center mb-4">
-                                                <div className="w-16 h-16 text-blue-300">
-                                                    <Shield />
-                                                </div>
+                                                <div className="text-4xl">👵</div>
                                             </div>
                                         </div>
                                     </div>
                                     
                                     <div className="flex justify-center mb-8">
-                                        <div className="bg-gradient-to-r from-yellow-400 to-blue-400 w-64 h-64 rounded-full flex items-center justify-center">
-                                            <div className="text-center">
+                                        <div className="bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-600 w-64 h-64 rounded-full flex items-center justify-center relative">
+                                            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full animate-pulse"></div>
+                                            <div className="relative text-center">
                                                 <div className="text-6xl mb-2">🦷</div>
-                                                <div className="text-black font-bold text-lg">KiiS Technology</div>
+                                                <div className="text-white font-bold text-lg">KiiS Technology</div>
                                             </div>
                                         </div>
                                     </div>
@@ -506,117 +1314,3 @@
                                         <div className="text-center">
                                             <div className="text-yellow-400 font-bold text-lg mb-2">Expand Access by KiiS</div>
                                             <div className="text-sm">Broader patient eligibility</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                },
-
-                // Slide 6: Go-To-Market Strategy
-                {
-                    id: 'strategy',
-                    component: (
-                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
-                            <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">Go-To-Market Strategy</h1>
-                            
-                            <div className="flex-1 flex items-center justify-center">
-                                <div className="w-1/2 pr-8">
-                                    <div className="space-y-6 text-lg">
-                                        <div className="flex items-center">
-                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">1</div>
-                                            <div>Product Positioning for Dual Market Expansion</div>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">2</div>
-                                            <div>Superiority Claims Marketing</div>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">3</div>
-                                            <div>Digital First Sales Channel</div>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">4</div>
-                                            <div>Manufacturing Partnership in Korea</div>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <div className="w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold mr-4">5</div>
-                                            <div>Seasoned Leadership in global Life sciences</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div className="w-1/2 pl-8 flex justify-center">
-                                    <div className="w-64 h-64 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
-                                        <div className="w-32 h-32 text-white">
-                                            <Rocket />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                },
-
-                // Slide 7: Team
-                {
-                    id: 'team',
-                    component: (
-                        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 to-blue-900 text-white p-8">
-                            <h1 className="text-4xl font-bold mb-8 text-center">Seasoned Leadership in global Life sciences</h1>
-                            
-                            <div className="flex-1">
-                                <div className="grid grid-cols-2 gap-8 mb-8">
-                                    <div className="bg-slate-800 p-6 rounded-lg">
-                                        <div className="flex items-center mb-4">
-                                            <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mr-4">
-                                                <div className="w-8 h-8">
-                                                    <Users />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <h3 className="text-xl font-bold">Do-Gyoon Kim</h3>
-                                                <p className="text-sm text-yellow-400">Co-Founder & CSA</p>
-                                            </div>
-                                        </div>
-                                        <div className="text-sm space-y-1">
-                                            <p>Professor, College of Dentistry Orthodontics, Ohio State University</p>
-                                            <p>Inventor of Hybrid Dental Implant (US 9757213B2)</p>
-                                            <p>PhD, Mechanical Engineering, RPI</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="bg-slate-800 p-6 rounded-lg">
-                                        <div className="flex items-center mb-4">
-                                            <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mr-4">
-                                                <div className="w-8 h-8">
-                                                    <Award />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <h3 className="text-xl font-bold">Hongsuk Kim</h3>
-                                                <p className="text-sm text-yellow-400">CEO</p>
-                                            </div>
-                                        </div>
-                                        <div className="text-sm space-y-1">
-                                            <p>Samsung, J&J, AB InBev, and P&G</p>
-                                            <p>Global commercialization leader with $700M+ P&L experience</p>
-                                            <p>Harvard A.M. Statistics / Korea University B.A. Business</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div className="grid grid-cols-3 gap-6">
-                                    <div className="bg-slate-700 p-4 rounded-lg text-center">
-                                        <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                                            <div className="w-6 h-6">
-                                                <Globe />
-                                            </div>
-                                        </div>
-                                        <h4 className="font-bold text-sm">Paul Fagan</h4>
-                                        <p className="text-xs text-gray-300">Business Advisor</p>
-                                        <p className="text-xs">Serial Entrepreneur, sold venture for $270M</p>
-                                    </div>
-                                    
-                                    <div className="bg
