@@ -350,6 +350,18 @@
             display: none;
         }
         
+        /* 네비게이션 호버 감지 영역 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+        
+        /* 네비게이션 스타일 */
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -357,46 +369,56 @@
             transform: translateX(-50%);
             display: flex;
             gap: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             padding: 15px 30px;
             border-radius: 50px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
         }
         
         .navigation.visible {
             opacity: 1;
             visibility: visible;
-        }
-        
-        .hover-zone {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            z-index: 999;
-            pointer-events: none;
+            transform: translateX(-50%) translateY(0);
         }
         
         .nav-btn {
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             font-weight: 500;
             border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
         }
         
         .nav-btn:hover {
             background: rgba(255, 215, 0, 0.3);
             border-color: #ffd700;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
         }
         
         @media (max-width: 1200px) {
@@ -439,6 +461,15 @@
             body {
                 padding: 40px;
                 overflow: auto;
+            }
+            
+            .navigation {
+                padding: 12px 20px;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 12px;
             }
         }
     </style>
@@ -528,10 +559,24 @@
             <div class="arrow arrow-1"></div>
             <div class="arrow arrow-2"></div>
             <div class="arrow arrow-3"></div>
-            <div class="arrow arrow-4"></div>
-            <div class="arrow arrow-5"></div>
-            <div class="arrow arrow-6"></div>
         </div>
+        
+        <!-- KiiS Logo Section -->
+        <div class="kiis-logo-section">
+            <div class="kiis-logo" onclick="showSource('kiissolution')">
+                <div style="color: #000; font-size: 30px; font-weight: bold;">K</div>
+            </div>
+            <div class="kiis-text">KiiS</div>
+        </div>
+    </div>
+    
+    <!-- 네비게이션 호버 감지 영역 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    
+    <!-- 네비게이션 -->
+    <div class="navigation" id="navigation">
+        <a href="slide6.html" class="nav-btn prev">Back</a>
+        <a href="slide8.html" class="nav-btn next">Next</a>
     </div>
     
     <!-- Source Popup -->
@@ -539,12 +584,6 @@
     <div class="source-popup" id="sourcePopup">
         <button class="close-btn" onclick="hideSource()">×</button>
         <div id="sourceContent"></div>
-    </div>
-    
-    <!-- Navigation -->
-    <div class="navigation">
-        <a href="slide6.html" class="nav-btn">← back</a>
-        <a href="slide8.html" class="nav-btn">next →</a>
     </div>
     
     <script>
@@ -696,173 +735,283 @@
             document.getElementById('sourcePopup').style.display = 'none';
         }
         
-        // Navigation functionality
+        // 네비게이션 기능
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         let hideTimeout;
+        let isNavigationVisible = false;
         
-        // Debug: 초기 확인
-        console.log('Navigation element:', navigation);
-        console.log('Is touch device:', isTouchDevice);
-        
-        // Show navigation
+        // 네비게이션 표시
         function showNavigation() {
-            console.log('Showing navigation');
-            navigation.classList.add('visible');
             clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
         }
         
-        // Hide navigation with delay
-        function hideNavigation() {
-            console.log('Hiding navigation in 3 seconds');
+        // 네비게이션 숨기기 (지연 적용)
+        function hideNavigation(delay = 2000) {
+            clearTimeout(hideTimeout);
             hideTimeout = setTimeout(() => {
                 navigation.classList.remove('visible');
-                console.log('Navigation hidden');
-            }, 3000);
+                isNavigationVisible = false;
+            }, delay);
         }
         
-        // PC: Hover functionality
+        // PC/데스크톱: 마우스 호버 기능
         if (!isTouchDevice) {
-            console.log('Setting up PC hover functionality');
-            hoverZone.style.pointerEvents = 'auto';
+            // 화면 하단 100px 영역에서 호버 감지
+            hoverZone.addEventListener('mouseenter', showNavigation);
             
-            hoverZone.addEventListener('mouseenter', () => {
-                console.log('Hover zone entered');
-                showNavigation();
-            });
-            
+            // 네비게이션 자체 호버
             navigation.addEventListener('mouseenter', () => {
-                console.log('Navigation hovered');
+                clearTimeout(hideTimeout);
                 showNavigation();
             });
             
+            // 네비게이션에서 마우스가 벗어났을 때
             navigation.addEventListener('mouseleave', () => {
-                console.log('Navigation left');
-                hideNavigation();
+                hideNavigation(1000);
             });
             
+            // 전체 화면에서 마우스 움직임 감지
             document.addEventListener('mousemove', (e) => {
-                if (e.clientY > window.innerHeight - 100) {
-                    if (!navigation.classList.contains('visible')) {
-                        console.log('Mouse near bottom, showing navigation');
+                const windowHeight = window.innerHeight;
+                const mouseY = e.clientY;
+                
+                // 마우스가 화면 하단 100px 안에 있을 때
+                if (mouseY > windowHeight - 100) {
+                    if (!isNavigationVisible) {
                         showNavigation();
                     }
-                } else if (!navigation.matches(':hover')) {
-                    clearTimeout(hideTimeout);
-                    hideTimeout = setTimeout(() => {
-                        navigation.classList.remove('visible');
-                    }, 1000);
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
                 }
             });
         }
         
-        // Touch devices: Tap to toggle + Swipe support
+        // 터치 디바이스: 탭 및 스와이프 기능
         if (isTouchDevice) {
-            console.log('Setting up touch functionality');
             let startX = 0;
             let startY = 0;
+            let startTime = 0;
             
-            // Tap to toggle navigation
+            // 터치 시작
             document.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
+                startTime = Date.now();
                 
-                console.log('Touch start, showing navigation');
-                showNavigation();
-                hideNavigation();
+                // 화면 하단을 터치하면 네비게이션 표시
+                const touchY = e.touches[0].clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (touchY > windowHeight - 100) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
             });
             
-            // Swipe navigation
+            // 터치 종료 (스와이프 감지)
             document.addEventListener('touchend', (e) => {
                 const endX = e.changedTouches[0].clientX;
                 const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
                 const deltaX = endX - startX;
                 const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
                 
-                // Only trigger if horizontal swipe is dominant
-                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                // 스와이프 조건: 수평 이동 50px 이상, 시간 300ms 이하, 수평 이동이 수직 이동보다 클 때
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
                     if (deltaX > 0) {
-                        console.log('Swipe right - previous slide');
+                        // 오른쪽 스와이프 - 이전 슬라이드
                         window.location.href = 'slide6.html';
                     } else {
-                        console.log('Swipe left - next slide');
+                        // 왼쪽 스와이프 - 다음 슬라이드
                         window.location.href = 'slide8.html';
                     }
                 }
             });
+            
+            // 화면 탭으로 네비게이션 토글
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                // 다른 요소를 탭한 경우 제외
+                if (e.target.closest('.barrier-card') || 
+                    e.target.closest('.solution-card') || 
+                    e.target.closest('.source-popup') ||
+                    e.target.closest('.navigation')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            // 단일 탭 - 네비게이션 토글
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
         }
         
-        // Keyboard navigation (all devices)
+        // 키보드 네비게이션 (모든 디바이스)
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                console.log('Arrow left pressed');
-                window.location.href = 'slide6.html';
-            } else if (e.key === 'ArrowRight') {
-                console.log('Arrow right pressed');
-                window.location.href = 'slide8.html';
-            } else if (e.key === 'Escape') {
-                navigation.classList.remove('visible');
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide6.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide8.html';
+                    break;
+                case 'Escape':
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                    clearTimeout(hideTimeout);
+                    hideSource();
+                    break;
+                case 'n':
+                case 'N':
+                    // 'n' 키로 네비게이션 토글
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
             }
         });
         
-        // Test: 5초 후 네비게이션 강제 표시 (디버깅용)
-        setTimeout(() => {
-            console.log('Force showing navigation for testing');
-            showNavigation();
-        }, 2000);
-        
-        // Add entrance animation
+        // 페이지 로드 시 애니메이션
         window.addEventListener('load', function() {
             const barriers = document.querySelectorAll('.barrier-card');
             const solutions = document.querySelectorAll('.solution-card');
-            const center = document.querySelector('.solution-circle');
             const arrows = document.querySelectorAll('.arrow');
+            const kiisSection = document.querySelector('.kiis-logo-section');
             
-            // Animate barriers first
-            barriers.forEach((barrier, index) => {
+            // 초기 상태 설정
+            barriers.forEach(barrier => {
                 barrier.style.opacity = '0';
                 barrier.style.transform = 'translateY(-50px)';
-                barrier.style.transition = 'all 0.8s ease';
-                
-                setTimeout(() => {
-                    barrier.style.opacity = '1';
-                    barrier.style.transform = 'translateY(0)';
-                }, index * 200);
+                barrier.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
             });
             
-            // Animate center solution
-            center.style.opacity = '0';
-            center.style.transform = 'scale(0.5)';
-            center.style.transition = 'all 1s ease';
-            
-            setTimeout(() => {
-                center.style.opacity = '1';
-                center.style.transform = 'scale(1)';
-            }, 800);
-            
-            // Animate arrows
-            arrows.forEach((arrow, index) => {
-                arrow.style.opacity = '0';
-                arrow.style.transition = 'opacity 0.5s ease';
-                
-                setTimeout(() => {
-                    arrow.style.opacity = '1';
-                }, 1200 + (index * 100));
-            });
-            
-            // Animate solutions last
-            solutions.forEach((solution, index) => {
+            solutions.forEach(solution => {
                 solution.style.opacity = '0';
                 solution.style.transform = 'translateY(50px)';
-                solution.style.transition = 'all 0.8s ease';
+                solution.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            arrows.forEach(arrow => {
+                arrow.style.opacity = '0';
+                arrow.style.transition = 'opacity 0.6s ease';
+            });
+            
+            kiisSection.style.opacity = '0';
+            kiisSection.style.transform = 'scale(0.8)';
+            kiisSection.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            // 순차적 애니메이션 실행
+            setTimeout(() => {
+                // 1. 문제점 카드들 애니메이션
+                barriers.forEach((barrier, index) => {
+                    setTimeout(() => {
+                        barrier.style.opacity = '1';
+                        barrier.style.transform = 'translateY(0)';
+                    }, index * 200);
+                });
                 
+                // 2. 화살표 애니메이션
                 setTimeout(() => {
-                    solution.style.opacity = '1';
-                    solution.style.transform = 'translateY(0)';
-                }, 1500 + (index * 200));
+                    arrows.forEach((arrow, index) => {
+                        setTimeout(() => {
+                            arrow.style.opacity = '1';
+                        }, index * 100);
+                    });
+                }, 800);
+                
+                // 3. 솔루션 카드들 애니메이션
+                setTimeout(() => {
+                    solutions.forEach((solution, index) => {
+                        setTimeout(() => {
+                            solution.style.opacity = '1';
+                            solution.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    });
+                }, 1200);
+                
+                // 4. KiiS 로고 애니메이션
+                setTimeout(() => {
+                    kiisSection.style.opacity = '1';
+                    kiisSection.style.transform = 'scale(1)';
+                }, 1800);
+                
+                // 5. 네비게이션 힌트 (잠깐 표시)
+                setTimeout(() => {
+                    showNavigation();
+                    hideNavigation(2000);
+                }, 3000);
+                
+            }, 500);
+        });
+        
+        // 접근성 향상을 위한 포커스 관리
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                showNavigation();
+                hideNavigation(5000);
+            }
+        });
+        
+        // 브라우저 크기 변경 시 네비게이션 위치 재조정
+        window.addEventListener('resize', () => {
+            if (isNavigationVisible) {
+                clearTimeout(hideTimeout);
+                hideNavigation(1000);
+            }
+        });
+        
+        // 네비게이션 링크에 대한 추가 이벤트
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+            
+            btn.addEventListener('focus', () => {
+                showNavigation();
+                clearTimeout(hideTimeout);
             });
         });
+        
+        // 개발자 도구에서 네비게이션 상태 확인 (디버깅용)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('🎯 KiiS 프레젠테이션 네비게이션 시스템 활성화');
+            console.log('📱 터치 디바이스:', isTouchDevice);
+            console.log('⌨️  키보드 단축키: ← → ↑ ↓ Space(다음), Esc(숨기기), N(토글)');
+            console.log('🖱️  PC: 화면 하단 호버 또는 마우스 이동');
+            console.log('👆 모바일: 화면 하단 터치, 스와이프, 화면 탭');
+        }
     </script>
 </body>
 </html>
