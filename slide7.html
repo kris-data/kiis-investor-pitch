@@ -42,7 +42,7 @@
         .barriers-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            grid-template-rows: 1fr 1fr auto;
             gap: 40px;
             flex: 1;
             position: relative;
@@ -106,13 +106,49 @@
             margin-bottom: 8px;
         }
         
-        /* Center solution - positioned absolutely */
+        /* KiiS Logo Section */
+        .kiis-logo-section {
+            grid-column: 1 / 4;
+            grid-row: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .kiis-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .kiis-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        .kiis-logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+        
+        .kiis-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        /* Center solution - removed */
         .solution-section {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
+            display: none;
         }
         
         .solution-circle {
@@ -188,61 +224,42 @@
             line-height: 1.4;
         }
         
-        /* Arrows */
+        /* Arrows - vertical from problems to solutions */
         .arrow {
             position: absolute;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #ffd700, rgba(255, 215, 0, 0.3));
+            width: 4px;
+            height: 60px;
+            background: linear-gradient(180deg, #ffd700, rgba(255, 215, 0, 0.3));
             z-index: 5;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .arrow::after {
             content: '';
             position: absolute;
-            right: -8px;
-            top: -6px;
+            bottom: -8px;
+            left: -6px;
             width: 0;
             height: 0;
-            border-left: 15px solid #ffd700;
-            border-top: 7px solid transparent;
-            border-bottom: 7px solid transparent;
+            border-top: 15px solid #ffd700;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
         }
         
         .arrow-1 {
-            top: 40%;
-            left: 28%;
-            transform: rotate(-25deg);
+            top: 45%;
+            left: 16.5%;
         }
         
         .arrow-2 {
-            top: 40%;
-            left: 45%;
-            transform: rotate(0deg);
+            top: 45%;
+            left: 50%;
         }
         
         .arrow-3 {
-            top: 40%;
-            right: 28%;
-            transform: rotate(25deg);
-        }
-        
-        .arrow-4 {
-            bottom: 40%;
-            left: 28%;
-            transform: rotate(25deg);
-        }
-        
-        .arrow-5 {
-            bottom: 40%;
-            left: 45%;
-            transform: rotate(0deg);
-        }
-        
-        .arrow-6 {
-            bottom: 40%;
-            right: 28%;
-            transform: rotate(-25deg);
+            top: 45%;
+            left: 83.5%;
         }
         
         .clickable-text {
@@ -366,17 +383,15 @@
         @media (max-width: 1200px) {
             .barriers-grid {
                 grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto;
+                grid-template-rows: auto auto auto auto;
                 gap: 30px;
                 position: static;
             }
             
-            .solution-section {
-                position: static;
-                transform: none;
+            .kiis-logo-section {
                 grid-column: 1;
-                grid-row: 2;
-                margin: 30px 0;
+                grid-row: 4;
+                margin-top: 30px;
             }
             
             .arrow {
@@ -388,14 +403,18 @@
                 margin-bottom: 40px;
             }
             
-            .solution-circle {
-                width: 200px;
-                height: 200px;
+            .kiis-logo {
+                width: 60px;
+                height: 60px;
             }
             
-            .solution-image {
-                width: 120px;
-                height: 120px;
+            .kiis-logo img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .kiis-text {
+                font-size: 20px;
             }
             
             body {
