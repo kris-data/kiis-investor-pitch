@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KiiS - Breaking Barriers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 60px 80px;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #ffffff;
+        }
+        
+        .title .highlight {
+            color: #ffd700;
+        }
+        
+        .barriers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+            position: relative;
+            align-items: center;
+        }
+        
+        /* Top row - Problems */
+        .barrier-card {
+            background: linear-gradient(145deg, #1e40af, #1d4ed8);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .barrier-card:hover {
+            transform: translateY(-8px);
+            border-color: #ffd700;
+        }
+        
+        .barrier-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .barrier-image {
+            width: 200px;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .image-placeholder {
+            width: 200px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+        
+        .placeholder-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        /* Center solution - positioned absolutely */
+        .solution-section {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        
+        .solution-circle {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #ffd700, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4);
+            animation: pulse 2s infinite;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .solution-circle:hover {
+            transform: scale(1.05);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 20px 80px rgba(255, 215, 0, 0.6); }
+            100% { box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4); }
+        }
+        
+        .solution-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .solution-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+        }
+        
+        /* Bottom row - Solutions */
+        .solution-card {
+            background: linear-gradient(145deg, #10b981, #059669);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-8px);
+            border-color: #ffd700;
+        }
+        
+        .solution-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .solution-benefit {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+        
+        /* Arrows */
+        .arrow {
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, rgba(255, 215, 0, 0.3));
+            z-index: 5;
+        }
+        
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid #ffd700;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+        }
+        
+        .arrow-1 {
+            top: 40%;
+            left: 28%;
+            transform: rotate(-25deg);
+        }
+        
+        .arrow-2 {
+            top: 40%;
+            left: 45%;
+            transform: rotate(0deg);
+        }
+        
+        .arrow-3 {
+            top: 40%;
+            right: 28%;
+            transform: rotate(25deg);
+        }
+        
+        .arrow-4 {
+            bottom: 40%;
+            left: 28%;
+            transform: rotate(25deg);
+        }
+        
+        .arrow-5 {
+            bottom: 40%;
+            left: 45%;
+            transform: rotate(0deg);
+        }
+        
+        .arrow-6 {
+            bottom: 40%;
+            right: 28%;
+            transform: rotate(-25deg);
+        }
+        
+        .clickable-text {
+            color: #ffd700;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .clickable-text:hover {
+            color: #fff;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .source-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        
+        .source-popup h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .source-popup p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .source-popup ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .source-popup li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .source-popup .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 28px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .source-popup .close-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            display: none;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 1200px) {
+            .barriers-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 30px;
+                position: static;
+            }
+            
+            .solution-section {
+                position: static;
+                transform: none;
+                grid-column: 1;
+                grid-row: 2;
+                margin: 30px 0;
+            }
+            
+            .arrow {
+                display: none;
+            }
+            
+            .title {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+            
+            .solution-circle {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .solution-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            body {
+                padding: 40px;
+                overflow: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">
+            <span class="highlight">KiiS Innovation:</span> Breaking Barriers to Unlock Market Potential
+        </h1>
+        
+        <div class="barriers-grid">
+            <!-- Top Row - Problems -->
+            <div class="barrier-card" onclick="showSource('costproblem')">
+                <div class="barrier-title">Cost Burden</div>
+                <img src="/kiis-investor-pitch/public/images/happy-family-cost-relief.jpg" 
+                     alt="Cost Relief for Families" 
+                     class="barrier-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder" style="display: none;">
+                    <div class="placeholder-icon">💰</div>
+                    <div>Cost Relief</div>
+                </div>
+            </div>
+            
+            <div class="barrier-card" onclick="showSource('procedureproblem')">
+                <div class="barrier-title">Procedure Inefficiency</div>
+                <img src="/kiis-investor-pitch/public/images/dental-team-efficiency.jpg" 
+                     alt="Dental Team Efficiency" 
+                     class="barrier-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder" style="display: none;">
+                    <div class="placeholder-icon">⏱️</div>
+                    <div>Team Efficiency</div>
+                </div>
+            </div>
+            
+            <div class="barrier-card" onclick="showSource('treatmentproblem')">
+                <div class="barrier-title">Treatment Limitations</div>
+                <img src="/kiis-investor-pitch/public/images/elderly-woman-confidence.jpg" 
+                     alt="Elderly Patient Confidence" 
+                     class="barrier-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder" style="display: none;">
+                    <div class="placeholder-icon">🚫</div>
+                    <div>Patient Confidence</div>
+                </div>
+            </div>
+            
+            <!-- Center Solution -->
+            <div class="solution-section">
+                <div class="solution-circle" onclick="showSource('kiissolution')">
+                    <img src="/kiis-investor-pitch/public/images/kiis-implant-solution.jpg" 
+                         alt="KiiS Implant Solution" 
+                         class="solution-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div style="display: none; font-size: 48px; margin-bottom: 10px;">🦷</div>
+                    <div class="solution-text">KiiS Solution</div>
+                </div>
+            </div>
+            
+            <!-- Bottom Row - Solutions -->
+            <div class="solution-card" onclick="showSource('costsolution')">
+                <div class="solution-title">Reduce Cost by KiiS</div>
+                <div class="solution-benefit">
+                    Better and faster results<br>
+                    at the same investment
+                </div>
+            </div>
+            
+            <div class="solution-card" onclick="showSource('processolution')">
+                <div class="solution-title">Simplify Process by KiiS</div>
+                <div class="solution-benefit">
+                    Single Visit and<br>
+                    Single session treatment
+                </div>
+            </div>
+            
+            <div class="solution-card" onclick="showSource('accesssolution')">
+                <div class="solution-title">Expand Access by KiiS</div>
+                <div class="solution-benefit">
+                    Weak bone is not<br>
+                    excluded any more
+                </div>
+            </div>
+            
+            <!-- Arrows -->
+            <div class="arrow arrow-1"></div>
+            <div class="arrow arrow-2"></div>
+            <div class="arrow arrow-3"></div>
+            <div class="arrow arrow-4"></div>
+            <div class="arrow arrow-5"></div>
+            <div class="arrow arrow-6"></div>
+        </div>
+    </div>
+    
+    <!-- Source Popup -->
+    <div class="overlay" id="overlay" onclick="hideSource()"></div>
+    <div class="source-popup" id="sourcePopup">
+        <button class="close-btn" onclick="hideSource()">×</button>
+        <div id="sourceContent"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="navigation">
+        <a href="slide6.html" class="nav-btn">← back</a>
+        <a href="slide8.html" class="nav-btn">next →</a>
+    </div>
+    
+    <script>
+        // Source data
+        const sources = {
+            'costproblem': {
+                title: 'Cost Burden Challenge',
+                content: `
+                    <p><strong>Current Market Reality:</strong></p>
+                    <p>High upfront costs ($3K-$6K per tooth + $1.5K-$3K for bone grafts) limit access to dental implants for many patients.</p>
+                    
+                    <p><strong>Impact on Patients:</strong></p>
+                    <ul>
+                        <li><strong>Financial Strain:</strong> Many families cannot afford premium implant costs</li>
+                        <li><strong>Insurance Barriers:</strong> Limited coverage for complex procedures</li>
+                        <li><strong>Treatment Delays:</strong> Patients postpone necessary care due to cost</li>
+                        <li><strong>Quality of Life:</strong> Reduced oral health affects overall wellbeing</li>
+                    </ul>
+                    
+                    <p><strong>Market Limitation:</strong> Over 60% of the market remains in premium price segments, excluding many potential patients.</p>
+                `
+            },
+            'procedureproblem': {
+                title: 'Procedure Inefficiency Challenge',
+                content: `
+                    <p><strong>Current Treatment Complexity:</strong></p>
+                    <p>Traditional implant procedures require 4-9 months with multiple appointments, creating inefficiencies for both patients and dental practices.</p>
+                    
+                    <p><strong>Practice Impact:</strong></p>
+                    <ul>
+                        <li><strong>Low Throughput:</strong> Complex multi-stage procedures limit patient volume</li>
+                        <li><strong>High Dropout Rate:</strong> 70% of suitable patients choose alternatives</li>
+                        <li><strong>Resource Intensive:</strong> Multiple visits strain scheduling and resources</li>
+                        <li><strong>Opportunity Cost:</strong> Long procedures reduce practice efficiency</li>
+                    </ul>
+                    
+                    <p><strong>Patient Burden:</strong> Extended treatment time, multiple appointments, and complex recovery processes.</p>
+                `
+            },
+            'treatmentproblem': {
+                title: 'Treatment Limitations Challenge',
+                content: `
+                    <p><strong>Patient Exclusion Crisis:</strong></p>
+                    <p>40% of patients with insufficient bone density are excluded from traditional implant therapy, limiting market penetration.</p>
+                    
+                    <p><strong>Medical Limitations:</strong></p>
+                    <ul>
+                        <li><strong>Bone Quality Issues:</strong> Type 3-4 bone density patients often excluded</li>
+                        <li><strong>Health Complications:</strong> Diabetes, smoking, age-related factors increase risks</li>
+                        <li><strong>Complex Procedures:</strong> Bone grafting requirements add cost and complexity</li>
+                        <li><strong>Higher Failure Rates:</strong> Challenging cases have reduced success rates</li>
+                    </ul>
+                    
+                    <p><strong>Demographic Impact:</strong> Aging population most in need often least eligible for treatment.</p>
+                `
+            },
+            'kiissolution': {
+                title: 'KiiS: Revolutionary Solution',
+                content: `
+                    <p><strong>Breakthrough Technology:</strong></p>
+                    <p>KiiS represents a paradigm shift in dental implant technology, simultaneously addressing all three major market barriers.</p>
+                    
+                    <p><strong>Unified Solution Approach:</strong></p>
+                    <ul>
+                        <li><strong>Cost Reduction:</strong> Eliminates need for bone grafts, reduces total treatment cost</li>
+                        <li><strong>Process Simplification:</strong> Single-session surgery with faster healing</li>
+                        <li><strong>Access Expansion:</strong> Works effectively in compromised bone conditions</li>
+                        <li><strong>Quality Improvement:</strong> Superior osseointegration and stability</li>
+                    </ul>
+                    
+                    <p><strong>Market Transformation:</strong></p>
+                    <ul>
+                        <li>Converts excluded patients into treatable candidates</li>
+                        <li>Reduces barriers to treatment adoption</li>
+                        <li>Enables practice efficiency improvements</li>
+                        <li>Creates new market opportunities</li>
+                    </ul>
+                    
+                    <p><strong>Investment Opportunity:</strong> KiiS doesn't just improve existing solutions—it fundamentally transforms the market by eliminating barriers that have limited growth for decades.</p>
+                `
+            },
+            'costsolution': {
+                title: '50% Cost Reduction Achievement',
+                content: `
+                    <p><strong>Dramatic Cost Savings:</strong></p>
+                    <p>KiiS eliminates the need for bone grafting in most cases, reducing total treatment cost by approximately 50%.</p>
+                    
+                    <p><strong>Cost Reduction Mechanisms:</strong></p>
+                    <ul>
+                        <li><strong>No Bone Grafts:</strong> Eliminates $1.5K-$3K additional procedures</li>
+                        <li><strong>Fewer Appointments:</strong> Reduced chair time and overhead costs</li>
+                        <li><strong>Simplified Workflow:</strong> Lower complexity reduces treatment time</li>
+                        <li><strong>Insurance Compatibility:</strong> Simpler procedures improve coverage</li>
+                    </ul>
+                    
+                    <p><strong>Market Expansion:</strong> Cost reduction opens treatment to previously excluded economic segments, dramatically expanding addressable market.</p>
+                `
+            },
+            'processolution': {
+                title: 'Single Session Surgery Innovation',
+                content: `
+                    <p><strong>Revolutionary Process Simplification:</strong></p>
+                    <p>KiiS enables single-session surgery with 2-4 week total treatment time, compared to traditional 4-9 month processes.</p>
+                    
+                    <p><strong>Efficiency Improvements:</strong></p>
+                    <ul>
+                        <li><strong>Immediate Placement:</strong> Often possible at time of extraction</li>
+                        <li><strong>Accelerated Healing:</strong> Enhanced osseointegration reduces waiting time</li>
+                        <li><strong>Fewer Visits:</strong> Streamlined process improves patient compliance</li>
+                        <li><strong>90% Completion Rate:</strong> Dramatic improvement from current 30% success</li>
+                    </ul>
+                    
+                    <p><strong>Practice Benefits:</strong> Higher patient throughput, improved satisfaction, and increased revenue per patient.</p>
+                `
+            },
+            'accesssolution': {
+                title: 'Universal Access Achievement',
+                content: `
+                    <p><strong>Expanding Treatment Eligibility:</strong></p>
+                    <p>KiiS technology works effectively in Type 3-4 bone density, enabling treatment for previously excluded patients.</p>
+                    
+                    <p><strong>Access Expansion Features:</strong></p>
+                    <ul>
+                        <li><strong>Low Bone Density Compatible:</strong> Spiral design enhances stability in weak bone</li>
+                        <li><strong>Reduced Health Restrictions:</strong> Simpler procedure suitable for more patients</li>
+                        <li><strong>Elderly-Friendly:</strong> Less invasive approach reduces surgical risks</li>
+                        <li><strong>Immediate Function:</strong> Faster return to normal activities</li>
+                    </ul>
+                    
+                    <p><strong>Market Impact:</strong> Converts 40% of previously excluded patients into treatment candidates, representing massive market expansion opportunity.</p>
+                `
+            }
+        };
+        
+        function showSource(sourceId) {
+            const source = sources[sourceId];
+            if (source) {
+                document.getElementById('sourceContent').innerHTML = `
+                    <h3>${source.title}</h3>
+                    ${source.content}
+                `;
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('sourcePopup').style.display = 'block';
+            }
+        }
+        
+        function hideSource() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('sourcePopup').style.display = 'none';
+        }
+        
+        // Add entrance animation
+        window.addEventListener('load', function() {
+            const barriers = document.querySelectorAll('.barrier-card');
+            const solutions = document.querySelectorAll('.solution-card');
+            const center = document.querySelector('.solution-circle');
+            const arrows = document.querySelectorAll('.arrow');
+            
+            // Animate barriers first
+            barriers.forEach((barrier, index) => {
+                barrier.style.opacity = '0';
+                barrier.style.transform = 'translateY(-50px)';
+                barrier.style.transition = 'all 0.8s ease';
+                
+                setTimeout(() => {
+                    barrier.style.opacity = '1';
+                    barrier.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+            
+            // Animate center solution
+            center.style.opacity = '0';
+            center.style.transform = 'scale(0.5)';
+            center.style.transition = 'all 1s ease';
+            
+            setTimeout(() => {
+                center.style.opacity = '1';
+                center.style.transform = 'scale(1)';
+            }, 800);
+            
+            // Animate arrows
+            arrows.forEach((arrow, index) => {
+                arrow.style.opacity = '0';
+                arrow.style.transition = 'opacity 0.5s ease';
+                
+                setTimeout(() => {
+                    arrow.style.opacity = '1';
+                }, 1200 + (index * 100));
+            });
+            
+            // Animate solutions last
+            solutions.forEach((solution, index) => {
+                solution.style.opacity = '0';
+                solution.style.transform = 'translateY(50px)';
+                solution.style.transition = 'all 0.8s ease';
+                
+                setTimeout(() => {
+                    solution.style.opacity = '1';
+                    solution.style.transform = 'translateY(0)';
+                }, 1500 + (index * 200));
+            });
+        });
+    </script>
+</body>
+</html>
