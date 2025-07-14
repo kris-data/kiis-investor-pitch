@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <title>KiiS - Market Opportunity</title>
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             font-family: 'Arial', sans-serif;
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             color: white;
             min-height: 100vh;
             padding: 60px 80px;
-            box-sizing: border-box;
         }
         
         .container {
@@ -42,6 +46,11 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
         }
         
         .metric-number {
@@ -99,6 +108,7 @@
         
         .country-item:hover {
             background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.02);
         }
         
         .country-item.usa {
@@ -165,6 +175,11 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 2px solid #ffd700;
+            transition: transform 0.3s ease;
+        }
+        
+        .growth-card:hover {
+            transform: translateY(-5px);
         }
         
         .growth-arrow {
@@ -230,7 +245,20 @@
             font-weight: 500;
         }
         
-        /* Navigation */
+        /* 네비게이션 호버 감지 영역 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+            /* 디버깅용 - 실제 배포시에는 제거 */
+            /* background: rgba(255, 0, 0, 0.1); */
+        }
+        
+        /* 네비게이션 스타일 */
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -238,27 +266,56 @@
             transform: translateX(-50%);
             display: flex;
             gap: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.9);
             padding: 15px 30px;
             border-radius: 50px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
         }
         
         .nav-btn {
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             font-weight: 500;
             border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
         }
         
         .nav-btn:hover {
             background: rgba(255, 215, 0, 0.3);
             border-color: #ffd700;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
         }
         
         /* Responsive */
@@ -279,6 +336,15 @@
             
             .title {
                 font-size: 36px;
+            }
+            
+            .navigation {
+                padding: 12px 20px;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 12px;
             }
         }
     </style>
@@ -403,35 +469,328 @@
         </div>
     </div>
     
-    <!-- Navigation -->
-    <div class="navigation">
-        <a href="index.html" class="nav-btn">← back</a>
-        <a href="slide3.html" class="nav-btn">next →</a>
+    <!-- 네비게이션 호버 감지 영역 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    
+    <!-- 네비게이션 -->
+    <div class="navigation" id="navigation">
+        <a href="index.html" class="nav-btn prev">Back</a>
+        <a href="slide3.html" class="nav-btn next">Next</a>
     </div>
     
     <script>
-        // Animate progress bars on load
+        // 네비게이션 기능 (동일한 시스템)
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let hideTimeout;
+        let isNavigationVisible = false;
+        
+        // 네비게이션 표시
+        function showNavigation() {
+            clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+        
+        // 네비게이션 숨기기 (지연 적용)
+        function hideNavigation(delay = 2000) {
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+        
+        // PC/데스크톱: 마우스 호버 기능 (개선된 버전)
+        if (!isTouchDevice) {
+            console.log('PC 모드: 네비게이션 호버 기능 활성화');
+            
+            // 방법 1: 호버존 이벤트
+            if (hoverZone) {
+                hoverZone.addEventListener('mouseenter', () => {
+                    console.log('호버존 진입');
+                    showNavigation();
+                });
+                
+                hoverZone.addEventListener('mouseleave', () => {
+                    console.log('호버존 이탈');
+                    hideNavigation(1000);
+                });
+            }
+            
+            // 방법 2: 전체 문서에서 마우스 위치 추적 (더 확실한 방법)
+            let lastMouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                // 마우스가 화면 하단 120px 안에 있을 때
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) {
+                        console.log(`마우스 하단 감지: ${lastMouseY} > ${windowHeight - 120}`);
+                        showNavigation();
+                    }
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    // 마우스가 네비게이션을 호버하고 있지 않고, 하단 영역을 벗어났을 때
+                    hideNavigation(1500);
+                }
+            });
+            
+            // 방법 3: 네비게이션 자체 호버
+            navigation.addEventListener('mouseenter', () => {
+                console.log('네비게이션 호버 시작');
+                clearTimeout(hideTimeout);
+                showNavigation();
+            });
+            
+            navigation.addEventListener('mouseleave', () => {
+                console.log('네비게이션 호버 종료');
+                hideNavigation(1000);
+            });
+            
+            // 방법 4: 추가 안전장치 - 주기적으로 마우스 위치 확인
+            setInterval(() => {
+                const windowHeight = window.innerHeight;
+                if (lastMouseY > windowHeight - 120 && !isNavigationVisible) {
+                    console.log('주기적 확인: 마우스 하단 위치 감지');
+                    showNavigation();
+                }
+            }, 1000);
+            
+            // PC 사용자를 위한 힌트 (개발 중에만)
+            setTimeout(() => {
+                console.log('💡 PC 사용 팁: 화면 하단으로 마우스를 이동하면 네비게이션이 나타납니다');
+                console.log('🔍 또는 키보드 화살표 키를 사용하세요');
+            }, 2000);
+        }
+        
+        // 터치 디바이스: 탭 및 스와이프 기능
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            // 터치 시작
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                // 화면 하단을 터치하면 네비게이션 표시
+                const touchY = e.touches[0].clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (touchY > windowHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            // 터치 종료 (스와이프 감지)
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                // 스와이프 조건: 수평 이동 50px 이상, 시간 300ms 이하, 수평 이동이 수직 이동보다 클 때
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        // 오른쪽 스와이프 - 이전 슬라이드
+                        window.location.href = 'index.html';
+                    } else {
+                        // 왼쪽 스와이프 - 다음 슬라이드
+                        window.location.href = 'slide3.html';
+                    }
+                }
+            });
+            
+            // 화면 탭으로 네비게이션 토글
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                // 다른 요소를 탭한 경우 제외
+                if (e.target.closest('.metric-card') || 
+                    e.target.closest('.country-item') || 
+                    e.target.closest('.growth-card') ||
+                    e.target.closest('.driver-item') ||
+                    e.target.closest('.navigation')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            // 단일 탭 - 네비게이션 토글
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+        
+        // 키보드 네비게이션 (모든 디바이스)
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'index.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide3.html';
+                    break;
+                case 'Escape':
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                    clearTimeout(hideTimeout);
+                    break;
+                case 'n':
+                case 'N':
+                    // 'n' 키로 네비게이션 토글
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+            }
+        });
+        
+        // 페이지 로드 시 애니메이션
         window.addEventListener('load', function() {
+            const metricCards = document.querySelectorAll('.metric-card');
             const progressBars = document.querySelectorAll('.progress-fill');
+            const title = document.querySelector('.title');
+            const countryChart = document.querySelector('.country-chart');
+            const growthSection = document.querySelector('.growth-section');
+            
+            // 초기 상태 설정
+            title.style.opacity = '0';
+            title.style.transform = 'translateY(-30px)';
+            title.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            metricCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            countryChart.style.opacity = '0';
+            countryChart.style.transform = 'translateX(-50px)';
+            countryChart.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            growthSection.style.opacity = '0';
+            growthSection.style.transform = 'translateX(50px)';
+            growthSection.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            // 프로그레스 바 초기 상태
             progressBars.forEach(bar => {
                 const width = bar.style.width;
+                bar.dataset.targetWidth = width;
                 bar.style.width = '0%';
+            });
+            
+            // 순차적 애니메이션 실행
+            setTimeout(() => {
+                // 1. 타이틀 애니메이션
+                title.style.opacity = '1';
+                title.style.transform = 'translateY(0)';
+                
+                // 2. 메트릭 카드들 애니메이션
                 setTimeout(() => {
-                    bar.style.width = width;
-                }, 500);
+                    metricCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    });
+                }, 300);
+                
+                // 3. 하단 섹션 애니메이션
+                setTimeout(() => {
+                    countryChart.style.opacity = '1';
+                    countryChart.style.transform = 'translateX(0)';
+                    
+                    growthSection.style.opacity = '1';
+                    growthSection.style.transform = 'translateX(0)';
+                }, 900);
+                
+                // 4. 프로그레스 바 애니메이션
+                setTimeout(() => {
+                    progressBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            bar.style.width = bar.dataset.targetWidth;
+                        }, index * 100);
+                    });
+                }, 1200);
+                
+                // 5. 네비게이션 힌트 (잠깐 표시)
+                setTimeout(() => {
+                    showNavigation();
+                    hideNavigation(2000);
+                }, 2500);
+                
+            }, 300);
+        });
+        
+        // 접근성 향상을 위한 포커스 관리
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                showNavigation();
+                hideNavigation(5000);
+            }
+        });
+        
+        // 브라우저 크기 변경 시 네비게이션 위치 재조정
+        window.addEventListener('resize', () => {
+            if (isNavigationVisible) {
+                clearTimeout(hideTimeout);
+                hideNavigation(1000);
+            }
+        });
+        
+        // 네비게이션 링크에 대한 추가 이벤트
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+            
+            btn.addEventListener('focus', () => {
+                showNavigation();
+                clearTimeout(hideTimeout);
             });
         });
         
-        // Add hover effects
-        const countryItems = document.querySelectorAll('.country-item');
-        countryItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.02)';
-            });
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
+        // 개발자 도구에서 네비게이션 상태 확인 (디버깅용)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('🎯 KiiS Slide2 시장 기회 네비게이션 시스템 활성화');
+            console.log('📱 터치 디바이스:', isTouchDevice);
+            console.log('⌨️  키보드 단축키: ← → ↑ ↓ Space(다음), Esc(숨기기), N(토글)');
+            console.log('🖱️  PC: 화면 하단 호버 또는 마우스 이동');
+            console.log('👆 모바일: 화면 하단 터치, 스와이프, 화면 탭');
+            console.log('📊 시장 데이터: 178M 환자, 5.7% 침투율, $1.5B 시장');
+        }
     </script>
 </body>
-</html>
