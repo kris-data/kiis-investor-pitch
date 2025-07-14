@@ -209,6 +209,20 @@
             display: none;
         }
         
+        /* 네비게이션 호버 감지 영역 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+            /* 디버깅용 - 실제 배포시에는 제거 */
+            /* background: rgba(255, 0, 0, 0.1); */
+        }
+        
+        /* 네비게이션 스타일 */
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -216,27 +230,56 @@
             transform: translateX(-50%);
             display: flex;
             gap: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.9);
             padding: 15px 30px;
             border-radius: 50px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
         }
         
         .nav-btn {
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             font-weight: 500;
             border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
         }
         
         .nav-btn:hover {
             background: rgba(255, 215, 0, 0.3);
             border-color: #ffd700;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
         }
         
         @media (max-width: 1200px) {
@@ -263,6 +306,15 @@
             
             body {
                 padding: 40px;
+            }
+            
+            .navigation {
+                padding: 12px 20px;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 12px;
             }
         }
     </style>
@@ -340,17 +392,20 @@
         </div>
     </div>
     
+    <!-- 네비게이션 호버 감지 영역 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    
+    <!-- 네비게이션 -->
+    <div class="navigation" id="navigation">
+        <a href="slide5.html" class="nav-btn prev">Back</a>
+        <a href="slide7.html" class="nav-btn next">Next</a>
+    </div>
+    
     <!-- Source Popup -->
     <div class="overlay" id="overlay" onclick="hideSource()"></div>
     <div class="source-popup" id="sourcePopup">
         <button class="close-btn" onclick="hideSource()">×</button>
         <div id="sourceContent"></div>
-    </div>
-    
-    <!-- Navigation -->
-    <div class="navigation">
-        <a href="slide5.html" class="nav-btn">← back</a>
-        <a href="slide7.html" class="nav-btn">next →</a>
     </div>
     
     <script>
@@ -500,35 +555,305 @@
             document.getElementById('sourcePopup').style.display = 'none';
         }
         
-        // Add entrance animation
+        // 네비게이션 기능 (slide7과 동일한 시스템)
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let hideTimeout;
+        let isNavigationVisible = false;
+        
+        // 네비게이션 표시
+        function showNavigation() {
+            clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+        
+        // 네비게이션 숨기기 (지연 적용)
+        function hideNavigation(delay = 2000) {
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+        
+        // PC/데스크톱: 마우스 호버 기능 (개선된 버전)
+        if (!isTouchDevice) {
+            console.log('PC 모드: 네비게이션 호버 기능 활성화');
+            
+            // 방법 1: 호버존 이벤트
+            if (hoverZone) {
+                hoverZone.addEventListener('mouseenter', () => {
+                    console.log('호버존 진입');
+                    showNavigation();
+                });
+                
+                hoverZone.addEventListener('mouseleave', () => {
+                    console.log('호버존 이탈');
+                    hideNavigation(1000);
+                });
+            }
+            
+            // 방법 2: 전체 문서에서 마우스 위치 추적 (더 확실한 방법)
+            let lastMouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                // 마우스가 화면 하단 120px 안에 있을 때
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) {
+                        console.log(`마우스 하단 감지: ${lastMouseY} > ${windowHeight - 120}`);
+                        showNavigation();
+                    }
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    // 마우스가 네비게이션을 호버하고 있지 않고, 하단 영역을 벗어났을 때
+                    hideNavigation(1500);
+                }
+            });
+            
+            // 방법 3: 네비게이션 자체 호버
+            navigation.addEventListener('mouseenter', () => {
+                console.log('네비게이션 호버 시작');
+                clearTimeout(hideTimeout);
+                showNavigation();
+            });
+            
+            navigation.addEventListener('mouseleave', () => {
+                console.log('네비게이션 호버 종료');
+                hideNavigation(1000);
+            });
+            
+            // 방법 4: 추가 안전장치 - 주기적으로 마우스 위치 확인
+            setInterval(() => {
+                const windowHeight = window.innerHeight;
+                if (lastMouseY > windowHeight - 120 && !isNavigationVisible) {
+                    console.log('주기적 확인: 마우스 하단 위치 감지');
+                    showNavigation();
+                }
+            }, 1000);
+            
+            // PC 사용자를 위한 힌트 (개발 중에만)
+            setTimeout(() => {
+                console.log('💡 PC 사용 팁: 화면 하단으로 마우스를 이동하면 네비게이션이 나타납니다');
+                console.log('🔍 또는 키보드 화살표 키를 사용하세요');
+            }, 2000);
+        }
+        
+        // 터치 디바이스: 탭 및 스와이프 기능
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            // 터치 시작
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                // 화면 하단을 터치하면 네비게이션 표시
+                const touchY = e.touches[0].clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (touchY > windowHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            // 터치 종료 (스와이프 감지)
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                // 스와이프 조건: 수평 이동 50px 이상, 시간 300ms 이하, 수평 이동이 수직 이동보다 클 때
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        // 오른쪽 스와이프 - 이전 슬라이드
+                        window.location.href = 'slide5.html';
+                    } else {
+                        // 왼쪽 스와이프 - 다음 슬라이드
+                        window.location.href = 'slide7.html';
+                    }
+                }
+            });
+            
+            // 화면 탭으로 네비게이션 토글
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                // 다른 요소를 탭한 경우 제외
+                if (e.target.closest('.benefit-card') || 
+                    e.target.closest('.tech-image') || 
+                    e.target.closest('.source-popup') ||
+                    e.target.closest('.navigation')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            // 단일 탭 - 네비게이션 토글
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+        
+        // 키보드 네비게이션 (모든 디바이스)
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide5.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide7.html';
+                    break;
+                case 'Escape':
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                    clearTimeout(hideTimeout);
+                    hideSource();
+                    break;
+                case 'n':
+                case 'N':
+                    // 'n' 키로 네비게이션 토글
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+            }
+        });
+        
+        // 페이지 로드 시 애니메이션
         window.addEventListener('load', function() {
             const images = document.querySelectorAll('.tech-image');
             const cards = document.querySelectorAll('.benefit-card');
+            const imageLabels = document.querySelectorAll('.image-label');
             
-            // Animate images
-            images.forEach((img, index) => {
+            // 초기 상태 설정
+            images.forEach(img => {
                 img.style.opacity = '0';
                 img.style.transform = 'translateX(-50px)';
-                img.style.transition = 'all 0.8s ease';
-                
-                setTimeout(() => {
-                    img.style.opacity = '1';
-                    img.style.transform = 'translateX(0)';
-                }, 300 + (index * 200));
+                img.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
             });
             
-            // Animate benefit cards
-            cards.forEach((card, index) => {
+            imageLabels.forEach(label => {
+                label.style.opacity = '0';
+                label.style.transform = 'translateY(20px)';
+                label.style.transition = 'all 0.6s ease';
+            });
+            
+            cards.forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateX(50px)';
-                card.style.transition = 'all 0.8s ease';
+                card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            // 순차적 애니메이션 실행
+            setTimeout(() => {
+                // 1. 이미지들 애니메이션
+                images.forEach((img, index) => {
+                    setTimeout(() => {
+                        img.style.opacity = '1';
+                        img.style.transform = 'translateX(0)';
+                    }, index * 300);
+                });
                 
+                // 2. 이미지 라벨들 애니메이션
                 setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateX(0)';
-                }, 800 + (index * 200));
+                    imageLabels.forEach((label, index) => {
+                        setTimeout(() => {
+                            label.style.opacity = '1';
+                            label.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    });
+                }, 400);
+                
+                // 3. 혜택 카드들 애니메이션
+                setTimeout(() => {
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateX(0)';
+                        }, index * 200);
+                    });
+                }, 800);
+                
+                // 4. 네비게이션 힌트 (잠깐 표시)
+                setTimeout(() => {
+                    showNavigation();
+                    hideNavigation(2000);
+                }, 2500);
+                
+            }, 500);
+        });
+        
+        // 접근성 향상을 위한 포커스 관리
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                showNavigation();
+                hideNavigation(5000);
+            }
+        });
+        
+        // 브라우저 크기 변경 시 네비게이션 위치 재조정
+        window.addEventListener('resize', () => {
+            if (isNavigationVisible) {
+                clearTimeout(hideTimeout);
+                hideNavigation(1000);
+            }
+        });
+        
+        // 네비게이션 링크에 대한 추가 이벤트
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+            
+            btn.addEventListener('focus', () => {
+                showNavigation();
+                clearTimeout(hideTimeout);
             });
         });
+        
+        // 개발자 도구에서 네비게이션 상태 확인 (디버깅용)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('🎯 KiiS Slide6 네비게이션 시스템 활성화');
+            console.log('📱 터치 디바이스:', isTouchDevice);
+            console.log('⌨️  키보드 단축키: ← → ↑ ↓ Space(다음), Esc(숨기기), N(토글)');
+            console.log('🖱️  PC: 화면 하단 호버 또는 마우스 이동');
+            console.log('👆 모바일: 화면 하단 터치, 스와이프, 화면 탭');
+        }
     </script>
 </body>
 </html>
