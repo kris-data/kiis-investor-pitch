@@ -210,31 +210,39 @@
             transform: scale(1.1);
         }
         
-        /* 차트 이미지 스타일 */
         .chart-image {
             width: 100%;
             height: auto;
             border-radius: 10px;
             transition: transform 0.3s ease;
-            max-height: 200px;
-            object-fit: contain;
         }
         
         .chart-image:hover {
             transform: scale(1.02);
         }
         
-        /* CSS 차트 스타일 (fallback) */
-        .chart-visual {
+        .chart-placeholder {
             width: 100%;
             height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .placeholder-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .placeholder-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
         }
         
         .chart-bars {
@@ -678,47 +686,25 @@
             <div class="charts-section">
                 <div class="chart-container" onclick="showSource('brandmarket')">
                     <div class="chart-title">Brand Market Analysis</div>
-                    <!-- GitHub Pages에서는 실제 차트 이미지가 표시됩니다 -->
-                    <img src="./images/brand-market-share.jpg" 
-                         alt="Brand Market Share Analysis" 
+                    <img src="./images/manufacturer-market-share.jpg" 
+                         alt="Manufacturer Market Share Analysis" 
                          class="chart-image"
-                         style="display: none;"
-                         onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    
-                    <!-- Claude artifact 환경에서는 CSS 차트가 표시됩니다 -->
-                    <div class="chart-visual">
-                        <div class="chart-bars">
-                            <div class="bar bar1"></div>
-                            <div class="bar bar2"></div>
-                            <div class="bar bar3"></div>
-                            <div class="bar bar4"></div>
-                        </div>
-                        <div class="chart-label">📊<br>Brand Market<br>Analysis<br><small>💡 GitHub에서는<br>실제 차트 표시</small></div>
+                    <div class="chart-placeholder" style="display: none;">
+                        <div class="placeholder-icon">📊</div>
+                        <div class="placeholder-text">Brand Market<br>Analysis</div>
                     </div>
                 </div>
                 
                 <div class="chart-container" onclick="showSource('positioning')">
                     <div class="chart-title">Market Positioning Map</div>
-                    <!-- GitHub Pages에서는 실제 포지셔닝 차트가 표시됩니다 -->
                     <img src="./images/market-positioning-chart.jpg" 
                          alt="Market Positioning Chart" 
                          class="chart-image"
-                         style="display: none;"
-                         onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    
-                    <!-- Claude artifact 환경에서는 CSS 포지셔닝 맵이 표시됩니다 -->
-                    <div class="chart-visual">
-                        <div class="positioning-map">
-                            <div class="axis-x">Price →</div>
-                            <div class="axis-y">Quality ↑</div>
-                            <div class="competitor comp1">S</div>
-                            <div class="competitor comp2">N</div>
-                            <div class="competitor comp3">A</div>
-                            <div class="kiis-position">KiiS</div>
-                        </div>
-                        <div class="chart-label">🎯<br>Positioning<br>Map<br><small>💡 GitHub에서는<br>실제 차트 표시</small></div>
+                    <div class="chart-placeholder" style="display: none;">
+                        <div class="placeholder-icon">🎯</div>
+                        <div class="placeholder-text">Positioning<br>Map</div>
                     </div>
                 </div>
             </div>
@@ -866,25 +852,60 @@
                 `
             },
             'brandmarket': {
-                title: 'Brand Market Share Analysis',
+                title: 'Brand Market Share Analysis - 실제 데이터',
                 content: `
-                    <p><strong>Brand Market Analysis:</strong></p>
-                    <p>Detailed analysis of market positioning and performance by individual implant brands, showing the competitive landscape across different patient types and price segments.</p>
+                    <p><strong>미국 임플란트 시장 점유율 분석:</strong></p>
+                    <p>첨부해주신 실제 시장 데이터를 기반으로 한 분석입니다.</p>
                     
-                    <p><strong>Key Market Insights:</strong></p>
+                    <p><strong>Premium 브랜드 (Type 1-2 시장):</strong></p>
                     <ul>
-                        <li><strong>Premium Dominance:</strong> Straumann, Nobel Biocare, and Astra Tech lead in Type 1-2 premium segment</li>
-                        <li><strong>Value Fragmentation:</strong> Multiple smaller brands compete in value segments</li>
-                        <li><strong>Type 3-4 Gap:</strong> Limited brand presence in weak bone density market</li>
-                        <li><strong>Price Correlation:</strong> Higher prices typically associated with Type 1-2 focus</li>
+                        <li><strong>Straumann Group:</strong> 30% (최대 점유율)</li>
+                        <li><strong>Nobel Biocare:</strong> 25% (2위)</li>
+                        <li><strong>Astra Tech:</strong> 20% (3위)</li>
+                        <li><strong>합계:</strong> 75% (프리미엄 시장 과점 구조)</li>
                     </ul>
                     
-                    <p><strong>KiiS Opportunity:</strong></p>
+                    <p><strong>Type 3-4 시장:</strong></p>
                     <ul>
-                        <li><strong>Dual Positioning:</strong> Unique ability to compete in both segments effectively</li>
-                        <li><strong>Technology Advantage:</strong> Single platform serving multiple market needs</li>
-                        <li><strong>Market Gap:</strong> First reliable solution for Type 3-4 patients</li>
-                        <li><strong>Competitive Disruption:</strong> Challenge existing premium monopolies with superior value</li>
+                        <li><strong>Zimmer Biomet:</strong> 15% (Type 3-4 시장의 주요 플레이어)</li>
+                        <li><strong>기타 브랜드들:</strong> Osstem(5%), Hiossen(2%), BioHorizons(4%)</li>
+                        <li><strong>시장 특징:</strong> 파편화되어 있으며 명확한 리더 부재</li>
+                    </ul>
+                    
+                    <p><strong>KiiS의 기회:</strong></p>
+                    <ul>
+                        <li><strong>Type 1-2:</strong> 프리미엄 과점 구조 파괴 (KiiS-Plus로 30-40% 저렴한 가격)</li>
+                        <li><strong>Type 3-4:</strong> 파편화된 시장에서 기술적 우위로 리더십 확보 (KiiS-Relax)</li>
+                        <li><strong>이중 전략:</strong> 단일 기술로 두 시장 동시 공략</li>
+                    </ul>
+                `
+            },
+            'positioning': {
+                title: 'Market Positioning Map - 실제 경쟁사 분석',
+                content: `
+                    <p><strong>미국 치과 임플란트 시장 포지셔닝 맵:</strong></p>
+                    <p>실제 시장 데이터를 기반으로 한 경쟁사 포지셔닝 분석입니다.</p>
+                    
+                    <p><strong>Premium Type 1-2 영역 (좌측 상단):</strong></p>
+                    <ul>
+                        <li><strong>Straumann:</strong> 최고 프리미엄, 가장 큰 시장 점유율</li>
+                        <li><strong>Nobel Biocare:</strong> 프리미엄, 강력한 브랜드 파워</li>
+                        <li><strong>Astra Tech:</strong> 프리미엄, 기술적 우위</li>
+                    </ul>
+                    
+                    <p><strong>Type 3-4 영역 (우측):</strong></p>
+                    <ul>
+                        <li><strong>Zimmer Biomet:</strong> Type 3-4에서 가장 높은 점유율</li>
+                        <li><strong>Osstem, Hiossen:</strong> 아시아 브랜드, 가성비 중심</li>
+                        <li><strong>BioHorizons:</strong> 중간 포지션</li>
+                    </ul>
+                    
+                    <p><strong>KiiS의 혁신적 포지셔닝:</strong></p>
+                    <ul>
+                        <li><strong>중앙 위치:</strong> Type 1-2와 Type 3-4 모두 커버</li>
+                        <li><strong>이중 전략:</strong> KiiS-Plus (Type 1-2) + KiiS-Relax (Type 3-4)</li>
+                        <li><strong>차별화:</strong> 단일 기술로 전 시장 대응 가능한 유일한 솔루션</li>
+                        <li><strong>경쟁 우위:</strong> 프리미엄 품질을 중간 가격에, Type 3-4에서는 기술적 독점</li>
                     </ul>
                 `
             }
