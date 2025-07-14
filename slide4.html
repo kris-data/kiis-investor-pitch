@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KiiS - Innovation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 60px 80px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #ffffff;
+        }
+        
+        .title .highlight {
+            color: #ffd700;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            flex: 1;
+            align-items: center;
+        }
+        
+        .patent-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .patent-image {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .patent-image:hover {
+            transform: scale(1.02);
+            border-color: #ffd700;
+        }
+        
+        .innovation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .innovation-card {
+            background: linear-gradient(145deg, #1e40af, #1d4ed8);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #ffd700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .innovation-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+        
+        .feature-item::before {
+            content: "•";
+            color: #ffd700;
+            font-size: 24px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        .clickable-text {
+            color: #ffd700;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .clickable-text:hover {
+            color: #fff;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            text-decoration-color: #ffd700;
+        }
+        
+        .source-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        
+        .source-popup h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .source-popup p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .source-popup ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .source-popup li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .source-popup .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 28px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .source-popup .close-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            display: none;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .patent-image {
+                max-height: 50vh;
+            }
+            
+            .title {
+                font-size: 36px;
+            }
+            
+            .card-title {
+                font-size: 26px;
+            }
+            
+            .feature-item {
+                font-size: 16px;
+            }
+            
+            body {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">
+            <span class="highlight">KiiS Innovation:</span> US Patented New to the world Dental Implant
+        </h1>
+        
+        <div class="main-content">
+            <!-- Patent Section -->
+            <div class="patent-section">
+                <img src="/kiis-investor-pitch/public/images/patent-document.jpg" 
+                     alt="US Patent Document" 
+                     class="patent-image"
+                     onclick="showSource('patent')"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display: none; width: 400px; height: 500px; background: rgba(255,255,255,0.1); border: 2px dashed rgba(255,255,255,0.3); border-radius: 15px; align-items: center; justify-content: center; flex-direction: column; text-align: center; cursor: pointer;" onclick="showSource('patent')">
+                    <div style="font-size: 48px; margin-bottom: 20px;">📄</div>
+                    <div style="font-size: 18px;">US Patent Document</div>
+                    <div style="font-size: 14px; opacity: 0.7; margin-top: 10px;">Click to view details</div>
+                </div>
+            </div>
+            
+            <!-- Innovation Section -->
+            <div class="innovation-section">
+                <!-- Spiral Side Opening -->
+                <div class="innovation-card">
+                    <h2 class="card-title">Spiral Side Opening</h2>
+                    <ul class="feature-list">
+                        <li class="feature-item">First-Ever Revolutionary bone ingrowth technology</li>
+                        <li class="feature-item">
+                            <span class="clickable-text" onclick="showSource('fda510k')">*FDA 510K Ready</span> - Clear Path to Market Approval
+                        </li>
+                    </ul>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <img src="/kiis-investor-pitch/public/images/kiis-product-innovation.jpg" 
+                             alt="KiiS Innovation Product" 
+                             style="max-width: 200px; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 2px solid rgba(255,215,0,0.3);"
+                             onerror="this.style.display='none';">
+                    </div>
+                </div>
+                
+                <!-- Hollow Inner Channel -->
+                <div class="innovation-card">
+                    <h2 class="card-title">Hollow Inner Channel</h2>
+                    <ul class="feature-list">
+                        <li class="feature-item">Only implant with built-in medication delivery system for targeted healing</li>
+                        <li class="feature-item">
+                            <span class="clickable-text" onclick="showSource('denovo')">*De Novo Pathway</span> for Injectable Platform (Phase 2 Expansion)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Source Popup -->
+    <div class="overlay" id="overlay" onclick="hideSource()"></div>
+    <div class="source-popup" id="sourcePopup">
+        <button class="close-btn" onclick="hideSource()">×</button>
+        <div id="sourceContent"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="navigation">
+        <a href="slide3.html" class="nav-btn">← back</a>
+        <a href="slide5.html" class="nav-btn">next →</a>
+    </div>
+    
+    <script>
+        // Source data
+        const sources = {
+            'fda510k': {
+                title: 'FDA 510K Pathway',
+                content: `
+                    <p><strong>What is FDA 510K?</strong></p>
+                    <p>The 510K pathway allows medical devices to reach market by demonstrating "substantial equivalence" to existing approved devices.</p>
+                    
+                    <p><strong>KiiS Advantages:</strong></p>
+                    <ul>
+                        <li><strong>Faster to Market:</strong> 3-6 months vs 2-3 years for PMA</li>
+                        <li><strong>Lower Cost:</strong> $10K-50K vs $1M+ for clinical trials</li>
+                        <li><strong>Proven Pathway:</strong> 90%+ approval rate for well-prepared submissions</li>
+                        <li><strong>Predicate Devices:</strong> Multiple approved spiral implants exist</li>
+                    </ul>
+                    
+                    <p><strong>Timeline:</strong></p>
+                    <ul>
+                        <li>Q2 2025: Submit 510K application</li>
+                        <li>Q4 2025: Expected clearance</li>
+                        <li>Q1 2026: Commercial launch</li>
+                    </ul>
+                    
+                    <p><strong>Risk Mitigation:</strong> Pre-submission meetings with FDA confirm regulatory strategy.</p>
+                `
+            },
+            'denovo': {
+                title: 'De Novo Pathway - Phase 2',
+                content: `
+                    <p><strong>What is De Novo Pathway?</strong></p>
+                    <p>The De Novo pathway is for novel medical devices with no existing predicate. It creates a new device category and establishes safety/effectiveness standards.</p>
+                    
+                    <p><strong>Injectable Platform Innovation:</strong></p>
+                    <ul>
+                        <li><strong>World's First:</strong> Implant with built-in drug delivery system</li>
+                        <li><strong>Targeted Therapy:</strong> Direct medication delivery to implant site</li>
+                        <li><strong>Enhanced Healing:</strong> Accelerated osseointegration</li>
+                        <li><strong>Reduced Complications:</strong> Localized anti-inflammatory treatment</li>
+                    </ul>
+                    
+                    <p><strong>Market Potential:</strong></p>
+                    <ul>
+                        <li><strong>Premium Pricing:</strong> 3-5x higher margins than standard implants</li>
+                        <li><strong>Competitive Moat:</strong> Patent protection + regulatory barriers</li>
+                        <li><strong>Expansion Opportunities:</strong> Other therapeutic applications</li>
+                    </ul>
+                    
+                    <p><strong>Timeline:</strong></p>
+                    <ul>
+                        <li>2026-2027: Clinical trials for injectable platform</li>
+                        <li>2028: De Novo submission</li>
+                        <li>2029: Expected approval and launch</li>
+                    </ul>
+                `
+            },
+            'patent': {
+                title: 'US Patent Portfolio',
+                content: `
+                    <p><strong>Patent Details:</strong></p>
+                    <p><strong>US Patent No.:</strong> 9,757,213 B2</p>
+                    <p><strong>Issue Date:</strong> September 12, 2017</p>
+                    <p><strong>Title:</strong> Hybrid Dental Implant</p>
+                    
+                    <p><strong>Key Innovations Protected:</strong></p>
+                    <ul>
+                        <li><strong>Spiral Side Opening:</strong> Unique bone ingrowth channel design</li>
+                        <li><strong>Hollow Inner Channel:</strong> Medication delivery system</li>
+                        <li><strong>Hybrid Structure:</strong> Combination of solid and hollow elements</li>
+                        <li><strong>Manufacturing Process:</strong> Proprietary production methods</li>
+                    </ul>
+                    
+                    <p><strong>Patent Strength:</strong></p>
+                    <ul>
+                        <li><strong>Broad Claims:</strong> Covers both design and functionality</li>
+                        <li><strong>International Filing:</strong> PCT application submitted</li>
+                        <li><strong>Freedom to Operate:</strong> Extensive prior art analysis completed</li>
+                        <li><strong>Enforcement Ready:</strong> Prepared for IP protection</li>
+                    </ul>
+                    
+                    <p><strong>Competitive Advantage:</strong></p>
+                    <p>This patent creates a 20-year competitive moat (until 2037) for the core KiiS technology, preventing competitors from copying the innovative design.</p>
+                `
+            }
+        };
+        
+        function showSource(sourceId) {
+            const source = sources[sourceId];
+            if (source) {
+                document.getElementById('sourceContent').innerHTML = `
+                    <h3>${source.title}</h3>
+                    ${source.content}
+                `;
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('sourcePopup').style.display = 'block';
+            }
+        }
+        
+        function hideSource() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('sourcePopup').style.display = 'none';
+        }
+        
+        // Add entrance animation
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.innovation-card');
+            const patentImg = document.querySelector('.patent-image');
+            
+            // Animate patent image
+            patentImg.style.opacity = '0';
+            patentImg.style.transform = 'translateX(-50px)';
+            patentImg.style.transition = 'all 0.8s ease';
+            
+            setTimeout(() => {
+                patentImg.style.opacity = '1';
+                patentImg.style.transform = 'translateX(0)';
+            }, 300);
+            
+            // Animate innovation cards
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateX(50px)';
+                card.style.transition = 'all 0.8s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateX(0)';
+                }, 600 + (index * 200));
+            });
+        });
+    </script>
+</body>
+</html>
