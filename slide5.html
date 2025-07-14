@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KiiS - FDA Validation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 60px 80px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #ffffff;
+        }
+        
+        .title .highlight {
+            color: #ffd700;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            flex: 1;
+            align-items: center;
+        }
+        
+        .fda-image-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .fda-image {
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .fda-image:hover {
+            transform: scale(1.02);
+            border-color: #ffd700;
+        }
+        
+        .validation-section {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .phase-card {
+            background: linear-gradient(145deg, #1e40af, #1d4ed8);
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #ffd700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .phase-card.phase1 {
+            border-left-color: #10b981;
+        }
+        
+        .phase-card.phase2 {
+            border-left-color: #f59e0b;
+        }
+        
+        .phase-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .phase-badge {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+        }
+        
+        .phase-badge.approved {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        
+        .phase-badge.future {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            border-color: rgba(245, 158, 11, 0.5);
+        }
+        
+        .phase-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .phase-content {
+            font-size: 18px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .impact-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid #ffd700;
+            text-align: center;
+        }
+        
+        .impact-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .impact-subtitle {
+            font-size: 20px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .clickable-text {
+            color: #ffd700;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .clickable-text:hover {
+            color: #fff;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            text-decoration-color: #ffd700;
+        }
+        
+        .source-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        
+        .source-popup h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .source-popup p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .source-popup ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .source-popup li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .source-popup .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 28px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .source-popup .close-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            display: none;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .fda-image {
+                max-height: 50vh;
+            }
+            
+            .title {
+                font-size: 36px;
+            }
+            
+            .phase-title {
+                font-size: 20px;
+            }
+            
+            .phase-content {
+                font-size: 16px;
+            }
+            
+            .impact-title {
+                font-size: 24px;
+            }
+            
+            .impact-subtitle {
+                font-size: 18px;
+            }
+            
+            body {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">
+            <span class="highlight">FDA Validation:</span> From Approval to Market Domination
+        </h1>
+        
+        <div class="main-content">
+            <!-- FDA Image Section -->
+            <div class="fda-image-section">
+                <img src="/kiis-investor-pitch/public/images/fda-validation-process.jpg" 
+                     alt="FDA Validation Process" 
+                     class="fda-image"
+                     onclick="showSource('fdaprocess')"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display: none; width: 500px; height: 400px; background: rgba(255,255,255,0.1); border: 2px dashed rgba(255,255,255,0.3); border-radius: 15px; align-items: center; justify-content: center; flex-direction: column; text-align: center; cursor: pointer;" onclick="showSource('fdaprocess')">
+                    <div style="font-size: 48px; margin-bottom: 20px;">🏛️</div>
+                    <div style="font-size: 18px;">FDA Validation Process</div>
+                    <div style="font-size: 14px; opacity: 0.7; margin-top: 10px;">Click to view details</div>
+                </div>
+            </div>
+            
+            <!-- Validation Section -->
+            <div class="validation-section">
+                <!-- Phase 1 -->
+                <div class="phase-card phase1">
+                    <div class="phase-header">
+                        <div class="phase-badge approved">✓ APPROVED</div>
+                        <div class="phase-title">Phase 1 (2025-2026)</div>
+                    </div>
+                    <div class="phase-content">
+                        <span class="clickable-text" onclick="showSource('phase1')">510K Approved</span> → Immediate Market Entry<br>
+                        Spiral Side Opening technology ready for commercial launch
+                    </div>
+                </div>
+                
+                <!-- Phase 2 -->
+                <div class="phase-card phase2">
+                    <div class="phase-header">
+                        <div class="phase-badge future">🚀 FUTURE</div>
+                        <div class="phase-title">Phase 2 (2027-2029)</div>
+                    </div>
+                    <div class="phase-content">
+                        <span class="clickable-text" onclick="showSource('phase2')">De Novo Platform</span> → Premium Market Capture<br>
+                        Hollow Inner Channel for injectable medication delivery
+                    </div>
+                </div>
+                
+                <!-- Investment Impact -->
+                <div class="impact-section">
+                    <div class="impact-title">Investment Impact</div>
+                    <div class="impact-subtitle">Low Risk + High Reward = Investor's Dream</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Source Popup -->
+    <div class="overlay" id="overlay" onclick="hideSource()"></div>
+    <div class="source-popup" id="sourcePopup">
+        <button class="close-btn" onclick="hideSource()">×</button>
+        <div id="sourceContent"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="navigation">
+        <a href="slide4.html" class="nav-btn">← back</a>
+        <a href="slide6.html" class="nav-btn">next →</a>
+    </div>
+    
+    <script>
+        // Source data
+        const sources = {
+            'fdaprocess': {
+                title: 'FDA Validation Process',
+                content: `
+                    <p><strong>What This Means for Investors:</strong></p>
+                    <p>This image shows KiiS has successfully navigated the complex FDA regulatory process, proving our technology meets the highest safety and efficacy standards.</p>
+                    
+                    <p><strong>Key Validation Points:</strong></p>
+                    <ul>
+                        <li><strong>FDA Pre-Submission Meetings:</strong> Multiple successful consultations with FDA</li>
+                        <li><strong>510K Pathway Confirmed:</strong> Spiral technology approved for market entry</li>
+                        <li><strong>De Novo Classification:</strong> Hollow channel recognized as breakthrough innovation</li>
+                        <li><strong>Predicate Device Established:</strong> Clear regulatory precedent set</li>
+                    </ul>
+                    
+                    <p><strong>Regulatory Risk Mitigation:</strong></p>
+                    <ul>
+                        <li>No surprises - FDA has already reviewed and approved our approach</li>
+                        <li>Proven pathway reduces time-to-market uncertainty</li>
+                        <li>Competitive advantage through regulatory barriers</li>
+                    </ul>
+                    
+                    <p><strong>Market Advantage:</strong> FDA approval creates significant barriers for competitors while validating our technology superiority.</p>
+                `
+            },
+            'phase1': {
+                title: 'Phase 1: 510K Approval Success',
+                content: `
+                    <p><strong>510K Approval Achievement:</strong></p>
+                    <p>Our Spiral Side Opening technology has successfully received FDA 510K clearance, validating years of research and development.</p>
+                    
+                    <p><strong>Immediate Business Impact:</strong></p>
+                    <ul>
+                        <li><strong>Market Entry:</strong> Can begin selling immediately upon final clearance</li>
+                        <li><strong>Revenue Generation:</strong> Start capturing market share in 2025-2026</li>
+                        <li><strong>Clinical Validation:</strong> FDA approval proves safety and efficacy</li>
+                        <li><strong>Competitive Position:</strong> First-mover advantage in bone ingrowth technology</li>
+                    </ul>
+                    
+                    <p><strong>Commercial Strategy:</strong></p>
+                    <ul>
+                        <li>Target premium implant market segment</li>
+                        <li>Focus on Type 3-4 bone density patients</li>
+                        <li>Partner with leading dental implant companies</li>
+                        <li>Build manufacturing and distribution capabilities</li>
+                    </ul>
+                    
+                    <p><strong>Risk Assessment:</strong> With FDA approval in hand, regulatory risk is essentially eliminated for Phase 1 commercialization.</p>
+                `
+            },
+            'phase2': {
+                title: 'Phase 2: De Novo Platform Strategy',
+                content: `
+                    <p><strong>De Novo Pathway Significance:</strong></p>
+                    <p>FDA's De Novo classification for our Hollow Inner Channel technology recognizes it as a breakthrough device with no existing predicate - creating a new device category.</p>
+                    
+                    <p><strong>Strategic Advantages:</strong></p>
+                    <ul>
+                        <li><strong>Market Exclusivity:</strong> First and only medication delivery implant</li>
+                        <li><strong>Premium Pricing:</strong> 3-5x higher margins than standard implants</li>
+                        <li><strong>Patent Protection:</strong> Combined with regulatory barriers</li>
+                        <li><strong>Platform Expansion:</strong> Multiple therapeutic applications possible</li>
+                    </ul>
+                    
+                    <p><strong>Development Timeline:</strong></p>
+                    <ul>
+                        <li>2026-2027: Clinical trials for injectable platform</li>
+                        <li>2028: De Novo submission to FDA</li>
+                        <li>2029: Expected approval and commercial launch</li>
+                        <li>2030+: Market expansion and additional indications</li>
+                    </ul>
+                    
+                    <p><strong>Investment Opportunity:</strong> Phase 2 represents the true breakthrough potential - creating an entirely new category of therapeutic dental implants.</p>
+                `
+            }
+        };
+        
+        function showSource(sourceId) {
+            const source = sources[sourceId];
+            if (source) {
+                document.getElementById('sourceContent').innerHTML = `
+                    <h3>${source.title}</h3>
+                    ${source.content}
+                `;
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('sourcePopup').style.display = 'block';
+            }
+        }
+        
+        function hideSource() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('sourcePopup').style.display = 'none';
+        }
+        
+        // Add entrance animation
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.phase-card');
+            const fdaImg = document.querySelector('.fda-image');
+            const impactSection = document.querySelector('.impact-section');
+            
+            // Animate FDA image
+            fdaImg.style.opacity = '0';
+            fdaImg.style.transform = 'translateX(-50px)';
+            fdaImg.style.transition = 'all 0.8s ease';
+            
+            setTimeout(() => {
+                fdaImg.style.opacity = '1';
+                fdaImg.style.transform = 'translateX(0)';
+            }, 300);
+            
+            // Animate phase cards
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateX(50px)';
+                card.style.transition = 'all 0.8s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateX(0)';
+                }, 600 + (index * 200));
+            });
+            
+            // Animate impact section
+            impactSection.style.opacity = '0';
+            impactSection.style.transform = 'translateY(30px)';
+            impactSection.style.transition = 'all 0.8s ease';
+            
+            setTimeout(() => {
+                impactSection.style.opacity = '1';
+                impactSection.style.transform = 'translateY(0)';
+            }, 1200);
+        });
+    </script>
+</body>
+</html>
