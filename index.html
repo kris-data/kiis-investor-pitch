@@ -1,466 +1,464 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KiiS 투자 피치 - 혁신적인 의료 솔루션</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- React & ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Babel for JSX transformation -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Custom animations -->
-    <style>
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .slide-enter {
-            animation: slideIn 0.6s ease-out;
-        }
-        
-        .fade-enter {
-            animation: fadeIn 0.4s ease-out;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%);
-        }
-        
-        .chart-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-    </style>
-</head>
-<body class="bg-gray-900 text-white font-sans">
-    <div id="root"></div>
-    
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-        
-        // 슬라이드 데이터
-        const slidesData = [
-            {
-                id: "title",
-                title: "KiiS",
-                subtitle: "혁신적인 의료 솔루션",
-                content: "투자 설명회",
-                type: "title"
-            },
-            {
-                id: "problem",
-                title: "해결하고자 하는 문제",
-                content: [
-                    "기존 의료 시스템의 한계",
-                    "환자 데이터 관리의 어려움",
-                    "의료진 간 소통 부족",
-                    "치료 효율성 저하"
-                ],
-                type: "list"
-            },
-            {
-                id: "solution",
-                title: "우리의 솔루션",
-                content: [
-                    "AI 기반 의료 데이터 분석",
-                    "실시간 환자 모니터링",
-                    "통합 의료 플랫폼",
-                    "효율적인 치료 프로세스"
-                ],
-                type: "list"
-            },
-            {
-                id: "market",
-                title: "시장 기회",
-                content: {
-                    market_size: "US $3B by 2030",
-                    growth_rate: "CAGR 10-11%",
-                    data: [
-                        {year: "2024", value: 1.5},
-                        {year: "2025", value: 1.8},
-                        {year: "2026", value: 2.2},
-                        {year: "2027", value: 2.6},
-                        {year: "2030", value: 3.0}
-                    ]
-                },
-                type: "market"
-            },
-            {
-                id: "competitive_advantage",
-                title: "경쟁 우위",
-                content: [
-                    "특허 기술 보유",
-                    "의료진 네트워크",
-                    "데이터 보안 강화",
-                    "사용자 친화적 인터페이스"
-                ],
-                type: "list"
-            },
-            {
-                id: "business_model",
-                title: "비즈니스 모델",
-                content: {
-                    revenue_streams: [
-                        "SaaS 구독 모델",
-                        "라이선스 수수료",
-                        "컨설팅 서비스",
-                        "데이터 분석 서비스"
-                    ]
-                },
-                type: "business"
-            },
-            {
-                id: "team",
-                title: "팀 소개",
-                content: [
-                    {name: "CEO", role: "의료 IT 전문가"},
-                    {name: "CTO", role: "AI/ML 엔지니어"},
-                    {name: "CMO", role: "의료 마케팅 전문가"},
-                    {name: "Head of R&D", role: "의료 연구 개발"}
-                ],
-                type: "team"
-            },
-            {
-                id: "financial_projection",
-                title: "재무 전망",
-                content: {
-                    revenue: [
-                        {year: "2024", value: 2.5},
-                        {year: "2025", value: 5.8},
-                        {year: "2026", value: 12.4},
-                        {year: "2027", value: 25.6}
-                    ],
-                    unit: "Million USD"
-                },
-                type: "financial"
-            },
-            {
-                id: "funding",
-                title: "투자 요청",
-                content: {
-                    amount: "$5M Series A",
-                    use_of_funds: [
-                        "제품 개발 (40%)",
-                        "마케팅 & 영업 (30%)",
-                        "팀 확장 (20%)",
-                        "운영 자금 (10%)"
-                    ]
-                },
-                type: "funding"
-            }
-        ];
-        
-        // 차트 컴포넌트
-        const MarketChart = ({ data }) => {
-            const chartRef = React.useRef(null);
-            
-            useEffect(() => {
-                if (chartRef.current) {
-                    const ctx = chartRef.current.getContext('2d');
-                    new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: data.map(d => d.year),
-                            datasets: [{
-                                label: '시장 규모 (Billion USD)',
-                                data: data.map(d => d.value),
-                                backgroundColor: 'rgba(59, 130, 246, 0.8)',
-                                borderColor: 'rgba(59, 130, 246, 1)',
-                                borderWidth: 1,
-                                borderRadius: 8
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    labels: { color: 'white' }
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                                },
-                                x: {
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                                }
-                            }
-                        }
-                    });
-                }
-            }, [data]);
-            
-            return <canvas ref={chartRef} className="w-full h-64"></canvas>;
-        };
-        
-        const RevenueChart = ({ data }) => {
-            const chartRef = React.useRef(null);
-            
-            useEffect(() => {
-                if (chartRef.current) {
-                    const ctx = chartRef.current.getContext('2d');
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: data.map(d => d.year),
-                            datasets: [{
-                                label: '매출 (Million USD)',
-                                data: data.map(d => d.value),
-                                borderColor: 'rgba(34, 197, 94, 1)',
-                                backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                                tension: 0.4,
-                                fill: true
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    labels: { color: 'white' }
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                                },
-                                x: {
-                                    ticks: { color: 'white' },
-                                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                                }
-                            }
-                        }
-                    });
-                }
-            }, [data]);
-            
-            return <canvas ref={chartRef} className="w-full h-64"></canvas>;
-        };
-        
-        // 슬라이드 컴포넌트
-        const Slide = ({ slide, isActive }) => {
-            if (!isActive) return null;
-            
-            const renderContent = () => {
-                switch(slide.type) {
-                    case 'title':
-                        return (
-                            <div className="text-center slide-enter">
-                                <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                                    {slide.title}
-                                </h1>
-                                <h2 className="text-3xl mb-8 text-blue-300">{slide.subtitle}</h2>
-                                <p className="text-xl text-gray-300">{slide.content}</p>
-                            </div>
-                        );
-                    
-                    case 'list':
-                        return (
-                            <div className="slide-enter">
-                                <h2 className="text-4xl font-bold mb-8 text-center">{slide.title}</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                                    {slide.content.map((item, index) => (
-                                        <div key={index} className="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm">
-                                            <div className="flex items-center">
-                                                <div className="w-3 h-3 bg-blue-400 rounded-full mr-4"></div>
-                                                <span className="text-lg">{item}</span>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        );
-                    
-                    case 'market':
-                        return (
-                            <div className="slide-enter">
-                                <h2 className="text-4xl font-bold mb-8 text-center">{slide.title}</h2>
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                                    <div className="chart-container p-6 rounded-lg">
-                                        <MarketChart data={slide.content.data} />
-                                    </div>
-                                    <div className="flex flex-col justify-center">
-                                        <div className="bg-white bg-opacity-10 p-6 rounded-lg mb-4">
-                                            <h3 className="text-2xl font-bold text-blue-300 mb-2">시장 규모</h3>
-                                            <p className="text-3xl font-bold">{slide.content.market_size}</p>
-                                        </div>
-                                        <div className="bg-white bg-opacity-10 p-6 rounded-lg">
-                                            <h3 className="text-2xl font-bold text-green-300 mb-2">성장률</h3>
-                                            <p className="text-3xl font-bold">{slide.content.growth_rate}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    
-                    case 'business':
-                        return (
-                            <div className="slide-enter">
-                                <h2 className="text-4xl font-bold mb-8 text-center">{slide.title}</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                                    {slide.content.revenue_streams.map((stream, index) => (
-                                        <div key={index} className="bg-gradient-to-r from-purple-500 to-pink-500 p-6 rounded-lg">
-                                            <div className="text-lg font-semibold">{stream}</div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        );
-                    
-                    case 'team':
-                        return (
-                            <div className="slide-enter">
-                                <h2 className="text-4xl font-bold mb-8 text-center">{slide.title}</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                                    {slide.content.map((member, index) => (
-                                        <div key={index} className="bg-white bg-opacity-10 p-6 rounded-lg text-center">
-                                            <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mx-auto mb-4"></div>
-                                            <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-                                            <p className="text-gray-300">{member.role}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        );
-                    
-                    case 'financial':
-                        return (
-                            <div className="slide-enter">
-                                <h2 className="text-4xl font-bold mb-8 text-center">{slide.title}</h2>
-                                <div className="max-w-4xl mx-auto">
-                                    <div className="chart-container p-6 rounded-lg">
-                                        <RevenueChart data={slide.content.revenue} />
-                                    </div>
-                                    <p className="text-center text-gray-300 mt-4">단위: {slide.content.unit}</p>
-                                </div>
-                            </div>
-                        );
-                    
-                    case 'funding':
-                        return (
-                            <div className="slide-enter text-center">
-                                <h2 className="text-4xl font-bold mb-8">{slide.title}</h2>
-                                <div className="bg-gradient-to-r from-green-400 to-blue-500 p-8 rounded-lg max-w-2xl mx-auto mb-8">
-                                    <h3 className="text-3xl font-bold mb-4">투자 금액</h3>
-                                    <p className="text-5xl font-bold">{slide.content.amount}</p>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-                                    {slide.content.use_of_funds.map((fund, index) => (
-                                        <div key={index} className="bg-white bg-opacity-10 p-4 rounded-lg">
-                                            <span className="text-lg">{fund}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        );
-                    
-                    default:
-                        return <div>Unknown slide type</div>;
-                }
-            };
-            
-            return (
-                <div className="min-h-screen flex items-center justify-center p-8">
-                    <div className="w-full max-w-7xl">
-                        {renderContent()}
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+
+const KiiSPresentation = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Brand theme colors
+  const theme = {
+    primary: '#0f1629',
+    secondary: '#1e3a8a', 
+    accent: '#ffd700',
+    text: '#ffffff',
+    textSecondary: '#e0e7ff'
+  };
+
+  const slides = [
+    // Slide 1: Cover
+    {
+      id: 'cover',
+      content: (
+        <div className="flex items-center justify-between min-h-screen p-8" 
+             style={{ 
+               background: `radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%)`,
+               boxShadow: 'inset 0 0 100px rgba(30, 64, 175, 0.3)'
+             }}>
+          <div className="flex-1 pl-16">
+            <div className="mb-8">
+              <h1 className="text-6xl font-bold mb-4" style={{ 
+                color: theme.accent,
+                textShadow: '0 0 20px rgba(255, 215, 0, 0.5)'
+              }}>
+                KiiS
+              </h1>
+              <p className="text-2xl mb-2" style={{ color: theme.textSecondary }}>
+                (Kim's Ingrowth Implant System)
+              </p>
+              <p className="text-xl mb-8" style={{ color: theme.textSecondary }}>
+                introduced by HUMED LIFESCIENCES
+              </p>
+            </div>
+            <div className="max-w-2xl">
+              <h2 className="text-3xl font-light italic leading-relaxed" style={{ color: theme.text }}>
+                "Transforming patient access to Dental Implant treatments to those that need it the most"
+              </h2>
+            </div>
+          </div>
+          <div className="flex-1 flex justify-center items-center">
+            <div className="relative">
+              {/* Real implant image */}
+              <img 
+                src="./public/images/heroproduct1.png" 
+                alt="KiiS Dental Implant with spiral design and blue crown"
+                className="w-80 h-auto object-contain"
+                style={{
+                  filter: 'drop-shadow(0 0 30px rgba(59, 130, 246, 0.6)) brightness(1.1) contrast(1.2)',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )
+    },
+
+    // Slide 2: Market Opportunity
+    {
+      id: 'market',
+      content: (
+        <div className="p-8 min-h-screen" style={{ background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)` }}>
+          <h1 className="text-4xl font-bold mb-12 text-center" style={{ color: theme.text }}>
+            The Biggest market has the biggest growth opportunity
+          </h1>
+          
+          {/* Key metrics */}
+          <div className="grid grid-cols-3 gap-8 mb-12">
+            <div className="bg-blue-600 p-8 rounded-lg text-center">
+              <h2 className="text-5xl font-bold mb-4" style={{ color: theme.text }}>178M</h2>
+              <p className="text-xl font-semibold mb-2" style={{ color: theme.text }}>Tooth Loss Sufferers</p>
+              <p className="text-lg" style={{ color: theme.textSecondary }}>needing implants in the US</p>
+            </div>
+            <div className="bg-blue-600 p-8 rounded-lg text-center">
+              <h2 className="text-5xl font-bold mb-4" style={{ color: theme.text }}>5.7%</h2>
+              <p className="text-xl font-semibold mb-2" style={{ color: theme.text }}>Implant Penetration Rate</p>
+              <p className="text-lg" style={{ color: theme.textSecondary }}>Lowest among developed countries</p>
+            </div>
+            <div className="bg-blue-600 p-8 rounded-lg text-center">
+              <h2 className="text-5xl font-bold mb-4" style={{ color: theme.text }}>$1.5B</h2>
+              <p className="text-xl font-semibold mb-2" style={{ color: theme.text }}>Current Implant Market</p>
+              <p className="text-lg" style={{ color: theme.textSecondary }}>the biggest with 1/3 of global value</p>
+            </div>
+          </div>
+
+          {/* Visual comparison chart */}
+          <div className="space-y-8">
+            {/* Country bars visualization */}
+            <div className="bg-black bg-opacity-30 p-6 rounded-lg">
+              <h3 className="text-2xl font-bold mb-6 text-center" style={{ color: theme.text }}>
+                Implant Penetration Rate by Country
+              </h3>
+              <div className="space-y-4">
+                {[
+                  { country: 'Switzerland', rate: 38.0, fee: '$4,000', color: '#10b981' },
+                  { country: 'Germany', rate: 25.0, fee: '$2,800', color: '#3b82f6' },
+                  { country: 'South Korea', rate: 13.3, fee: '$1,500', color: '#8b5cf6' },
+                  { country: 'Netherlands', rate: 9.0, fee: '$3,000', color: '#f59e0b' },
+                  { country: 'Japan', rate: 7.2, fee: '$3,200', color: '#ef4444' },
+                  { country: 'USA', rate: 5.7, fee: '$4,500', color: theme.accent, highlight: true }
+                ].map((item, idx) => (
+                  <div key={idx} className={`flex items-center space-x-4 p-3 rounded ${item.highlight ? 'bg-yellow-600 bg-opacity-20' : ''}`}>
+                    <div className="w-24 text-right font-semibold" style={{ color: theme.text }}>
+                      {item.country}
                     </div>
-                </div>
-            );
-        };
-        
-        // 메인 앱 컴포넌트
-        const App = () => {
-            const [currentSlide, setCurrentSlide] = useState(0);
-            
-            // 키보드 내비게이션
-            useEffect(() => {
-                const handleKeyPress = (e) => {
-                    if (e.key === 'ArrowRight' || e.key === ' ') {
-                        setCurrentSlide(prev => Math.min(prev + 1, slidesData.length - 1));
-                    } else if (e.key === 'ArrowLeft') {
-                        setCurrentSlide(prev => Math.max(prev - 1, 0));
-                    }
-                };
-                
-                window.addEventListener('keydown', handleKeyPress);
-                return () => window.removeEventListener('keydown', handleKeyPress);
-            }, []);
-            
-            const nextSlide = () => {
-                setCurrentSlide(prev => Math.min(prev + 1, slidesData.length - 1));
-            };
-            
-            const prevSlide = () => {
-                setCurrentSlide(prev => Math.max(prev - 1, 0));
-            };
-            
-            return (
-                <div className="gradient-bg min-h-screen">
-                    {/* 진행 바 */}
-                    <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
+                    <div className="flex-1 relative">
+                      <div className="bg-gray-600 h-8 rounded-full overflow-hidden">
                         <div 
-                            className="h-full bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300"
-                            style={{ width: `${((currentSlide + 1) / slidesData.length) * 100}%` }}
-                        ></div>
-                    </div>
-                    
-                    {/* 슬라이드 번호 */}
-                    <div className="fixed top-4 right-4 bg-black bg-opacity-50 px-3 py-1 rounded-full z-50">
-                        <span className="text-sm">{currentSlide + 1} / {slidesData.length}</span>
-                    </div>
-                    
-                    {/* 슬라이드 컨텐츠 */}
-                    <Slide slide={slidesData[currentSlide]} isActive={true} />
-                    
-                    {/* 내비게이션 버튼 */}
-                    <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
-                        <button 
-                            onClick={prevSlide}
-                            disabled={currentSlide === 0}
-                            className="bg-white bg-opacity-20 hover:bg-opacity-30 disabled:opacity-50 px-4 py-2 rounded-lg transition-all"
+                          className="h-full rounded-full transition-all duration-1000 flex items-center justify-end pr-3"
+                          style={{ 
+                            width: `${(item.rate / 38) * 100}%`,
+                            backgroundColor: item.color 
+                          }}
                         >
-                            ← 이전
-                        </button>
-                        <button 
-                            onClick={nextSlide}
-                            disabled={currentSlide === slidesData.length - 1}
-                            className="bg-white bg-opacity-20 hover:bg-opacity-30 disabled:opacity-50 px-4 py-2 rounded-lg transition-all"
-                        >
-                            다음 →
-                        </button>
+                          <span className="text-white font-bold text-sm">
+                            {item.rate}%
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    
-                    {/* 키보드 가이드 */}
-                    <div className="fixed bottom-4 left-4 text-xs text-gray-400">
-                        키보드: ← → 스페이스바로 이동
+                    <div className="w-20 text-center text-sm" style={{ color: theme.textSecondary }}>
+                      {item.fee}
                     </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Growth projection */}
+            <div className="grid grid-cols-2 gap-8">
+              <div className="bg-gradient-to-r from-yellow-500 to-orange-500 p-6 rounded-lg text-center">
+                <h3 className="text-3xl font-bold mb-2 text-white">
+                  $1.5B → $3.0B
+                </h3>
+                <p className="text-xl font-semibold text-white">by 2030</p>
+                <p className="text-lg font-bold text-white mt-2">10-11% CAGR</p>
+              </div>
+              
+              <div className="space-y-3">
+                <h4 className="text-xl font-semibold" style={{ color: theme.accent }}>Growth Drivers:</h4>
+                <div className="space-y-2">
+                  {[
+                    '👴 Baby Boomer Silver Tsunami',
+                    '💉 Post-COVID Pent-Up Demand', 
+                    '💻 Accelerated Digital Technology'
+                  ].map((driver, idx) => (
+                    <div key={idx} className="flex items-center space-x-3 p-2 bg-black bg-opacity-20 rounded">
+                      <span className="text-lg" style={{ color: theme.text }}>{driver}</span>
+                    </div>
+                  ))}
                 </div>
-            );
-        };
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+
+    // Slide 3: 3 Barriers
+    {
+      id: 'barriers',
+      content: (
+        <div className="p-4 md:p-8 min-h-screen" style={{ background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)` }}>
+          <h1 className="text-2xl md:text-4xl font-bold mb-8 md:mb-12 text-center" style={{ color: theme.text }}>
+            3 Barriers hindering Implant access and growth potential
+          </h1>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
+            {/* Cost Burden */}
+            <div className="bg-gradient-to-br from-red-600 to-red-700 p-6 md:p-8 rounded-xl shadow-lg">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-full flex items-center justify-center">
+                  <span className="text-3xl">💰</span>
+                </div>
+                <h2 className="text-xl md:text-2xl font-bold" style={{ color: theme.text }}>
+                  Cost Burden
+                </h2>
+              </div>
+              
+              <div className="flex gap-4 mb-6">
+                {/* Left side - Data */}
+                <div className="flex-1 space-y-4">
+                  <div className="bg-black bg-opacity-20 p-3 rounded-lg">
+                    <div className="text-lg md:text-xl font-bold text-white">$3K-$6K</div>
+                    <div className="text-sm text-gray-200">per tooth upfront cost</div>
+                  </div>
+                  <div className="bg-black bg-opacity-20 p-3 rounded-lg">
+                    <div className="text-lg md:text-xl font-bold text-white">+$1.5K-$3K</div>
+                    <div className="text-sm text-gray-200">additional bone graft</div>
+                  </div>
+                  <div className="bg-black bg-opacity-20 p-3 rounded-lg">
+                    <div className="text-lg md:text-xl font-bold text-white">&gt;60%</div>
+                    <div className="text-sm text-gray-200">premium market share</div>
+                  </div>
+                </div>
+
+                {/* Right side - Image placeholder */}
+                <div className="w-32 bg-white bg-opacity-20 rounded-lg p-3 flex flex-col items-center justify-center">
+                  <div className="w-12 h-12 mb-2 bg-white bg-opacity-30 rounded-full flex items-center justify-center">
+                    <span className="text-2xl">📄</span>
+                  </div>
+                  <span className="text-xs text-white opacity-70 text-center">Patient with cost concern</span>
+                </div>
+              </div>
+              
+              <div className="text-center p-4 bg-black bg-opacity-30 rounded-lg">
+                <p className="font-semibold text-sm md:text-base" style={{ color: theme.text }}>
+                  💡 Premium costs limit patient accessibility
+                </p>
+              </div>
+            </div>
+
+            {/* Procedure Inefficiency */}
+            <div className="bg-gradient-to-br from-orange-600 to-orange-700 p-6 md:p-8 rounded-xl shadow-lg">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-full flex items-center justify-center">
+                  <span className="text-3xl">⏱️</span>
+                </div>
+                <h2 className="text-xl md:text-2xl font-bold" style={{ color: theme.text }}>
+                  Procedure Inefficiency
+                </h2>
+              </div>
+              
+              <div className="flex gap-4 mb-6">
+                {/* Left side - Image placeholder */}
+                <div className="w-32 bg-white bg-opacity-20 rounded-lg p-3 flex flex-col items-center justify-center">
+                  <div className="w-12 h-12 mb-2 bg-white bg-opacity-30 rounded-full flex items-center justify-center">
+                    <span className="text-2xl">📊</span>
+                  </div>
+                  <span className="text-xs text-white opacity-70 text-center">Treatment timeline</span>
+                </div>
+
+                {/* Right side - Data */}
+                <div className="flex-1 space-y-4">
+                  <div className="bg-black bg-opacity-20 p-3 rounded-lg">
+                    <div className="text-lg md:text-xl font-bold text-white">4-9 months</div>
+                    <div className="text-sm text-gray-200">lengthy process</div>
+                  </div>
+                  <div className="bg-black bg-opacity-20 p-3 rounded-lg">
+                    <div className="text-lg md:text-xl font-bold text-white">Multi-phase</div>
+                    <div className="text-sm text-gray-200">dropout risk</div>
+                  </div>
+                  <div className="bg-black bg-opacity-20 p-3 rounded-lg">
+                    <div className="text-lg md:text-xl font-bold text-white">Diagnostic</div>
+                    <div className="text-sm text-gray-200">opportunity loss</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-center p-4 bg-black bg-opacity-30 rounded-lg">
+                <p className="font-semibold text-sm md:text-base" style={{ color: theme.text }}>
+                  ⚡ Lengthy process burdens all parties
+                </p>
+              </div>
+            </div>
+
+            {/* Treatment Limitations */}
+            <div className="bg-gradient-to-br from-purple-600 to-purple-700 p-6 md:p-8 rounded-xl shadow-lg">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-full flex items-center justify-center">
+                  <span className="text-3xl">🚫</span>
+                </div>
+                <h2 className="text-xl md:text-2xl font-bold" style={{ color: theme.text }}>
+                  Treatment Limitations
+                </h2>
+              </div>
+              
+              <div className="flex gap-4 mb-6">
+                {/* Left side - Data */}
+                <div className="flex-1 space-y-4">
+                  <div className="bg-black bg-opacity-20 p-3 rounded-lg">
+                    <div className="text-lg md:text-xl font-bold text-white">Limited</div>
+                    <div className="text-sm text-gray-200">bone eligibility</div>
+                  </div>
+                  <div className="bg-black bg-opacity-20 p-3 rounded-lg">
+                    <div className="text-lg md:text-xl font-bold text-white">Complex</div>
+                    <div className="text-sm text-gray-200">bone grafting</div>
+                  </div>
+                  <div className="bg-black bg-opacity-20 p-3 rounded-lg">
+                    <div className="text-lg md:text-xl font-bold text-white">Health burden</div>
+                    <div className="text-sm text-gray-200">aging, chronic diseases</div>
+                  </div>
+                </div>
+
+                {/* Right side - Image placeholder */}
+                <div className="w-32 bg-white bg-opacity-20 rounded-lg p-3 flex flex-col items-center justify-center">
+                  <div className="w-12 h-12 mb-2 bg-white bg-opacity-30 rounded-full flex items-center justify-center">
+                    <span className="text-2xl">👩‍⚕️</span>
+                  </div>
+                  <span className="text-xs text-white opacity-70 text-center">Elderly patient</span>
+                </div>
+              </div>
+              
+              <div className="text-center p-4 bg-black bg-opacity-30 rounded-lg">
+                <p className="font-semibold text-sm md:text-base" style={{ color: theme.text }}>
+                  🔬 Low bone density excludes many patients
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+
+    // Slide 4: KiiS Innovation
+    {
+      id: 'innovation',
+      content: (
+        <div className="p-8 min-h-screen" style={{ background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)` }}>
+          <h1 className="text-4xl font-bold mb-12" style={{ color: theme.accent }}>
+            <span style={{ color: theme.accent }}>KiiS Innovation:</span> US Patented New to the world Dental Implant
+          </h1>
+          
+          <div className="grid grid-cols-2 gap-16">
+            {/* Left side - Patent document placeholder */}
+            <div className="flex justify-center items-center">
+              <div className="bg-white p-8 rounded-lg shadow-2xl max-w-md">
+                <div className="bg-gray-200 h-96 rounded-lg flex items-center justify-center mb-4">
+                  <span className="text-gray-600 text-center">
+                    US Patent Document<br/>
+                    US 9757213B2<br/>
+                    Sep 12, 2017
+                  </span>
+                </div>
+                <div className="text-center">
+                  <p className="text-gray-800 font-semibold">HuMed Lifesciences KiiS</p>
+                  <div className="bg-gray-200 h-16 w-16 mx-auto mt-2 rounded flex items-center justify-center">
+                    <span className="text-xs text-gray-600">Implant Image</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side - Features */}
+            <div className="space-y-8">
+              {/* Spiral Side Opening */}
+              <div className="bg-blue-600 p-6 rounded-lg">
+                <h2 className="text-2xl font-bold mb-4" style={{ color: theme.accent }}>
+                  Spiral Side Opening
+                </h2>
+                <ul className="text-lg space-y-2" style={{ color: theme.text }}>
+                  <li>• First-Ever Revolutionary bone ingrowth technology</li>
+                  <li>• *FDA 510K Ready - Clear Path to Market Approval</li>
+                </ul>
+              </div>
+
+              {/* Hollow Inner Channel */}
+              <div className="bg-blue-600 p-6 rounded-lg">
+                <h2 className="text-2xl font-bold mb-4" style={{ color: theme.accent }}>
+                  Hollow Inner Channel
+                </h2>
+                <ul className="text-lg space-y-2" style={{ color: theme.text }}>
+                  <li>• Only implant with built-in medication delivery system for targeted healing</li>
+                  <li>• *De Novo Pathway for Injectable Platform (Phase 2 Expansion)</li>
+                </ul>
+              </div>
+
+              {/* Footnotes */}
+              <div className="text-sm space-y-2" style={{ color: theme.textSecondary }}>
+                <p>* FDA 510K: Proven regulatory pathway - minimal risk, faster commercialization</p>
+                <p>* De Novo Pathway: Breakthrough device designation for unmet medical needs</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'ArrowLeft' && currentSlide > 0) {
+        setCurrentSlide(currentSlide - 1);
+      } else if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+        setCurrentSlide(currentSlide + 1);
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        setIsPlaying(!isPlaying);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentSlide, isPlaying, slides.length]);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (isPlaying && currentSlide < slides.length - 1) {
+      const timer = setTimeout(() => {
+        setCurrentSlide(currentSlide + 1);
+      }, 5000);
+      return () => clearTimeout(timer);
+    } else if (isPlaying && currentSlide === slides.length - 1) {
+      setIsPlaying(false);
+    }
+  }, [currentSlide, isPlaying, slides.length]);
+
+  return (
+    <div className="w-full min-h-screen bg-gray-900 relative">
+      {/* Main slide content */}
+      <div className="w-full min-h-screen">
+        {slides[currentSlide].content}
+      </div>
+
+      {/* Navigation controls */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 bg-black bg-opacity-50 px-6 py-3 rounded-full">
+        <button
+          onClick={() => setCurrentSlide(Math.max(0, currentSlide - 1))}
+          disabled={currentSlide === 0}
+          className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <ChevronLeft className="w-5 h-5 text-white" />
+        </button>
         
-        // 앱 렌더링
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
-</body>
-</html>
+        <button
+          onClick={() => setIsPlaying(!isPlaying)}
+          className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30"
+        >
+          {isPlaying ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white" />}
+        </button>
+
+        <span className="text-white font-medium px-3">
+          {currentSlide + 1} / {slides.length}
+        </span>
+
+        <button
+          onClick={() => setCurrentSlide(Math.min(slides.length - 1, currentSlide + 1))}
+          disabled={currentSlide === slides.length - 1}
+          className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <ChevronRight className="w-5 h-5 text-white" />
+        </button>
+      </div>
+
+      {/* Slide indicator dots */}
+      <div className="absolute bottom-6 right-6 flex space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all ${
+              index === currentSlide ? 'bg-yellow-400' : 'bg-white bg-opacity-30'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Instructions */}
+      <div className="absolute top-4 right-4 text-white bg-black bg-opacity-50 px-4 py-2 rounded text-sm">
+        Use ← → keys or click controls to navigate
+      </div>
+    </div>
+  );
+};
+
+export default KiiSPresentation;
