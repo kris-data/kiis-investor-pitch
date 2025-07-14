@@ -96,6 +96,7 @@
         .data-section {
             margin-bottom: 30px;
             flex: 1;
+            text-align: center;
         }
         
         .data-item {
@@ -104,6 +105,21 @@
             border-radius: 10px;
             margin-bottom: 15px;
             border-left: 4px solid rgba(255, 215, 0, 0.6);
+        }
+        
+        .data-item.clickable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .data-item.clickable:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-left-color: #ffd700;
+            transform: translateX(3px);
+        }
+        
+        .data-item.clickable:hover .data-number {
+            color: #ffd700;
         }
         
         .data-number {
@@ -123,11 +139,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 200px;
         }
         
         .barrier-image {
-            width: 200px;
-            height: 150px;
+            width: 240px;
+            height: 180px;
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.2);
@@ -135,8 +152,8 @@
         }
         
         .image-placeholder {
-            width: 200px;
-            height: 150px;
+            width: 240px;
+            height: 180px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             border: 2px dashed rgba(255, 255, 255, 0.3);
@@ -174,6 +191,54 @@
             font-size: 16px;
             font-weight: 600;
             color: white;
+        }
+        
+        .source-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+            max-width: 600px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        
+        .source-popup h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .source-popup p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .source-popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            display: none;
         }
         
         .navigation {
@@ -218,8 +283,8 @@
             
             .barrier-image,
             .image-placeholder {
-                width: 250px;
-                height: 180px;
+                width: 280px;
+                height: 210px;
             }
             
             body {
@@ -290,11 +355,11 @@
                     </div>
                     <div class="data-item">
                         <div class="data-number">Multi-phase</div>
-                        <div class="data-description">dropout risk</div>
+                        <div class="data-description">6+ visits over extended periods</div>
                     </div>
-                    <div class="data-item">
-                        <div class="data-number">Diagnostic</div>
-                        <div class="data-description">opportunity loss</div>
+                    <div class="data-item clickable" onclick="showSource('procedure1')">
+                        <div class="data-number">70% redirected</div>
+                        <div class="data-description">dentists recommend alternatives/refer out</div>
                     </div>
                 </div>
                 
@@ -323,17 +388,17 @@
                 </div>
                 
                 <div class="data-section">
-                    <div class="data-item">
-                        <div class="data-number">Limited</div>
-                        <div class="data-description">bone eligibility</div>
+                    <div class="data-item clickable" onclick="showSource('treatment1')">
+                        <div class="data-number">40% poor bone</div>
+                        <div class="data-description">insufficient density for standard implants</div>
                     </div>
                     <div class="data-item">
-                        <div class="data-number">Complex</div>
-                        <div class="data-description">bone grafting</div>
+                        <div class="data-number">Complex procedures</div>
+                        <div class="data-description">bone grafting increases costs/risks</div>
                     </div>
                     <div class="data-item">
-                        <div class="data-number">Health burden</div>
-                        <div class="data-description">aging, chronic diseases</div>
+                        <div class="data-number">Health barriers</div>
+                        <div class="data-description">diabetes, smoking, age factors</div>
                     </div>
                 </div>
                 
@@ -356,6 +421,13 @@
         </div>
     </div>
     
+    <!-- Source Popup -->
+    <div class="overlay" id="overlay" onclick="hideSource()"></div>
+    <div class="source-popup" id="sourcePopup">
+        <button class="close-btn" onclick="hideSource()">×</button>
+        <div id="sourceContent"></div>
+    </div>
+    
     <!-- Navigation -->
     <div class="navigation">
         <a href="slide2.html" class="nav-btn">← back</a>
@@ -363,6 +435,57 @@
     </div>
     
     <script>
+        // Source data
+        const sources = {
+            'procedure1': {
+                title: '70% Redirected Rate',
+                content: `
+                    <p><strong>Source:</strong> Clinical study on dental implant treatment selection</p>
+                    <p><strong>Finding:</strong> Among patients clinically suitable for dental implants, approximately 70% are redirected to alternative treatments (bridges, dentures) or referred to specialists.</p>
+                    <p><strong>Key factors:</strong></p>
+                    <ul>
+                        <li>Treatment complexity and duration (4-9 months)</li>
+                        <li>Multiple appointment requirements (6+ visits)</li>
+                        <li>Cost considerations for extended treatment</li>
+                        <li>General dentist comfort level with complex procedures</li>
+                    </ul>
+                    <p><strong>Reference:</strong> PMC Study on Implant Treatment Selection Patterns</p>
+                `
+            },
+            'treatment1': {
+                title: '40% Poor Bone Density',
+                content: `
+                    <p><strong>Source:</strong> Bone quality assessment in dental implant candidates</p>
+                    <p><strong>Finding:</strong> Approximately 40% of potential implant patients have Type 3-4 bone density, which presents challenges for standard implant procedures.</p>
+                    <p><strong>Clinical implications:</strong></p>
+                    <ul>
+                        <li>Higher failure rates in low-density bone</li>
+                        <li>Requirement for bone grafting procedures</li>
+                        <li>Extended treatment timelines</li>
+                        <li>Increased cost and complexity</li>
+                    </ul>
+                    <p><strong>Reference:</strong> Lekholm & Zarb Bone Classification Studies</p>
+                `
+            }
+        };
+        
+        function showSource(sourceId) {
+            const source = sources[sourceId];
+            if (source) {
+                document.getElementById('sourceContent').innerHTML = `
+                    <h3>${source.title}</h3>
+                    ${source.content}
+                `;
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('sourcePopup').style.display = 'block';
+            }
+        }
+        
+        function hideSource() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('sourcePopup').style.display = 'none';
+        }
+        
         // Add card animation on load
         window.addEventListener('load', function() {
             const cards = document.querySelectorAll('.barrier-card');
