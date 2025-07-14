@@ -40,7 +40,7 @@
         
         .content-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1fr 1.2fr;
             grid-template-rows: auto 1fr;
             gap: 40px;
             flex: 1;
@@ -107,7 +107,29 @@
             font-size: 18px;
         }
         
-        /* 왼쪽: 이중 전략 섹션 */
+        /* 왼쪽: 차트 섹션 */
+        .charts-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            height: 100%;
+        }
+        
+        .chart-container {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 280px;
+        }
+        
+        /* 오른쪽: 이중 전략 섹션 */
         .dual-strategy {
             display: flex;
             flex-direction: column;
@@ -117,7 +139,7 @@
         
         .strategy-card {
             flex: 1;
-            padding: 35px;
+            padding: 30px;
             border-radius: 20px;
             position: relative;
             overflow: hidden;
@@ -125,7 +147,7 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             min-height: 280px;
         }
         
@@ -147,7 +169,7 @@
         .strategy-header {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .strategy-icon {
@@ -156,13 +178,13 @@
         }
         
         .strategy-type {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
         }
         
         .strategy-subtitle {
-            font-size: 13px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.8);
             margin-top: 5px;
         }
@@ -171,26 +193,48 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+        }
+        
+        .market-insight {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .insight-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .insight-text {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
         }
         
         .strategy-product {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             color: #ffd700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .strategy-tagline {
-            font-size: 18px;
+            font-size: 16px;
             font-style: italic;
             color: white;
             line-height: 1.3;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .strategy-description {
-            font-size: 15px;
+            font-size: 14px;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.5;
         }
@@ -660,49 +704,7 @@
                 </div>
             </div>
             
-            <!-- 왼쪽: 이중 전략 섹션 -->
-            <div class="dual-strategy">
-                <div class="strategy-card type12" onclick="showSource('type12strategy')">
-                    <div class="strategy-header">
-                        <div class="strategy-icon">💎</div>
-                        <div>
-                            <div class="strategy-type">Type 1-2 Market <span class="info-icon" onclick="showTypeInfo('type12')" title="클릭하여 자세히 보기">ℹ️</span></div>
-                            <div class="strategy-subtitle">Existing Premium Monopoly</div>
-                        </div>
-                    </div>
-                    
-                    <div class="strategy-main">
-                        <div class="strategy-product">KiiS-Plus</div>
-                        <div class="strategy-tagline">"Premium Performance at Mid-Tier Price"</div>
-                        <div class="strategy-description">
-                            Disrupting Straumann & Nobel's premium monopoly with 
-                            <span class="strategy-highlight">30-40% lower price</span> while delivering 
-                            <span class="strategy-highlight">equivalent efficacy</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="strategy-card type34" onclick="showSource('type34strategy')">
-                    <div class="strategy-header">
-                        <div class="strategy-icon">🚀</div>
-                        <div>
-                            <div class="strategy-type">Type 3-4 Market <span class="info-icon" onclick="showTypeInfo('type34')" title="클릭하여 자세히 보기">ℹ️</span></div>
-                            <div class="strategy-subtitle">Current Product Limitations</div>
-                        </div>
-                    </div>
-                    
-                    <div class="strategy-main">
-                        <div class="strategy-product">KiiS-Relax</div>
-                        <div class="strategy-tagline">"Making the Impossible Possible"</div>
-                        <div class="strategy-description">
-                            Creating new premium market in Type 3-4 where existing value brands show limitations, 
-                            providing <span class="strategy-highlight">unique reliability</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 오른쪽: 차트 섹션 -->
+            <!-- 왼쪽: 차트 섹션 -->
             <div class="charts-section">
                 <div class="chart-container" onclick="showSource('brandmarket')">
                     <div class="chart-title">Brand Market Analysis</div>
@@ -725,6 +727,67 @@
                     <div class="chart-placeholder" style="display: none;">
                         <div class="placeholder-icon">🎯</div>
                         <div class="placeholder-text">Positioning<br>Map</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 오른쪽: 이중 전략 섹션 -->
+            <div class="dual-strategy">
+                <div class="strategy-card type12" onclick="showSource('type12strategy')">
+                    <div class="strategy-header">
+                        <div class="strategy-icon">💎</div>
+                        <div>
+                            <div class="strategy-type">Type 1-2 Market <span class="info-icon" onclick="showTypeInfo('type12')" title="클릭하여 자세히 보기">ℹ️</span></div>
+                            <div class="strategy-subtitle">Existing Premium Monopoly</div>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-main">
+                        <div class="market-insight">
+                            <div class="insight-title">📊 Market Reality</div>
+                            <div class="insight-text">
+                                • <strong>Premium Oligopoly:</strong> Straumann (30%), Nobel (25%), Astra (20%)<br>
+                                • <strong>75% market share</strong> concentrated in just 3 companies<br>
+                                • <strong>High price barrier</strong> excludes many potential patients
+                            </div>
+                        </div>
+                        
+                        <div class="strategy-product">KiiS-Plus</div>
+                        <div class="strategy-tagline">"Premium Performance at Mid-Tier Price"</div>
+                        <div class="strategy-description">
+                            <strong>Our Strategy:</strong> Disrupt this oligopoly with 
+                            <span class="strategy-highlight">30-40% lower price</span> while delivering 
+                            <span class="strategy-highlight">equivalent efficacy</span> through 510K pathway
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="strategy-card type34" onclick="showSource('type34strategy')">
+                    <div class="strategy-header">
+                        <div class="strategy-icon">🚀</div>
+                        <div>
+                            <div class="strategy-type">Type 3-4 Market <span class="info-icon" onclick="showTypeInfo('type34')" title="클릭하여 자세히 보기">ℹ️</span></div>
+                            <div class="strategy-subtitle">Current Product Limitations</div>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-main">
+                        <div class="market-insight">
+                            <div class="insight-title">🎯 Market Gap</div>
+                            <div class="insight-text">
+                                • <strong>Fragmented market:</strong> No clear leader in Type 3-4<br>
+                                • <strong>40% of patients</strong> excluded or face high failure rates<br>
+                                • <strong>Limited solutions</strong> for weak bone density cases
+                            </div>
+                        </div>
+                        
+                        <div class="strategy-product">KiiS-Relax</div>
+                        <div class="strategy-tagline">"Making the Impossible Possible"</div>
+                        <div class="strategy-description">
+                            <strong>Our Innovation:</strong> Create new premium category with 
+                            <span class="strategy-highlight">De Novo breakthrough</span> technology, 
+                            providing <span class="strategy-highlight">unique reliability</span> in challenging cases
+                        </div>
                     </div>
                 </div>
             </div>
