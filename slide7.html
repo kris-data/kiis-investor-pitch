@@ -356,9 +356,11 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 100px;
+            height: 120px;
             z-index: 998;
             pointer-events: auto;
+            /* 디버깅용 - 실제 배포시에는 제거 */
+            /* background: rgba(255, 0, 0, 0.1); */
         }
         
         /* 네비게이션 스타일 */
@@ -758,36 +760,67 @@
             }, delay);
         }
         
-        // PC/데스크톱: 마우스 호버 기능
+        // PC/데스크톱: 마우스 호버 기능 (개선된 버전)
         if (!isTouchDevice) {
-            // 화면 하단 100px 영역에서 호버 감지
-            hoverZone.addEventListener('mouseenter', showNavigation);
+            console.log('PC 모드: 네비게이션 호버 기능 활성화');
             
-            // 네비게이션 자체 호버
+            // 방법 1: 호버존 이벤트
+            if (hoverZone) {
+                hoverZone.addEventListener('mouseenter', () => {
+                    console.log('호버존 진입');
+                    showNavigation();
+                });
+                
+                hoverZone.addEventListener('mouseleave', () => {
+                    console.log('호버존 이탈');
+                    hideNavigation(1000);
+                });
+            }
+            
+            // 방법 2: 전체 문서에서 마우스 위치 추적 (더 확실한 방법)
+            let lastMouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                // 마우스가 화면 하단 120px 안에 있을 때
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) {
+                        console.log(`마우스 하단 감지: ${lastMouseY} > ${windowHeight - 120}`);
+                        showNavigation();
+                    }
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    // 마우스가 네비게이션을 호버하고 있지 않고, 하단 영역을 벗어났을 때
+                    hideNavigation(1500);
+                }
+            });
+            
+            // 방법 3: 네비게이션 자체 호버
             navigation.addEventListener('mouseenter', () => {
+                console.log('네비게이션 호버 시작');
                 clearTimeout(hideTimeout);
                 showNavigation();
             });
             
-            // 네비게이션에서 마우스가 벗어났을 때
             navigation.addEventListener('mouseleave', () => {
+                console.log('네비게이션 호버 종료');
                 hideNavigation(1000);
             });
             
-            // 전체 화면에서 마우스 움직임 감지
-            document.addEventListener('mousemove', (e) => {
+            // 방법 4: 추가 안전장치 - 주기적으로 마우스 위치 확인
+            setInterval(() => {
                 const windowHeight = window.innerHeight;
-                const mouseY = e.clientY;
-                
-                // 마우스가 화면 하단 100px 안에 있을 때
-                if (mouseY > windowHeight - 100) {
-                    if (!isNavigationVisible) {
-                        showNavigation();
-                    }
-                } else if (isNavigationVisible && !navigation.matches(':hover')) {
-                    hideNavigation(1500);
+                if (lastMouseY > windowHeight - 120 && !isNavigationVisible) {
+                    console.log('주기적 확인: 마우스 하단 위치 감지');
+                    showNavigation();
                 }
-            });
+            }, 1000);
+            
+            // PC 사용자를 위한 힌트 (개발 중에만)
+            setTimeout(() => {
+                console.log('💡 PC 사용 팁: 화면 하단으로 마우스를 이동하면 네비게이션이 나타납니다');
+                console.log('🔍 또는 키보드 화살표 키를 사용하세요');
+            }, 2000);
         }
         
         // 터치 디바이스: 탭 및 스와이프 기능
