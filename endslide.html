@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KiiS - Join the Dental Revolution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 60px 80px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .main-title {
+            font-size: 52px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffd700, #ffed4a, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        .value-prop {
+            font-size: 18px;
+            color: #34d399;
+            font-weight: 500;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            flex-grow: 1;
+            align-items: center;
+        }
+        
+        .cta-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .urgency-message {
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(255, 193, 7, 0.1));
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .urgency-title {
+            font-size: 24px;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .urgency-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        
+        .investment-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .highlight-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #34d399;
+            transition: all 0.3s ease;
+        }
+        
+        .highlight-item:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: translateX(5px);
+        }
+        
+        .highlight-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        
+        .highlight-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .primary-cta {
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #1e40af;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        .primary-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+        }
+        
+        .secondary-cta {
+            background: rgba(52, 211, 153, 0.2);
+            color: #34d399;
+            border: 2px solid #34d399;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .secondary-cta:hover {
+            background: rgba(52, 211, 153, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .contact-form-section {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+        }
+        
+        .form-title {
+            font-size: 28px;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .investor-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-label {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-select {
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .form-textarea {
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #34d399, #10b981);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 211, 153, 0.4);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .contact-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-value {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+        
+        .confidential-badge {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        /* 네비게이션 호버 감지 영역 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+        
+        /* 네비게이션 스타일 */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            100% { text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.3); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        @media (max-width: 1200px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .investment-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-title {
+                font-size: 38px;
+            }
+            
+            .subtitle {
+                font-size: 20px;
+            }
+            
+            body {
+                padding: 40px;
+            }
+            
+            .contact-form-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 섹션 -->
+        <div class="header-section">
+            <h1 class="main-title">Join the Dental Revolution</h1>
+            <div class="subtitle">Be Part of the $6B Dental Implant Disruption</div>
+            <div class="value-prop">🚀 First-Mover Advantage • 💰 Proven ROI Potential • 🏥 FDA Pathway Secured</div>
+        </div>
+        
+        <div class="content-grid">
+            <!-- 왼쪽: CTA 및 투자 하이라이트 -->
+            <div class="cta-section">
+                <div class="urgency-message">
+                    <div class="urgency-title">⏰ Limited Investment Opportunity</div>
+                    <div class="urgency-text">
+                        Series A round closing in Q2 2025. Join leading VCs and medical device experts 
+                        who are already committed to transforming dental care with KiiS innovation.
+                    </div>
+                </div>
+                
+                <div class="investment-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-number">$6B</div>
+                        <div class="highlight-label">US Market Size</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-number">40%</div>
+                        <div class="highlight-label">Cost Reduction</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-number">510K</div>
+                        <div class="highlight-label">FDA Pathway</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-number">2x</div>
+                        <div class="highlight-label">Market Coverage</div>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="#" class="primary-cta" onclick="scrollToForm()">
+                        💰 Request Investment Materials
+                    </a>
+                    <a href="#" class="secondary-cta" onclick="scheduleCall()">
+                        📞 Schedule Private Call with CEO
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 오른쪽: 투자자 문의 폼 -->
+            <div class="contact-form-section" id="investorForm">
+                <div class="confidential-badge">🔒 CONFIDENTIAL INVESTOR INQUIRY</div>
+                <div class="form-title">Secure Your Investment Position</div>
+                <div class="form-subtitle">
+                    Complete this form to receive our confidential investor package and priority access to Series A round.
+                </div>
+                
+                <!-- Formspree 연동 폼 -->
+                <form class="investor-form" action="https://formspree.io/f/YOUR_INVESTOR_FORM_ID" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Fund/Company Name *</label>
+                            <input type="text" name="fund_name" class="form-input" placeholder="e.g., Kleiner Perkins" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Your Name *</label>
+                            <input type="text" name="investor_name" class="form-input" placeholder="Full Name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Title/Position *</label>
+                            <input type="text" name="title" class="form-input" placeholder="e.g., Managing Partner" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" name="email" class="form-input" placeholder="investor@fund.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" name="phone" class="form-input" placeholder="+1 (555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Investment Stage Focus</label>
+                            <select name="stage_focus" class="form-select">
+                                <option value="">Select Stage</option>
+                                <option value="series-a">Series A</option>
+                                <option value="series-b">Series B</option>
+                                <option value="growth">Growth/Late Stage</option>
+                                <option value="all-stages">All Stages</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Typical Investment Range</label>
+                        <select name="investment_range" class="form-select">
+                            <option value="">Select Range</option>
+                            <option value="1-5m">$1M - $5M</option>
+                            <option value="5-15m">$5M - $15M</option>
+                            <option value="15-50m">$15M - $50M</option>
+                            <option value="50m-plus">$50M+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Medical Device Investment Experience</label>
+                        <select name="medtech_experience" class="form-select">
+                            <option value="">Select Experience Level</option>
+                            <option value="extensive">Extensive (10+ investments)</option>
+                            <option value="moderate">Moderate (3-10 investments)</option>
+                            <option value="some">Some (1-3 investments)</option>
+                            <option value="new">New to MedTech</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Specific Interest & Questions</label>
+                        <textarea name="message" class="form-textarea" placeholder="What aspects of KiiS innovation interest you most? Do you have specific questions about our technology, market strategy, or financial projections? Any particular information you'd like to see in our investor package?"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Preferred Next Step</label>
+                        <select name="next_step" class="form-select">
+                            <option value="">How would you like to proceed?</option>
+                            <option value="materials-only">Send investor materials first</option>
+                            <option value="call-first">Schedule call before materials</option>
+                            <option value="both">Both: materials + call</option>
+                            <option value="in-person">In-person meeting (if possible)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Hidden fields for tracking -->
+                    <input type="hidden" name="_subject" value="KiiS Investor Inquiry - Series A">
+                    <input type="hidden" name="_next" value="https://your-kiis-site.github.io/thank-you.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <button type="submit" class="submit-btn">
+                        🚀 Submit Confidential Inquiry
+                    </button>
+                </form>
+                
+                <!-- 연락처 정보 -->
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-label">Direct Email</div>
+                        <div class="contact-value">ceo@kiis-innovation.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-label">CEO Direct</div>
+                        <div class="contact-value">+82-10-XXXX-XXXX</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏢</div>
+                        <div class="contact-label">Location</div>
+                        <div class="contact-value">Seoul, South Korea</div>
+                    </div>
+                </div>
+                
+                <div class="footer-note">
+                    All investor information is confidential and protected under NDA. 
+                    Expected response time: 24 hours for qualified investors.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 네비게이션 호버 감지 영역 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    
+    <!-- 네비게이션 -->
+    <div class="navigation" id="navigation">
+        <a href="slide10.html" class="nav-btn prev">Back to Pitch</a>
+    </div>
+    
+    <script>
+        // 폼으로 스크롤
+        function scrollToForm() {
+            document.getElementById('investorForm').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+        
+        // CEO 통화 예약
+        function scheduleCall() {
+            // 실제로는 Calendly 링크로 이동
+            alert('Redirecting to CEO\'s calendar...\n\nReal implementation: Direct link to Calendly booking page for investor calls');
+            // window.open('https://calendly.com/kiis-ceo/investor-call', '_blank');
+        }
+        
+        // 폼 제출 처리
+        document.querySelector('.investor-form').addEventListener('submit', function(e) {
+            // 실제 Formspree 연동시에는 자동 처리
+            alert('🎉 Investment inquiry submitted successfully!\n\n✅ Confidential investor package will be sent within 24 hours\n✅ CEO will personally review your inquiry\n✅ Priority access to Series A round confirmed\n\nThank you for your interest in KiiS Innovation!');
+        });
+        
+        // 네비게이션 기능 (이전 슬라이드와 동일)
+        const navigation = document.getElementById('navigation');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let hideTimeout;
+        let isNavigationVisible = false;
+        
+        function showNavigation() {
+            clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+        
+        function hideNavigation(delay = 2000) {
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+        
+        // PC 마우스 호버
+        if (!isTouchDevice) {
+            document.addEventListener('mousemove', (e) => {
+                const windowHeight = window.innerHeight;
+                if (e.clientY > windowHeight - 120) {
+                    showNavigation();
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
+                }
+            });
+        }
+        
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                window.location.href = 'slide10.html';
+            }
+        });
+        
+        // 페이지 로드 애니메이션
+        window.addEventListener('load', function() {
+            const elements = [
+                document.querySelector('.header-section'),
+                document.querySelector('.cta-section'),
+                document.querySelector('.contact-form-section')
+            ];
+            
+            elements.forEach((el, index) => {
+                if (el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'all 1s ease';
+                    
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, index * 400);
+                }
+            });
+            
+            // 네비게이션 힌트
+            setTimeout(() => {
+                showNavigation();
+                hideNavigation(3000);
+            }, 2500);
+        });
+        
+        // 입력 필드 포커스 효과
+        document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+                this.parentElement.style.transition = 'transform 0.3s ease';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
