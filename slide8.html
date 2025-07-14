@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KiiS - Go-To-Market Strategy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 60px 80px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .left-side {
+            flex: 1;
+            padding-right: 60px;
+            max-width: 700px;
+        }
+        
+        .right-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+        }
+        
+        .title {
+            font-size: 56px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 60px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            line-height: 1.1;
+        }
+        
+        .strategy-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .strategy-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 25px 30px;
+            background: linear-gradient(145deg, #1e40af, #1d4ed8);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #ffd700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .strategy-item:hover {
+            transform: translateY(-5px) translateX(10px);
+            border-left-color: #ffffff;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, #2563eb, #1e40af);
+        }
+        
+        .strategy-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-right: 25px;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .strategy-text {
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: white;
+        }
+        
+        .strategy-text .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .implant-visual {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.8)) brightness(1.2) contrast(1.3);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .implant-visual:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        .visual-placeholder {
+            width: 500px;
+            height: 600px;
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.3), rgba(30, 64, 175, 0.2));
+            border-radius: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 2px dashed rgba(255, 215, 0, 0.5);
+            text-align: center;
+        }
+        
+        .placeholder-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            color: #ffd700;
+        }
+        
+        .placeholder-text {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .placeholder-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* 네비게이션 호버 감지 영역 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+        
+        /* 네비게이션 스타일 */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
+        }
+        
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 0;
+            }
+            
+            .left-side {
+                padding-right: 0;
+                margin-bottom: 40px;
+                max-width: 100%;
+            }
+            
+            .title {
+                font-size: 42px;
+                margin-bottom: 40px;
+            }
+            
+            .strategy-item {
+                padding: 20px 25px;
+                margin-bottom: 20px;
+            }
+            
+            .strategy-number {
+                font-size: 28px;
+                margin-right: 20px;
+            }
+            
+            .strategy-text {
+                font-size: 18px;
+            }
+            
+            .implant-visual {
+                max-width: 350px;
+            }
+            
+            .visual-placeholder {
+                width: 350px;
+                height: 400px;
+            }
+            
+            body {
+                padding: 40px;
+            }
+            
+            .navigation {
+                padding: 12px 20px;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <h1 class="title">Go-To-Market Strategy</h1>
+            
+            <ol class="strategy-list">
+                <li class="strategy-item">
+                    <span class="strategy-number">1.</span>
+                    <span class="strategy-text">Product Positioning for <span class="highlight">Dual Market Expansion</span></span>
+                </li>
+                
+                <li class="strategy-item">
+                    <span class="strategy-number">2.</span>
+                    <span class="strategy-text"><span class="highlight">Superiority Claims</span> Marketing</span>
+                </li>
+                
+                <li class="strategy-item">
+                    <span class="strategy-number">3.</span>
+                    <span class="strategy-text"><span class="highlight">Digital First</span> Sales Channel</span>
+                </li>
+                
+                <li class="strategy-item">
+                    <span class="strategy-number">4.</span>
+                    <span class="strategy-text">Manufacturing Partnership in <span class="highlight">Korea</span></span>
+                </li>
+                
+                <li class="strategy-item">
+                    <span class="strategy-number">5.</span>
+                    <span class="strategy-text">Seasoned Leadership in <span class="highlight">global Life sciences</span></span>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="right-side">
+            <img src="/kiis-investor-pitch/public/images/spiral-implant-strategy.jpg" 
+                 alt="KiiS Strategic Implant Visual" 
+                 class="implant-visual"
+                 id="main-visual"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            
+            <div class="visual-placeholder">
+                <div class="placeholder-icon">🚀</div>
+                <div class="placeholder-text">Go-To-Market Strategy</div>
+                <div class="placeholder-subtitle">Strategic Market Expansion Visual</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 네비게이션 호버 감지 영역 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    
+    <!-- 네비게이션 -->
+    <div class="navigation" id="navigation">
+        <a href="slide7.html" class="nav-btn prev">Back</a>
+        <a href="slide9.html" class="nav-btn next">Next</a>
+    </div>
+    
+    <script>
+        // 네비게이션 기능 (동일한 시스템)
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let hideTimeout;
+        let isNavigationVisible = false;
+        
+        // 네비게이션 표시
+        function showNavigation() {
+            clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+        
+        // 네비게이션 숨기기 (지연 적용)
+        function hideNavigation(delay = 2000) {
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+        
+        // PC/데스크톱: 마우스 호버 기능 (개선된 버전)
+        if (!isTouchDevice) {
+            console.log('PC 모드: 네비게이션 호버 기능 활성화');
+            
+            // 방법 1: 호버존 이벤트
+            if (hoverZone) {
+                hoverZone.addEventListener('mouseenter', () => {
+                    console.log('호버존 진입');
+                    showNavigation();
+                });
+                
+                hoverZone.addEventListener('mouseleave', () => {
+                    console.log('호버존 이탈');
+                    hideNavigation(1000);
+                });
+            }
+            
+            // 방법 2: 전체 문서에서 마우스 위치 추적 (더 확실한 방법)
+            let lastMouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                // 마우스가 화면 하단 120px 안에 있을 때
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) {
+                        console.log(`마우스 하단 감지: ${lastMouseY} > ${windowHeight - 120}`);
+                        showNavigation();
+                    }
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    // 마우스가 네비게이션을 호버하고 있지 않고, 하단 영역을 벗어났을 때
+                    hideNavigation(1500);
+                }
+            });
+            
+            // 방법 3: 네비게이션 자체 호버
+            navigation.addEventListener('mouseenter', () => {
+                console.log('네비게이션 호버 시작');
+                clearTimeout(hideTimeout);
+                showNavigation();
+            });
+            
+            navigation.addEventListener('mouseleave', () => {
+                console.log('네비게이션 호버 종료');
+                hideNavigation(1000);
+            });
+            
+            // 방법 4: 추가 안전장치 - 주기적으로 마우스 위치 확인
+            setInterval(() => {
+                const windowHeight = window.innerHeight;
+                if (lastMouseY > windowHeight - 120 && !isNavigationVisible) {
+                    console.log('주기적 확인: 마우스 하단 위치 감지');
+                    showNavigation();
+                }
+            }, 1000);
+            
+            // PC 사용자를 위한 힌트 (개발 중에만)
+            setTimeout(() => {
+                console.log('💡 PC 사용 팁: 화면 하단으로 마우스를 이동하면 네비게이션이 나타납니다');
+                console.log('🔍 또는 키보드 화살표 키를 사용하세요');
+            }, 2000);
+        }
+        
+        // 터치 디바이스: 탭 및 스와이프 기능
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            // 터치 시작
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                // 화면 하단을 터치하면 네비게이션 표시
+                const touchY = e.touches[0].clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (touchY > windowHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            // 터치 종료 (스와이프 감지)
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                // 스와이프 조건: 수평 이동 50px 이상, 시간 300ms 이하, 수평 이동이 수직 이동보다 클 때
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        // 오른쪽 스와이프 - 이전 슬라이드
+                        window.location.href = 'slide7.html';
+                    } else {
+                        // 왼쪽 스와이프 - 다음 슬라이드
+                        window.location.href = 'slide9.html';
+                    }
+                }
+            });
+            
+            // 화면 탭으로 네비게이션 토글
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                // 다른 요소를 탭한 경우 제외
+                if (e.target.closest('.strategy-item') || 
+                    e.target.closest('.implant-visual') || 
+                    e.target.closest('.navigation')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            // 단일 탭 - 네비게이션 토글
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+        
+        // 키보드 네비게이션 (모든 디바이스)
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide7.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide9.html';
+                    break;
+                case 'Escape':
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                    clearTimeout(hideTimeout);
+                    break;
+                case 'n':
+                case 'N':
+                    // 'n' 키로 네비게이션 토글
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+            }
+        });
+        
+        // 페이지 로드 시 애니메이션
+        window.addEventListener('load', function() {
+            const title = document.querySelector('.title');
+            const strategyItems = document.querySelectorAll('.strategy-item');
+            const implantVisual = document.querySelector('.implant-visual');
+            
+            // 초기 상태 설정
+            title.style.opacity = '0';
+            title.style.transform = 'translateY(-30px) scale(0.9)';
+            title.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            strategyItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-100px)';
+                item.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            implantVisual.style.opacity = '0';
+            implantVisual.style.transform = 'translateX(50px) scale(0.8)';
+            implantVisual.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            // 순차적 애니메이션 실행
+            setTimeout(() => {
+                // 1. 타이틀 애니메이션 (임팩트 있게)
+                title.style.opacity = '1';
+                title.style.transform = 'translateY(0) scale(1)';
+                
+                // 2. 전략 아이템들 순차 애니메이션
+                setTimeout(() => {
+                    strategyItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateX(0)';
+                        }, index * 150); // 각 항목마다 150ms 간격
+                    });
+                }, 400);
+                
+                // 3. 임플란트 비주얼 애니메이션
+                setTimeout(() => {
+                    implantVisual.style.opacity = '1';
+                    implantVisual.style.transform = 'translateX(0) scale(1)';
+                }, 800);
+                
+                // 4. 네비게이션 힌트 (잠깐 표시)
+                setTimeout(() => {
+                    showNavigation();
+                    hideNavigation(2500);
+                }, 2200);
+                
+            }, 500);
+        });
+        
+        // 전략 아이템 클릭 이벤트 (향후 확장 가능)
+        document.querySelectorAll('.strategy-item').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                console.log(`전략 ${index + 1} 클릭됨`);
+                // 향후 각 전략별 상세 페이지로 이동하는 기능 추가 가능
+            });
+        });
+        
+        // 접근성 향상을 위한 포커스 관리
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                showNavigation();
+                hideNavigation(5000);
+            }
+        });
+        
+        // 브라우저 크기 변경 시 네비게이션 위치 재조정
+        window.addEventListener('resize', () => {
+            if (isNavigationVisible) {
+                clearTimeout(hideTimeout);
+                hideNavigation(1000);
+            }
+        });
+        
+        // 네비게이션 링크에 대한 추가 이벤트
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+            
+            btn.addEventListener('focus', () => {
+                showNavigation();
+                clearTimeout(hideTimeout);
+            });
+        });
+        
+        // 개발자 도구에서 네비게이션 상태 확인 (디버깅용)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('🎯 KiiS Slide8 시장진출전략 네비게이션 시스템 활성화');
+            console.log('📱 터치 디바이스:', isTouchDevice);
+            console.log('⌨️  키보드 단축키: ← → ↑ ↓ Space(다음), Esc(숨기기), N(토글)');
+            console.log('🖱️  PC: 화면 하단 호버 또는 마우스 이동');
+            console.log('👆 모바일: 화면 하단 터치, 스와이프, 화면 탭');
+            console.log('🚀 시장진출전략: 5가지 핵심 전략 제시');
+        }
+    </script>
+</body>
+</html>
