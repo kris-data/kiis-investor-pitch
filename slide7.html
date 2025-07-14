@@ -357,10 +357,29 @@
             transform: translateX(-50%);
             display: flex;
             gap: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             padding: 15px 30px;
             border-radius: 50px;
             backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            z-index: 999;
+            pointer-events: none;
         }
         
         .nav-btn {
@@ -676,6 +695,90 @@
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('sourcePopup').style.display = 'none';
         }
+        
+        // Navigation functionality
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let hideTimeout;
+        
+        // Show navigation
+        function showNavigation() {
+            navigation.classList.add('visible');
+            clearTimeout(hideTimeout);
+        }
+        
+        // Hide navigation with delay
+        function hideNavigation() {
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+            }, 3000);
+        }
+        
+        // PC: Hover functionality
+        if (!isTouchDevice) {
+            hoverZone.style.pointerEvents = 'auto';
+            
+            hoverZone.addEventListener('mouseenter', showNavigation);
+            navigation.addEventListener('mouseenter', showNavigation);
+            navigation.addEventListener('mouseleave', hideNavigation);
+            
+            document.addEventListener('mousemove', (e) => {
+                if (e.clientY > window.innerHeight - 100) {
+                    showNavigation();
+                } else if (!navigation.matches(':hover')) {
+                    hideNavigation();
+                }
+            });
+        }
+        
+        // Touch devices: Tap to toggle + Swipe support
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            
+            // Tap to toggle navigation
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                
+                // Show navigation on tap
+                if (!navigation.classList.contains('visible')) {
+                    showNavigation();
+                    hideNavigation();
+                }
+            });
+            
+            // Swipe navigation
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                
+                // Only trigger if horizontal swipe is dominant
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                    if (deltaX > 0) {
+                        // Swipe right - previous slide
+                        window.location.href = 'slide6.html';
+                    } else {
+                        // Swipe left - next slide
+                        window.location.href = 'slide8.html';
+                    }
+                }
+            });
+        }
+        
+        // Keyboard navigation (all devices)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide6.html';
+            } else if (e.key === 'ArrowRight') {
+                window.location.href = 'slide8.html';
+            } else if (e.key === 'Escape') {
+                navigation.classList.remove('visible');
+            }
+        });
         
         // Add entrance animation
         window.addEventListener('load', function() {
