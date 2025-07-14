@@ -702,38 +702,64 @@
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         let hideTimeout;
         
+        // Debug: 초기 확인
+        console.log('Navigation element:', navigation);
+        console.log('Is touch device:', isTouchDevice);
+        
         // Show navigation
         function showNavigation() {
+            console.log('Showing navigation');
             navigation.classList.add('visible');
             clearTimeout(hideTimeout);
         }
         
         // Hide navigation with delay
         function hideNavigation() {
+            console.log('Hiding navigation in 3 seconds');
             hideTimeout = setTimeout(() => {
                 navigation.classList.remove('visible');
+                console.log('Navigation hidden');
             }, 3000);
         }
         
         // PC: Hover functionality
         if (!isTouchDevice) {
+            console.log('Setting up PC hover functionality');
             hoverZone.style.pointerEvents = 'auto';
             
-            hoverZone.addEventListener('mouseenter', showNavigation);
-            navigation.addEventListener('mouseenter', showNavigation);
-            navigation.addEventListener('mouseleave', hideNavigation);
+            hoverZone.addEventListener('mouseenter', () => {
+                console.log('Hover zone entered');
+                showNavigation();
+            });
+            
+            navigation.addEventListener('mouseenter', () => {
+                console.log('Navigation hovered');
+                showNavigation();
+            });
+            
+            navigation.addEventListener('mouseleave', () => {
+                console.log('Navigation left');
+                hideNavigation();
+            });
             
             document.addEventListener('mousemove', (e) => {
                 if (e.clientY > window.innerHeight - 100) {
-                    showNavigation();
+                    if (!navigation.classList.contains('visible')) {
+                        console.log('Mouse near bottom, showing navigation');
+                        showNavigation();
+                    }
                 } else if (!navigation.matches(':hover')) {
-                    hideNavigation();
+                    clearTimeout(hideTimeout);
+                    hideTimeout = setTimeout(() => {
+                        navigation.classList.remove('visible');
+                    }, 1000);
                 }
             });
         }
         
         // Touch devices: Tap to toggle + Swipe support
         if (isTouchDevice) {
+            console.log('Setting up touch functionality');
             let startX = 0;
             let startY = 0;
             
@@ -742,11 +768,9 @@
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 
-                // Show navigation on tap
-                if (!navigation.classList.contains('visible')) {
-                    showNavigation();
-                    hideNavigation();
-                }
+                console.log('Touch start, showing navigation');
+                showNavigation();
+                hideNavigation();
             });
             
             // Swipe navigation
@@ -759,10 +783,10 @@
                 // Only trigger if horizontal swipe is dominant
                 if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
                     if (deltaX > 0) {
-                        // Swipe right - previous slide
+                        console.log('Swipe right - previous slide');
                         window.location.href = 'slide6.html';
                     } else {
-                        // Swipe left - next slide
+                        console.log('Swipe left - next slide');
                         window.location.href = 'slide8.html';
                     }
                 }
@@ -772,13 +796,21 @@
         // Keyboard navigation (all devices)
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
+                console.log('Arrow left pressed');
                 window.location.href = 'slide6.html';
             } else if (e.key === 'ArrowRight') {
+                console.log('Arrow right pressed');
                 window.location.href = 'slide8.html';
             } else if (e.key === 'Escape') {
                 navigation.classList.remove('visible');
             }
         });
+        
+        // Test: 5초 후 네비게이션 강제 표시 (디버깅용)
+        setTimeout(() => {
+            console.log('Force showing navigation for testing');
+            showNavigation();
+        }, 2000);
         
         // Add entrance animation
         window.addEventListener('load', function() {
