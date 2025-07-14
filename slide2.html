@@ -36,7 +36,7 @@
         }
         
         .metric-card {
-            background: linear-gradient(145deg, #2563eb, #1d4ed8);
+            background: linear-gradient(145deg, #1e40af, #1d4ed8);
             padding: 40px 30px;
             border-radius: 20px;
             text-align: center;
@@ -138,6 +138,12 @@
             transition: width 2s ease-in-out;
         }
         
+        /* Simplified color scheme - using shades of blue and gold only */
+        .progress-fill.high { background: linear-gradient(90deg, #1e40af, #3b82f6); }
+        .progress-fill.medium { background: linear-gradient(90deg, #1e3a8a, #2563eb); }
+        .progress-fill.low { background: linear-gradient(90deg, #1e293b, #475569); }
+        .progress-fill.usa { background: linear-gradient(90deg, #ffd700, #f59e0b); }
+        
         .country-fee {
             width: 80px;
             text-align: right;
@@ -153,17 +159,18 @@
         }
         
         .growth-card {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
+            background: linear-gradient(135deg, #374151, #4b5563);
             padding: 30px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid #ffd700;
         }
         
         .growth-arrow {
             font-size: 36px;
             font-weight: bold;
-            color: white;
+            color: #ffd700;
             margin-bottom: 10px;
         }
         
@@ -176,7 +183,7 @@
         .cagr-info {
             font-size: 20px;
             font-weight: bold;
-            color: white;
+            color: #ffd700;
             margin-top: 10px;
         }
         
@@ -202,11 +209,13 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             transition: all 0.3s ease;
+            border-left: 3px solid #3b82f6;
         }
         
         .driver-item:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateX(5px);
+            border-left-color: #ffd700;
         }
         
         .driver-icon {
@@ -243,10 +252,12 @@
             background: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
         
         .nav-btn:hover {
             background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
             transform: translateY(-2px);
         }
         
@@ -305,7 +316,7 @@
                     <div class="country-name">Switzerland</div>
                     <div class="progress-container">
                         <div class="progress-bg">
-                            <div class="progress-fill" style="width: 100%; background: #10b981;">38.0%</div>
+                            <div class="progress-fill high" style="width: 100%;">38.0%</div>
                         </div>
                     </div>
                     <div class="country-fee">$4,000</div>
@@ -315,7 +326,7 @@
                     <div class="country-name">Germany</div>
                     <div class="progress-container">
                         <div class="progress-bg">
-                            <div class="progress-fill" style="width: 66%; background: #3b82f6;">25.0%</div>
+                            <div class="progress-fill high" style="width: 66%;">25.0%</div>
                         </div>
                     </div>
                     <div class="country-fee">$2,800</div>
@@ -325,7 +336,7 @@
                     <div class="country-name">South Korea</div>
                     <div class="progress-container">
                         <div class="progress-bg">
-                            <div class="progress-fill" style="width: 35%; background: #8b5cf6;">13.3%</div>
+                            <div class="progress-fill medium" style="width: 35%;">13.3%</div>
                         </div>
                     </div>
                     <div class="country-fee">$1,500</div>
@@ -335,7 +346,7 @@
                     <div class="country-name">Netherlands</div>
                     <div class="progress-container">
                         <div class="progress-bg">
-                            <div class="progress-fill" style="width: 24%; background: #f59e0b;">9.0%</div>
+                            <div class="progress-fill medium" style="width: 24%;">9.0%</div>
                         </div>
                     </div>
                     <div class="country-fee">$3,000</div>
@@ -345,7 +356,7 @@
                     <div class="country-name">Japan</div>
                     <div class="progress-container">
                         <div class="progress-bg">
-                            <div class="progress-fill" style="width: 19%; background: #ef4444;">7.2%</div>
+                            <div class="progress-fill low" style="width: 19%;">7.2%</div>
                         </div>
                     </div>
                     <div class="country-fee">$3,200</div>
@@ -355,7 +366,7 @@
                     <div class="country-name">USA ⭐</div>
                     <div class="progress-container">
                         <div class="progress-bg">
-                            <div class="progress-fill" style="width: 15%; background: #ffd700;">5.7%</div>
+                            <div class="progress-fill usa" style="width: 15%;">5.7%</div>
                         </div>
                     </div>
                     <div class="country-fee">$4,500</div>
