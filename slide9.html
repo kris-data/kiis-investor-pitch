@@ -192,6 +192,150 @@
             font-weight: bold;
         }
         
+        .info-icon {
+            font-size: 16px;
+            margin-left: 8px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 2px 4px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .info-icon:hover {
+            opacity: 1;
+            background: rgba(255, 215, 0, 0.4);
+            transform: scale(1.1);
+        }
+        
+        /* 차트 이미지 스타일 */
+        .chart-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            max-height: 200px;
+            object-fit: contain;
+        }
+        
+        .chart-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* CSS 차트 스타일 (fallback) */
+        .chart-visual {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chart-bars {
+            display: flex;
+            align-items: end;
+            gap: 8px;
+            height: 80px;
+            margin-right: 20px;
+        }
+        
+        .bar {
+            width: 20px;
+            background: linear-gradient(to top, #3b82f6, #1e40af);
+            border-radius: 3px 3px 0 0;
+            animation: growBar 2s ease-out;
+        }
+        
+        .bar1 { height: 60%; animation-delay: 0.2s; }
+        .bar2 { height: 80%; animation-delay: 0.4s; }
+        .bar3 { height: 40%; animation-delay: 0.6s; }
+        .bar4 { height: 70%; animation-delay: 0.8s; }
+        
+        .positioning-map {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        
+        .axis-x, .axis-y {
+            position: absolute;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .axis-x {
+            bottom: -15px;
+            right: 5px;
+        }
+        
+        .axis-y {
+            top: -15px;
+            left: 5px;
+            transform: rotate(-90deg);
+            transform-origin: left center;
+        }
+        
+        .competitor {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .comp1 { top: 20%; right: 20%; }
+        .comp2 { top: 25%; right: 40%; }
+        .comp3 { top: 30%; right: 30%; }
+        
+        .kiis-position {
+            position: absolute;
+            bottom: 30%;
+            left: 20%;
+            width: 30px;
+            height: 20px;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: #1e40af;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .chart-label {
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.2;
+        }
+        
+        @keyframes growBar {
+            from { height: 0; }
+            to { height: var(--final-height); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
         /* 오른쪽: 차트 섹션 */
         .charts-section {
             display: flex;
@@ -494,13 +638,13 @@
                     <div class="strategy-header">
                         <div class="strategy-icon">💎</div>
                         <div>
-                            <div class="strategy-type">Type 1-2 Market</div>
+                            <div class="strategy-type">Type 1-2 Market <span class="info-icon" onclick="showTypeInfo('type12')" title="클릭하여 자세히 보기">ℹ️</span></div>
                             <div class="strategy-subtitle">Existing Premium Monopoly</div>
                         </div>
                     </div>
                     
                     <div class="strategy-main">
-                        <div class="strategy-product">KiiS-P</div>
+                        <div class="strategy-product">KiiS-Plus</div>
                         <div class="strategy-tagline">"Premium Performance at Mid-Tier Price"</div>
                         <div class="strategy-description">
                             Disrupting Straumann & Nobel's premium monopoly with 
@@ -514,13 +658,13 @@
                     <div class="strategy-header">
                         <div class="strategy-icon">🚀</div>
                         <div>
-                            <div class="strategy-type">Type 3-4 Market</div>
+                            <div class="strategy-type">Type 3-4 Market <span class="info-icon" onclick="showTypeInfo('type34')" title="클릭하여 자세히 보기">ℹ️</span></div>
                             <div class="strategy-subtitle">Current Product Limitations</div>
                         </div>
                     </div>
                     
                     <div class="strategy-main">
-                        <div class="strategy-product">KiiS-R</div>
+                        <div class="strategy-product">KiiS-Relax</div>
                         <div class="strategy-tagline">"Making the Impossible Possible"</div>
                         <div class="strategy-description">
                             Creating new premium market in Type 3-4 where existing value brands show limitations, 
@@ -534,25 +678,47 @@
             <div class="charts-section">
                 <div class="chart-container" onclick="showSource('brandmarket')">
                     <div class="chart-title">Brand Market Analysis</div>
+                    <!-- GitHub Pages에서는 실제 차트 이미지가 표시됩니다 -->
                     <img src="./images/brand-market-share.jpg" 
                          alt="Brand Market Share Analysis" 
                          class="chart-image"
+                         style="display: none;"
+                         onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="chart-placeholder">
-                        <div class="placeholder-icon">📊</div>
-                        <div class="placeholder-text">Brand Market<br>Analysis</div>
+                    
+                    <!-- Claude artifact 환경에서는 CSS 차트가 표시됩니다 -->
+                    <div class="chart-visual">
+                        <div class="chart-bars">
+                            <div class="bar bar1"></div>
+                            <div class="bar bar2"></div>
+                            <div class="bar bar3"></div>
+                            <div class="bar bar4"></div>
+                        </div>
+                        <div class="chart-label">📊<br>Brand Market<br>Analysis<br><small>💡 GitHub에서는<br>실제 차트 표시</small></div>
                     </div>
                 </div>
                 
                 <div class="chart-container" onclick="showSource('positioning')">
                     <div class="chart-title">Market Positioning Map</div>
+                    <!-- GitHub Pages에서는 실제 포지셔닝 차트가 표시됩니다 -->
                     <img src="./images/market-positioning-chart.jpg" 
                          alt="Market Positioning Chart" 
                          class="chart-image"
+                         style="display: none;"
+                         onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="chart-placeholder">
-                        <div class="placeholder-icon">🎯</div>
-                        <div class="placeholder-text">Positioning<br>Map</div>
+                    
+                    <!-- Claude artifact 환경에서는 CSS 포지셔닝 맵이 표시됩니다 -->
+                    <div class="chart-visual">
+                        <div class="positioning-map">
+                            <div class="axis-x">Price →</div>
+                            <div class="axis-y">Quality ↑</div>
+                            <div class="competitor comp1">S</div>
+                            <div class="competitor comp2">N</div>
+                            <div class="competitor comp3">A</div>
+                            <div class="kiis-position">KiiS</div>
+                        </div>
+                        <div class="chart-label">🎯<br>Positioning<br>Map<br><small>💡 GitHub에서는<br>실제 차트 표시</small></div>
                     </div>
                 </div>
             </div>
@@ -579,12 +745,12 @@
         // Source data
         const sources = {
             'type12strategy': {
-                title: 'Type 1-2 Market Entry Strategy: KiiS-P',
+                title: 'Type 1-2 Market Entry Strategy: KiiS-Plus',
                 content: `
                     <p><strong>Current Market Situation:</strong></p>
                     <p>Type 1-2 patients (60% of total) have healthy jawbone and are currently dominated by Straumann, Nobel Biocare at premium pricing.</p>
                     
-                    <p><strong>KiiS-P Strategy:</strong></p>
+                    <p><strong>KiiS-Plus Strategy:</strong></p>
                     <ul>
                         <li><strong>Price Disruption:</strong> 30-40% lower than existing premium products</li>
                         <li><strong>Equivalent Performance:</strong> Same or better clinical outcomes</li>
@@ -604,12 +770,12 @@
                 `
             },
             'type34strategy': {
-                title: 'Type 3-4 Market Leadership Strategy: KiiS-R',
+                title: 'Type 3-4 Market Leadership Strategy: KiiS-Relax',
                 content: `
                     <p><strong>Current Market Situation:</strong></p>
                     <p>Type 3-4 patients (40% of total) have weak jawbone, resulting in low success rates with existing implants and often requiring complex bone grafting procedures or exclusion from treatment.</p>
                     
-                    <p><strong>KiiS-R Strategy:</strong></p>
+                    <p><strong>KiiS-Relax Strategy:</strong></p>
                     <ul>
                         <li><strong>Technical Innovation:</strong> Spiral side openings provide strong fixation even in weak bone</li>
                         <li><strong>Market Creation:</strong> Making previously impossible treatments possible</li>
@@ -628,6 +794,55 @@
                     <p><strong>Expected Results:</strong> Securing leadership position in Type 3-4 market while creating a new premium category that previously didn't exist</p>
                 `
             },
+            'type12': {
+                title: 'Type 1-2 환자 분류 설명',
+                content: `
+                    <p><strong>Type 1-2 환자란?</strong></p>
+                    <p>건강한 턱뼈를 가진 환자들로, 전체 임플란트 환자의 약 60%를 차지합니다.</p>
+                    
+                    <p><strong>특징:</strong></p>
+                    <ul>
+                        <li><strong>Type 1:</strong> 매우 건강한 턱뼈 (충분한 뼈 밀도와 두께)</li>
+                        <li><strong>Type 2:</strong> 양호한 턱뼈 (적절한 뼈 밀도, 약간의 흡수)</li>
+                        <li><strong>치료 성공률:</strong> 95% 이상의 높은 성공률</li>
+                        <li><strong>수술 복잡도:</strong> 상대적으로 간단한 임플란트 식립</li>
+                    </ul>
+                    
+                    <p><strong>현재 시장 상황:</strong></p>
+                    <ul>
+                        <li>Straumann, Nobel Biocare 등 프리미엄 브랜드가 독점</li>
+                        <li>높은 가격대 (임플란트당 $1,500-3,000)</li>
+                        <li>안정적이고 예측 가능한 치료 결과</li>
+                    </ul>
+                    
+                    <p><strong>KiiS-Plus의 기회:</strong> 동일한 품질을 30-40% 저렴한 가격으로 제공하여 시장 점유율 확대</p>
+                `
+            },
+            'type34': {
+                title: 'Type 3-4 환자 분류 설명',
+                content: `
+                    <p><strong>Type 3-4 환자란?</strong></p>
+                    <p>약하거나 부족한 턱뼈를 가진 환자들로, 전체 임플란트 환자의 약 40%를 차지합니다.</p>
+                    
+                    <p><strong>특징:</strong></p>
+                    <ul>
+                        <li><strong>Type 3:</strong> 연약한 턱뼈 (낮은 뼈 밀도, 상당한 흡수)</li>
+                        <li><strong>Type 4:</strong> 매우 연약한 턱뼈 (매우 낮은 밀도, 심각한 흡수)</li>
+                        <li><strong>치료 성공률:</strong> 기존 제품으로 70-80% (상대적으로 낮음)</li>
+                        <li><strong>수술 복잡도:</strong> 뼈 이식술 등 추가 시술 필요</li>
+                    </ul>
+                    
+                    <p><strong>현재 시장 문제점:</strong></p>
+                    <ul>
+                        <li>기존 임플란트의 높은 실패율</li>
+                        <li>복잡하고 비용이 많이 드는 뼈 이식 수술 필요</li>
+                        <li>치료 기간 연장 (6-12개월 추가)</li>
+                        <li>많은 환자들이 치료 포기</li>
+                    </ul>
+                    
+                    <p><strong>KiiS-Relax의 혁신:</strong> 나선형 측면 개구부로 약한 뼈에서도 강력한 고정력 제공, 뼈 이식 없이도 높은 성공률 달성</p>
+                `
+            },
             'positioning': {
                 title: 'Market Positioning Analysis',
                 content: `
@@ -644,8 +859,8 @@
                     
                     <p><strong>Competitive Advantages:</strong></p>
                     <ul>
-                        <li>KiiS-P: Price competitiveness in Type 1-2</li>
-                        <li>KiiS-R: Technical monopoly in Type 3-4</li>
+                        <li>KiiS-Plus: Price competitiveness in Type 1-2</li>
+                        <li>KiiS-Relax: Technical monopoly in Type 3-4</li>
                         <li>Integrated Platform: Targeting two markets with one technology</li>
                     </ul>
                 `
@@ -674,6 +889,19 @@
                 `
             }
         };
+        
+        function showTypeInfo(typeId) {
+            const source = sources[typeId];
+            if (source) {
+                document.getElementById('sourceContent').innerHTML = `
+                    <h3>${source.title}</h3>
+                    ${source.content}
+                `;
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('sourcePopup').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
         
         function showSource(sourceId) {
             const source = sources[sourceId];
