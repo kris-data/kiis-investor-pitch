@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KiiS - Market Opportunity</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 60px 80px;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #ffffff;
+        }
+        
+        /* Top 3 metrics */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .metric-card {
+            background: linear-gradient(145deg, #2563eb, #1d4ed8);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .metric-number {
+            font-size: 64px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .metric-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .metric-subtitle {
+            font-size: 16px;
+            color: #e0e7ff;
+            opacity: 0.9;
+        }
+        
+        /* Bottom section */
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        /* Country chart */
+        .country-chart {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chart-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #ffd700;
+        }
+        
+        .country-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .country-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .country-item.usa {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+        }
+        
+        .country-name {
+            width: 120px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .progress-container {
+            flex: 1;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .progress-bg {
+            height: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            transition: width 2s ease-in-out;
+        }
+        
+        .country-fee {
+            width: 80px;
+            text-align: right;
+            font-size: 14px;
+            color: #e0e7ff;
+        }
+        
+        /* Growth projection */
+        .growth-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .growth-card {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+        
+        .growth-arrow {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .growth-subtitle {
+            font-size: 18px;
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .cagr-info {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-top: 10px;
+        }
+        
+        .drivers-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .drivers-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .driver-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .driver-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .driver-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 40px;
+            text-align: center;
+        }
+        
+        .driver-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .metrics-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .bottom-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            body {
+                padding: 40px;
+            }
+            
+            .title {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">The Biggest market has the biggest growth opportunity</h1>
+        
+        <!-- Top 3 Metrics -->
+        <div class="metrics-row">
+            <div class="metric-card">
+                <div class="metric-number">178M</div>
+                <div class="metric-title">Tooth Loss Sufferers</div>
+                <div class="metric-subtitle">needing implants in the US</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">5.7%</div>
+                <div class="metric-title">Implant Penetration Rate</div>
+                <div class="metric-subtitle">Lowest among developed countries</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">$1.5B</div>
+                <div class="metric-title">Current Implant Market</div>
+                <div class="metric-subtitle">the biggest with 1/3 of global value</div>
+            </div>
+        </div>
+        
+        <!-- Bottom Section -->
+        <div class="bottom-section">
+            <!-- Country Chart -->
+            <div class="country-chart">
+                <div class="chart-title">Implant Penetration Rate by Country</div>
+                
+                <div class="country-item">
+                    <div class="country-name">Switzerland</div>
+                    <div class="progress-container">
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 100%; background: #10b981;">38.0%</div>
+                        </div>
+                    </div>
+                    <div class="country-fee">$4,000</div>
+                </div>
+                
+                <div class="country-item">
+                    <div class="country-name">Germany</div>
+                    <div class="progress-container">
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 66%; background: #3b82f6;">25.0%</div>
+                        </div>
+                    </div>
+                    <div class="country-fee">$2,800</div>
+                </div>
+                
+                <div class="country-item">
+                    <div class="country-name">South Korea</div>
+                    <div class="progress-container">
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 35%; background: #8b5cf6;">13.3%</div>
+                        </div>
+                    </div>
+                    <div class="country-fee">$1,500</div>
+                </div>
+                
+                <div class="country-item">
+                    <div class="country-name">Netherlands</div>
+                    <div class="progress-container">
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 24%; background: #f59e0b;">9.0%</div>
+                        </div>
+                    </div>
+                    <div class="country-fee">$3,000</div>
+                </div>
+                
+                <div class="country-item">
+                    <div class="country-name">Japan</div>
+                    <div class="progress-container">
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 19%; background: #ef4444;">7.2%</div>
+                        </div>
+                    </div>
+                    <div class="country-fee">$3,200</div>
+                </div>
+                
+                <div class="country-item usa">
+                    <div class="country-name">USA ⭐</div>
+                    <div class="progress-container">
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 15%; background: #ffd700;">5.7%</div>
+                        </div>
+                    </div>
+                    <div class="country-fee">$4,500</div>
+                </div>
+            </div>
+            
+            <!-- Growth Projection -->
+            <div class="growth-section">
+                <div class="growth-card">
+                    <div class="growth-arrow">$1.5B → $3.0B</div>
+                    <div class="growth-subtitle">by 2030</div>
+                    <div class="cagr-info">10-11% CAGR</div>
+                </div>
+                
+                <div class="drivers-section">
+                    <div class="drivers-title">Growth Drivers:</div>
+                    
+                    <div class="driver-item">
+                        <div class="driver-icon">👴</div>
+                        <div class="driver-text">Baby Boomer Silver Tsunami</div>
+                    </div>
+                    
+                    <div class="driver-item">
+                        <div class="driver-icon">💉</div>
+                        <div class="driver-text">Post-COVID Pent-Up Demand</div>
+                    </div>
+                    
+                    <div class="driver-item">
+                        <div class="driver-icon">💻</div>
+                        <div class="driver-text">Accelerated Digital Technology</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="navigation">
+        <a href="index.html" class="nav-btn">← 커버</a>
+        <a href="slide3.html" class="nav-btn">3가지 장벽 →</a>
+    </div>
+    
+    <script>
+        // Animate progress bars on load
+        window.addEventListener('load', function() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+        
+        // Add hover effects
+        const countryItems = document.querySelectorAll('.country-item');
+        countryItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
