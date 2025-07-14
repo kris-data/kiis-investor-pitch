@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <title>KiiS Presentation</title>
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             font-family: 'Arial', sans-serif;
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             color: white;
@@ -13,9 +18,9 @@
             display: flex;
             align-items: center;
             padding: 0 80px;
-            box-sizing: border-box;
             overflow: hidden;
         }
+        
         .container {
             display: flex;
             align-items: center;
@@ -24,11 +29,13 @@
             max-width: 1400px;
             margin: 0 auto;
         }
+        
         .left-side {
             flex: 1;
             padding-right: 60px;
             max-width: 650px;
         }
+        
         .right-side {
             flex: 1;
             text-align: center;
@@ -36,6 +43,7 @@
             justify-content: center;
             align-items: center;
         }
+        
         .logo {
             font-size: 120px;
             font-weight: bold;
@@ -44,18 +52,21 @@
             text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
             line-height: 1;
         }
+        
         .subtitle {
             font-size: 32px;
             color: #e0e7ff;
             margin-bottom: 15px;
             font-weight: 300;
         }
+        
         .company {
             font-size: 24px;
             color: #e0e7ff;
             margin-bottom: 60px;
             font-weight: 300;
         }
+        
         .tagline {
             font-size: 42px;
             font-style: italic;
@@ -63,6 +74,7 @@
             max-width: 600px;
             font-weight: 300;
         }
+        
         .implant-image {
             max-width: 500px;
             width: 100%;
@@ -70,6 +82,7 @@
             filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.7)) brightness(1.1) contrast(1.2);
             border-radius: 20px;
         }
+        
         .placeholder {
             width: 500px;
             height: 600px;
@@ -81,21 +94,50 @@
             flex-direction: column;
             border: 2px dashed rgba(255, 255, 255, 0.3);
         }
+        
         .placeholder-icon {
             font-size: 80px;
             margin-bottom: 30px;
         }
+        
         .placeholder-text {
             font-size: 24px;
             margin-bottom: 15px;
         }
+        
         .placeholder-path {
             font-size: 16px; 
             opacity: 0.7;
             font-family: monospace;
         }
-
-        /* Responsive adjustments */
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid #ffd700;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+        
         @media (max-width: 1200px) {
             .container {
                 flex-direction: column;
@@ -148,6 +190,10 @@
                 <div class="placeholder-path">/kiis-investor-pitch/public/images/heroproduct1.png</div>
             </div>
         </div>
+    </div>
+
+    <div class="navigation">
+        <a href="slide2.html" class="nav-btn">next →</a>
     </div>
 
     <script>
