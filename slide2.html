@@ -59,6 +59,28 @@
             color: #ffd700;
             margin-bottom: 15px;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .metric-number:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+        }
+        
+        .metric-number::after {
+            content: "ℹ️";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 16px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .metric-number:hover::after {
+            opacity: 1;
         }
         
         .metric-title {
@@ -187,6 +209,28 @@
             font-weight: bold;
             color: #ffd700;
             margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .growth-arrow:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+        
+        .growth-arrow::after {
+            content: "ℹ️";
+            position: absolute;
+            top: -5px;
+            right: -20px;
+            font-size: 16px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .growth-arrow:hover::after {
+            opacity: 1;
         }
         
         .growth-subtitle {
@@ -245,6 +289,28 @@
             font-weight: 500;
         }
         
+        /* Data sources footer */
+        .data-sources {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sources-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .sources-text {
+            font-size: 14px;
+            color: #e0e7ff;
+            line-height: 1.5;
+        }
+        
         /* 네비게이션 호버 감지 영역 */
         .hover-zone {
             position: fixed;
@@ -254,8 +320,6 @@
             height: 120px;
             z-index: 998;
             pointer-events: auto;
-            /* 디버깅용 - 실제 배포시에는 제거 */
-            /* background: rgba(255, 0, 0, 0.1); */
         }
         
         /* 네비게이션 스타일 */
@@ -318,7 +382,96 @@
             font-size: 16px;
         }
         
-        /* Responsive */
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            border: 2px solid #ffd700;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .close {
+            color: #ffd700;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: #fff;
+        }
+        
+        .modal-body {
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .modal-definition {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #e0e7ff;
+        }
+        
+        .modal-source {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .modal-source-title {
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        
+        .modal-source-text {
+            font-size: 14px;
+            color: #e0e7ff;
+        }
         @media (max-width: 1200px) {
             .metrics-row {
                 grid-template-columns: 1fr;
@@ -356,19 +509,19 @@
         <!-- Top 3 Metrics -->
         <div class="metrics-row">
             <div class="metric-card">
-                <div class="metric-number">178M</div>
-                <div class="metric-title">Tooth Loss Sufferers</div>
-                <div class="metric-subtitle">needing implants in the US</div>
+                <div class="metric-number" data-modal="procedures">5M</div>
+                <div class="metric-title">Annual Implant Procedures</div>
+                <div class="metric-subtitle">in the US (ADA official data)</div>
             </div>
             <div class="metric-card">
-                <div class="metric-number">5.7%</div>
+                <div class="metric-number" data-modal="penetration">5.7%</div>
                 <div class="metric-title">Implant Penetration Rate</div>
                 <div class="metric-subtitle">Lowest among developed countries</div>
             </div>
             <div class="metric-card">
-                <div class="metric-number">$1.5B</div>
-                <div class="metric-title">Current Implant Market</div>
-                <div class="metric-subtitle">the biggest with 1/3 of global value</div>
+                <div class="metric-number" data-modal="market">$2.1B</div>
+                <div class="metric-title">Manufacturer Market Size</div>
+                <div class="metric-subtitle">US implant manufacturing market</div>
             </div>
         </div>
         
@@ -442,9 +595,9 @@
             <!-- Growth Projection -->
             <div class="growth-section">
                 <div class="growth-card">
-                    <div class="growth-arrow">$1.5B → $3.0B</div>
+                    <div class="growth-arrow" data-modal="growth">$2.1B → $3.1B</div>
                     <div class="growth-subtitle">by 2030</div>
-                    <div class="cagr-info">10-11% CAGR</div>
+                    <div class="cagr-info">6-10% CAGR</div>
                 </div>
                 
                 <div class="drivers-section">
@@ -465,6 +618,102 @@
                         <div class="driver-text">Accelerated Digital Technology</div>
                     </div>
                 </div>
+                
+                <!-- Data Sources -->
+                <div class="data-sources">
+                    <div class="sources-title">📊 Data Sources:</div>
+                    <div class="sources-text">
+                        • ADA (5M annual implants)<br>
+                        • iData Research 2025 ($2.1B manufacturer market)<br>
+                        • ADA Health Policy Institute 2024
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modals for data explanations -->
+    <div id="modal-procedures" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">5M Annual Implant Procedures</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-definition">
+                    <strong>Definition:</strong> Total number of dental implant procedures performed annually in the United States, including both single tooth replacements and multi-tooth reconstructions.
+                </div>
+                <div class="modal-source">
+                    <div class="modal-source-title">📊 Primary Source:</div>
+                    <div class="modal-source-text">
+                        American Dental Association (ADA) - Official Healthcare Statistics<br>
+                        "Survey of Dental Practice: Implant Procedures 2024"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-penetration" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">5.7% Implant Penetration Rate</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-definition">
+                    <strong>Definition:</strong> Percentage of tooth loss cases that are treated with dental implants versus alternative treatments (dentures, bridges, or no treatment).
+                </div>
+                <div class="modal-source">
+                    <div class="modal-source-title">📊 Primary Source:</div>
+                    <div class="modal-source-text">
+                        International Dental Implant Market Analysis 2024<br>
+                        Cross-referenced with ADA treatment statistics
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-market" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">$2.1B Manufacturer Market</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-definition">
+                    <strong>Definition:</strong> Total revenue generated by implant manufacturers selling to dentists/clinics. This represents the wholesale market size, not patient costs ($20B+ total healthcare spending).
+                </div>
+                <div class="modal-source">
+                    <div class="modal-source-title">📊 Primary Source:</div>
+                    <div class="modal-source-text">
+                        iData Research: "U.S. Dental Implant & Final Abutment Market Analysis 2025-2031"<br>
+                        Verified against industry revenue reports
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-growth" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">$2.1B → $3.1B Growth Projection</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-definition">
+                    <strong>Definition:</strong> Projected manufacturer market growth based on aging population, improved implant acceptance, and technological advances driving higher penetration rates.
+                </div>
+                <div class="modal-source">
+                    <div class="modal-source-title">📊 Primary Source:</div>
+                    <div class="modal-source-text">
+                        iData Research market projections (6-10% CAGR)<br>
+                        ADA Health Policy Institute demographic analysis<br>
+                        Conservative estimate compared to 15%+ global growth rates
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -479,6 +728,52 @@
     </div>
     
     <script>
+        // Modal functionality
+        const modals = document.querySelectorAll('.modal');
+        const modalTriggers = document.querySelectorAll('[data-modal]');
+        const closeButtons = document.querySelectorAll('.close');
+        
+        // Open modals
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const modalId = 'modal-' + trigger.dataset.modal;
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                }
+            });
+        });
+        
+        // Close modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.closest('.modal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Close modal when clicking outside
+        modals.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
         // 네비게이션 기능 (동일한 시스템)
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
@@ -785,12 +1080,15 @@
         
         // 개발자 도구에서 네비게이션 상태 확인 (디버깅용)
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log('🎯 KiiS Slide2 시장 기회 네비게이션 시스템 활성화');
+            console.log('🎯 KiiS Slide2 시장 기회 네비게이션 시스템 활성화 (업데이트됨)');
             console.log('📱 터치 디바이스:', isTouchDevice);
             console.log('⌨️  키보드 단축키: ← → ↑ ↓ Space(다음), Esc(숨기기), N(토글)');
             console.log('🖱️  PC: 화면 하단 호버 또는 마우스 이동');
             console.log('👆 모바일: 화면 하단 터치, 스와이프, 화면 탭');
-            console.log('📊 시장 데이터: 178M 환자, 5.7% 침투율, $1.5B 시장');
+            console.log('📊 업데이트된 시장 데이터: 5M 연간 시술, 5.7% 침투율, $2.1B 제조사 시장');
+            console.log('📈 성장 전망: $2.1B → $3.1B (6-10% CAGR)');
+            console.log('💡 클릭 기능: 숫자들을 클릭하면 정확한 정의와 출처를 확인할 수 있습니다');
         }
     </script>
 </body>
+</html>
