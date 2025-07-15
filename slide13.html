@@ -48,7 +48,7 @@
 
         .competitive-grid {
             display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            grid-template-columns: 0.8fr auto 1.2fr;
             gap: 30px;
             margin-bottom: 40px;
             align-items: center;
@@ -67,6 +67,86 @@
             background: rgba(255, 215, 0, 0.1);
             border: 2px solid #ffd700;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+            display: grid;
+            grid-template-columns: 1fr 0.4fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .kiis-content {
+            /* 텍스트 콘텐츠 영역 */
+        }
+
+        .kiis-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            position: relative;
+        }
+
+        .visual-element {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tech-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+            display: block;
+            animation: pulse 2s infinite;
+        }
+
+        .tech-label {
+            font-size: 12px;
+            color: #ffd700;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ai-brain {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #000;
+            margin: 0 auto 8px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        .innovation-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .flow-arrow {
+            font-size: 20px;
+            color: #ffd700;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            to { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
         .vs-divider {
@@ -313,6 +393,11 @@
                 margin: 20px auto;
             }
             
+            .kiis-side {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
             .advantage-cards {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -393,37 +478,60 @@
 
             <!-- KiiS Side -->
             <div class="competitor-side kiis-side">
-                <div class="innovation-badge">Next-Gen</div>
-                <div class="company-header kiis-header">
-                    <div class="company-name" style="color: #ffd700;">KiiS</div>
-                    <div class="company-tagline">Revolutionary Technology + Smart Commerce</div>
-                </div>
-                
-                <div class="strategy-section">
-                    <div class="strategy-title">🚀 Innovation-First Paradigm</div>
-                    <ul class="strategy-list">
-                        <li>Breakthrough Spiral Integration Technology</li>
-                        <li>Curated 80/20 focused portfolio</li>
-                        <li>Patient-specific dual product lines</li>
-                    </ul>
+                <div class="kiis-content">
+                    <div class="innovation-badge">Next-Gen</div>
+                    <div class="company-header kiis-header">
+                        <div class="company-name" style="color: #ffd700;">KiiS</div>
+                        <div class="company-tagline">Revolutionary Technology + Smart Commerce</div>
+                    </div>
+                    
+                    <div class="strategy-section">
+                        <div class="strategy-title">🚀 Innovation-First Paradigm</div>
+                        <ul class="strategy-list">
+                            <li>Breakthrough Spiral Integration Technology</li>
+                            <li>Curated 80/20 focused portfolio</li>
+                            <li>Patient-specific dual product lines</li>
+                        </ul>
+                    </div>
+
+                    <div class="strategy-section">
+                        <div class="strategy-title">🧠 AI-Powered Smart Shopping</div>
+                        <ul class="strategy-list">
+                            <li>"Think Less, Choose Better" philosophy</li>
+                            <li>Patient type-based recommendations</li>
+                            <li>One-click optimal case solutions</li>
+                        </ul>
+                    </div>
+
+                    <div class="strategy-section">
+                        <div class="strategy-title">🎓 OSU Academic Authority</div>
+                        <ul class="strategy-list">
+                            <li>"Learn When, Not How" approach</li>
+                            <li>University-backed clinical evidence</li>
+                            <li>Case-based learning + research data</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="strategy-section">
-                    <div class="strategy-title">🧠 AI-Powered Smart Shopping</div>
-                    <ul class="strategy-list">
-                        <li>"Think Less, Choose Better" philosophy</li>
-                        <li>Patient type-based recommendations</li>
-                        <li>One-click optimal case solutions</li>
-                    </ul>
-                </div>
-
-                <div class="strategy-section">
-                    <div class="strategy-title">🎓 OSU Academic Authority</div>
-                    <ul class="strategy-list">
-                        <li>"Learn When, Not How" approach</li>
-                        <li>University-backed clinical evidence</li>
-                        <li>Case-based learning + research data</li>
-                    </ul>
+                <div class="kiis-visual">
+                    <div class="visual-element">
+                        <div class="tech-icon">🧬</div>
+                        <div class="tech-label">Spiral Tech</div>
+                    </div>
+                    
+                    <div class="flow-arrow">↓</div>
+                    
+                    <div class="visual-element">
+                        <div class="ai-brain">🧠</div>
+                        <div class="tech-label">AI Engine</div>
+                    </div>
+                    
+                    <div class="flow-arrow">↓</div>
+                    
+                    <div class="visual-element">
+                        <div class="tech-icon">⚡</div>
+                        <div class="tech-label">Smart Commerce</div>
+                    </div>
                 </div>
             </div>
         </div>
