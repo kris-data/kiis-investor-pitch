@@ -164,7 +164,7 @@
 
         .website-preview {
             width: 100%;
-            height: 400px;
+            height: 480px;
             background: #f5f5f5;
             border-radius: 10px;
             position: relative;
@@ -239,6 +239,17 @@
             margin-bottom: 0;
         }
 
+        /* 네비게이션 호버 감지 영역 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -252,7 +263,15 @@
             backdrop-filter: blur(15px);
             border: 2px solid rgba(255, 215, 0, 0.3);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
+        }
+
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
         }
 
         .nav-btn {
@@ -317,6 +336,9 @@
     </style>
 </head>
 <body>
+    <!-- 호버존 -->
+    <div class="hover-zone" id="hoverZone"></div>
+
     <div class="container">
         <div class="header">
             <h1>3. <em>Digital First Sales Channel</em></h1>
@@ -425,12 +447,151 @@
         </div>
     </div>
 
-    <div class="navigation">
+    <!-- 네비게이션 -->
+    <div class="navigation" id="navigation">
         <button class="nav-btn" onclick="window.location.href='slide11.html'">Back</button>
         <button class="nav-btn" onclick="window.location.href='slide13.html'">Next</button>
     </div>
 
     <script>
+        // 터치 디바이스 감지
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        let mouseY = 0;
+        let showTimeout;
+        let hideTimeout;
+        let isNavigationHovered = false;
+        let lastMouseMoveTime = Date.now();
+        let touchStartY = 0;
+        let touchStartX = 0;
+        let touchStartTime = 0;
+
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+
+        // 1. 호버존 이벤트 (PC + 모바일)
+        hoverZone.addEventListener('mouseenter', showNavigation);
+        hoverZone.addEventListener('touchstart', handleTouch);
+
+        // 2. 마우스 위치 추적 (PC만)
+        if (!isTouchDevice) {
+            document.addEventListener('mousemove', function(e) {
+                mouseY = e.clientY;
+                lastMouseMoveTime = Date.now();
+                
+                if (window.innerHeight - mouseY <= 120) {
+                    showNavigation();
+                } else if (!isNavigationHovered) {
+                    hideNavigation();
+                }
+            });
+        }
+
+        // 3. 네비게이션 호버 (PC만)
+        if (!isTouchDevice) {
+            navigation.addEventListener('mouseenter', function() {
+                isNavigationHovered = true;
+                showNavigation();
+            });
+
+            navigation.addEventListener('mouseleave', function() {
+                isNavigationHovered = false;
+                if (window.innerHeight - mouseY > 120) {
+                    hideNavigation();
+                }
+            });
+        }
+
+        // 터치 이벤트 처리
+        function handleTouch(e) {
+            touchStartY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
+            touchStartTime = Date.now();
+            showNavigation();
+        }
+
+        // 스와이프 감지 (모바일만)
+        if (isTouchDevice) {
+            document.addEventListener('touchend', function(e) {
+                const touchEndTime = Date.now();
+                const touchDuration = touchEndTime - touchStartTime;
+                
+                if (touchDuration < 300 && e.changedTouches) {
+                    const touchEndX = e.changedTouches[0].clientX;
+                    const deltaX = touchEndX - touchStartX;
+                    
+                    if (Math.abs(deltaX) > 50) {
+                        if (deltaX > 0) {
+                            window.location.href = 'slide11.html';
+                        } else {
+                            window.location.href = 'slide13.html';
+                        }
+                    }
+                }
+            });
+
+            document.addEventListener('touchstart', function(e) {
+                if (!navigation.contains(e.target) && !hoverZone.contains(e.target)) {
+                    if (navigation.classList.contains('visible')) {
+                        hideNavigation();
+                    } else {
+                        showNavigation();
+                    }
+                }
+            });
+        }
+
+        // 4. 주기적 위치 확인 (PC만)
+        if (!isTouchDevice) {
+            setInterval(function() {
+                const timeSinceLastMove = Date.now() - lastMouseMoveTime;
+                if (timeSinceLastMove > 1000 && window.innerHeight - mouseY > 120 && !isNavigationHovered) {
+                    hideNavigation();
+                }
+            }, 1000);
+        }
+
+        function showNavigation() {
+            clearTimeout(hideTimeout);
+            showTimeout = setTimeout(() => {
+                navigation.classList.add('visible');
+            }, 100);
+        }
+
+        function hideNavigation() {
+            clearTimeout(showTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+            }, 100);
+        }
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    window.location.href = 'slide11.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    event.preventDefault();
+                    window.location.href = 'slide13.html';
+                    break;
+                case 'n':
+                case 'N':
+                    navigation.classList.toggle('visible');
+                    break;
+                case 'Escape':
+                    hideNavigation();
+                    break;
+                case 'Tab':
+                    showNavigation();
+                    setTimeout(hideNavigation, 5000);
+                    break;
+            }
+        });
+
         // 이미지 로딩 실패시 대체 콘텐츠
         document.addEventListener('DOMContentLoaded', function() {
             const websitePreview = document.getElementById('websitePreview');
@@ -458,6 +619,12 @@
             };
             
             img.src = 'https://raw.githubusercontent.com/kris-data/kiis-investor-pitch/main/public/images/implant-direct-website.jpg';
+            
+            // 네비게이션 힌트 (2.5초 후)
+            setTimeout(() => {
+                showNavigation();
+                setTimeout(hideNavigation, 3000);
+            }, 2500);
         });
     </script>
 </body>
