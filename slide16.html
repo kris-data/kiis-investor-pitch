@@ -49,8 +49,8 @@
 
         .growth-chart-container {
             position: relative;
-            height: 600px;
-            margin: 50px 0;
+            height: 400px;
+            margin: 50px 0 30px 0;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             padding: 40px;
@@ -103,10 +103,16 @@
             }
         }
 
-        /* Phase cards positioned on the chart */
+        /* Phase cards below the chart */
+        .phase-cards-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
         .phase-card {
-            position: absolute;
-            width: 280px;
+            flex: 1;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             padding: 25px;
@@ -115,41 +121,29 @@
             transform: translateY(20px);
             opacity: 0;
             animation: slideUp 0.6s ease-out forwards;
+            position: relative;
         }
 
-        .phase-card.phase1 {
-            bottom: 80px;
-            left: 20px;
-            animation-delay: 1.2s;
-        }
-
-        .phase-card.phase2 {
-            top: 200px;
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: -15px;
             left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            animation-delay: 1.8s;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4ade80, #22d3ee);
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
         }
 
-        .phase-card.phase3 {
-            top: 80px;
-            right: 20px;
-            animation-delay: 2.4s;
-        }
+        .phase-card.phase1 { animation-delay: 1.2s; }
+        .phase-card.phase2 { animation-delay: 1.6s; }
+        .phase-card.phase3 { animation-delay: 2.0s; }
 
         @keyframes slideUp {
             to {
                 transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .phase-card.phase2 {
-            animation-name: slideUpCenter;
-        }
-
-        @keyframes slideUpCenter {
-            to {
-                transform: translateX(-50%) translateY(0);
                 opacity: 1;
             }
         }
@@ -329,6 +323,14 @@
             line-height: 1.4;
         }
 
+        .benchmark-highlight {
+            background: linear-gradient(45deg, #a78bfa, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
         .financial-targets {
             display: flex;
             justify-content: space-around;
@@ -370,24 +372,33 @@
         }
 
         .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 40px;
-            padding-top: 20px;
+            gap: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        .slide-container:hover .navigation {
+            opacity: 1;
         }
 
         .nav-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 15px 30px;
+            padding: 12px 24px;
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
+            backdrop-filter: blur(10px);
         }
 
         .nav-btn:hover {
@@ -401,19 +412,9 @@
                 font-size: 42px;
             }
             
-            .phase-card {
-                position: relative;
-                width: 100%;
-                margin-bottom: 20px;
-            }
-            
-            .phase-card.phase1, .phase-card.phase2, .phase-card.phase3 {
-                position: relative;
-                top: auto;
-                left: auto;
-                right: auto;
-                bottom: auto;
-                transform: none;
+            .phase-cards-container {
+                flex-direction: column;
+                gap: 20px;
             }
             
             .investment-grid {
@@ -445,7 +446,7 @@
             }
             
             .growth-chart-container {
-                height: 400px;
+                height: 300px;
                 padding: 20px;
             }
         }
@@ -454,12 +455,12 @@
 <body>
     <div class="slide-container">
         <div class="header">
-            <h1 class="main-title">From $1M to $100M</h1>
+            <h1 class="main-title">From $0M to $10M</h1>
             <p class="subtitle">Transforming Dental Care Through Innovation</p>
         </div>
 
         <div class="growth-chart-container">
-            <svg class="growth-curve" viewBox="0 0 1000 500">
+            <svg class="growth-curve" viewBox="0 0 1000 300">
                 <defs>
                     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
@@ -468,21 +469,22 @@
                     </linearGradient>
                 </defs>
                 
-                <!-- Growth curve path -->
-                <path class="growth-line" d="M 100 400 Q 350 300 500 200 Q 650 100 900 80" />
+                <!-- Exponential growth curve path -->
+                <path class="growth-line" d="M 100 280 Q 250 275 400 220 Q 600 140 750 80 Q 820 50 900 30" />
                 
                 <!-- Growth dots -->
-                <circle class="growth-dots dot1" cx="100" cy="400" />
-                <circle class="growth-dots dot2" cx="500" cy="200" />
-                <circle class="growth-dots dot3" cx="900" cy="80" />
+                <circle class="growth-dots dot1" cx="100" cy="280" />
+                <circle class="growth-dots dot2" cx="400" cy="220" />
+                <circle class="growth-dots dot3" cx="900" cy="30" />
                 
                 <!-- Revenue labels -->
-                <text x="100" y="440" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="bold">$1M</text>
-                <text x="500" y="170" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="bold">$25M</text>
-                <text x="900" y="60" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="bold">$100M</text>
+                <text x="100" y="310" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="bold">$0M</text>
+                <text x="400" y="200" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="bold">$1M</text>
+                <text x="900" y="20" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="bold">$10M</text>
             </svg>
+        </div>
 
-            <!-- Phase cards integrated with the chart -->
+        <div class="phase-cards-container">
             <div class="phase-card phase1">
                 <div class="phase-header">
                     <h3 class="phase-title">Phase 1 (2025-2026)</h3>
@@ -495,7 +497,7 @@
                     <li>Market penetration</li>
                     <li>Revenue foundation</li>
                 </ul>
-                <div class="revenue-label">$1M Revenue</div>
+                <div class="revenue-label">Launch Phase</div>
             </div>
 
             <div class="phase-card phase2">
@@ -510,7 +512,7 @@
                     <li>Premium positioning</li>
                     <li>Market leadership</li>
                 </ul>
-                <div class="revenue-label">$25M Revenue</div>
+                <div class="revenue-label">$1M Revenue</div>
             </div>
 
             <div class="phase-card phase3">
@@ -525,7 +527,7 @@
                     <li>Platform scalability</li>
                     <li>Industry standard</li>
                 </ul>
-                <div class="revenue-label">$100M Revenue</div>
+                <div class="revenue-label">$10M Revenue</div>
             </div>
         </div>
 
@@ -573,8 +575,8 @@
                             <div class="value-point-desc">Dental → Orthopedic expansion multiplies TAM by 10x</div>
                         </div>
                         <div class="value-point">
-                            <div class="value-point-title">⏰ Cash Flow Runway</div>
-                            <div class="value-point-desc">Once profitable, equity dilution becomes unnecessary</div>
+                            <div class="value-point-title">💎 Proven Success Model</div>
+                            <div class="value-point-desc">Implant Direct: <span class="benchmark-highlight">$225M valuation in 4 years</span> with similar technology breakthrough</div>
                         </div>
                     </div>
                 </div>
@@ -586,7 +588,7 @@
                     <div class="target-label">Year 1 Revenue</div>
                 </div>
                 <div class="target-item">
-                    <div class="target-value">$100M</div>
+                    <div class="target-value">$10M</div>
                     <div class="target-label">Year 4 Revenue</div>
                 </div>
                 <div class="target-item">
