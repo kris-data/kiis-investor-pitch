@@ -27,7 +27,7 @@
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .main-title {
@@ -47,10 +47,63 @@
             font-weight: 300;
         }
 
+        /* Market Context Section */
+        .market-context {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(74, 222, 128, 0.15) 100%);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .market-context h3 {
+            color: #ffd700;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .market-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+
+        .market-stat {
+            text-align: center;
+        }
+
+        .market-stat-number {
+            font-size: 24px;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .market-stat-label {
+            font-size: 14px;
+            color: #e8f4fd;
+            line-height: 1.3;
+        }
+
+        .market-insight {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #10b981;
+        }
+
+        .market-insight-text {
+            font-size: 16px;
+            color: #e8f4fd;
+            text-align: center;
+            line-height: 1.4;
+        }
+
         .growth-chart-container {
             position: relative;
             height: 400px;
-            margin: 50px 0 30px 0;
+            margin: 30px 0;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             padding: 40px;
@@ -204,6 +257,14 @@
             padding: 8px;
             background: rgba(251, 191, 36, 0.2);
             border-radius: 10px;
+        }
+
+        .market-share-note {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 5px;
+            font-style: italic;
         }
 
         .investment-opportunity {
@@ -430,6 +491,11 @@
             .target-item {
                 margin: 0;
             }
+            
+            .market-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -457,6 +523,30 @@
         <div class="header">
             <h1 class="main-title">From $0M to $10M</h1>
             <p class="subtitle">Transforming Dental Care Through Innovation</p>
+        </div>
+
+        <!-- Market Context Section -->
+        <div class="market-context">
+            <h3>📊 Conservative Target in $2.1B Market</h3>
+            <div class="market-stats">
+                <div class="market-stat">
+                    <div class="market-stat-number">$2.1B</div>
+                    <div class="market-stat-label">US Manufacturer Market</div>
+                </div>
+                <div class="market-stat">
+                    <div class="market-stat-number">0.5%</div>
+                    <div class="market-stat-label">KiiS Target Share (Year 4)</div>
+                </div>
+                <div class="market-stat">
+                    <div class="market-stat-number">7%</div>
+                    <div class="market-stat-label">Implant Direct Benchmark</div>
+                </div>
+            </div>
+            <div class="market-insight">
+                <div class="market-insight-text">
+                    <strong>Proven Market Potential:</strong> Our 0.5% target represents just 1/14th of established competitor success
+                </div>
+            </div>
         </div>
 
         <div class="growth-chart-container">
@@ -494,40 +584,43 @@
                 <ul class="feature-list">
                     <li>Spiral Side Opening technology</li>
                     <li>510K approval completion</li>
-                    <li>Market penetration</li>
-                    <li>Revenue foundation</li>
+                    <li>Initial market penetration</li>
+                    <li>Digital sales channel setup</li>
                 </ul>
-                <div class="revenue-label">Launch Phase</div>
+                <div class="revenue-label">Foundation Year</div>
+                <div class="market-share-note">Target: 0.05% market share</div>
             </div>
 
             <div class="phase-card phase2">
                 <div class="phase-header">
                     <h3 class="phase-title">Phase 2 (2027-2029)</h3>
-                    <p class="phase-subtitle">Premium Dominance</p>
+                    <p class="phase-subtitle">Growth Acceleration</p>
                 </div>
                 <div class="product-name">KiiS-Relax Launch</div>
                 <ul class="feature-list">
-                    <li>Hollow Inner Channel</li>
-                    <li>De Novo approval</li>
-                    <li>Premium positioning</li>
-                    <li>Market leadership</li>
+                    <li>Hollow Inner Channel technology</li>
+                    <li>De Novo approval pathway</li>
+                    <li>Premium product positioning</li>
+                    <li>Market expansion</li>
                 </ul>
                 <div class="revenue-label">$1M Revenue</div>
+                <div class="market-share-note">Target: 0.2% market share</div>
             </div>
 
             <div class="phase-card phase3">
                 <div class="phase-header">
                     <h3 class="phase-title">Phase 3 (2030+)</h3>
-                    <p class="phase-subtitle">Market Expansion</p>
+                    <p class="phase-subtitle">Platform Expansion</p>
                 </div>
-                <div class="product-name">Orthopedic Platform</div>
+                <div class="product-name">Market Leadership</div>
                 <ul class="feature-list">
-                    <li>Orthopedic expansion</li>
-                    <li>Global market entry</li>
-                    <li>Platform scalability</li>
-                    <li>Industry standard</li>
+                    <li>Established brand recognition</li>
+                    <li>Orthopedic market entry</li>
+                    <li>Technology platform scaling</li>
+                    <li>Global expansion potential</li>
                 </ul>
                 <div class="revenue-label">$10M Revenue</div>
+                <div class="market-share-note">Target: 0.5% market share</div>
             </div>
         </div>
 
@@ -571,8 +664,8 @@
                             <div class="value-point-desc">FDA pre-approval removes regulatory uncertainty</div>
                         </div>
                         <div class="value-point">
-                            <div class="value-point-title">📈 Platform Scalability</div>
-                            <div class="value-point-desc">Dental → Orthopedic expansion multiplies TAM by 10x</div>
+                            <div class="value-point-title">📈 Conservative Targets</div>
+                            <div class="value-point-desc">0.5% goal vs proven 7% benchmark provides substantial safety margin</div>
                         </div>
                         <div class="value-point">
                             <div class="value-point-title">💎 Proven Success Model</div>
@@ -585,7 +678,7 @@
             <div class="financial-targets">
                 <div class="target-item">
                     <div class="target-value">$1M</div>
-                    <div class="target-label">Year 1 Revenue</div>
+                    <div class="target-label">Year 2 Revenue</div>
                 </div>
                 <div class="target-item">
                     <div class="target-value">$10M</div>
