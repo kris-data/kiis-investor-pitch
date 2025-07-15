@@ -134,25 +134,46 @@
             line-height: 1.4;
         }
 
-        .coi-safe {
-            background: rgba(76, 175, 80, 0.2);
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            padding: 20px;
+        .competitive-advantage {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 25px;
             margin-top: 30px;
+            grid-column: 1 / -1;
+        }
+
+        .competitive-advantage h3 {
+            color: #ffd700;
+            font-size: 24px;
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        .coi-safe h3 {
-            color: #4CAF50;
-            margin: 0 0 10px 0;
-            font-size: 1.3em;
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .coi-safe p {
-            margin: 0;
+        .advantage-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .advantage-number {
+            font-size: 48px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .advantage-text {
+            font-size: 0.9em;
             color: #e8f4fd;
-            font-size: 1em;
+            margin-top: 5px;
         }
 
         .navigation {
@@ -162,6 +183,13 @@
             transform: translateX(-50%);
             display: flex;
             gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
         }
 
         .nav-btn {
@@ -186,54 +214,6 @@
             box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
         }
 
-        .navigation {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 15px 30px;
-            border-radius: 50px;
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px;
-            }
-            
-            .header h1 {
-                font-size: 36px;
-            }
-            
-            .subtitle {
-                font-size: 16px;
-            }
-            
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .claims-section h2,
-            .partnership-section h2 {
-                font-size: 24px;
-            }
-            
-            .competitive-advantage h3 {
-                font-size: 20px;
-            }
-            
-            .advantage-number {
-                font-size: 36px;
-            }
-        }
-
         .source-btn {
             background: rgba(255, 215, 0, 0.2);
             border: 1px solid #ffd700;
@@ -252,69 +232,6 @@
             transform: scale(1.1);
         }
 
-        .source-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1001;
-            backdrop-filter: blur(5px);
-        }
-
-        .source-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 600px;
-            width: 90%;
-            border: 2px solid #FFD700;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .source-header {
-            color: #ffd700;
-            font-size: 24px;
-            margin-bottom: 15px;
-            text-align: center;
-            border-bottom: 1px solid #ffd700;
-            padding-bottom: 10px;
-        }
-
-        .source-body {
-            color: #e8f4fd;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .source-citation {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 3px solid #4CAF50;
-            font-size: 0.9em;
-            color: #b8e6d3;
-            font-style: italic;
-        }
-
-        .source-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #ffd700;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
         .info-btn {
             background: rgba(255, 215, 0, 0.2);
             border: 1px solid #ffd700;
@@ -331,6 +248,7 @@
             background: rgba(255, 215, 0, 0.3);
             transform: scale(1.05);
         }
+
         .popup-overlay {
             display: none;
             position: fixed;
@@ -353,8 +271,10 @@
             border-radius: 20px;
             max-width: 700px;
             width: 90%;
+            max-height: 80vh;
             border: 2px solid #ffd700;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
         }
 
         .popup-header {
@@ -402,46 +322,130 @@
             color: #ef4444;
             transform: scale(1.2);
         }
-        .competitive-advantage {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #ffd700;
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
-            grid-column: 1 / -1;
+
+        .source-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            backdrop-filter: blur(5px);
         }
 
-        .competitive-advantage h3 {
+        .source-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            border: 2px solid #FFD700;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+
+        .source-header {
             color: #ffd700;
             font-size: 24px;
             margin-bottom: 15px;
             text-align: center;
+            border-bottom: 1px solid #ffd700;
+            padding-bottom: 10px;
         }
 
-        .advantage-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .advantage-item {
-            text-align: center;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-
-        .advantage-number {
-            font-size: 48px;
-            color: #ffd700;
-            font-weight: bold;
-        }
-
-        .advantage-text {
-            font-size: 0.9em;
+        .source-body {
             color: #e8f4fd;
-            margin-top: 5px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .source-citation {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #4CAF50;
+            font-size: 0.9em;
+            color: #b8e6d3;
+            font-style: italic;
+        }
+
+        .source-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* 스크롤바 스타일링 */
+        .popup-content::-webkit-scrollbar,
+        .source-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .popup-content::-webkit-scrollbar-track,
+        .source-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .popup-content::-webkit-scrollbar-thumb,
+        .source-content::-webkit-scrollbar-thumb {
+            background: #ffd700;
+            border-radius: 4px;
+        }
+
+        .popup-content::-webkit-scrollbar-thumb:hover,
+        .source-content::-webkit-scrollbar-thumb:hover {
+            background: #e6c200;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px;
+            }
+            
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .claims-section h2,
+            .partnership-section h2 {
+                font-size: 24px;
+            }
+            
+            .competitive-advantage h3 {
+                font-size: 20px;
+            }
+            
+            .advantage-number {
+                font-size: 36px;
+            }
+            
+            .advantage-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
         }
     </style>
 </head>
