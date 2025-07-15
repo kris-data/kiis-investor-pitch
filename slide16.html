@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiiS - Financial Projection & Strategic Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .slide-container {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .main-title {
+            font-size: 52px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #4ade80, #22d3ee, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(74, 222, 128, 0.3);
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: #94a3b8;
+            font-weight: 300;
+        }
+
+        .growth-chart-container {
+            position: relative;
+            height: 600px;
+            margin: 50px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .growth-curve {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .growth-line {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 5;
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            animation: drawLine 3s ease-in-out forwards;
+            filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.5));
+        }
+
+        .growth-dots {
+            fill: #4ade80;
+            stroke: #1a1a2e;
+            stroke-width: 4;
+            r: 12;
+            opacity: 0;
+            animation: showDots 0.5s ease-in-out forwards;
+            filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.8));
+        }
+
+        .growth-dots.dot1 { animation-delay: 1s; }
+        .growth-dots.dot2 { animation-delay: 2s; }
+        .growth-dots.dot3 { animation-delay: 3s; }
+
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes showDots {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Phase cards positioned on the chart */
+        .phase-card {
+            position: absolute;
+            width: 280px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        .phase-card.phase1 {
+            bottom: 80px;
+            left: 20px;
+            animation-delay: 1.2s;
+        }
+
+        .phase-card.phase2 {
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            animation-delay: 1.8s;
+        }
+
+        .phase-card.phase3 {
+            top: 80px;
+            right: 20px;
+            animation-delay: 2.4s;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .phase-card.phase2 {
+            animation-name: slideUpCenter;
+        }
+
+        @keyframes slideUpCenter {
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .phase-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .phase-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 5px;
+        }
+
+        .phase-subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #22d3ee;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .feature-list li {
+            margin-bottom: 6px;
+            padding-left: 18px;
+            position: relative;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ade80;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .revenue-label {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fbbf24;
+            padding: 8px;
+            background: rgba(251, 191, 36, 0.2);
+            border-radius: 10px;
+        }
+
+        .investment-opportunity {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(74, 222, 128, 0.1) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            position: relative;
+        }
+
+        .opportunity-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .opportunity-title {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fbbf24, #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .opportunity-subtitle {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .limited-time-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ef4444, #f59e0b);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .investment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .investment-breakdown {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .investment-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fbbf24;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .investment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+        }
+
+        .investment-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #4ade80;
+            font-size: 18px;
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .value-proposition {
+            text-align: center;
+        }
+
+        .value-points {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .value-point {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 4px solid #4ade80;
+        }
+
+        .value-point-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 8px;
+        }
+
+        .value-point-desc {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        .financial-targets {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .target-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            flex: 1;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .target-item:hover {
+            transform: scale(1.05);
+        }
+
+        .target-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #22d3ee;
+            margin-bottom: 8px;
+        }
+
+        .target-label {
+            font-size: 16px;
+            color: #94a3b8;
+        }
+
+        .profit-margin {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 1200px) {
+            .main-title {
+                font-size: 42px;
+            }
+            
+            .phase-card {
+                position: relative;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .phase-card.phase1, .phase-card.phase2, .phase-card.phase3 {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+                transform: none;
+            }
+            
+            .investment-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .financial-targets {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .target-item {
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: 20px;
+            }
+            
+            .main-title {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 20px;
+            }
+            
+            .growth-chart-container {
+                height: 400px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="main-title">From $1M to $100M</h1>
+            <p class="subtitle">Transforming Dental Care Through Innovation</p>
+        </div>
+
+        <div class="growth-chart-container">
+            <svg class="growth-curve" viewBox="0 0 1000 500">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#22d3ee;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Growth curve path -->
+                <path class="growth-line" d="M 100 400 Q 350 300 500 200 Q 650 100 900 80" />
+                
+                <!-- Growth dots -->
+                <circle class="growth-dots dot1" cx="100" cy="400" />
+                <circle class="growth-dots dot2" cx="500" cy="200" />
+                <circle class="growth-dots dot3" cx="900" cy="80" />
+                
+                <!-- Revenue labels -->
+                <text x="100" y="440" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="bold">$1M</text>
+                <text x="500" y="170" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="bold">$25M</text>
+                <text x="900" y="60" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="bold">$100M</text>
+            </svg>
+
+            <!-- Phase cards integrated with the chart -->
+            <div class="phase-card phase1">
+                <div class="phase-header">
+                    <h3 class="phase-title">Phase 1 (2025-2026)</h3>
+                    <p class="phase-subtitle">Market Entry</p>
+                </div>
+                <div class="product-name">KiiS-Plus Launch</div>
+                <ul class="feature-list">
+                    <li>Spiral Side Opening technology</li>
+                    <li>510K approval completion</li>
+                    <li>Market penetration</li>
+                    <li>Revenue foundation</li>
+                </ul>
+                <div class="revenue-label">$1M Revenue</div>
+            </div>
+
+            <div class="phase-card phase2">
+                <div class="phase-header">
+                    <h3 class="phase-title">Phase 2 (2027-2029)</h3>
+                    <p class="phase-subtitle">Premium Dominance</p>
+                </div>
+                <div class="product-name">KiiS-Relax Launch</div>
+                <ul class="feature-list">
+                    <li>Hollow Inner Channel</li>
+                    <li>De Novo approval</li>
+                    <li>Premium positioning</li>
+                    <li>Market leadership</li>
+                </ul>
+                <div class="revenue-label">$25M Revenue</div>
+            </div>
+
+            <div class="phase-card phase3">
+                <div class="phase-header">
+                    <h3 class="phase-title">Phase 3 (2030+)</h3>
+                    <p class="phase-subtitle">Market Expansion</p>
+                </div>
+                <div class="product-name">Orthopedic Platform</div>
+                <ul class="feature-list">
+                    <li>Orthopedic expansion</li>
+                    <li>Global market entry</li>
+                    <li>Platform scalability</li>
+                    <li>Industry standard</li>
+                </ul>
+                <div class="revenue-label">$100M Revenue</div>
+            </div>
+        </div>
+
+        <div class="investment-opportunity">
+            <div class="opportunity-header">
+                <h2 class="opportunity-title">Strategic Investment Window</h2>
+                <p class="opportunity-subtitle">Value Inflection Point - Pre-Revenue to Market Leader</p>
+                <div class="limited-time-badge">⚡ Limited Time Opportunity</div>
+            </div>
+
+            <div class="investment-grid">
+                <div class="investment-breakdown">
+                    <h3 class="investment-title">$1M Investment Allocation</h3>
+                    <div class="investment-item">
+                        <span>Manufacturing & Quality Setup</span>
+                        <span>$350K</span>
+                    </div>
+                    <div class="investment-item">
+                        <span>Market Launch & Sales</span>
+                        <span>$450K</span>
+                    </div>
+                    <div class="investment-item">
+                        <span>R&D & IP Expansion</span>
+                        <span>$200K</span>
+                    </div>
+                    <div class="investment-item">
+                        <span>Total Investment</span>
+                        <span>$1.0M</span>
+                    </div>
+                </div>
+
+                <div class="value-proposition">
+                    <h3 class="investment-title">Why Invest Now?</h3>
+                    <div class="value-points">
+                        <div class="value-point">
+                            <div class="value-point-title">🚀 Pre-Revenue Entry</div>
+                            <div class="value-point-desc">Last chance to invest before commercialization drives valuation 10x higher</div>
+                        </div>
+                        <div class="value-point">
+                            <div class="value-point-title">✅ De-Risked Technology</div>
+                            <div class="value-point-desc">FDA pre-approval removes regulatory uncertainty</div>
+                        </div>
+                        <div class="value-point">
+                            <div class="value-point-title">📈 Platform Scalability</div>
+                            <div class="value-point-desc">Dental → Orthopedic expansion multiplies TAM by 10x</div>
+                        </div>
+                        <div class="value-point">
+                            <div class="value-point-title">⏰ Cash Flow Runway</div>
+                            <div class="value-point-desc">Once profitable, equity dilution becomes unnecessary</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="financial-targets">
+                <div class="target-item">
+                    <div class="target-value">$1M</div>
+                    <div class="target-label">Year 1 Revenue</div>
+                </div>
+                <div class="target-item">
+                    <div class="target-value">$100M</div>
+                    <div class="target-label">Year 4 Revenue</div>
+                </div>
+                <div class="target-item">
+                    <div class="target-value profit-margin">30-40%</div>
+                    <div class="target-label">Operating Margin</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="slide15.html" class="nav-btn">← Back</a>
+            <a href="slide17.html" class="nav-btn">Next →</a>
+        </div>
+    </div>
+</body>
+</html>
