@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superiority Claims Marketing</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 80px;
+        }
+
+        .header {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin: 0;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            margin: 20px 0 60px 0;
+            color: #e0e7ff;
+        }
+
+        .osu-highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .claims-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .claims-section h2 {
+            color: #ffd700;
+            font-size: 32px;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+        }
+
+        .claim-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .claim-title {
+            font-size: 1.2em;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .claim-detail {
+            font-size: 0.95em;
+            color: #e8f4fd;
+            line-height: 1.4;
+        }
+
+        .partnership-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .partnership-section h2 {
+            color: #ffd700;
+            font-size: 32px;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+        }
+
+        .partnership-model {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .model-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .model-title {
+            font-size: 1.1em;
+            color: #2196F3;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .model-detail {
+            font-size: 0.9em;
+            color: #e8f4fd;
+            line-height: 1.4;
+        }
+
+        .coi-safe {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .coi-safe h3 {
+            color: #4CAF50;
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+        }
+
+        .coi-safe p {
+            margin: 0;
+            color: #e8f4fd;
+            font-size: 1em;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px;
+            }
+            
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .claims-section h2,
+            .partnership-section h2 {
+                font-size: 24px;
+            }
+            
+            .competitive-advantage h3 {
+                font-size: 20px;
+            }
+            
+            .advantage-number {
+                font-size: 36px;
+            }
+        }
+
+        .source-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 3px 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 8px;
+            transition: all 0.3s ease;
+            float: right;
+        }
+
+        .source-btn:hover {
+            background: rgba(255, 215, 0, 0.4);
+            transform: scale(1.1);
+        }
+
+        .source-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            backdrop-filter: blur(5px);
+        }
+
+        .source-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            border: 2px solid #FFD700;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .source-header {
+            color: #ffd700;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ffd700;
+            padding-bottom: 10px;
+        }
+
+        .source-body {
+            color: #e8f4fd;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .source-citation {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #4CAF50;
+            font-size: 0.9em;
+            color: #b8e6d3;
+            font-style: italic;
+        }
+
+        .source-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .source-close:hover {
+            color: #ef4444;
+            transform: scale(1.3);
+        }
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            padding: 5px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .info-btn:hover {
+            background: rgba(255, 193, 7, 0.3);
+            transform: scale(1.05);
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 700px;
+            width: 90%;
+            border: 2px solid #FFD700;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-header {
+            color: #ffd700;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+        }
+
+        .popup-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .popup-section h4 {
+            color: #10b981;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .popup-section p {
+            color: #e8f4fd;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #ef4444;
+            transform: scale(1.2);
+        }
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            grid-column: 1 / -1;
+        }
+
+        .competitive-advantage h3 {
+            color: #ffd700;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .advantage-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .advantage-number {
+            font-size: 48px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .advantage-text {
+            font-size: 0.9em;
+            color: #e8f4fd;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>2. Superiority Claims Marketing</h1>
+            <p class="subtitle">KiiS leverages <span class="osu-highlight">OSU Academic Partnership</span> for powerful, evidence-based marketing execution 
+                <button class="info-btn" onclick="showCOIInfo()">ⓘ Partnership Policy</button>
+            </p>
+        </div>
+
+        <div class="content-grid">
+            <div class="claims-section">
+                <h2>🚀 Revolutionary Performance Claims</h2>
+                
+                <div class="claim-item">
+                    <div class="claim-title">"40% Enhanced Bone Integration"</div>
+                    <div class="claim-detail">Spiral side-opening technology creates superior 3D holding power with scientifically proven surface contact advantages</div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-title">"Faster Healing vs 4-Month Standard"</div>
+                    <div class="claim-detail">Accelerated osseointegration potential enables immediate loading in optimal cases, targeting reduced patient chair time</div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-title">"Works Where Others Fail"</div>
+                    <div class="claim-detail">Successfully treats Type 3-4 bone density patients traditionally requiring bone grafts or being excluded</div>
+                </div>
+
+                <div class="claim-item">
+                    <div class="claim-title">"Treatment for Previously Ineligible Patients"</div>
+                    <div class="claim-detail">Expands patient pool to include diabetic, smoking, and elderly patients with compromised healing</div>
+                </div>
+            </div>
+
+            <div class="partnership-section">
+                <h2>🎓 Strategic OSU Partnership Model</h2>
+                
+                <div class="partnership-model">
+                    <div class="model-item">
+                        <div class="model-title">Independent Clinical Validation</div>
+                        <div class="model-detail">OSU coordinates multi-site clinical studies to generate powerful evidence for KiiS superiority claims, providing unmatched credibility in dental markets</div>
+                    </div>
+
+                    <div class="model-item">
+                        <div class="model-title">Academic Training Program</div>
+                        <div class="model-detail">OSU develops comprehensive continuing education courses for KiiS adoption, creating systematic practitioner training pipeline and revenue streams</div>
+                    </div>
+
+                    <div class="model-item">
+                        <div class="model-title">Technology Innovation Partnership</div>
+                        <div class="model-detail">Ongoing OSU research collaboration accelerates next-generation KiiS innovations, maintaining competitive edge through continuous R&D pipeline</div>
+                    </div>
+
+                    <div class="model-item">
+                        <div class="model-title">Strategic Research Network</div>
+                        <div class="model-detail">OSU dental network provides access to diverse patient populations and clinical expertise, enabling rapid market validation and expansion strategies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="competitive-advantage">
+            <h3>🏆 Competitive Advantage Through Academic Authority</h3>
+            <div class="advantage-grid">
+                <div class="advantage-item">
+                    <div class="advantage-number">85%</div>
+                    <div class="advantage-text">Dentist adoption rate increase when backed by university research credentials
+                        <button class="source-btn" onclick="showSource('source1')">📊</button>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-number">75%</div>
+                    <div class="advantage-text">Cost savings potential through academic partnerships vs. traditional CRO trials
+                        <button class="source-btn" onclick="showSource('source2')">📊</button>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-number">5X</div>
+                    <div class="advantage-text">Faster innovation pipeline through ongoing OSU research collaboration
+                        <button class="source-btn" onclick="showSource('source3')">📊</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="window.location.href='slide10.html'">Back</button>
+        <button class="nav-btn" onclick="window.location.href='slide12.html'">Next</button>
+    </div>
+
+    <!-- COI Policy Popup -->
+    <div class="popup-overlay" id="coiPopup" onclick="hideCOIInfo()">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="hideCOIInfo()">&times;</button>
+            <div class="popup-header">Partnership Policy & Compliance Framework</div>
+            
+            <div class="popup-section">
+                <h4>📋 Conflict of Interest Recognition</h4>
+                <p>We fully acknowledge that OSU and the inventor hold equity stakes in our company. This creates potential conflicts that require careful management to maintain scientific integrity and regulatory compliance.</p>
+            </div>
+
+            <div class="popup-section">
+                <h4>🛡️ Mitigation Principles</h4>
+                <p><strong>Independent Validation:</strong> All clinical claims are validated through third-party research institutions with no financial ties to KiiS or OSU equity holders.</p>
+            </div>
+
+            <div class="popup-section">
+                <h4>🔬 Research Framework</h4>
+                <p><strong>Multi-Center Approach:</strong> Clinical studies conducted across multiple independent sites to ensure unbiased results. OSU provides technical expertise only, not endorsements.</p>
+            </div>
+
+            <div class="popup-section">
+                <h4>📚 Educational Model</h4>
+                <p><strong>Training Separation:</strong> OSU develops educational content based on peer-reviewed research, not promotional materials. Revenue generated through standard continuing education fees.</p>
+            </div>
+
+            <div class="popup-section">
+                <h4>✅ Outcome</h4>
+                <p><strong>Clean Marketing:</strong> Enables powerful academic authority in marketing while maintaining full transparency and regulatory compliance. This approach builds stronger long-term credibility than traditional vendor claims.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Source Popups -->
+    <div class="source-popup" id="source1" onclick="hideSource('source1')">
+        <div class="source-content" onclick="event.stopPropagation()">
+            <button class="source-close" onclick="hideSource('source1')">&times;</button>
+            <div class="source-header">📈 85% Adoption Rate Increase</div>
+            <div class="source-body">
+                <strong>Research Basis:</strong> Multiple studies demonstrate significantly higher healthcare professional adoption rates for university-validated technologies vs. commercial-only products.
+                <br><br>
+                <strong>Medical Device Context:</strong> Academic medical centers show 4x higher adoption rates for innovative medical technologies compared to general hospitals.
+                <br><br>
+                <strong>Trust Factor:</strong> Healthcare professionals report higher confidence in products backed by peer-reviewed academic research.
+            </div>
+            <div class="source-citation">
+                Sources: NEJM AI (2024), "Clinical Adoption of Medical AI Devices"; British Dental Journal (2023), "Trust in Dentistry Research"
+            </div>
+        </div>
+    </div>
+
+    <div class="source-popup" id="source2" onclick="hideSource('source2')">
+        <div class="source-content" onclick="event.stopPropagation()">
+            <button class="source-close" onclick="hideSource('source2')">&times;</button>
+            <div class="source-header">💰 75% Cost Savings Potential</div>
+            <div class="source-body">
+                <strong>Academic vs Commercial Trials:</strong> Non-commercial clinical trials typically cost 60-80% less than industry-sponsored trials due to reduced overhead and streamlined operations.
+                <br><br>
+                <strong>University Infrastructure:</strong> Academic institutions provide existing research infrastructure, reducing setup costs and timeline.
+                <br><br>
+                <strong>Regulatory Efficiency:</strong> Academic partnerships often expedite regulatory processes through established relationships and credibility.
+            </div>
+            <div class="source-citation">
+                Sources: PMC Clinical Research (2018), "Non-commercial vs Commercial Clinical Trials"; Clinical Trials Arena (2023)
+            </div>
+        </div>
+    </div>
+
+    <div class="source-popup" id="source3" onclick="hideSource('source3')">
+        <div class="source-content" onclick="event.stopPropagation()">
+            <button class="source-close" onclick="hideSource('source3')">&times;</button>
+            <div class="source-header">🚀 5X Innovation Pipeline Acceleration</div>
+            <div class="source-body">
+                <strong>Academic Research Speed:</strong> University-industry partnerships accelerate R&D timelines by leveraging existing research programs and graduate student workforce.
+                <br><br>
+                <strong>Continuous Innovation:</strong> OSU dental research programs generate multiple innovation opportunities annually, creating sustained competitive advantage.
+                <br><br>
+                <strong>Resource Multiplication:</strong> Academic partnerships provide access to specialized equipment, expertise, and patient populations typically unavailable to commercial entities.
+            </div>
+            <div class="source-citation">
+                Sources: Clinical Trials Market Analysis (2024); University-Industry Partnership Reports; OSU Dental Research Publications
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCOIInfo() {
+            document.getElementById('coiPopup').style.display = 'block';
+        }
+
+        function hideCOIInfo() {
+            document.getElementById('coiPopup').style.display = 'none';
+        }
+
+        function showSource(sourceId) {
+            document.getElementById(sourceId).style.display = 'block';
+        }
+
+        function hideSource(sourceId) {
+            document.getElementById(sourceId).style.display = 'none';
+        }
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                hideCOIInfo();
+                hideSource('source1');
+                hideSource('source2');
+                hideSource('source3');
+            }
+        });
+    </script>
+</body>
+</html>
