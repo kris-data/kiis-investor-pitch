@@ -25,6 +25,14 @@
         .header {
             text-align: left;
             margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .header h1 {
@@ -52,7 +60,6 @@
             gap: 30px;
         }
 
-        /* 한국 제조업 우위 섹션 */
         .manufacturing-section {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
@@ -60,6 +67,14 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-left: 4px solid #10b981;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .manufacturing-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
@@ -83,6 +98,14 @@
             padding: 20px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .advantage-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .advantage-icon {
@@ -104,7 +127,6 @@
             line-height: 1.3;
         }
 
-        /* SKU 전략 섹션 */
         .sku-section {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
@@ -112,6 +134,14 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-left: 4px solid #2196F3;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sku-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .product-grid {
@@ -126,6 +156,14 @@
             border-radius: 12px;
             padding: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .product-header {
@@ -198,6 +236,9 @@
             color: #2196F3;
             font-weight: bold;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .sku-list {
@@ -215,12 +256,44 @@
             border: 1px solid rgba(33, 150, 243, 0.3);
         }
 
-        /* 비용 구조 섹션 */
+        .detail-btn {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 10px;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .detail-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .coverage-info {
+            font-size: 11px;
+            color: #10b981;
+            font-style: italic;
+            margin-top: 8px;
+            text-align: center;
+        }
+
         .cost-section {
             background: rgba(255, 215, 0, 0.1);
             border: 2px solid #ffd700;
             border-radius: 15px;
             padding: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cost-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .cost-grid {
@@ -236,6 +309,14 @@
             padding: 20px;
             text-align: center;
             border: 1px solid rgba(255, 215, 0, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cost-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .cost-tier {
@@ -265,6 +346,14 @@
             padding: 20px;
             margin-top: 20px;
             text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .value-proposition.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .value-title {
@@ -278,6 +367,110 @@
             font-size: 14px;
             color: #e8f4fd;
             line-height: 1.4;
+        }
+
+        /* SKU 팝업 스타일 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .sku-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1002;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .sku-popup-header {
+            color: #ffd700;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+        }
+
+        .sku-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .sku-table th,
+        .sku-table td {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .sku-table th {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .sku-table td {
+            color: #e8f4fd;
+        }
+
+        .sku-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popup-close:hover {
+            color: #ef4444;
+            transform: scale(1.2);
+        }
+
+        .additional-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .additional-info h4 {
+            color: #10b981;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .additional-info p {
+            color: #e8f4fd;
+            font-size: 13px;
+            line-height: 1.4;
+            margin: 0;
         }
 
         /* 네비게이션 호버 감지 영역 */
@@ -370,10 +563,28 @@
             .strategy-info {
                 grid-template-columns: 1fr;
             }
+
+            .sku-title {
+                font-size: 12px;
+            }
+
+            .detail-btn {
+                font-size: 9px;
+                padding: 3px 6px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 오버레이 -->
+    <div class="overlay" id="overlay" onclick="hideSKUDetails()"></div>
+
+    <!-- SKU 상세 팝업 -->
+    <div class="sku-popup" id="skuPopup">
+        <button class="popup-close" onclick="hideSKUDetails()">×</button>
+        <div id="skuContent"></div>
+    </div>
+
     <!-- 호버존 -->
     <div class="hover-zone" id="hoverZone"></div>
 
@@ -433,7 +644,10 @@
                         </div>
 
                         <div class="sku-details">
-                            <div class="sku-title">Core SKUs (10 total) <button class="detail-btn" onclick="showSKUDetails('kiisplus')">📊 View Details</button></div>
+                            <div class="sku-title">
+                                Core SKUs (10 total) 
+                                <button class="detail-btn" onclick="showSKUDetails('kiisplus')">📊 View Details</button>
+                            </div>
                             <div class="sku-list">
                                 <div class="sku-chip">3.5×10mm (Incisors 20%)</div>
                                 <div class="sku-chip">4.0×10mm (Standard 50%)</div>
@@ -508,11 +722,96 @@
 
     <!-- 네비게이션 -->
     <div class="navigation" id="navigation">
-        <button class="nav-btn" onclick="window.location.href='slide13.html'">Back</button>
-        <button class="nav-btn" onclick="window.location.href='slide15.html'">Next</button>
+        <a href="slide13.html" class="nav-btn">Back</a>
+        <a href="slide15.html" class="nav-btn">Next</a>
     </div>
 
     <script>
+        // SKU 상세 정보 데이터
+        const skuData = {
+            'kiisplus': {
+                title: 'KiiS-Plus: Complete SKU Breakdown',
+                content: `
+                    <table class="sku-table">
+                        <thead>
+                            <tr>
+                                <th>Diameter</th>
+                                <th>Length(mm)</th>
+                                <th>Units</th>
+                                <th>Market Coverage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>3.5mm</strong></td>
+                                <td>10, 12</td>
+                                <td>2</td>
+                                <td>Incisors, small molars (20%)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4.0mm</strong></td>
+                                <td>8, 10, 12</td>
+                                <td>3</td>
+                                <td>Standard molars (50%)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4.5mm</strong></td>
+                                <td>10, 12, 14</td>
+                                <td>3</td>
+                                <td>Large molars (25%)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5.0mm</strong></td>
+                                <td>10, 12</td>
+                                <td>2</td>
+                                <td>Special cases (5%)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="additional-info">
+                        <h4>📈 Strategic Market Coverage</h4>
+                        <p><strong>Total SKUs:</strong> 10 units covering 70%+ of Type 1-2 dental implant market</p>
+                        <p><strong>Efficiency Focus:</strong> Pareto principle applied - 20% of SKUs handle 80% of cases</p>
+                        <p><strong>Manufacturing Advantage:</strong> Korean OEM enables cost-effective production across all variants</p>
+                    </div>
+                    
+                    <div class="additional-info">
+                        <h4>🎯 Clinical Applications</h4>
+                        <p><strong>3.5mm:</strong> Incisors and lateral incisors, narrow ridge cases</p>
+                        <p><strong>4.0mm:</strong> Premolars and standard molars, most common diameter</p>
+                        <p><strong>4.5mm:</strong> Large premolars and molars, wider bone structures</p>
+                        <p><strong>5.0mm:</strong> Immediate placement, extraction sockets, complex cases</p>
+                    </div>
+                `
+            }
+        };
+
+        // SKU 상세 정보 표시
+        function showSKUDetails(productId) {
+            const data = skuData[productId];
+            if (!data) return;
+
+            document.getElementById('skuContent').innerHTML = `
+                <div class="sku-popup-header">${data.title}</div>
+                ${data.content}
+            `;
+            
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('skuPopup').style.display = 'block';
+            
+            // 애니메이션 효과
+            setTimeout(() => {
+                document.getElementById('skuPopup').style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 10);
+        }
+
+        // SKU 상세 정보 숨기기
+        function hideSKUDetails() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('skuPopup').style.display = 'none';
+        }
+
         // 터치 디바이스 감지
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         
@@ -527,6 +826,68 @@
 
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
+
+        // 애니메이션 대상에서 제외할 요소들
+        const excludeFromAnimation = [
+            '.advantage-item',
+            '.product-card', 
+            '.cost-card'
+        ];
+
+        // 페이지 로드 애니메이션
+        function startLoadingAnimation() {
+            const elements = document.querySelectorAll('.header, .manufacturing-section, .sku-section, .cost-section, .value-proposition');
+            
+            elements.forEach((element, index) => {
+                // 제외 대상이 아닌 요소만 애니메이션 적용
+                const shouldAnimate = !excludeFromAnimation.some(selector => 
+                    element.matches(selector)
+                );
+                
+                if (shouldAnimate) {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+
+            // 세부 요소들 순차 애니메이션
+            setTimeout(() => {
+                // Advantage items
+                const advantageItems = document.querySelectorAll('.advantage-item');
+                advantageItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 150);
+                });
+            }, 600);
+
+            setTimeout(() => {
+                // Product cards
+                const productCards = document.querySelectorAll('.product-card');
+                productCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                });
+            }, 1000);
+
+            setTimeout(() => {
+                // Cost cards
+                const costCards = document.querySelectorAll('.cost-card');
+                costCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 150);
+                });
+            }, 1400);
+
+            // 네비게이션 힌트 표시
+            setTimeout(() => {
+                showNavigation();
+                setTimeout(hideNavigation, 3000);
+            }, 2500);
+        }
 
         // 1. 호버존 이벤트 (PC + 모바일)
         hoverZone.addEventListener('mouseenter', showNavigation);
@@ -643,6 +1004,7 @@
                     break;
                 case 'Escape':
                     hideNavigation();
+                    hideSKUDetails(); // SKU 팝업도 함께 닫기
                     break;
                 case 'Tab':
                     showNavigation();
@@ -651,13 +1013,9 @@
             }
         });
 
-        // 페이지 로드시 네비게이션 힌트
+        // 페이지 로드시 애니메이션 시작
         document.addEventListener('DOMContentLoaded', function() {
-            // 네비게이션 힌트 (2.5초 후)
-            setTimeout(() => {
-                showNavigation();
-                setTimeout(hideNavigation, 3000);
-            }, 2500);
+            startLoadingAnimation();
         });
     </script>
 </body>
