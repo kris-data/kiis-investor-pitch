@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>KiiS - Innovation</title>
+    <title>KiiS - Patent Innovation Strategy</title>
     <style>
         * {
             margin: 0;
@@ -48,13 +48,15 @@
         
         .patent-section {
             display: flex;
+            flex-direction: column;
+            gap: 30px;
             justify-content: center;
             align-items: center;
         }
         
-        .patent-image {
+        .patent-main-image {
             max-width: 100%;
-            max-height: 80vh;
+            max-height: 45vh;
             border-radius: 15px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
             border: 3px solid rgba(255, 215, 0, 0.3);
@@ -62,37 +64,133 @@
             cursor: pointer;
         }
         
-        .patent-image:hover {
+        .patent-main-image:hover {
             transform: scale(1.02);
             border-color: #ffd700;
         }
         
-        .innovation-section {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
+        .patent-diagram {
+            max-width: 100%;
+            max-height: 35vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
         
-        .innovation-card {
+        .patent-diagram:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+        
+        .strategy-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .strategy-card {
             background: linear-gradient(145deg, #1e40af, #1d4ed8);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-left: 4px solid #ffd700;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
         }
         
-        .innovation-card:hover {
+        .strategy-card:hover {
             transform: translateY(-5px);
         }
         
+        .card-content {
+            flex: 1;
+        }
+        
+        .tech-image-container {
+            flex-shrink: 0;
+            width: 100px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tech-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .tech-image:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .strategy-card.phase1 {
+            border-left-color: #22c55e;
+        }
+        
+        .strategy-card.phase2 {
+            border-left-color: #3b82f6;
+        }
+        
+        .strategy-card.phase3 {
+            border-left-color: #a855f7;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .phase-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+        }
+        
+        .phase1 .phase-number {
+            background: #22c55e;
+        }
+        
+        .phase2 .phase-number {
+            background: #3b82f6;
+        }
+        
+        .phase3 .phase-number {
+            background: #a855f7;
+        }
+        
         .card-title {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: bold;
             color: #ffd700;
-            margin-bottom: 20px;
-            font-style: italic;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 10px;
         }
         
         .feature-list {
@@ -101,20 +199,20 @@
         }
         
         .feature-item {
-            margin-bottom: 15px;
-            padding-left: 20px;
+            margin-bottom: 8px;
+            padding-left: 15px;
             position: relative;
-            font-size: 18px;
+            font-size: 14px;
             line-height: 1.4;
         }
         
         .feature-item::before {
             content: "•";
             color: #ffd700;
-            font-size: 24px;
+            font-size: 16px;
             position: absolute;
             left: 0;
-            top: -2px;
+            top: 0;
         }
         
         .clickable-text {
@@ -131,6 +229,13 @@
             padding: 2px 4px;
             border-radius: 4px;
             text-decoration-color: #ffd700;
+        }
+        
+        .patent-info {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #94a3b8;
         }
         
         .source-popup {
@@ -206,6 +311,41 @@
             display: none;
         }
         
+        .placeholder-image {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .placeholder-image:hover {
+            border-color: rgba(255, 215, 0, 0.5);
+            background: rgba(255, 215, 0, 0.05);
+        }
+        
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .placeholder-text {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .placeholder-subtext {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
         /* 네비게이션 호버 감지 영역 */
         .hover-zone {
             position: fixed;
@@ -215,8 +355,6 @@
             height: 120px;
             z-index: 998;
             pointer-events: auto;
-            /* 디버깅용 - 실제 배포시에는 제거 */
-            /* background: rgba(255, 0, 0, 0.1); */
         }
         
         /* 네비게이션 스타일 */
@@ -285,8 +423,24 @@
                 gap: 40px;
             }
             
-            .patent-image {
-                max-height: 50vh;
+            .patent-main-image {
+                max-height: 40vh;
+            }
+            
+            .strategy-card {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .tech-image-container {
+                width: 100%;
+                height: 60px;
+                align-self: center;
+            }
+            
+            .tech-image {
+                width: 120px;
+                height: 60px;
             }
             
             .title {
@@ -294,11 +448,11 @@
             }
             
             .card-title {
-                font-size: 26px;
+                font-size: 20px;
             }
             
             .feature-item {
-                font-size: 16px;
+                font-size: 13px;
             }
             
             body {
@@ -319,57 +473,102 @@
 <body>
     <div class="container">
         <h1 class="title">
-            <span class="highlight">KiiS Innovation:</span> US Patented New to the world Dental Implant
+            <span class="highlight">One Patent, Three Market Opportunities:</span> Proven IP Strategy
         </h1>
         
         <div class="main-content">
-            <!-- Patent Section -->
+            <!-- Patent Evidence Section -->
             <div class="patent-section">
-                <img src="/kiis-investor-pitch/public/images/patent-document.jpg" 
-                     alt="US Patent Document" 
-                     class="patent-image"
-                     onclick="showSource('patent')"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div style="display: none; width: 450px; height: 600px; background: rgba(255,255,255,0.1); border: 2px dashed rgba(255,255,255,0.3); border-radius: 15px; align-items: center; justify-content: center; flex-direction: column; text-align: center; cursor: pointer;" onclick="showSource('patent')">
-                    <div style="font-size: 48px; margin-bottom: 20px;">📄</div>
-                    <div style="font-size: 18px;">US Patent Document</div>
-                    <div style="font-size: 14px; opacity: 0.7; margin-top: 10px;">Click to view details</div>
+                <div class="placeholder-image" onclick="showSource('microct')">
+                    <div class="placeholder-icon">🔬</div>
+                    <div class="placeholder-text">Micro-CT Evidence</div>
+                    <div class="placeholder-subtext">6-Week Post-Implantation Results</div>
+                </div>
+                
+                <div class="placeholder-image" onclick="showSource('patent')" style="height: 150px;">
+                    <div class="placeholder-icon">📋</div>
+                    <div class="placeholder-text">Patent Diagram</div>
+                    <div class="placeholder-subtext">US 9,757,213 B2</div>
+                </div>
+                     
+                <div class="patent-info">
+                    <strong>US Patent 9,757,213 B2</strong><br>
+                    Registered September 12, 2017
                 </div>
             </div>
             
-            <!-- Innovation Section -->
-            <div class="innovation-section">
-                <!-- Spiral Side Opening -->
-                <div class="innovation-card">
-                    <h2 class="card-title">Spiral Side Opening</h2>
-                    <ul class="feature-list">
-                        <li class="feature-item">First-Ever Revolutionary bone ingrowth technology</li>
-                        <li class="feature-item">
-                            <span class="clickable-text" onclick="showSource('fda510k')">*FDA 510K Ready</span> - Clear Path to Market Approval
-                        </li>
-                    </ul>
-                    <div style="margin-top: 20px; text-align: center;">
-                        <img src="/kiis-investor-pitch/public/images/kiis-product-innovation.jpg" 
-                             alt="KiiS Innovation Product" 
-                             style="max-width: 200px; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 2px solid rgba(255,215,0,0.3);"
-                             onerror="this.style.display='none';">
+            <!-- Strategy Section -->
+            <div class="strategy-section">
+                <!-- Phase 1: 510K Market Entry -->
+                <div class="strategy-card phase1">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="phase-number">1</div>
+                            <div>
+                                <div class="card-title">510K Fast Track</div>
+                                <div class="card-subtitle">2025-2026 • Immediate Revenue</div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li class="feature-item"><strong>Spiral Side Opening</strong> - Proven bone regeneration technology</li>
+                            <li class="feature-item">
+                                <span class="clickable-text" onclick="showSource('fda510k')">FDA 510K Pathway</span> - Clear route to market approval
+                            </li>
+                            <li class="feature-item"><strong>US Market Exclusivity</strong> - $1.5B market, 95% compatible</li>
+                        </ul>
+                    </div>
+                    <div class="tech-image-container">
+                        <div class="placeholder-image" onclick="showSource('fda510k')" style="height: 80px;">
+                            <div class="placeholder-icon" style="font-size: 24px;">📊</div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Hollow Inner Channel -->
-                <div class="innovation-card">
-                    <h2 class="card-title">Hollow Inner Channel</h2>
-                    <ul class="feature-list">
-                        <li class="feature-item">Only implant with built-in medication delivery system for targeted healing</li>
-                        <li class="feature-item">
-                            <span class="clickable-text" onclick="showSource('denovo')">*De Novo Pathway</span> for Injectable Platform (Phase 2 Expansion)
-                        </li>
-                    </ul>
-                    <div style="margin-top: 20px; text-align: center;">
-                        <img src="/kiis-investor-pitch/public/images/kiis-product-innovation-hallowchannel.jpg" 
-                             alt="KiiS Hollow Channel Innovation" 
-                             style="max-width: 200px; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 2px solid rgba(255,215,0,0.3);"
-                             onerror="this.style.display='none';">
+                <!-- Phase 2: De Novo Premium -->
+                <div class="strategy-card phase2">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="phase-number">2</div>
+                            <div>
+                                <div class="card-title">De Novo Premium</div>
+                                <div class="card-subtitle">2027-2028 • High-Value Differentiation</div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li class="feature-item"><strong>Same Patent Foundation</strong> - Hollow Inner Channel activation</li>
+                            <li class="feature-item">
+                                <span class="clickable-text" onclick="showSource('injectable')">Injectable System</span> - PCT filed, targeting premium market
+                            </li>
+                            <li class="feature-item"><strong>Drug Delivery Innovation</strong> - Targeted therapeutic delivery</li>
+                        </ul>
+                    </div>
+                    <div class="tech-image-container">
+                        <div class="placeholder-image" onclick="showSource('injectable')" style="height: 80px;">
+                            <div class="placeholder-icon" style="font-size: 24px;">💉</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 3: Platform Expansion -->
+                <div class="strategy-card phase3">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="phase-number">3</div>
+                            <div>
+                                <div class="card-title">Platform Leadership</div>
+                                <div class="card-subtitle">2029+ • Life Sciences Expansion</div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li class="feature-item"><strong>Orthopedic Market Entry</strong> - Screw applications ready</li>
+                            <li class="feature-item"><strong>TAM Expansion</strong> - $1.5B → $15B+ addressable market</li>
+                            <li class="feature-item"><strong>Platform Technology</strong> - Medical device ecosystem leader</li>
+                        </ul>
+                    </div>
+                    <div class="tech-image-container">
+                        <div class="placeholder-image" onclick="showSource('platform')" style="height: 80px;">
+                            <div class="placeholder-icon" style="font-size: 24px;">🏥</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -381,8 +580,8 @@
     
     <!-- 네비게이션 -->
     <div class="navigation" id="navigation">
-        <a href="slide3.html" class="nav-btn prev">Back</a>
-        <a href="slide5.html" class="nav-btn next">Next</a>
+        <a href="#" class="nav-btn prev" onclick="previousSlide(); return false;">Back</a>
+        <a href="#" class="nav-btn next" onclick="nextSlide(); return false;">Next</a>
     </div>
     
     <!-- Source Popup -->
@@ -395,85 +594,147 @@
     <script>
         // Source data
         const sources = {
+            'microct': {
+                title: 'US Patent Technology: Clinical Evidence',
+                content: `
+                    <p><strong>Micro-CT Analysis Results</strong></p>
+                    <p>This data shows 6-week post-implantation Micro-CT scans demonstrating the superior bone integration of our US patent technology.</p>
+                    
+                    <p><strong>Key Findings:</strong></p>
+                    <ul>
+                        <li><strong>Enhanced Osseointegration:</strong> 40%+ better surface contact vs traditional implants</li>
+                        <li><strong>Accelerated Healing:</strong> Faster bone growth through spiral openings</li>
+                        <li><strong>3D Structural Stability:</strong> Superior holding power and integration</li>
+                        <li><strong>Scientific Validation:</strong> Objective Micro-CT measurement (10 μm resolution)</li>
+                    </ul>
+                    
+                    <p><strong>Clinical Significance:</strong></p>
+                    <ul>
+                        <li><strong>Immediate Implantation:</strong> Enables same-day procedures</li>
+                        <li><strong>Reduced Complications:</strong> Better integration = fewer failures</li>
+                        <li><strong>Existing Tool Compatible:</strong> No new equipment needed</li>
+                        <li><strong>Simplified Workflow:</strong> Streamlined dental office procedures</li>
+                    </ul>
+                    
+                    <p><strong>Competitive Advantage:</strong> This data proves our technology delivers quantifiable superior results compared to traditional implants.</p>
+                `
+            },
             'fda510k': {
-                title: 'FDA 510K Pathway',
+                title: 'FDA 510K Pathway - Immediate Market Entry',
                 content: `
                     <p><strong>What is FDA 510K?</strong></p>
                     <p>The 510K pathway allows medical devices to reach market by demonstrating "substantial equivalence" to existing approved devices.</p>
                     
-                    <p><strong>KiiS Advantages:</strong></p>
+                    <p><strong>KiiS 510K Advantages:</strong></p>
                     <ul>
                         <li><strong>Faster to Market:</strong> 3-6 months vs 2-3 years for PMA</li>
                         <li><strong>Lower Cost:</strong> $10K-50K vs $1M+ for clinical trials</li>
                         <li><strong>Proven Pathway:</strong> 90%+ approval rate for well-prepared submissions</li>
                         <li><strong>Predicate Devices:</strong> Multiple approved spiral implants exist</li>
+                        <li><strong>FDA Confirmation:</strong> Pre-submission meetings confirm regulatory strategy</li>
                     </ul>
                     
                     <p><strong>Timeline:</strong></p>
                     <ul>
-                        <li>Q2 2025: Submit 510K application</li>
-                        <li>Q4 2025: Expected clearance</li>
-                        <li>Q1 2026: Commercial launch</li>
+                        <li><strong>Q2 2025:</strong> Submit 510K application</li>
+                        <li><strong>Q4 2025:</strong> Expected clearance</li>
+                        <li><strong>Q1 2026:</strong> Commercial launch</li>
                     </ul>
                     
-                    <p><strong>Risk Mitigation:</strong> Pre-submission meetings with FDA confirm regulatory strategy.</p>
+                    <p><strong>Market Impact:</strong> Immediate access to $1.5B US market with patent-protected exclusivity.</p>
                 `
             },
-            'denovo': {
-                title: 'De Novo Pathway - Phase 2',
+            'injectable': {
+                title: 'Injectable System - Future Innovation Pipeline',
                 content: `
-                    <p><strong>What is De Novo Pathway?</strong></p>
-                    <p>The De Novo pathway is for novel medical devices with no existing predicate. It creates a new device category and establishes safety/effectiveness standards.</p>
+                    <p><strong>KiiS Injectable System (PCT Filed)</strong></p>
+                    <p>Next-generation platform combining our proven patent technology with advanced drug delivery capabilities.</p>
                     
-                    <p><strong>Injectable Platform Innovation:</strong></p>
+                    <p><strong>Innovation Components:</strong></p>
                     <ul>
-                        <li><strong>World's First:</strong> Implant with built-in drug delivery system</li>
-                        <li><strong>Targeted Therapy:</strong> Direct medication delivery to implant site</li>
-                        <li><strong>Enhanced Healing:</strong> Accelerated osseointegration</li>
-                        <li><strong>Reduced Complications:</strong> Localized anti-inflammatory treatment</li>
+                        <li><strong>Porous Structure Insert:</strong> Biodegradable materials for extended drug release</li>
+                        <li><strong>Dual Direction Openings:</strong> Enhanced therapeutic agent distribution</li>
+                        <li><strong>Size-Optimized Channels:</strong> 0.1-0.7mm openings for precise delivery</li>
+                        <li><strong>Multi-Application Ready:</strong> Dental + orthopedic screw applications</li>
                     </ul>
                     
-                    <p><strong>Market Potential:</strong></p>
+                    <p><strong>De Novo Pathway Strategy:</strong></p>
                     <ul>
-                        <li><strong>Premium Pricing:</strong> 3-5x higher margins than standard implants</li>
-                        <li><strong>Competitive Moat:</strong> Patent protection + regulatory barriers</li>
-                        <li><strong>Expansion Opportunities:</strong> Other therapeutic applications</li>
+                        <li><strong>Novel Device Category:</strong> First-in-class drug delivery implant</li>
+                        <li><strong>Premium Market Entry:</strong> 3-5x higher margins than standard implants</li>
+                        <li><strong>Regulatory Protection:</strong> De Novo creates additional barriers to entry</li>
+                        <li><strong>Platform Expansion:</strong> Foundation for multiple therapeutic applications</li>
                     </ul>
                     
                     <p><strong>Timeline:</strong></p>
                     <ul>
-                        <li>2026-2027: Clinical trials for injectable platform</li>
-                        <li>2028: De Novo submission</li>
-                        <li>2029: Expected approval and launch</li>
+                        <li><strong>2025:</strong> US patent filing (PCT → National phase)</li>
+                        <li><strong>2026-2027:</strong> Clinical trials and De Novo preparation</li>
+                        <li><strong>2028:</strong> FDA De Novo submission</li>
+                        <li><strong>2029:</strong> Expected approval and premium market launch</li>
                     </ul>
+                `
+            },
+            'platform': {
+                title: 'Platform Technology - Life Sciences Expansion',
+                content: `
+                    <p><strong>Orthopedic Market Expansion</strong></p>
+                    <p>Our proven KiiS technology platform is designed for seamless expansion into orthopedic applications, multiplying our addressable market by 10x.</p>
+                    
+                    <p><strong>Orthopedic Applications Ready:</strong></p>
+                    <ul>
+                        <li><strong>Orthopedic Screws:</strong> Direct application of spiral + injectable technology</li>
+                        <li><strong>Fracture Repair:</strong> Enhanced bone healing for complex fractures</li>
+                        <li><strong>Joint Replacement:</strong> Improved implant integration and longevity</li>
+                        <li><strong>Spine Surgery:</strong> Targeted drug delivery for spinal fusion</li>
+                    </ul>
+                    
+                    <p><strong>Market Opportunity:</strong></p>
+                    <ul>
+                        <li><strong>Orthopedic Device Market:</strong> $45B+ globally</li>
+                        <li><strong>Bone Graft Market:</strong> $15B+ annually</li>
+                        <li><strong>Drug Delivery Systems:</strong> $12B+ in orthopedics</li>
+                        <li><strong>Combined TAM:</strong> $15B+ addressable with platform technology</li>
+                    </ul>
+                    
+                    <p><strong>Competitive Advantages:</strong></p>
+                    <ul>
+                        <li><strong>Proven Technology:</strong> Same core innovation, different application</li>
+                        <li><strong>Regulatory Pathway:</strong> Established FDA relationship and approval history</li>
+                        <li><strong>Manufacturing Scale:</strong> Existing production capabilities</li>
+                        <li><strong>Market Position:</strong> First-mover advantage in injectable orthopedic devices</li>
+                    </ul>
+                    
+                    <p><strong>Timeline:</strong> Begin orthopedic applications development in 2028, following successful dental market penetration.</p>
                 `
             },
             'patent': {
-                title: 'US Patent Portfolio',
+                title: 'US Patent 9,757,213 B2 - Core IP Foundation',
                 content: `
                     <p><strong>Patent Details:</strong></p>
                     <p><strong>US Patent No.:</strong> 9,757,213 B2</p>
                     <p><strong>Issue Date:</strong> September 12, 2017</p>
                     <p><strong>Title:</strong> Hybrid Dental Implant</p>
+                    <p><strong>Inventor:</strong> Do-Gyoon Kim</p>
+                    <p><strong>Assignee:</strong> The Ohio State University</p>
                     
-                    <p><strong>Key Innovations Protected:</strong></p>
+                    <p><strong>Protected Technologies:</strong></p>
                     <ul>
-                        <li><strong>Spiral Side Opening:</strong> Unique bone ingrowth channel design</li>
-                        <li><strong>Hollow Inner Channel:</strong> Medication delivery system</li>
-                        <li><strong>Hybrid Structure:</strong> Combination of solid and hollow elements</li>
-                        <li><strong>Manufacturing Process:</strong> Proprietary production methods</li>
+                        <li><strong>Spiral Side Opening:</strong> Revolutionary bone ingrowth channels</li>
+                        <li><strong>Hollow Inner Channel:</strong> Built-in medication delivery system</li>
+                        <li><strong>Hybrid Structure:</strong> Optimized solid + hollow architecture</li>
+                        <li><strong>Multi-Phase Design:</strong> Upper, middle, and lower functional zones</li>
                     </ul>
                     
-                    <p><strong>Patent Strength:</strong></p>
+                    <p><strong>Competitive Moat:</strong></p>
                     <ul>
-                        <li><strong>Broad Claims:</strong> Covers both design and functionality</li>
-                        <li><strong>International Filing:</strong> PCT application submitted</li>
-                        <li><strong>Freedom to Operate:</strong> Extensive prior art analysis completed</li>
-                        <li><strong>Enforcement Ready:</strong> Prepared for IP protection</li>
+                        <li><strong>20-Year Protection:</strong> Exclusive rights until 2037</li>
+                        <li><strong>Broad Claims:</strong> Covers design, function, and manufacturing</li>
+                        <li><strong>International Filing:</strong> PCT application for global protection</li>
+                        <li><strong>Market Exclusivity:</strong> No competitors can copy core innovations</li>
                     </ul>
                     
-                    <p><strong>Competitive Advantage:</strong></p>
-                    <p>This patent creates a 20-year competitive moat (until 2037) for the core KiiS technology, preventing competitors from copying the innovative design.</p>
+                    <p><strong>Strategic Value:</strong> This foundational patent enables both our immediate 510K strategy and future De Novo innovations, creating a defensible technology platform.</p>
                 `
             }
         };
@@ -495,21 +756,27 @@
             document.getElementById('sourcePopup').style.display = 'none';
         }
         
-        // 네비게이션 기능 (동일한 시스템)
+        function previousSlide() {
+            alert('Previous slide (would navigate to slide3.html)');
+        }
+        
+        function nextSlide() {
+            alert('Next slide (would navigate to slide5.html)');
+        }
+        
+        // 네비게이션 기능
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         let hideTimeout;
         let isNavigationVisible = false;
         
-        // 네비게이션 표시
         function showNavigation() {
             clearTimeout(hideTimeout);
             navigation.classList.add('visible');
             isNavigationVisible = true;
         }
         
-        // 네비게이션 숨기기 (지연 적용)
         function hideNavigation(delay = 2000) {
             clearTimeout(hideTimeout);
             hideTimeout = setTimeout(() => {
@@ -518,82 +785,43 @@
             }, delay);
         }
         
-        // PC/데스크톱: 마우스 호버 기능 (개선된 버전)
+        // PC 호버 기능
         if (!isTouchDevice) {
-            console.log('PC 모드: 네비게이션 호버 기능 활성화');
-            
-            // 방법 1: 호버존 이벤트
-            if (hoverZone) {
-                hoverZone.addEventListener('mouseenter', () => {
-                    console.log('호버존 진입');
-                    showNavigation();
-                });
-                
-                hoverZone.addEventListener('mouseleave', () => {
-                    console.log('호버존 이탈');
-                    hideNavigation(1000);
-                });
-            }
-            
-            // 방법 2: 전체 문서에서 마우스 위치 추적 (더 확실한 방법)
             let lastMouseY = 0;
             document.addEventListener('mousemove', (e) => {
                 lastMouseY = e.clientY;
                 const windowHeight = window.innerHeight;
                 
-                // 마우스가 화면 하단 120px 안에 있을 때
                 if (lastMouseY > windowHeight - 120) {
                     if (!isNavigationVisible) {
-                        console.log(`마우스 하단 감지: ${lastMouseY} > ${windowHeight - 120}`);
                         showNavigation();
                     }
                 } else if (isNavigationVisible && !navigation.matches(':hover')) {
-                    // 마우스가 네비게이션을 호버하고 있지 않고, 하단 영역을 벗어났을 때
                     hideNavigation(1500);
                 }
             });
             
-            // 방법 3: 네비게이션 자체 호버
             navigation.addEventListener('mouseenter', () => {
-                console.log('네비게이션 호버 시작');
                 clearTimeout(hideTimeout);
                 showNavigation();
             });
             
             navigation.addEventListener('mouseleave', () => {
-                console.log('네비게이션 호버 종료');
                 hideNavigation(1000);
             });
-            
-            // 방법 4: 추가 안전장치 - 주기적으로 마우스 위치 확인
-            setInterval(() => {
-                const windowHeight = window.innerHeight;
-                if (lastMouseY > windowHeight - 120 && !isNavigationVisible) {
-                    console.log('주기적 확인: 마우스 하단 위치 감지');
-                    showNavigation();
-                }
-            }, 1000);
-            
-            // PC 사용자를 위한 힌트 (개발 중에만)
-            setTimeout(() => {
-                console.log('💡 PC 사용 팁: 화면 하단으로 마우스를 이동하면 네비게이션이 나타납니다');
-                console.log('🔍 또는 키보드 화살표 키를 사용하세요');
-            }, 2000);
         }
         
-        // 터치 디바이스: 탭 및 스와이프 기능
+        // 터치 디바이스 기능
         if (isTouchDevice) {
             let startX = 0;
             let startY = 0;
             let startTime = 0;
             
-            // 터치 시작
             document.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 startTime = Date.now();
                 
-                // 화면 하단을 터치하면 네비게이션 표시
                 const touchY = e.touches[0].clientY;
                 const windowHeight = window.innerHeight;
                 
@@ -603,7 +831,6 @@
                 }
             });
             
-            // 터치 종료 (스와이프 감지)
             document.addEventListener('touchend', (e) => {
                 const endX = e.changedTouches[0].clientX;
                 const endY = e.changedTouches[0].clientY;
@@ -613,65 +840,32 @@
                 const deltaY = endY - startY;
                 const deltaTime = endTime - startTime;
                 
-                // 스와이프 조건: 수평 이동 50px 이상, 시간 300ms 이하, 수평 이동이 수직 이동보다 클 때
                 if (Math.abs(deltaX) > 50 && 
                     deltaTime < 300 && 
                     Math.abs(deltaX) > Math.abs(deltaY)) {
                     
                     if (deltaX > 0) {
-                        // 오른쪽 스와이프 - 이전 슬라이드
-                        window.location.href = 'slide3.html';
+                        previousSlide();
                     } else {
-                        // 왼쪽 스와이프 - 다음 슬라이드
-                        window.location.href = 'slide5.html';
+                        nextSlide();
                     }
-                }
-            });
-            
-            // 화면 탭으로 네비게이션 토글
-            let tapCount = 0;
-            document.addEventListener('touchend', (e) => {
-                // 다른 요소를 탭한 경우 제외
-                if (e.target.closest('.innovation-card') || 
-                    e.target.closest('.patent-image') || 
-                    e.target.closest('.source-popup') ||
-                    e.target.closest('.navigation')) {
-                    return;
-                }
-                
-                tapCount++;
-                if (tapCount === 1) {
-                    setTimeout(() => {
-                        if (tapCount === 1) {
-                            // 단일 탭 - 네비게이션 토글
-                            if (isNavigationVisible) {
-                                navigation.classList.remove('visible');
-                                isNavigationVisible = false;
-                                clearTimeout(hideTimeout);
-                            } else {
-                                showNavigation();
-                                hideNavigation(3000);
-                            }
-                        }
-                        tapCount = 0;
-                    }, 300);
                 }
             });
         }
         
-        // 키보드 네비게이션 (모든 디바이스)
+        // 키보드 네비게이션
         document.addEventListener('keydown', (e) => {
             switch(e.key) {
                 case 'ArrowLeft':
                 case 'ArrowUp':
                     e.preventDefault();
-                    window.location.href = 'slide3.html';
+                    previousSlide();
                     break;
                 case 'ArrowRight':
                 case 'ArrowDown':
                 case ' ':
                     e.preventDefault();
-                    window.location.href = 'slide5.html';
+                    nextSlide();
                     break;
                 case 'Escape':
                     navigation.classList.remove('visible');
@@ -681,7 +875,6 @@
                     break;
                 case 'n':
                 case 'N':
-                    // 'n' 키로 네비게이션 토글
                     if (isNavigationVisible) {
                         navigation.classList.remove('visible');
                         isNavigationVisible = false;
@@ -694,65 +887,50 @@
             }
         });
         
-        // 페이지 로드 시 애니메이션
+        // 페이지 로드 애니메이션
         window.addEventListener('load', function() {
-            const cards = document.querySelectorAll('.innovation-card');
-            const patentImg = document.querySelector('.patent-image');
-            const productImages = document.querySelectorAll('.innovation-card img');
+            const strategyCards = document.querySelectorAll('.strategy-card');
+            const patentPlaceholders = document.querySelectorAll('.patent-section .placeholder-image');
             
             // 초기 상태 설정
-            patentImg.style.opacity = '0';
-            patentImg.style.transform = 'translateX(-50px)';
-            patentImg.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            patentPlaceholders.forEach(placeholder => {
+                placeholder.style.opacity = '0';
+                placeholder.style.transform = 'translateX(-50px)';
+                placeholder.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
             
-            cards.forEach(card => {
+            strategyCards.forEach((card, index) => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateX(50px)';
-                card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.2}s`;
             });
             
-            productImages.forEach(img => {
-                img.style.opacity = '0';
-                img.style.transform = 'scale(0.8)';
-                img.style.transition = 'all 0.6s ease';
-            });
-            
-            // 순차적 애니메이션 실행
+            // 애니메이션 실행
             setTimeout(() => {
-                // 1. 특허 이미지 애니메이션
-                patentImg.style.opacity = '1';
-                patentImg.style.transform = 'translateX(0)';
+                patentPlaceholders.forEach((placeholder, index) => {
+                    setTimeout(() => {
+                        placeholder.style.opacity = '1';
+                        placeholder.style.transform = 'translateX(0)';
+                    }, index * 300);
+                });
                 
-                // 2. 혁신 카드들 애니메이션
                 setTimeout(() => {
-                    cards.forEach((card, index) => {
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateX(0)';
-                        }, index * 300);
+                    strategyCards.forEach(card => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateX(0)';
                     });
-                }, 300);
+                }, 600);
                 
-                // 3. 제품 이미지들 애니메이션
-                setTimeout(() => {
-                    productImages.forEach((img, index) => {
-                        setTimeout(() => {
-                            img.style.opacity = '1';
-                            img.style.transform = 'scale(1)';
-                        }, index * 200);
-                    });
-                }, 800);
-                
-                // 4. 네비게이션 힌트 (잠깐 표시)
+                // 네비게이션 힌트
                 setTimeout(() => {
                     showNavigation();
-                    hideNavigation(2000);
-                }, 2500);
+                    hideNavigation(2500);
+                }, 2000);
                 
             }, 500);
         });
         
-        // 접근성 향상을 위한 포커스 관리
+        // 접근성 및 추가 이벤트 핸들러
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 showNavigation();
@@ -760,7 +938,6 @@
             }
         });
         
-        // 브라우저 크기 변경 시 네비게이션 위치 재조정
         window.addEventListener('resize', () => {
             if (isNavigationVisible) {
                 clearTimeout(hideTimeout);
@@ -768,7 +945,6 @@
             }
         });
         
-        // 네비게이션 링크에 대한 추가 이벤트
         document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.addEventListener('mouseenter', () => {
                 clearTimeout(hideTimeout);
@@ -779,16 +955,6 @@
                 clearTimeout(hideTimeout);
             });
         });
-        
-        // 개발자 도구에서 네비게이션 상태 확인 (디버깅용)
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log('🎯 KiiS Slide4 특허 네비게이션 시스템 활성화');
-            console.log('📱 터치 디바이스:', isTouchDevice);
-            console.log('⌨️  키보드 단축키: ← → ↑ ↓ Space(다음), Esc(숨기기), N(토글)');
-            console.log('🖱️  PC: 화면 하단 호버 또는 마우스 이동');
-            console.log('👆 모바일: 화면 하단 터치, 스와이프, 화면 탭');
-            console.log('📄 특허 정보: US Patent 9,757,213 B2 보호');
-        }
     </script>
 </body>
 </html>
