@@ -479,13 +479,23 @@
         <div class="main-content">
             <!-- Patent Evidence Section -->
             <div class="patent-section">
-                <div class="placeholder-image" onclick="showSource('microct')">
+                <img src="/kiis-investor-pitch/public/images/slide4-us-patent-microct-6weeks.png" 
+                     alt="US Patent Technology: 6-Week Micro-CT Evidence" 
+                     class="patent-main-image"
+                     onclick="showSource('microct')"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="placeholder-image" onclick="showSource('microct')" style="display: none;">
                     <div class="placeholder-icon">🔬</div>
                     <div class="placeholder-text">Micro-CT Evidence</div>
                     <div class="placeholder-subtext">6-Week Post-Implantation Results</div>
                 </div>
                 
-                <div class="placeholder-image" onclick="showSource('patent')" style="height: 150px;">
+                <img src="/kiis-investor-pitch/public/images/slide4-us-patent-diagram-9757213b2.png" 
+                     alt="US 9,757,213 B2: Patented Innovation" 
+                     class="patent-diagram"
+                     onclick="showSource('patent')"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="placeholder-image" onclick="showSource('patent')" style="height: 150px; display: none;">
                     <div class="placeholder-icon">📋</div>
                     <div class="placeholder-text">Patent Diagram</div>
                     <div class="placeholder-subtext">US 9,757,213 B2</div>
@@ -518,7 +528,12 @@
                         </ul>
                     </div>
                     <div class="tech-image-container">
-                        <div class="placeholder-image" onclick="showSource('fda510k')" style="height: 80px;">
+                        <img src="/kiis-investor-pitch/public/images/slide4-us-patent-diagram-9757213b2.png" 
+                             alt="US Patent Spiral Technology" 
+                             class="tech-image"
+                             onclick="showSource('fda510k')"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-image" onclick="showSource('fda510k')" style="height: 80px; display: none;">
                             <div class="placeholder-icon" style="font-size: 24px;">📊</div>
                         </div>
                     </div>
@@ -543,7 +558,12 @@
                         </ul>
                     </div>
                     <div class="tech-image-container">
-                        <div class="placeholder-image" onclick="showSource('injectable')" style="height: 80px;">
+                        <img src="/kiis-investor-pitch/public/images/future-injectable-system-pct.png" 
+                             alt="Injectable System Technology" 
+                             class="tech-image"
+                             onclick="showSource('injectable')"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-image" onclick="showSource('injectable')" style="height: 80px; display: none;">
                             <div class="placeholder-icon" style="font-size: 24px;">💉</div>
                         </div>
                     </div>
@@ -566,7 +586,12 @@
                         </ul>
                     </div>
                     <div class="tech-image-container">
-                        <div class="placeholder-image" onclick="showSource('platform')" style="height: 80px;">
+                        <img src="/kiis-investor-pitch/public/images/slide4-tech-platform-orthopedic.png" 
+                             alt="Orthopedic Platform Technology" 
+                             class="tech-image"
+                             onclick="showSource('platform')"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-image" onclick="showSource('platform')" style="height: 80px; display: none;">
                             <div class="placeholder-icon" style="font-size: 24px;">🏥</div>
                         </div>
                     </div>
@@ -580,8 +605,8 @@
     
     <!-- 네비게이션 -->
     <div class="navigation" id="navigation">
-        <a href="#" class="nav-btn prev" onclick="previousSlide(); return false;">Back</a>
-        <a href="#" class="nav-btn next" onclick="nextSlide(); return false;">Next</a>
+        <a href="slide3.html" class="nav-btn prev">Back</a>
+        <a href="slide5.html" class="nav-btn next">Next</a>
     </div>
     
     <!-- Source Popup -->
@@ -756,15 +781,7 @@
             document.getElementById('sourcePopup').style.display = 'none';
         }
         
-        function previousSlide() {
-            alert('Previous slide (would navigate to slide3.html)');
-        }
-        
-        function nextSlide() {
-            alert('Next slide (would navigate to slide5.html)');
-        }
-        
-        // 네비게이션 기능
+        // 네비게이션 기능 (디자인 시스템에 맞춘 완전한 구현)
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -785,9 +802,12 @@
             }, delay);
         }
         
-        // PC 호버 기능
+        // PC 호버 기능 (4가지 안전장치)
         if (!isTouchDevice) {
             let lastMouseY = 0;
+            let checkInterval;
+            
+            // 1. 마우스 무브 이벤트
             document.addEventListener('mousemove', (e) => {
                 lastMouseY = e.clientY;
                 const windowHeight = window.innerHeight;
@@ -801,6 +821,7 @@
                 }
             });
             
+            // 2. 네비게이션 호버
             navigation.addEventListener('mouseenter', () => {
                 clearTimeout(hideTimeout);
                 showNavigation();
@@ -809,6 +830,22 @@
             navigation.addEventListener('mouseleave', () => {
                 hideNavigation(1000);
             });
+            
+            // 3. 호버존 감지
+            hoverZone.addEventListener('mouseenter', () => {
+                if (!isNavigationVisible) {
+                    showNavigation();
+                }
+            });
+            
+            // 4. 주기적 위치 확인
+            checkInterval = setInterval(() => {
+                if (lastMouseY > window.innerHeight - 120) {
+                    if (!isNavigationVisible) {
+                        showNavigation();
+                    }
+                }
+            }, 1000);
         }
         
         // 터치 디바이스 기능
@@ -845,9 +882,9 @@
                     Math.abs(deltaX) > Math.abs(deltaY)) {
                     
                     if (deltaX > 0) {
-                        previousSlide();
+                        window.location.href = 'slide3.html';
                     } else {
-                        nextSlide();
+                        window.location.href = 'slide5.html';
                     }
                 }
             });
@@ -859,13 +896,13 @@
                 case 'ArrowLeft':
                 case 'ArrowUp':
                     e.preventDefault();
-                    previousSlide();
+                    window.location.href = 'slide3.html';
                     break;
                 case 'ArrowRight':
                 case 'ArrowDown':
                 case ' ':
                     e.preventDefault();
-                    nextSlide();
+                    window.location.href = 'slide5.html';
                     break;
                 case 'Escape':
                     navigation.classList.remove('visible');
@@ -887,16 +924,16 @@
             }
         });
         
-        // 페이지 로드 애니메이션
+        // 페이지 로드 애니메이션 (디자인 시스템에 맞춘 순차적 등장)
         window.addEventListener('load', function() {
             const strategyCards = document.querySelectorAll('.strategy-card');
-            const patentPlaceholders = document.querySelectorAll('.patent-section .placeholder-image');
+            const patentImages = document.querySelectorAll('.patent-main-image, .patent-diagram');
             
             // 초기 상태 설정
-            patentPlaceholders.forEach(placeholder => {
-                placeholder.style.opacity = '0';
-                placeholder.style.transform = 'translateX(-50px)';
-                placeholder.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            patentImages.forEach(img => {
+                img.style.opacity = '0';
+                img.style.transform = 'translateX(-50px)';
+                img.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
             });
             
             strategyCards.forEach((card, index) => {
@@ -907,10 +944,10 @@
             
             // 애니메이션 실행
             setTimeout(() => {
-                patentPlaceholders.forEach((placeholder, index) => {
+                patentImages.forEach((img, index) => {
                     setTimeout(() => {
-                        placeholder.style.opacity = '1';
-                        placeholder.style.transform = 'translateX(0)';
+                        img.style.opacity = '1';
+                        img.style.transform = 'translateX(0)';
                     }, index * 300);
                 });
                 
@@ -921,7 +958,7 @@
                     });
                 }, 600);
                 
-                // 네비게이션 힌트
+                // 네비게이션 힌트 (디자인 시스템에 맞춘 2-4초 타이밍)
                 setTimeout(() => {
                     showNavigation();
                     hideNavigation(2500);
