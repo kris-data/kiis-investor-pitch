@@ -109,7 +109,7 @@
             background: rgba(255, 255, 255, 0.1);
             border: 2px dashed rgba(255, 255, 255, 0.3);
             border-radius: 15px;
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
@@ -157,6 +157,14 @@
         .image-label:hover {
             background: rgba(255, 215, 0, 0.1);
             border-color: #ffd700;
+        }
+        
+        .paper-reference {
+            font-size: 14px;
+            color: #94a3b8;
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
         }
         
         /* 혜택 섹션 */
@@ -539,151 +547,6 @@
                 margin-bottom: 12px;
             }
         }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 15px 10px;
-            }
-            
-            .main-header {
-                margin-bottom: 30px;
-            }
-            
-            .title {
-                font-size: 24px;
-                line-height: 1.1;
-                margin-bottom: 12px;
-            }
-            
-            .title-highlight {
-                font-size: 26px;
-            }
-            
-            .subtitle {
-                font-size: 14px;
-                line-height: 1.3;
-            }
-            
-            .main-content {
-                gap: 25px;
-            }
-            
-            .tech-image {
-                max-height: 25vh;
-            }
-            
-            .benefit-card {
-                padding: 15px 12px;
-                border-radius: 12px;
-                gap: 15px;
-            }
-            
-            .benefit-title {
-                font-size: 16px;
-                line-height: 1.2;
-            }
-            
-            .benefit-content {
-                font-size: 13px;
-                line-height: 1.4;
-            }
-            
-            .impact-section {
-                padding: 25px;
-            }
-            
-            .impact-title {
-                font-size: 20px;
-                margin-bottom: 15px;
-            }
-            
-            .impact-message {
-                font-size: 16px;
-                margin-bottom: 12px;
-            }
-            
-            .impact-subtitle {
-                font-size: 14px;
-            }
-            
-            .source-popup {
-                padding: 20px;
-                max-width: 95%;
-                margin: 10px;
-                border-radius: 15px;
-            }
-            
-            .source-popup h3 {
-                font-size: 16px;
-                margin-bottom: 12px;
-                padding-right: 30px;
-            }
-            
-            .source-popup p {
-                font-size: 13px;
-                margin-bottom: 10px;
-                line-height: 1.4;
-            }
-            
-            .source-popup li {
-                font-size: 13px;
-                margin-bottom: 6px;
-            }
-            
-            .close-btn {
-                font-size: 24px;
-                top: 12px;
-                right: 15px;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            body {
-                padding: 12px 8px;
-            }
-            
-            .title {
-                font-size: 22px;
-            }
-            
-            .title-highlight {
-                font-size: 24px;
-            }
-            
-            .subtitle {
-                font-size: 13px;
-            }
-            
-            .benefit-title {
-                font-size: 15px;
-            }
-            
-            .benefit-content {
-                font-size: 12px;
-            }
-            
-            .impact-title {
-                font-size: 18px;
-            }
-            
-            .impact-message {
-                font-size: 14px;
-            }
-            
-            .source-popup {
-                padding: 15px;
-                margin: 5px;
-            }
-            
-            .source-popup h3 {
-                font-size: 14px;
-            }
-            
-            .source-popup p {
-                font-size: 12px;
-                line-height: 1.3;
-            }
-        }
     </style>
 </head>
 <body>
@@ -704,11 +567,6 @@
             <!-- 과학적 증거 이미지 섹션 -->
             <div class="image-section" id="imageSection">
                 <div class="image-container">
-                    <img src="/kiis-investor-pitch/public/images/slide4-us-patent-microct-6weeks.png" 
-                         alt="6-Week Micro-CT Scientific Evidence" 
-                         class="tech-image"
-                         onclick="showSource('microct')"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" onclick="showSource('microct')">
                         <div class="placeholder-icon">🔬</div>
                         <div class="placeholder-text">Micro-CT Evidence</div>
@@ -718,17 +576,15 @@
                 </div>
                 
                 <div class="image-container">
-                    <img src="/kiis-investor-pitch/public/images/kiis-paradigm-shift.jpg" 
-                         alt="KiiS Paradigm Shift Technology" 
-                         class="tech-image"
-                         onclick="showSource('paradigmshift')"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-image" onclick="showSource('paradigmshift')">
                         <div class="placeholder-icon">⚡</div>
                         <div class="placeholder-text">Technology Breakthrough</div>
                         <div class="placeholder-subtext">Paradigm Shift Innovation</div>
                     </div>
                     <div class="image-label">Revolutionary Design Mechanism</div>
+                    <div class="paper-reference">
+                        Source: <span class="clickable-text" onclick="showSource('paper')">Journal of the Mechanical Behavior of Biomedical Materials (2020)</span>
+                    </div>
                 </div>
             </div>
             
@@ -787,8 +643,8 @@
     <!-- 네비게이션 -->
     <div class="hover-zone" id="hoverZone"></div>
     <div class="navigation" id="navigation">
-        <a href="slide4.html" class="nav-btn prev">Back</a>
-        <a href="slide6.html" class="nav-btn next">Next</a>
+        <a href="#" class="nav-btn prev" onclick="alert('Previous Slide')">Back</a>
+        <a href="#" class="nav-btn next" onclick="alert('Next Slide')">Next</a>
     </div>
     
     <!-- 팝업 시스템 -->
@@ -805,7 +661,7 @@
         let hideTimeout;
         let isPopupOpen = false;
         
-        // 과학적 증거 데이터 - 디자인 시스템 v2.1 기준
+        // 과학적 증거 데이터
         const sources = {
             'microct': {
                 title: '6-Week Micro-CT Scientific Evidence',
@@ -931,6 +787,31 @@
                     
                     <p><strong>Business Advantage:</strong> Zero equipment investment and minimal training requirements accelerate market adoption and reduce practice transition costs.</p>
                 `
+            },
+            'paper': {
+                title: 'Research Paper: Bone Regeneration into Side Openings and Hollow Inner Channel',
+                content: `
+                    <p><strong>Publication:</strong> Journal of the Mechanical Behavior of Biomedical Materials, Vol. 101 (2020)</p>
+                    <p><strong>Authors:</strong> Do-Gyoon Kim, Kyoung-Hwa Kim, Yethyeon Jo, Jue Yeon Lee, Yoon Jeong Park, et al.</p>
+                    
+                    <p><strong>핵심 연구 내용:</strong></p>
+                    <ul>
+                        <li><strong>연구 목적:</strong> 측면 개구부와 중공 내부 채널을 가진 임플란트의 골재생 능력 검증</li>
+                        <li><strong>실험 방법:</strong> 12개월간의 체내 실험을 통한 골재생 분석</li>
+                        <li><strong>주요 발견:</strong> 나선형 측면 개구부를 통한 3차원 골성장 확인</li>
+                        <li><strong>임상적 의의:</strong> 기존 임플란트 대비 우수한 골통합성 입증</li>
+                    </ul>
+                    
+                    <p><strong>Key Research Findings:</strong></p>
+                    <ul>
+                        <li><strong>Bone Regeneration:</strong> Successfully demonstrated bone ingrowth through spiral side openings</li>
+                        <li><strong>Inner Channel:</strong> Hollow design enables targeted drug delivery and enhanced healing</li>
+                        <li><strong>3D Anchoring:</strong> Spiral channels create mechanical interlocking superior to traditional threads</li>
+                        <li><strong>Clinical Validation:</strong> 12-month study confirms enhanced osseointegration</li>
+                    </ul>
+                    
+                    <p><strong>Scientific Impact:</strong> This peer-reviewed research provides the scientific foundation for KiiS technology, validating the revolutionary approach to implant design.</p>
+                `
             }
         };
         
@@ -950,10 +831,7 @@
             overlay.style.display = 'block';
             popup.style.display = 'block';
             
-            // 스크롤 방지
-            document.body.dataset.originalOverflow = document.body.style.overflow || 'auto';
             document.body.style.overflow = 'hidden';
-            
             isPopupOpen = true;
         }
         
@@ -964,11 +842,7 @@
             overlay.style.display = 'none';
             popup.style.display = 'none';
             
-            // 스크롤 복원
-            const originalOverflow = document.body.dataset.originalOverflow || 'auto';
-            document.body.style.overflow = originalOverflow;
-            delete document.body.dataset.originalOverflow;
-            
+            document.body.style.overflow = 'auto';
             isPopupOpen = false;
         }
         
@@ -990,116 +864,31 @@
             }, delay);
         }
         
-        // PC 네비게이션 (4가지 안전장치)
-        if (!isTouchDevice) {
-            // 1. 호버존 이벤트
+        // 이벤트 리스너
+        document.addEventListener('DOMContentLoaded', function() {
+            // 오버레이 클릭으로 닫기
+            document.getElementById('overlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideSource();
+                }
+            });
+            
+            // 닫기 버튼
+            document.getElementById('closeBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                hideSource();
+            });
+            
+            // 호버존 이벤트
             if (hoverZone) {
                 hoverZone.addEventListener('mouseenter', showNavigation);
                 hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
             }
-            
-            // 2. 마우스 위치 추적
-            let lastMouseY = 0;
-            document.addEventListener('mousemove', (e) => {
-                lastMouseY = e.clientY;
-                const windowHeight = window.innerHeight;
-                
-                if (lastMouseY > windowHeight - 120) {
-                    if (!isNavigationVisible) showNavigation();
-                } else if (isNavigationVisible && !navigation.matches(':hover')) {
-                    hideNavigation(1500);
-                }
-            });
-            
-            // 3. 네비게이션 호버
-            navigation.addEventListener('mouseenter', () => {
-                clearTimeout(hideTimeout);
-                showNavigation();
-            });
-            navigation.addEventListener('mouseleave', () => hideNavigation(1000));
-            
-            // 4. 주기적 확인
-            setInterval(() => {
-                if (lastMouseY > window.innerHeight - 120 && !isNavigationVisible) {
-                    showNavigation();
-                }
-            }, 1000);
-        }
-        
-        // 터치 디바이스 네비게이션
-        if (isTouchDevice) {
-            let startX = 0;
-            let startY = 0;
-            let startTime = 0;
-            
-            document.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-                startTime = Date.now();
-                
-                // 화면 하단 터치시 네비게이션 표시
-                if (e.touches[0].clientY > window.innerHeight - 120) {
-                    showNavigation();
-                    hideNavigation(3000);
-                }
-            });
-            
-            document.addEventListener('touchend', (e) => {
-                const endX = e.changedTouches[0].clientX;
-                const endY = e.changedTouches[0].clientY;
-                const endTime = Date.now();
-                
-                const deltaX = endX - startX;
-                const deltaY = endY - startY;
-                const deltaTime = endTime - startTime;
-                
-                // 스와이프 감지
-                if (Math.abs(deltaX) > 50 && 
-                    deltaTime < 300 && 
-                    Math.abs(deltaX) > Math.abs(deltaY)) {
-                    
-                    if (deltaX > 0) {
-                        window.location.href = 'slide4.html';
-                    } else {
-                        window.location.href = 'slide6.html';
-                    }
-                }
-            });
-            
-            // 화면 탭으로 네비게이션 토글
-            let tapCount = 0;
-            document.addEventListener('touchend', (e) => {
-                // 인터랙티브 요소 제외
-                if (e.target.closest('.benefit-card') || 
-                    e.target.closest('.tech-image') || 
-                    e.target.closest('.source-popup') ||
-                    e.target.closest('.navigation') ||
-                    e.target.closest('.overlay')) {
-                    return;
-                }
-                
-                tapCount++;
-                if (tapCount === 1) {
-                    setTimeout(() => {
-                        if (tapCount === 1) {
-                            if (isNavigationVisible) {
-                                navigation.classList.remove('visible');
-                                isNavigationVisible = false;
-                                clearTimeout(hideTimeout);
-                            } else {
-                                showNavigation();
-                                hideNavigation(3000);
-                            }
-                        }
-                        tapCount = 0;
-                    }, 300);
-                }
-            });
-        }
+        });
         
         // 키보드 네비게이션
         document.addEventListener('keydown', (e) => {
-            // ESC로 팝업 닫기 우선
             if (e.key === 'Escape') {
                 if (isPopupOpen) {
                     e.preventDefault();
@@ -1112,20 +901,19 @@
                 return;
             }
             
-            // 팝업 열린 상태에서는 네비게이션 키 무시
             if (isPopupOpen) return;
             
             switch(e.key) {
                 case 'ArrowLeft':
                 case 'ArrowUp':
                     e.preventDefault();
-                    window.location.href = 'slide4.html';
+                    alert('Previous Slide');
                     break;
                 case 'ArrowRight':
                 case 'ArrowDown':
                 case ' ':
                     e.preventDefault();
-                    window.location.href = 'slide6.html';
+                    alert('Next Slide');
                     break;
                 case 'n':
                 case 'N':
@@ -1141,55 +929,32 @@
             }
         });
         
-        // 팝업 이벤트 리스너
-        document.addEventListener('DOMContentLoaded', function() {
-            // 오버레이 클릭으로 닫기
-            document.getElementById('overlay').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    hideSource();
-                }
-            });
-            
-            // 닫기 버튼
-            document.getElementById('closeBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                hideSource();
-            });
-        });
-        
-        // 페이지 로드 애니메이션 - 과학적 증거 중심
+        // 페이지 로드 애니메이션
         window.addEventListener('load', function() {
             const header = document.querySelector('.main-header');
             const imageSection = document.querySelector('.image-section');
             const benefitsSection = document.querySelector('.benefits-section');
             const impactSection = document.querySelector('.impact-section');
             
-            // 순차적 애니메이션
             setTimeout(() => {
-                // 1. 헤더 - 과학적 신뢰성 메시지
                 header.style.opacity = '1';
                 header.style.transform = 'translateY(0)';
                 
-                // 2. 이미지 섹션 - 과학적 증거
                 setTimeout(() => {
                     imageSection.style.opacity = '1';
                     imageSection.style.transform = 'translateX(0)';
                 }, 400);
                 
-                // 3. 혜택 섹션 - 측정된 결과
                 setTimeout(() => {
                     benefitsSection.style.opacity = '1';
                     benefitsSection.style.transform = 'translateX(0)';
                 }, 800);
                 
-                // 4. 임팩트 섹션 - 과학적 결론
                 setTimeout(() => {
                     impactSection.style.opacity = '1';
                     impactSection.style.transform = 'translateY(0)';
                 }, 1200);
                 
-                // 5. 네비게이션 힌트
                 setTimeout(() => {
                     showNavigation();
                     hideNavigation(3000);
@@ -1198,28 +963,59 @@
             }, 300);
         });
         
-        // 접근성 향상
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                showNavigation();
-                hideNavigation(5000);
-            }
-        });
-        
-        window.addEventListener('resize', () => {
-            if (isNavigationVisible) {
-                clearTimeout(hideTimeout);
-                hideNavigation(1000);
-            }
-        });
-        
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
-            btn.addEventListener('focus', () => {
-                showNavigation();
-                clearTimeout(hideTimeout);
+        // 마우스 위치 추적 (PC 전용)
+        if (!isTouchDevice) {
+            let lastMouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) showNavigation();
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
+                }
             });
-        });
+        }
+        
+        // 터치 네비게이션
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                if (e.touches[0].clientY > window.innerHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        alert('Previous Slide');
+                    } else {
+                        alert('Next Slide');
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
