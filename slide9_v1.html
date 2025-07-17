@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KiiS - Product Positioning for Dual Market Expansion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 60px 80px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .title {
+            font-size: 42px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #ffffff;
+        }
+        
+        .title .highlight {
+            color: #ffd700;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            grid-template-rows: auto 1fr;
+            gap: 40px;
+            flex: 1;
+        }
+        
+        /* 상단 벤치마킹 섹션 */
+        .benchmark-section {
+            grid-column: 1 / 3;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #ffd700;
+        }
+        
+        .benchmark-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .benchmark-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .benchmark-item {
+            flex: 1;
+            padding: 0 20px;
+        }
+        
+        .benchmark-company {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .benchmark-strategy {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.3;
+        }
+        
+        .benchmark-arrow {
+            font-size: 24px;
+            color: #ffd700;
+            margin: 0 10px;
+        }
+        
+        .kiis-strategy {
+            background: linear-gradient(145deg, #1e40af, #1d4ed8);
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+        }
+        
+        .kiis-strategy .benchmark-company {
+            color: #ffd700;
+            font-size: 18px;
+        }
+        
+        /* 왼쪽: 차트 섹션 */
+        .charts-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            height: 100%;
+        }
+        
+        .chart-container {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 280px;
+        }
+        
+        .chart-container:hover {
+            background: rgba(0, 0, 0, 0.5);
+            border-color: #ffd700;
+        }
+        
+        .chart-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .chart-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            flex-grow: 1;
+            object-fit: contain;
+        }
+        
+        .chart-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .chart-placeholder {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .placeholder-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .placeholder-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* 오른쪽: 이중 전략 섹션 */
+        .dual-strategy {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            height: 100%;
+        }
+        
+        .strategy-card {
+            flex: 1;
+            padding: 30px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 280px;
+        }
+        
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .strategy-card.type12 {
+            background: linear-gradient(145deg, #1e40af, #2563eb);
+            border: 2px solid #3b82f6;
+        }
+        
+        .strategy-card.type34 {
+            background: linear-gradient(145deg, #059669, #10b981);
+            border: 2px solid #34d399;
+        }
+        
+        .strategy-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        
+        .strategy-icon {
+            font-size: 28px;
+            margin-right: 15px;
+        }
+        
+        .strategy-type {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .strategy-subtitle {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 3px;
+        }
+        
+        .strategy-main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .market-insight {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .insight-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .insight-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        
+        .insight-text strong {
+            color: white;
+            font-weight: bold;
+        }
+        
+        .strategy-product {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 12px;
+        }
+        
+        .strategy-tagline {
+            font-size: 17px;
+            font-style: italic;
+            color: white;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+        
+        .strategy-description {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        
+        .strategy-highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .info-icon {
+            font-size: 16px;
+            margin-left: 8px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 2px 4px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .info-icon:hover {
+            opacity: 1;
+            background: rgba(255, 215, 0, 0.4);
+            transform: scale(1.1);
+        }
+        
+        /* 팝업 시스템 */
+        .source-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        
+        .source-popup h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .source-popup p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .source-popup ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .source-popup li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .source-popup .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 28px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        
+        .source-popup .close-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            display: none;
+        }
+        
+        /* 네비게이션 호버 감지 영역 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+        
+        /* 네비게이션 스타일 */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
+        }
+        
+        @media (max-width: 1200px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 25px;
+            }
+            
+            .benchmark-section {
+                grid-column: 1;
+            }
+            
+            .benchmark-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .benchmark-arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+            
+            .dual-strategy,
+            .charts-section {
+                grid-column: 1;
+            }
+            
+            .strategy-card,
+            .chart-container {
+                min-height: 200px;
+                padding: 25px;
+            }
+            
+            .title {
+                font-size: 32px;
+                margin-bottom: 30px;
+            }
+            
+            .strategy-product {
+                font-size: 26px;
+            }
+            
+            .strategy-tagline {
+                font-size: 15px;
+            }
+            
+            .strategy-description {
+                font-size: 14px;
+            }
+            
+            .insight-text {
+                font-size: 13px;
+            }
+            
+            body {
+                padding: 40px;
+            }
+            
+            .navigation {
+                padding: 12px 20px;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">
+            1. Product Positioning for <span class="highlight">Dual Market Expansion</span>
+        </h1>
+        
+        <div class="content-grid">
+            <!-- 상단 벤치마킹 섹션 -->
+            <div class="benchmark-section">
+                <div class="benchmark-title">Current Leaders' Multi-Brand Strategy vs KiiS Innovation</div>
+                <div class="benchmark-content">
+                    <div class="benchmark-item">
+                        <div class="benchmark-company">Straumann Group</div>
+                        <div class="benchmark-strategy">Straumann (Premium)<br>+ Neodent (Value)</div>
+                    </div>
+                    
+                    <div class="benchmark-arrow">→</div>
+                    
+                    <div class="benchmark-item">
+                        <div class="benchmark-company">Envista Holdings</div>
+                        <div class="benchmark-strategy">Nobel Biocare (Premium)<br>+ Implant Direct (Value)</div>
+                    </div>
+                    
+                    <div class="benchmark-arrow">→</div>
+                    
+                    <div class="benchmark-item kiis-strategy">
+                        <div class="benchmark-company">KiiS Innovation</div>
+                        <div class="benchmark-strategy">One Technology<br><strong>Two Disruptions</strong></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 왼쪽: 차트 섹션 -->
+            <div class="charts-section">
+                <div class="chart-container" onclick="showSource('brandmarket')">
+                    <div class="chart-title">Brand Market Analysis</div>
+                    <img src="/kiis-investor-pitch/public/images/manufacturer-market-share.jpg" 
+                         alt="Manufacturer Market Share Analysis" 
+                         class="chart-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="chart-placeholder" style="display: none;">
+                        <div class="placeholder-icon">📊</div>
+                        <div class="placeholder-text">Brand Market<br>Analysis</div>
+                    </div>
+                </div>
+                
+                <div class="chart-container" onclick="showSource('positioning')">
+                    <div class="chart-title">Market Positioning Map</div>
+                    <img src="/kiis-investor-pitch/public/images/market-positioning-chart.jpg" 
+                         alt="Market Positioning Chart" 
+                         class="chart-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="chart-placeholder" style="display: none;">
+                        <div class="placeholder-icon">🎯</div>
+                        <div class="placeholder-text">Positioning<br>Map</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 오른쪽: 이중 전략 섹션 -->
+            <div class="dual-strategy">
+                <div class="strategy-card type12" onclick="showSource('type12strategy')">
+                    <div class="strategy-header">
+                        <div class="strategy-icon">💎</div>
+                        <div>
+                            <div class="strategy-type">Type 1-2 Market <span class="info-icon" onclick="showTypeInfo('type12')" title="클릭하여 자세히 보기">ℹ️</span></div>
+                            <div class="strategy-subtitle">Existing Premium Monopoly</div>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-main">
+                        <div class="market-insight">
+                            <div class="insight-title">📊 Market Reality</div>
+                            <div class="insight-text">
+                                • <strong>Premium Oligopoly:</strong> Straumann (30%), Nobel (25%), Astra (20%)<br>
+                                • <strong>75% market share</strong> concentrated in just 3 companies<br>
+                                • <strong>High price barrier</strong> excludes many potential patients
+                            </div>
+                        </div>
+                        
+                        <div class="strategy-product">KiiS-Plus</div>
+                        <div class="strategy-tagline">"Premium Performance at Mid-Tier Price"</div>
+                        <div class="strategy-description">
+                            <strong>Our Strategy:</strong> Disrupt this oligopoly with 
+                            <span class="strategy-highlight">30-40% lower price</span> while delivering 
+                            <span class="strategy-highlight">equivalent efficacy</span> through 510K pathway
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="strategy-card type34" onclick="showSource('type34strategy')">
+                    <div class="strategy-header">
+                        <div class="strategy-icon">🚀</div>
+                        <div>
+                            <div class="strategy-type">Type 3-4 Market <span class="info-icon" onclick="showTypeInfo('type34')" title="클릭하여 자세히 보기">ℹ️</span></div>
+                            <div class="strategy-subtitle">Current Product Limitations</div>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-main">
+                        <div class="market-insight">
+                            <div class="insight-title">🎯 Market Gap</div>
+                            <div class="insight-text">
+                                • <strong>Fragmented market:</strong> No clear leader in Type 3-4<br>
+                                • <strong>40% of patients</strong> excluded or face high failure rates<br>
+                                • <strong>Limited solutions</strong> for weak bone density cases
+                            </div>
+                        </div>
+                        
+                        <div class="strategy-product">KiiS-Relax</div>
+                        <div class="strategy-tagline">"Making the Impossible Possible"</div>
+                        <div class="strategy-description">
+                            <strong>Our Innovation:</strong> Create new premium category with 
+                            <span class="strategy-highlight">De Novo breakthrough</span> technology, 
+                            providing <span class="strategy-highlight">unique reliability</span> in challenging cases
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 네비게이션 호버 감지 영역 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    
+    <!-- 네비게이션 -->
+    <div class="navigation" id="navigation">
+        <a href="slide8.html" class="nav-btn prev">Back</a>
+        <a href="slide10.html" class="nav-btn next">Next</a>
+    </div>
+    
+    <!-- Source Popup -->
+    <div class="overlay" id="overlay" onclick="hideSource()"></div>
+    <div class="source-popup" id="sourcePopup">
+        <button class="close-btn" onclick="hideSource()">×</button>
+        <div id="sourceContent"></div>
+    </div>
+    
+    <script>
+        // Source data
+        const sources = {
+            'type12strategy': {
+                title: 'Type 1-2 Market Entry Strategy: KiiS-Plus',
+                content: `
+                    <p><strong>Current Market Situation:</strong></p>
+                    <p>Type 1-2 patients (60% of total) have healthy jawbone and are currently dominated by Straumann, Nobel Biocare at premium pricing.</p>
+                    
+                    <p><strong>KiiS-Plus Strategy:</strong></p>
+                    <ul>
+                        <li><strong>Price Disruption:</strong> 30-40% lower than existing premium products</li>
+                        <li><strong>Equivalent Performance:</strong> Same or better clinical outcomes</li>
+                        <li><strong>Single-Session Surgery:</strong> Time and cost savings</li>
+                        <li><strong>Doctor Convenience:</strong> Compatible with existing tools</li>
+                    </ul>
+                    
+                    <p><strong>Market Impact:</strong></p>
+                    <ul>
+                        <li>Disruption of existing premium monopoly structure</li>
+                        <li>Providing access to high-quality treatment for more patients</li>
+                        <li>Enhanced competitiveness for dental practitioners</li>
+                        <li>Overall medical cost reduction effect</li>
+                    </ul>
+                    
+                    <p><strong>Expected Results:</strong> Rapidly capture significant portion of existing premium market while setting new standards for cost-effective, high-quality solutions</p>
+                `
+            },
+            'type34strategy': {
+                title: 'Type 3-4 Market Leadership Strategy: KiiS-Relax',
+                content: `
+                    <p><strong>Current Market Situation:</strong></p>
+                    <p>Type 3-4 patients (40% of total) have weak jawbone, resulting in low success rates with existing implants and often requiring complex bone grafting procedures or exclusion from treatment.</p>
+                    
+                    <p><strong>KiiS-Relax Strategy:</strong></p>
+                    <ul>
+                        <li><strong>Technical Innovation:</strong> Spiral side openings provide strong fixation even in weak bone</li>
+                        <li><strong>Market Creation:</strong> Making previously impossible treatments possible</li>
+                        <li><strong>Premium Positioning:</strong> Pricing strategy appropriate for innovative technology</li>
+                        <li><strong>Medical Confidence:</strong> Building practitioner confidence through high success rates</li>
+                    </ul>
+                    
+                    <p><strong>Market Impact:</strong></p>
+                    <ul>
+                        <li>Providing new treatment opportunities for 40% of excluded patients</li>
+                        <li>Significantly reducing need for bone grafting procedures</li>
+                        <li>Improved treatment accessibility for elderly patients</li>
+                        <li>Overall expansion of implant market size</li>
+                    </ul>
+                    
+                    <p><strong>Expected Results:</strong> Securing leadership position in Type 3-4 market while creating a new premium category that previously didn't exist</p>
+                `
+            },
+            'type12': {
+                title: 'Type 1-2 환자 분류 설명',
+                content: `
+                    <p><strong>Type 1-2 환자란?</strong></p>
+                    <p>건강한 턱뼈를 가진 환자들로, 전체 임플란트 환자의 약 60%를 차지합니다.</p>
+                    
+                    <p><strong>특징:</strong></p>
+                    <ul>
+                        <li><strong>Type 1:</strong> 매우 건강한 턱뼈 (충분한 뼈 밀도와 두께)</li>
+                        <li><strong>Type 2:</strong> 양호한 턱뼈 (적절한 뼈 밀도, 약간의 흡수)</li>
+                        <li><strong>치료 성공률:</strong> 95% 이상의 높은 성공률</li>
+                        <li><strong>수술 복잡도:</strong> 상대적으로 간단한 임플란트 식립</li>
+                    </ul>
+                    
+                    <p><strong>현재 시장 상황:</strong></p>
+                    <ul>
+                        <li>Straumann, Nobel Biocare 등 프리미엄 브랜드가 독점</li>
+                        <li>높은 가격대 (임플란트당 $1,500-3,000)</li>
+                        <li>안정적이고 예측 가능한 치료 결과</li>
+                    </ul>
+                    
+                    <p><strong>KiiS-Plus의 기회:</strong> 동일한 품질을 30-40% 저렴한 가격으로 제공하여 시장 점유율 확대</p>
+                `
+            },
+            'type34': {
+                title: 'Type 3-4 환자 분류 설명',
+                content: `
+                    <p><strong>Type 3-4 환자란?</strong></p>
+                    <p>약하거나 부족한 턱뼈를 가진 환자들로, 전체 임플란트 환자의 약 40%를 차지합니다.</p>
+                    
+                    <p><strong>특징:</strong></p>
+                    <ul>
+                        <li><strong>Type 3:</strong> 연약한 턱뼈 (낮은 뼈 밀도, 상당한 흡수)</li>
+                        <li><strong>Type 4:</strong> 매우 연약한 턱뼈 (매우 낮은 밀도, 심각한 흡수)</li>
+                        <li><strong>치료 성공률:</strong> 기존 제품으로 70-80% (상대적으로 낮음)</li>
+                        <li><strong>수술 복잡도:</strong> 뼈 이식술 등 추가 시술 필요</li>
+                    </ul>
+                    
+                    <p><strong>현재 시장 문제점:</strong></p>
+                    <ul>
+                        <li>기존 임플란트의 높은 실패율</li>
+                        <li>복잡하고 비용이 많이 드는 뼈 이식 수술 필요</li>
+                        <li>치료 기간 연장 (6-12개월 추가)</li>
+                        <li>많은 환자들이 치료 포기</li>
+                    </ul>
+                    
+                    <p><strong>KiiS-Relax의 혁신:</strong> 나선형 측면 개구부로 약한 뼈에서도 강력한 고정력 제공, 뼈 이식 없이도 높은 성공률 달성</p>
+                `
+            },
+            'positioning': {
+                title: 'Market Positioning Analysis',
+                content: `
+                    <p><strong>Positioning Map Analysis:</strong></p>
+                    <p>This chart divides the implant market by price segment and patient type, showing the position of each brand.</p>
+                    
+                    <p><strong>Key Insights:</strong></p>
+                    <ul>
+                        <li><strong>Premium Concentration:</strong> Most major brands focus on Type 1-2 premium segment</li>
+                        <li><strong>Type 3-4 Gap:</strong> Lack of effective solutions in Type 3-4 area</li>
+                        <li><strong>KiiS Opportunity:</strong> Innovative positioning possible in both areas</li>
+                        <li><strong>Market Expansion:</strong> Simultaneous targeting of existing + new markets</li>
+                    </ul>
+                    
+                    <p><strong>Competitive Advantages:</strong></p>
+                    <ul>
+                        <li>KiiS-Plus: Price competitiveness in Type 1-2</li>
+                        <li>KiiS-Relax: Technical monopoly in Type 3-4</li>
+                        <li>Integrated Platform: Targeting two markets with one technology</li>
+                    </ul>
+                `
+            },
+            'brandmarket': {
+                title: 'Brand Market Share Analysis - 실제 데이터',
+                content: `
+                    <p><strong>미국 임플란트 시장 점유율 분석:</strong></p>
+                    <p>첨부해주신 실제 시장 데이터를 기반으로 한 분석입니다.</p>
+                    
+                    <p><strong>Premium 브랜드 (Type 1-2 시장):</strong></p>
+                    <ul>
+                        <li><strong>Straumann Group:</strong> 30% (최대 점유율)</li>
+                        <li><strong>Nobel Biocare:</strong> 25% (2위)</li>
+                        <li><strong>Astra Tech:</strong> 20% (3위)</li>
+                        <li><strong>합계:</strong> 75% (프리미엄 시장 과점 구조)</li>
+                    </ul>
+                    
+                    <p><strong>Type 3-4 시장:</strong></p>
+                    <ul>
+                        <li><strong>Zimmer Biomet:</strong> 15% (Type 3-4 시장의 주요 플레이어)</li>
+                        <li><strong>기타 브랜드들:</strong> Osstem(5%), Hiossen(2%), BioHorizons(4%)</li>
+                        <li><strong>시장 특징:</strong> 파편화되어 있으며 명확한 리더 부재</li>
+                    </ul>
+                    
+                    <p><strong>KiiS의 기회:</strong></p>
+                    <ul>
+                        <li><strong>Type 1-2:</strong> 프리미엄 과점 구조 파괴 (KiiS-Plus로 30-40% 저렴한 가격)</li>
+                        <li><strong>Type 3-4:</strong> 파편화된 시장에서 기술적 우위로 리더십 확보 (KiiS-Relax)</li>
+                        <li><strong>이중 전략:</strong> 단일 기술로 두 시장 동시 공략</li>
+                    </ul>
+                `
+            }
+        };
+        
+        function showTypeInfo(typeId) {
+            const source = sources[typeId];
+            if (source) {
+                document.getElementById('sourceContent').innerHTML = `
+                    <h3>${source.title}</h3>
+                    ${source.content}
+                `;
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('sourcePopup').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function showSource(sourceId) {
+            const source = sources[sourceId];
+            if (source) {
+                document.getElementById('sourceContent').innerHTML = `
+                    <h3>${source.title}</h3>
+                    ${source.content}
+                `;
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('sourcePopup').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function hideSource() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('sourcePopup').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 네비게이션 기능
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let hideTimeout;
+        let isNavigationVisible = false;
+        
+        // 네비게이션 표시
+        function showNavigation() {
+            clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+        
+        // 네비게이션 숨기기
+        function hideNavigation(delay = 2000) {
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+        
+        // PC/데스크톱: 마우스 호버 기능
+        if (!isTouchDevice) {
+            let lastMouseY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) {
+                        showNavigation();
+                    }
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
+                }
+            });
+            
+            navigation.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+                showNavigation();
+            });
+            
+            navigation.addEventListener('mouseleave', () => {
+                hideNavigation(1000);
+            });
+        }
+        
+        // 터치 디바이스: 터치 및 스와이프 기능
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                const touchY = e.touches[0].clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (touchY > windowHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        window.location.href = 'slide8.html';
+                    } else {
+                        window.location.href = 'slide10.html';
+                    }
+                }
+            });
+            
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                if (e.target.closest('.strategy-card') || 
+                    e.target.closest('.chart-container') || 
+                    e.target.closest('.benchmark-section') ||
+                    e.target.closest('.source-popup') ||
+                    e.target.closest('.navigation')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+        
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide8.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide10.html';
+                    break;
+                case 'Escape':
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                    clearTimeout(hideTimeout);
+                    hideSource();
+                    break;
+                case 'n':
+                case 'N':
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+            }
+        });
+        
+        // 페이지 로드 시 애니메이션
+        window.addEventListener('load', function() {
+            const elements = {
+                title: document.querySelector('.title'),
+                benchmark: document.querySelector('.benchmark-section'),
+                strategies: document.querySelectorAll('.strategy-card'),
+                charts: document.querySelectorAll('.chart-container')
+            };
+            
+            // 초기 상태 설정
+            Object.values(elements).forEach(el => {
+                if (el && el.length) {
+                    el.forEach(item => {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        item.style.transition = 'all 0.8s ease';
+                    });
+                } else if (el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'all 0.8s ease';
+                }
+            });
+            
+            // 순차적 애니메이션
+            setTimeout(() => {
+                if (elements.title) {
+                    elements.title.style.opacity = '1';
+                    elements.title.style.transform = 'translateY(0)';
+                }
+                
+                setTimeout(() => {
+                    if (elements.benchmark) {
+                        elements.benchmark.style.opacity = '1';
+                        elements.benchmark.style.transform = 'translateY(0)';
+                    }
+                }, 300);
+                
+                setTimeout(() => {
+                    elements.strategies.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    });
+                }, 600);
+                
+                setTimeout(() => {
+                    elements.charts.forEach((container, index) => {
+                        setTimeout(() => {
+                            container.style.opacity = '1';
+                            container.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    });
+                }, 800);
+                
+                setTimeout(() => {
+                    showNavigation();
+                    hideNavigation(2500);
+                }, 2200);
+                
+            }, 500);
+        });
+        
+        // 브라우저 크기 변경 대응
+        window.addEventListener('resize', () => {
+            if (isNavigationVisible) {
+                clearTimeout(hideTimeout);
+                hideNavigation(1000);
+            }
+        });
+        
+        // ESC 키로 팝업 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideSource();
+            }
+        });
+    </script>
+</body>
+</html>
