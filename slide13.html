@@ -662,38 +662,14 @@
                 </div>
             </div>
 
-            <!-- 실행 마일스톤 -->
-            <div class="milestone-section">
-                <div class="section-title">Risk-Mitigated Execution Roadmap</div>
-                <div class="milestone-timeline">
-                    <div class="milestone-item current">
-                        <div class="milestone-quarter">Q3 2025</div>
-                        <div class="milestone-title">Funding Close</div>
-                        <div class="milestone-desc">Series A completion, sales team scaling</div>
-                    </div>
-                    <div class="milestone-item future">
-                        <div class="milestone-quarter">Q4 2025</div>
-                        <div class="milestone-title">FDA Submission</div>
-                        <div class="milestone-desc">510K filing, manufacturing partnership finalized</div>
-                    </div>
-                    <div class="milestone-item future">
-                        <div class="milestone-quarter">Q2 2026</div>
-                        <div class="milestone-title">Market Approval</div>
-                        <div class="milestone-desc">FDA clearance, commercial production ready</div>
-                    </div>
-                    <div class="milestone-item future">
-                        <div class="milestone-quarter">Q4 2026</div>
-                        <div class="milestone-title">Revenue Launch</div>
-                        <div class="milestone-desc">First commercial sales, customer validation</div>
-                    </div>
-                </div>
-            </div>
+
 
             <!-- CTA 섹션 -->
             <div class="cta-section">
-                <div class="cta-title">Join Us in Transforming 178M Lives</div>
+                <div class="cta-title">많은 사람들의 삶을 바꾸는 이 여정을</div>
                 <div class="cta-text">
-                    This isn't just an investment opportunity—it's a chance to be part of a mission that will fundamentally change how patients access dental implant treatments. Together, we can build something meaningful.
+                    함께 동참할 파트너를 찾습니다.<br><br>
+                    이것은 단순한 투자 기회가 아닙니다. 178만 명의 환자들이 더 나은 치료를 받을 수 있도록 세상을 바꾸는 혁명에 동참하는 것입니다. 함께 의미 있는 변화를 만들어 가요.
                 </div>
                 <div class="cta-buttons">
                     <a href="mailto:invest@kiis.com" class="cta-button primary">
@@ -749,8 +725,8 @@
             const termCards = document.querySelectorAll('.term-card');
             const fundingSection = document.querySelector('.funding-section');
             const fundingItems = document.querySelectorAll('.funding-item');
-            const milestoneSection = document.querySelector('.milestone-section');
-            const milestoneItems = document.querySelectorAll('.milestone-item');
+            const milestoneSection = null;
+            const milestoneItems = [];
             const ctaSection = document.querySelector('.cta-section');
             
             // 헤더 애니메이션
@@ -781,30 +757,16 @@
                 });
             }, 1500);
             
-            // 마일스톤 섹션
-            setTimeout(() => {
-                milestoneSection.classList.add('visible');
-            }, 2000);
-            
-            // 마일스톤 아이템들
-            setTimeout(() => {
-                milestoneItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, index * 200);
-                });
-            }, 2300);
-            
             // CTA 섹션
             setTimeout(() => {
                 ctaSection.classList.add('visible');
-            }, 2800);
+            }, 1800);
             
             // 네비게이션 힌트 표시
             setTimeout(() => {
                 showNavigation();
                 hideNavigation(3000);
-            }, 3200);
+            }, 2200);
         }
 
         // 호버존 이벤트
