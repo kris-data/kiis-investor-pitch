@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>KiiS Presentation</title>
+    <title>KiiS - For Every Patient Who Deserves to Smile Again</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +18,8 @@
             display: flex;
             align-items: center;
             padding: 0 80px;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
         
         .container {
@@ -34,6 +35,9 @@
             flex: 1;
             padding-right: 60px;
             max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .right-side {
@@ -42,37 +46,105 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+        }
+        
+        .patient-impact {
+            font-size: 20px;
+            color: #e0e7ff;
+            margin-bottom: 40px;
+            line-height: 1.4;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .highlight-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd700;
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .highlight-number:hover {
+            color: #fff;
+            text-decoration-color: #ffd700;
+            transform: scale(1.05);
+        }
+        
+        .brand-section {
+            margin-bottom: 50px;
         }
         
         .logo {
             font-size: 120px;
             font-weight: bold;
             color: #ffd700;
-            margin-bottom: 30px;
+            margin-bottom: 8px;
             text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
             line-height: 1;
+            opacity: 0;
+            transform: translateY(-30px) scale(0.8);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .subtitle {
-            font-size: 32px;
-            color: #e0e7ff;
-            margin-bottom: 15px;
-            font-weight: 300;
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 0;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .company {
-            font-size: 24px;
-            color: #e0e7ff;
-            margin-bottom: 60px;
-            font-weight: 300;
-        }
-        
-        .tagline {
-            font-size: 42px;
+        .mission-statement {
+            font-size: 38px;
             font-style: italic;
             line-height: 1.3;
             max-width: 600px;
+            font-weight: 600;
+            color: #ffd700;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .tagline-subtitle {
+            font-size: 16px;
+            color: #e0e7ff;
+            font-style: normal;
             font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .company {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 300;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+        
+        .company-name {
+            color: #ffd700;
+            font-weight: 500;
         }
         
         .implant-image {
@@ -82,6 +154,9 @@
             filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.7)) brightness(1.1) contrast(1.2);
             border-radius: 20px;
             transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateX(50px) scale(0.9);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .implant-image:hover {
@@ -116,6 +191,70 @@
             font-family: monospace;
         }
         
+        /* 데이터 소스 팝업 */
+        .data-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+            max-width: 500px;
+            width: 90%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        
+        .data-popup h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .data-popup p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .data-popup .source {
+            font-size: 12px;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 24px;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            display: none;
+        }
+        
         /* 네비게이션 호버 감지 영역 */
         .hover-zone {
             position: fixed;
@@ -125,8 +264,6 @@
             height: 120px;
             z-index: 998;
             pointer-events: auto;
-            /* 디버깅용 - 실제 배포시에는 제거 */
-            /* background: rgba(255, 0, 0, 0.1); */
         }
         
         /* 네비게이션 스타일 */
@@ -168,7 +305,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            min-width: 100px;
+            min-width: 140px;
             justify-content: center;
         }
         
@@ -183,29 +320,93 @@
             font-size: 16px;
         }
         
+        /* 스와이프 힌트 */
+        .swipe-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 215, 0, 0.9);
+            color: #1e40af;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1000;
+            display: none;
+            animation: fadeInOut 3s ease-in-out forwards;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
+        
         @media (max-width: 1200px) {
             .container {
                 flex-direction: column;
                 text-align: center;
                 padding: 40px 0;
+                height: auto;
+                min-height: 100vh;
+                justify-content: center;
             }
+            
+            body {
+                align-items: flex-start;
+                padding-top: 60px;
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+            
             .left-side {
                 padding-right: 0;
                 margin-bottom: 40px;
                 max-width: 100%;
+                text-align: center;
             }
+            
+            .brand-section {
+                margin-bottom: 30px;
+            }
+            
+            .patient-impact {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+            
+            .highlight-number {
+                font-size: 24px;
+            }
+            
             .logo {
                 font-size: 80px;
             }
+            
             .subtitle {
-                font-size: 24px;
+                font-size: 16px;
             }
-            .company {
-                font-size: 18px;
-            }
-            .tagline {
+            
+            .mission-statement {
                 font-size: 28px;
+                margin-bottom: 20px;
             }
+            
+            .tagline-subtitle {
+                font-size: 14px;
+                margin-bottom: 30px;
+            }
+            
+            .company {
+                position: fixed;
+                bottom: 120px;
+                transform: translateX(-50%);
+                margin-top: 0;
+                font-size: 12px;
+            }
+            
             .implant-image {
                 max-width: 350px;
             }
@@ -217,6 +418,60 @@
             .nav-btn {
                 padding: 10px 16px;
                 font-size: 12px;
+                min-width: 120px;
+            }
+            
+            .data-popup {
+                padding: 20px;
+                max-width: 95%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+                padding-top: 40px;
+            }
+            
+            .patient-impact {
+                font-size: 16px;
+            }
+            
+            .highlight-number {
+                font-size: 20px;
+            }
+            
+            .logo {
+                font-size: 60px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .mission-statement {
+                font-size: 24px;
+            }
+            
+            .company {
+                font-size: 11px;
+            }
+            
+            .implant-image {
+                max-width: 280px;
+            }
+        }
+        
+        /* 스크롤 가능하도록 높이 조정 */
+        @media (max-height: 800px) {
+            body {
+                align-items: flex-start;
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+            
+            .container {
+                min-height: auto;
             }
         }
     </style>
@@ -224,11 +479,22 @@
 <body>
     <div class="container">
         <div class="left-side">
-            <div class="logo">KiiS</div>
-            <div class="subtitle">(Kim's Ingrowth Implant System)</div>
-            <div class="company">introduced by HUMED LIFESCIENCES</div>
-            <div class="tagline">
-                "Transforming patient access to Dental Implant treatments to those that need it the most"
+            <div class="patient-impact">
+                In the United States, 
+                <span class="highlight-number" onclick="showDataSource()">178 Million Americans</span>
+                are missing at least one tooth
+            </div>
+            
+            <div class="brand-section">
+                <div class="logo">KiiS</div>
+                <div class="subtitle">Kim's Ingrowth Implant System</div>
+            </div>
+            
+            <div class="mission-statement">
+                We exist to serve them
+            </div>
+            <div class="tagline-subtitle">
+                "Making premium dental care accessible to every patient who needs it"
             </div>
         </div>
         
@@ -245,43 +511,73 @@
             </div>
         </div>
     </div>
+    
+    <!-- 회사 정보를 가장 하단으로 배치 -->
+    <div class="company">
+        introduced by <span class="company-name">HUMED LIFESCIENCES</span>
+    </div>
 
     <!-- 네비게이션 호버 감지 영역 -->
     <div class="hover-zone" id="hoverZone"></div>
     
-    <!-- 네비게이션 (Next만) -->
+    <!-- 네비게이션 -->
     <div class="navigation" id="navigation">
-        <a href="slide2.html" class="nav-btn next">Start Presentation</a>
+        <a href="slide2.html" class="nav-btn next">Start Their Story</a>
+    </div>
+    
+    <!-- 스와이프 힌트 -->
+    <div class="swipe-hint" id="swipeHint">👈 Swipe left to continue</div>
+    
+    <!-- 데이터 소스 팝업 -->
+    <div class="popup-overlay" id="popupOverlay" onclick="hideDataSource()"></div>
+    <div class="data-popup" id="dataPopup">
+        <button class="popup-close" onclick="hideDataSource()">×</button>
+        <h3>📊 Data Source</h3>
+        <p><strong>178 Million Americans Missing At Least One Tooth</strong></p>
+        <p>This statistic represents the current total number of U.S. adults who have lost one or more permanent teeth, not annual new cases.</p>
+        <p><strong>Additional Context:</strong></p>
+        <p>• 40 million Americans are missing all teeth</p>
+        <p>• Only ~3 million Americans currently have dental implants</p>
+        <p>• 5.7% implant penetration rate (lowest among developed countries)</p>
+        <div class="source">
+            Source: American College of Prosthodontists (ACP), American Academy of Implant Dentistry (AAID), 2024
+        </div>
     </div>
 
     <script>
         const img = document.getElementById('main-image');
         const placeholder = document.getElementById('placeholder');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         
+        // 이미지 에러 처리
         img.addEventListener('error', function() {
             img.style.display = 'none';
             placeholder.style.display = 'flex';
         });
         
-        img.addEventListener('load', function() {
-            console.log('Image loaded successfully!');
-        });
+        // 데이터 소스 팝업 함수
+        function showDataSource() {
+            document.getElementById('popupOverlay').style.display = 'block';
+            document.getElementById('dataPopup').style.display = 'block';
+        }
         
-        // 네비게이션 기능 (동일한 시스템, 첫 페이지 특화)
+        function hideDataSource() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.getElementById('dataPopup').style.display = 'none';
+        }
+        
+        // 네비게이션 시스템
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         let hideTimeout;
         let isNavigationVisible = false;
         
-        // 네비게이션 표시
         function showNavigation() {
             clearTimeout(hideTimeout);
             navigation.classList.add('visible');
             isNavigationVisible = true;
         }
         
-        // 네비게이션 숨기기 (지연 적용)
         function hideNavigation(delay = 2000) {
             clearTimeout(hideTimeout);
             hideTimeout = setTimeout(() => {
@@ -290,92 +586,69 @@
             }, delay);
         }
         
-        // PC/데스크톱: 마우스 호버 기능 (개선된 버전)
+        // PC 네비게이션 (4가지 안전장치)
         if (!isTouchDevice) {
-            console.log('PC 모드: 네비게이션 호버 기능 활성화');
-            
-            // 방법 1: 호버존 이벤트
+            // 1. 호버존 이벤트
             if (hoverZone) {
-                hoverZone.addEventListener('mouseenter', () => {
-                    console.log('호버존 진입');
-                    showNavigation();
-                });
-                
-                hoverZone.addEventListener('mouseleave', () => {
-                    console.log('호버존 이탈');
-                    hideNavigation(1000);
-                });
+                hoverZone.addEventListener('mouseenter', showNavigation);
+                hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
             }
             
-            // 방법 2: 전체 문서에서 마우스 위치 추적 (더 확실한 방법)
+            // 2. 마우스 위치 추적
             let lastMouseY = 0;
             document.addEventListener('mousemove', (e) => {
                 lastMouseY = e.clientY;
                 const windowHeight = window.innerHeight;
                 
-                // 마우스가 화면 하단 120px 안에 있을 때
                 if (lastMouseY > windowHeight - 120) {
-                    if (!isNavigationVisible) {
-                        console.log(`마우스 하단 감지: ${lastMouseY} > ${windowHeight - 120}`);
-                        showNavigation();
-                    }
+                    if (!isNavigationVisible) showNavigation();
                 } else if (isNavigationVisible && !navigation.matches(':hover')) {
-                    // 마우스가 네비게이션을 호버하고 있지 않고, 하단 영역을 벗어났을 때
                     hideNavigation(1500);
                 }
             });
             
-            // 방법 3: 네비게이션 자체 호버
+            // 3. 네비게이션 호버
             navigation.addEventListener('mouseenter', () => {
-                console.log('네비게이션 호버 시작');
                 clearTimeout(hideTimeout);
                 showNavigation();
             });
+            navigation.addEventListener('mouseleave', () => hideNavigation(1000));
             
-            navigation.addEventListener('mouseleave', () => {
-                console.log('네비게이션 호버 종료');
-                hideNavigation(1000);
-            });
-            
-            // 방법 4: 추가 안전장치 - 주기적으로 마우스 위치 확인
+            // 4. 주기적 확인
             setInterval(() => {
-                const windowHeight = window.innerHeight;
-                if (lastMouseY > windowHeight - 120 && !isNavigationVisible) {
-                    console.log('주기적 확인: 마우스 하단 위치 감지');
+                if (lastMouseY > window.innerHeight - 120 && !isNavigationVisible) {
                     showNavigation();
                 }
             }, 1000);
-            
-            // PC 사용자를 위한 힌트 (개발 중에만)
-            setTimeout(() => {
-                console.log('💡 PC 사용 팁: 화면 하단으로 마우스를 이동하면 네비게이션이 나타납니다');
-                console.log('🔍 또는 키보드 화살표 키/스페이스바를 사용하세요');
-            }, 2000);
         }
         
-        // 터치 디바이스: 탭 및 스와이프 기능
+        // 터치 디바이스 네비게이션
         if (isTouchDevice) {
             let startX = 0;
             let startY = 0;
             let startTime = 0;
             
-            // 터치 시작
+            // 스와이프 힌트 표시
+            setTimeout(() => {
+                const hint = document.getElementById('swipeHint');
+                hint.style.display = 'block';
+                setTimeout(() => {
+                    hint.style.display = 'none';
+                }, 3000);
+            }, 4000);
+            
             document.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 startTime = Date.now();
                 
-                // 화면 하단을 터치하면 네비게이션 표시
-                const touchY = e.touches[0].clientY;
-                const windowHeight = window.innerHeight;
-                
-                if (touchY > windowHeight - 120) {
+                // 하단 터치시 네비게이션 표시
+                if (e.touches[0].clientY > window.innerHeight - 120) {
                     showNavigation();
                     hideNavigation(3000);
                 }
             });
             
-            // 터치 종료 (스와이프 감지) - 첫 페이지는 왼쪽 스와이프만
             document.addEventListener('touchend', (e) => {
                 const endX = e.changedTouches[0].clientX;
                 const endY = e.changedTouches[0].clientY;
@@ -385,50 +658,38 @@
                 const deltaY = endY - startY;
                 const deltaTime = endTime - startTime;
                 
-                // 스와이프 조건: 수평 이동 50px 이상, 시간 300ms 이하, 수평 이동이 수직 이동보다 클 때
-                if (Math.abs(deltaX) > 50 && 
-                    deltaTime < 300 && 
+                // 개선된 스와이프 감지
+                if (Math.abs(deltaX) > 30 && 
+                    deltaTime < 500 && 
                     Math.abs(deltaX) > Math.abs(deltaY)) {
                     
-                    // 첫 페이지에서는 왼쪽 스와이프(다음)만 가능
-                    if (deltaX < 0) {
-                        // 왼쪽 스와이프 - 다음 슬라이드
-                        window.location.href = 'slide2.html';
+                    if (deltaX < 0) { // 좌측 스와이프
+                        // 시각적 피드백
+                        document.body.style.transition = 'transform 0.3s ease';
+                        document.body.style.transform = 'translateX(-100px)';
+                        setTimeout(() => {
+                            window.location.href = 'slide2.html';
+                        }, 150);
                     }
-                    // 오른쪽 스와이프는 첫 페이지에서 무시
                 }
             });
             
-            // 화면 탭으로 네비게이션 토글
-            let tapCount = 0;
-            document.addEventListener('touchend', (e) => {
-                // 다른 요소를 탭한 경우 제외
-                if (e.target.closest('.implant-image') || 
-                    e.target.closest('.navigation')) {
-                    return;
-                }
+            // 실시간 스와이프 피드백
+            document.addEventListener('touchmove', (e) => {
+                const currentX = e.touches[0].clientX;
+                const deltaX = currentX - startX;
                 
-                tapCount++;
-                if (tapCount === 1) {
-                    setTimeout(() => {
-                        if (tapCount === 1) {
-                            // 단일 탭 - 네비게이션 토글
-                            if (isNavigationVisible) {
-                                navigation.classList.remove('visible');
-                                isNavigationVisible = false;
-                                clearTimeout(hideTimeout);
-                            } else {
-                                showNavigation();
-                                hideNavigation(3000);
-                            }
-                        }
-                        tapCount = 0;
-                    }, 300);
+                if (Math.abs(deltaX) > 20) {
+                    const progress = Math.min(Math.abs(deltaX) / 100, 0.1);
+                    if (deltaX < 0) {
+                        document.body.style.transform = `translateX(${deltaX * 0.1}px)`;
+                        document.body.style.opacity = 1 - progress;
+                    }
                 }
             });
         }
         
-        // 키보드 네비게이션 (모든 디바이스) - 첫 페이지는 다음으로만 이동
+        // 키보드 네비게이션
         document.addEventListener('keydown', (e) => {
             switch(e.key) {
                 case 'ArrowRight':
@@ -439,13 +700,13 @@
                     window.location.href = 'slide2.html';
                     break;
                 case 'Escape':
+                    hideDataSource();
                     navigation.classList.remove('visible');
                     isNavigationVisible = false;
                     clearTimeout(hideTimeout);
                     break;
                 case 'n':
                 case 'N':
-                    // 'n' 키로 네비게이션 토글
                     if (isNavigationVisible) {
                         navigation.classList.remove('visible');
                         isNavigationVisible = false;
@@ -455,85 +716,76 @@
                         hideNavigation(3000);
                     }
                     break;
-                // 첫 페이지에서는 뒤로가기 키 무시
+                // 첫 페이지이므로 뒤로가기 무시
                 case 'ArrowLeft':
                 case 'ArrowUp':
                 case 'Backspace':
                     e.preventDefault();
-                    // 아무것도 하지 않음 (첫 페이지이므로)
                     break;
             }
         });
         
-        // 페이지 로드 시 애니메이션
+        // 페이지 로드 애니메이션
         window.addEventListener('load', function() {
+            const patientImpact = document.querySelector('.patient-impact');
             const logo = document.querySelector('.logo');
             const subtitle = document.querySelector('.subtitle');
             const company = document.querySelector('.company');
-            const tagline = document.querySelector('.tagline');
+            const missionStatement = document.querySelector('.mission-statement');
+            const taglineSubtitle = document.querySelector('.tagline-subtitle');
             const implantImage = document.querySelector('.implant-image');
-            
-            // 초기 상태 설정
-            logo.style.opacity = '0';
-            logo.style.transform = 'translateY(-30px) scale(0.8)';
-            logo.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            subtitle.style.opacity = '0';
-            subtitle.style.transform = 'translateX(-50px)';
-            subtitle.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            company.style.opacity = '0';
-            company.style.transform = 'translateX(-50px)';
-            company.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            tagline.style.opacity = '0';
-            tagline.style.transform = 'translateY(30px)';
-            tagline.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            implantImage.style.opacity = '0';
-            implantImage.style.transform = 'translateX(50px) scale(0.9)';
-            implantImage.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
             
             // 순차적 애니메이션 실행
             setTimeout(() => {
-                // 1. 로고 애니메이션 (가장 임팩트 있게)
-                logo.style.opacity = '1';
-                logo.style.transform = 'translateY(0) scale(1)';
+                // 1. 환자 통계 (가장 먼저, 임팩트 있게)
+                patientImpact.style.opacity = '1';
+                patientImpact.style.transform = 'translateX(0)';
                 
-                // 2. 부제목 애니메이션
+                // 2. 로고와 부제목 (브랜드 섹션으로 함께)
                 setTimeout(() => {
-                    subtitle.style.opacity = '1';
-                    subtitle.style.transform = 'translateX(0)';
+                    logo.style.opacity = '1';
+                    logo.style.transform = 'translateY(0) scale(1)';
                 }, 300);
                 
-                // 3. 회사명 애니메이션
+                // 3. 부제목 (로고 바로 뒤에)
                 setTimeout(() => {
-                    company.style.opacity = '1';
-                    company.style.transform = 'translateX(0)';
+                    subtitle.style.opacity = '1';
+                    subtitle.style.transform = 'translateY(0)';
                 }, 500);
                 
-                // 4. 제품 이미지 애니메이션
+                // 4. 제품 이미지
                 setTimeout(() => {
                     implantImage.style.opacity = '1';
                     implantImage.style.transform = 'translateX(0) scale(1)';
                 }, 700);
                 
-                // 5. 태그라인 애니메이션 (마지막에 감동적으로)
+                // 5. 미션 스테이트먼트 (감동적으로)
                 setTimeout(() => {
-                    tagline.style.opacity = '1';
-                    tagline.style.transform = 'translateY(0)';
-                }, 1000);
+                    missionStatement.style.opacity = '1';
+                    missionStatement.style.transform = 'translateY(0)';
+                }, 900);
                 
-                // 6. 네비게이션 힌트 (첫 페이지는 더 오래 표시)
+                // 6. 태그라인 부제목
+                setTimeout(() => {
+                    taglineSubtitle.style.opacity = '1';
+                    taglineSubtitle.style.transform = 'translateY(0)';
+                }, 1100);
+                
+                // 7. 회사명 (마지막에 자연스럽게, 하단에서)
+                setTimeout(() => {
+                    company.style.opacity = '1';
+                }, 1500);
+                
+                // 8. 네비게이션 힌트 (첫 페이지는 더 오래)
                 setTimeout(() => {
                     showNavigation();
-                    hideNavigation(4000); // 첫 페이지는 4초간 표시
-                }, 2500);
+                    hideNavigation(4000);
+                }, 2000);
                 
             }, 500);
         });
         
-        // 접근성 향상을 위한 포커스 관리
+        // 접근성 향상
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 showNavigation();
@@ -541,7 +793,6 @@
             }
         });
         
-        // 브라우저 크기 변경 시 네비게이션 위치 재조정
         window.addEventListener('resize', () => {
             if (isNavigationVisible) {
                 clearTimeout(hideTimeout);
@@ -549,27 +800,13 @@
             }
         });
         
-        // 네비게이션 링크에 대한 추가 이벤트
         document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                clearTimeout(hideTimeout);
-            });
-            
+            btn.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
             btn.addEventListener('focus', () => {
                 showNavigation();
                 clearTimeout(hideTimeout);
             });
         });
-        
-        // 개발자 도구에서 네비게이션 상태 확인 (디버깅용)
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log('🎯 KiiS Slide1 메인 페이지 네비게이션 시스템 활성화');
-            console.log('📱 터치 디바이스:', isTouchDevice);
-            console.log('⌨️  키보드 단축키: → ↓ Space Enter(시작), Esc(숨기기), N(토글)');
-            console.log('🖱️  PC: 화면 하단 호버 또는 마우스 이동');
-            console.log('👆 모바일: 화면 하단 터치, 좌 스와이프, 화면 탭');
-            console.log('🚀 첫 페이지: 뒤로가기 없음, 시작 버튼만 활성화');
-        }
     </script>
 </body>
 </html>
