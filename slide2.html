@@ -52,12 +52,12 @@
             margin-bottom: 50px;
         }
         
-        /* Left Side: Crisis Barriers */
+        /* Left Side: Crisis Barriers - 중화된 색상으로 변경 */
         .crisis-section {
             background: rgba(0, 0, 0, 0.4);
             padding: 40px;
             border-radius: 25px;
-            border: 2px solid rgba(239, 68, 68, 0.3);
+            border: 2px solid rgba(251, 146, 60, 0.3); /* 따뜻한 오렌지 톤 */
         }
         
         .section-title {
@@ -68,39 +68,29 @@
         }
         
         .crisis-title {
-            color: #ef4444;
+            color: #fb923c; /* 따뜻한 오렌지 - 빨간색 중화 */
         }
         
         .hope-title {
-            color: #ffd700;
+            color: #ffd700; /* 기존 골드 유지 */
         }
         
+        /* Crisis 카드 - 빨간색을 따뜻한 오렌지로 중화 */
         .crisis-card {
             background: rgba(55, 65, 81, 0.8);
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 20px;
-            border-left: 4px solid #374151;
+            border-left: 4px solid #fb923c; /* 따뜻한 오렌지 */
             transition: all 0.3s ease;
-            text-align: left; /* Desktop: left align */
+            text-align: left;
         }
         
         .crisis-card:hover {
             background: rgba(75, 85, 99, 0.9);
             transform: translateX(5px);
-            border-left-color: #ef4444;
-        }
-        
-        .crisis-card.medical {
-            border-left-color: #3b82f6;
-        }
-        
-        .crisis-card.failure {
-            border-left-color: #f59e0b;
-        }
-        
-        .crisis-card.dreams {
-            border-left-color: #8b5cf6;
+            border-left-color: #fed7aa; /* 호버시 밝은 오렌지 */
+            box-shadow: 0 5px 15px rgba(251, 146, 60, 0.3);
         }
         
         .card-header {
@@ -114,6 +104,7 @@
             margin-right: 12px;
             width: 35px;
             text-align: center;
+            color: #fb923c; /* 아이콘도 따뜻한 오렌지 */
         }
         
         .card-title {
@@ -124,7 +115,7 @@
         
         .card-quote {
             font-size: 18px;
-            color: #fecaca;
+            color: #fed7aa; /* 밝은 오렌지로 중화 */
             font-style: italic;
             margin-bottom: 8px;
             line-height: 1.3;
@@ -139,13 +130,13 @@
         
         .card-hope {
             font-size: 16px;
-            color: #ffd700;
+            color: #ffd700; /* 희망은 골드로 */
             font-weight: 500;
             border-top: 1px solid rgba(255, 215, 0, 0.3);
             padding-top: 8px;
         }
         
-        /* Right Side: Hope Solution */
+        /* Right Side: Hope Solution - 기존 골드 시스템 유지 */
         .hope-section {
             background: rgba(0, 0, 0, 0.4);
             padding: 40px;
@@ -154,41 +145,43 @@
         }
         
         .hope-main {
-            background: linear-gradient(135deg, #059669, #10b981);
+            background: linear-gradient(135deg, #ffd700, #f59e0b); /* 기존 골드 그라디언트 유지 */
             padding: 30px;
             border-radius: 20px;
             text-align: center;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
         }
         
         .hope-main-title {
             font-size: 32px;
             font-weight: bold;
-            color: #ffffff;
+            color: #000000; /* 골드 배경에 검은 글씨 */
             margin-bottom: 10px;
         }
         
         .hope-main-subtitle {
             font-size: 18px;
-            color: #d1fae5;
+            color: #1f2937; /* 진한 회색으로 가독성 확보 */
             line-height: 1.4;
         }
         
+        /* 솔루션 카드 - 기존 골드 시스템 유지 */
         .solution-card {
-            background: rgba(30, 64, 175, 0.3);
+            background: rgba(255, 215, 0, 0.15); /* 연한 골드 배경 */
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 15px;
-            border-left: 4px solid #1e40af;
+            border-left: 4px solid #ffd700; /* 골드 테두리 */
             transition: all 0.3s ease;
-            text-align: left; /* Desktop: left align */
+            text-align: left;
         }
         
         .solution-card:hover {
-            background: rgba(30, 64, 175, 0.5);
+            background: rgba(255, 215, 0, 0.25);
             transform: translateX(5px);
-            border-left-color: #ffd700;
+            border-left-color: #f59e0b; /* 호버시 진한 골드 */
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
         
         .solution-header {
@@ -202,6 +195,7 @@
             margin-right: 10px;
             width: 30px;
             text-align: center;
+            color: #ffd700; /* 아이콘도 골드로 유지 */
         }
         
         .solution-title {
@@ -216,7 +210,7 @@
             line-height: 1.3;
         }
         
-        /* Bridge Section - NEW */
+        /* Bridge Section */
         .bridge-section {
             text-align: center;
             margin-top: 40px;
@@ -270,7 +264,6 @@
                 gap: 30px;
             }
             
-            /* Apply mobile alignment principles */
             .main-header {
                 text-align: center;
             }
@@ -279,7 +272,6 @@
                 text-align: center;
             }
             
-            /* Crisis and solution cards: center align for mobile impact */
             .crisis-card, .solution-card {
                 text-align: center;
             }
@@ -292,12 +284,10 @@
                 justify-content: center;
             }
             
-            /* Hope main section: already centered */
             .hope-main {
                 text-align: center;
             }
             
-            /* Bridge section: already centered */
             .bridge-section {
                 text-align: center;
             }
@@ -382,7 +372,7 @@
                 margin-top: 30px;
             }
             
-            /* Mobile-specific adjustments for better visual flow */
+            /* Mobile-specific 테두리 변경 */
             .crisis-card, .solution-card {
                 text-align: center;
                 border-left: none;
@@ -391,24 +381,20 @@
                 margin-bottom: 15px;
             }
             
-            .crisis-card.medical {
-                border-top-color: #3b82f6;
+            .crisis-card {
+                border-top-color: #fb923c; /* 모바일에서도 따뜻한 오렌지 */
             }
             
-            .crisis-card.failure {
-                border-top-color: #f59e0b;
-            }
-            
-            .crisis-card.dreams {
-                border-top-color: #8b5cf6;
+            .crisis-card:hover {
+                border-top-color: #fed7aa;
             }
             
             .solution-card {
-                border-top-color: #1e40af;
+                border-top-color: #ffd700; /* 모바일에서도 골드 */
             }
             
             .solution-card:hover {
-                border-top-color: #ffd700;
+                border-top-color: #f59e0b;
             }
         }
         
@@ -666,10 +652,10 @@
         <div class="main-content">
             <!-- Left Side: Crisis Barriers -->
             <div class="crisis-section">
-                <h2 class="section-title crisis-title">The Moment of Despair</h2>
+                <h2 class="section-title crisis-title">Current Challenges</h2>
                 
                 <!-- Card 1: Medical Complexity -->
-                <div class="crisis-card medical">
+                <div class="crisis-card">
                     <div class="card-header">
                         <div class="card-icon">🔬</div>
                         <div class="card-title">Medical Complexity</div>
@@ -680,7 +666,7 @@
                 </div>
                 
                 <!-- Card 2: When Revisions Needed -->
-                <div class="crisis-card failure">
+                <div class="crisis-card">
                     <div class="card-header">
                         <div class="card-icon">⚠️</div>
                         <div class="card-title">When Revisions Needed</div>
@@ -691,7 +677,7 @@
                 </div>
                 
                 <!-- Card 3: Dreams Feel Impossible -->
-                <div class="crisis-card dreams">
+                <div class="crisis-card">
                     <div class="card-header">
                         <div class="card-icon">💭</div>
                         <div class="card-title">Dreams Feel Impossible</div>
