@@ -185,7 +185,7 @@
         .solution-card {
             background: linear-gradient(145deg, #10b981, #059669);
             border-radius: 20px;
-            padding: 20px;
+            padding: 25px;
             border: 2px solid rgba(16, 185, 129, 0.3);
             border-left: 4px solid #10b981;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -201,7 +201,7 @@
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
-            min-height: 280px;
+            min-height: 320px;
         }
         
         .solution-card::before {
@@ -247,9 +247,32 @@
             height: 120px;
             object-fit: cover;
             border-radius: 12px;
-            margin: 10px 0 15px 0;
+            margin: 15px 0 20px 0;
             border: 2px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: block;
+        }
+        
+        .solution-image-placeholder {
+            width: 100%;
+            max-width: 200px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin: 15px 0 20px 0;
+        }
+        
+        .solution-image-placeholder .placeholder-icon {
+            font-size: 32px;
+            margin-bottom: 5px;
         }
         
         .solution-benefit {
@@ -660,10 +683,6 @@
                         <span class="barrier-icon">💰</span>
                         High Cost Barrier
                     </div>
-                    <img src="/kiis-investor-pitch/public/images/happy-family-cost-relief.jpg" 
-                         alt="Cost Relief for Families" 
-                         class="barrier-image"
-                         onerror="this.style.display='none';">
                     <div class="barrier-description">
                         <span class="clickable-text" onclick="event.stopPropagation(); showSource('costproblem')">$3K-$6K per tooth</span> + grafting costs exclude many patients
                     </div>
@@ -676,8 +695,8 @@
                         <span class="solution-icon">💎</span>
                         Cost Reduction
                     </div>
-                    <img src="/kiis-investor-pitch/public/images/cost-reduction-solution.jpg" 
-                         alt="Cost Reduction Solution" 
+                    <img src="/kiis-investor-pitch/public/images/happy-family-cost-relief.jpg" 
+                         alt="Cost Relief for Families" 
                          class="solution-image"
                          onerror="this.style.display='none';">
                     <div class="solution-benefit">
@@ -694,10 +713,6 @@
                         <span class="barrier-icon">⏱️</span>
                         Complex Procedures
                     </div>
-                    <img src="/kiis-investor-pitch/public/images/procedure-inefficiency.jpg" 
-                         alt="Procedure Inefficiency" 
-                         class="barrier-image"
-                         onerror="this.style.display='none';">
                     <div class="barrier-description">
                         <span class="clickable-text" onclick="event.stopPropagation(); showSource('procedureproblem')">4-9 months timeline</span> with multiple visits reduces adoption
                     </div>
@@ -710,8 +725,8 @@
                         <span class="solution-icon">⚡</span>
                         Process Simplification
                     </div>
-                    <img src="/kiis-investor-pitch/public/images/process-simplification.jpg" 
-                         alt="Process Simplification" 
+                    <img src="/kiis-investor-pitch/public/images/procedure-inefficiency.jpg" 
+                         alt="Procedure Inefficiency" 
                          class="solution-image"
                          onerror="this.style.display='none';">
                     <div class="solution-benefit">
@@ -728,10 +743,6 @@
                         <span class="barrier-icon">🚫</span>
                         Patient Exclusion
                     </div>
-                    <img src="/kiis-investor-pitch/public/images/elderly-woman-confidence.jpg" 
-                         alt="Elderly Patient Confidence" 
-                         class="barrier-image"
-                         onerror="this.style.display='none';">
                     <div class="barrier-description">
                         <span class="clickable-text" onclick="event.stopPropagation(); showSource('treatmentproblem')">Poor bone quality</span> excludes significant patient population
                     </div>
@@ -744,8 +755,8 @@
                         <span class="solution-icon">🎯</span>
                         Universal Access
                     </div>
-                    <img src="/kiis-investor-pitch/public/images/universal-access-solution.jpg" 
-                         alt="Universal Access Solution" 
+                    <img src="/kiis-investor-pitch/public/images/elderly-woman-confidence.jpg" 
+                         alt="Elderly Patient Confidence" 
                          class="solution-image"
                          onerror="this.style.display='none';">
                     <div class="solution-benefit">
