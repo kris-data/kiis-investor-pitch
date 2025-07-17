@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KiiS - For Every Patient Who Deserves to Smile Again</title>
     <style>
         * {
@@ -11,15 +12,17 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             color: white;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 0 80px;
+            padding: 40px 60px;
             overflow-x: hidden;
-            overflow-y: auto;
         }
         
         .container {
@@ -49,6 +52,7 @@
             position: relative;
         }
         
+        /* 환자 임팩트 섹션 - 3초 임팩트 원칙 */
         .patient-impact {
             font-size: 20px;
             color: #e0e7ff;
@@ -69,14 +73,31 @@
             text-decoration: underline;
             text-decoration-color: rgba(255, 215, 0, 0.5);
             transition: all 0.3s ease;
+            position: relative;
         }
         
         .highlight-number:hover {
             color: #fff;
             text-decoration-color: #ffd700;
             transform: scale(1.05);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
         
+        .highlight-number::after {
+            content: "ℹ️";
+            position: absolute;
+            top: -5px;
+            right: -25px;
+            font-size: 14px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        
+        .highlight-number:hover::after {
+            opacity: 1;
+        }
+        
+        /* 브랜드 섹션 */
         .brand-section {
             margin-bottom: 50px;
         }
@@ -99,11 +120,13 @@
             margin-bottom: 0;
             font-weight: 400;
             letter-spacing: 0.5px;
+            line-height: 1.3;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
+        /* 미션 스테이트먼트 - 감정적 어필 */
         .mission-statement {
             font-size: 38px;
             font-style: italic;
@@ -122,12 +145,14 @@
             color: #e0e7ff;
             font-style: normal;
             font-weight: 300;
+            line-height: 1.4;
             margin-bottom: 40px;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
+        /* 회사 정보 */
         .company {
             position: fixed;
             bottom: 80px;
@@ -147,6 +172,7 @@
             font-weight: 500;
         }
         
+        /* 제품 이미지 */
         .implant-image {
             max-width: 500px;
             width: 100%;
@@ -191,59 +217,7 @@
             font-family: monospace;
         }
         
-        /* 데이터 소스 팝업 */
-        .data-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.95);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid #ffd700;
-            max-width: 500px;
-            width: 90%;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            display: none;
-        }
-        
-        .data-popup h3 {
-            color: #ffd700;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-        
-        .data-popup p {
-            margin-bottom: 10px;
-            line-height: 1.5;
-            font-size: 14px;
-        }
-        
-        .data-popup .source {
-            font-size: 12px;
-            color: #94a3b8;
-            font-style: italic;
-            margin-top: 15px;
-        }
-        
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #ffd700;
-            font-size: 24px;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
+        /* 팝업 시스템 - 디자인 시스템 v2.0 */
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -251,11 +225,82 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
-            z-index: 999;
+            z-index: 1500;
             display: none;
+            backdrop-filter: blur(5px);
         }
         
-        /* 네비게이션 호버 감지 영역 */
+        .data-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1600;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: none;
+            animation: popupSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes popupSlideIn {
+            from {
+                transform: translate(-50%, -60%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+        
+        .data-popup h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .data-popup p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 16px;
+            color: #e0e7ff;
+        }
+        
+        .data-popup .source {
+            font-size: 14px;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .popup-close:hover {
+            color: #fff;
+        }
+        
+        /* 네비게이션 시스템 - 통합 디자인 */
         .hover-zone {
             position: fixed;
             bottom: 0;
@@ -266,7 +311,6 @@
             pointer-events: auto;
         }
         
-        /* 네비게이션 스타일 */
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -289,7 +333,6 @@
         .navigation.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
         }
         
         .nav-btn {
@@ -320,7 +363,7 @@
             font-size: 16px;
         }
         
-        /* 스와이프 힌트 */
+        /* 스와이프 힌트 - 모바일 UX */
         .swipe-hint {
             position: fixed;
             bottom: 30px;
@@ -344,11 +387,12 @@
             100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
         
+        /* 모바일 최적화 - 갤럭시 스마트폰 최적화 */
         @media (max-width: 1200px) {
             .container {
                 flex-direction: column;
                 text-align: center;
-                padding: 40px 0;
+                padding: 30px 0;
                 height: auto;
                 min-height: 100vh;
                 justify-content: center;
@@ -356,25 +400,23 @@
             
             body {
                 align-items: flex-start;
-                padding-top: 60px;
-                padding-left: 40px;
-                padding-right: 40px;
+                padding: 40px 30px;
             }
             
             .left-side {
                 padding-right: 0;
-                margin-bottom: 40px;
+                margin-bottom: 30px;
                 max-width: 100%;
                 text-align: center;
             }
             
             .brand-section {
-                margin-bottom: 30px;
+                margin-bottom: 25px;
             }
             
             .patient-impact {
                 font-size: 18px;
-                margin-bottom: 30px;
+                margin-bottom: 25px;
             }
             
             .highlight-number {
@@ -391,24 +433,148 @@
             
             .mission-statement {
                 font-size: 28px;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             
             .tagline-subtitle {
                 font-size: 14px;
-                margin-bottom: 30px;
+                margin-bottom: 25px;
             }
             
             .company {
-                position: fixed;
-                bottom: 120px;
-                transform: translateX(-50%);
-                margin-top: 0;
+                bottom: 100px;
                 font-size: 12px;
             }
             
             .implant-image {
                 max-width: 350px;
+            }
+        }
+        
+        /* 중간 모바일 (768px 이하) */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            .patient-impact {
+                font-size: 16px; /* 원본의 75% */
+                line-height: 1.3;
+                margin-bottom: 20px;
+            }
+            
+            .highlight-number {
+                font-size: 20px; /* 원본의 75% */
+                margin: 6px 0;
+            }
+            
+            .logo {
+                font-size: 60px; /* 원본의 75% */
+                margin-bottom: 6px;
+            }
+            
+            .subtitle {
+                font-size: 14px; /* 원본의 80% */
+                line-height: 1.3;
+            }
+            
+            .mission-statement {
+                font-size: 24px; /* 원본의 75% */
+                line-height: 1.2;
+                margin-bottom: 12px;
+            }
+            
+            .tagline-subtitle {
+                font-size: 13px; /* 원본의 80% */
+                line-height: 1.3;
+                margin-bottom: 20px;
+            }
+            
+            .company {
+                font-size: 11px; /* 원본의 80% */
+                bottom: 90px;
+            }
+            
+            .implant-image {
+                max-width: 280px;
+            }
+            
+            .data-popup {
+                padding: 25px;
+                max-width: 90%;
+                margin: 20px;
+            }
+            
+            .data-popup h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .data-popup p {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+        }
+        
+        /* 갤럭시 S 표준 (480px 이하) */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+            
+            .container {
+                padding: 20px 0;
+            }
+            
+            .patient-impact {
+                font-size: 14px; /* 원본의 60% */
+                line-height: 1.3;
+                margin-bottom: 15px;
+            }
+            
+            .highlight-number {
+                font-size: 18px; /* 원본의 60% */
+                margin: 5px 0;
+            }
+            
+            .highlight-number::after {
+                right: -20px;
+                font-size: 12px;
+            }
+            
+            .brand-section {
+                margin-bottom: 20px;
+            }
+            
+            .logo {
+                font-size: 48px; /* 원본의 60% */
+                margin-bottom: 5px;
+            }
+            
+            .subtitle {
+                font-size: 12px; /* 원본의 65% */
+                line-height: 1.3;
+            }
+            
+            .mission-statement {
+                font-size: 20px; /* 원본의 60% */
+                line-height: 1.2;
+                margin-bottom: 10px;
+            }
+            
+            .tagline-subtitle {
+                font-size: 11px; /* 원본의 70% */
+                line-height: 1.3;
+                margin-bottom: 15px;
+            }
+            
+            .company {
+                font-size: 10px; /* 원본의 70% */
+                bottom: 80px;
+            }
+            
+            .implant-image {
+                max-width: 220px;
             }
             
             .navigation {
@@ -424,54 +590,112 @@
             .data-popup {
                 padding: 20px;
                 max-width: 95%;
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .data-popup h3 {
+                font-size: 16px;
+                margin-bottom: 12px;
+                padding-right: 30px;
+            }
+            
+            .data-popup p {
+                font-size: 13px;
+                margin-bottom: 10px;
+                line-height: 1.4;
+            }
+            
+            .data-popup .source {
+                font-size: 12px;
+                margin-top: 15px;
+                padding-top: 12px;
+            }
+            
+            .popup-close {
+                font-size: 24px;
+                top: 12px;
+                right: 15px;
             }
         }
         
-        @media (max-width: 768px) {
+        /* 컴팩트 폰 (360px 이하) */
+        @media (max-width: 360px) {
             body {
-                padding: 20px 15px;
-                padding-top: 40px;
+                padding: 12px 8px;
             }
             
             .patient-impact {
-                font-size: 16px;
+                font-size: 13px; /* 원본의 50% */
             }
             
             .highlight-number {
-                font-size: 20px;
+                font-size: 16px; /* 원본의 50% */
             }
             
             .logo {
-                font-size: 60px;
+                font-size: 42px; /* 원본의 50% */
             }
             
             .subtitle {
-                font-size: 14px;
+                font-size: 11px; /* 원본의 55% */
             }
             
             .mission-statement {
-                font-size: 24px;
+                font-size: 18px; /* 원본의 50% */
+            }
+            
+            .tagline-subtitle {
+                font-size: 10px; /* 원본의 65% */
             }
             
             .company {
-                font-size: 11px;
+                font-size: 9px; /* 원본의 65% */
             }
             
             .implant-image {
-                max-width: 280px;
+                max-width: 180px;
+            }
+            
+            .data-popup {
+                padding: 15px;
+                margin: 5px;
+            }
+            
+            .data-popup h3 {
+                font-size: 14px;
+            }
+            
+            .data-popup p {
+                font-size: 12px;
+                line-height: 1.3;
             }
         }
         
-        /* 스크롤 가능하도록 높이 조정 */
+        /* 높이 제한 디바이스 대응 */
         @media (max-height: 800px) {
             body {
                 align-items: flex-start;
-                padding-top: 40px;
-                padding-bottom: 40px;
+                padding-top: 30px;
+                padding-bottom: 30px;
             }
             
             .container {
                 min-height: auto;
+            }
+            
+            .company {
+                bottom: 60px;
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .company {
+                bottom: 40px;
+            }
+            
+            .navigation {
+                bottom: 20px;
             }
         }
     </style>
@@ -512,42 +736,46 @@
         </div>
     </div>
     
-    <!-- 회사 정보를 가장 하단으로 배치 -->
+    <!-- 회사 정보 -->
     <div class="company">
         introduced by <span class="company-name">HUMED LIFESCIENCES</span>
     </div>
 
-    <!-- 네비게이션 호버 감지 영역 -->
+    <!-- 팝업 시스템 -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="data-popup" id="dataPopup">
+        <button class="popup-close" id="popupCloseBtn">&times;</button>
+        <h3>📊 Data Source</h3>
+        <div class="popup-content">
+            <p><strong>178 Million Americans Missing At Least One Tooth</strong></p>
+            <p>This statistic represents the current total number of U.S. adults who have lost one or more permanent teeth, not annual new cases.</p>
+            <p><strong>Additional Context:</strong></p>
+            <p>• 40 million Americans are missing all teeth</p>
+            <p>• Only ~3 million Americans currently have dental implants</p>
+            <p>• 5.7% implant penetration rate (lowest among developed countries)</p>
+            <div class="source">
+                Source: American College of Prosthodontists (ACP), American Academy of Implant Dentistry (AAID), 2024
+            </div>
+        </div>
+    </div>
+
+    <!-- 네비게이션 시스템 -->
     <div class="hover-zone" id="hoverZone"></div>
-    
-    <!-- 네비게이션 -->
     <div class="navigation" id="navigation">
         <a href="slide2.html" class="nav-btn next">Start Their Story</a>
     </div>
     
     <!-- 스와이프 힌트 -->
     <div class="swipe-hint" id="swipeHint">👈 Swipe left to continue</div>
-    
-    <!-- 데이터 소스 팝업 -->
-    <div class="popup-overlay" id="popupOverlay" onclick="hideDataSource()"></div>
-    <div class="data-popup" id="dataPopup">
-        <button class="popup-close" onclick="hideDataSource()">×</button>
-        <h3>📊 Data Source</h3>
-        <p><strong>178 Million Americans Missing At Least One Tooth</strong></p>
-        <p>This statistic represents the current total number of U.S. adults who have lost one or more permanent teeth, not annual new cases.</p>
-        <p><strong>Additional Context:</strong></p>
-        <p>• 40 million Americans are missing all teeth</p>
-        <p>• Only ~3 million Americans currently have dental implants</p>
-        <p>• 5.7% implant penetration rate (lowest among developed countries)</p>
-        <div class="source">
-            Source: American College of Prosthodontists (ACP), American Academy of Implant Dentistry (AAID), 2024
-        </div>
-    </div>
 
     <script>
+        // 전역 변수
         const img = document.getElementById('main-image');
         const placeholder = document.getElementById('placeholder');
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let isNavigationVisible = false;
+        let hideTimeout;
+        let isPopupOpen = false;
         
         // 이미지 에러 처리
         img.addEventListener('error', function() {
@@ -555,31 +783,48 @@
             placeholder.style.display = 'flex';
         });
         
-        // 데이터 소스 팝업 함수
+        // 팝업 시스템 - 개선된 스크롤 관리
         function showDataSource() {
-            document.getElementById('popupOverlay').style.display = 'block';
-            document.getElementById('dataPopup').style.display = 'block';
+            const overlay = document.getElementById('popupOverlay');
+            const popup = document.getElementById('dataPopup');
+            
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+            
+            // 스크롤 방지
+            document.body.dataset.originalOverflow = document.body.style.overflow || 'auto';
+            document.body.style.overflow = 'hidden';
+            
+            isPopupOpen = true;
         }
         
         function hideDataSource() {
-            document.getElementById('popupOverlay').style.display = 'none';
-            document.getElementById('dataPopup').style.display = 'none';
+            const overlay = document.getElementById('popupOverlay');
+            const popup = document.getElementById('dataPopup');
+            
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+            
+            // 스크롤 복원
+            const originalOverflow = document.body.dataset.originalOverflow || 'auto';
+            document.body.style.overflow = originalOverflow;
+            delete document.body.dataset.originalOverflow;
+            
+            isPopupOpen = false;
         }
         
-        // 네비게이션 시스템
+        // 네비게이션 시스템 - 통합 설계
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
-        let hideTimeout;
-        let isNavigationVisible = false;
         
         function showNavigation() {
-            clearTimeout(hideTimeout);
+            if (hideTimeout) clearTimeout(hideTimeout);
             navigation.classList.add('visible');
             isNavigationVisible = true;
         }
         
         function hideNavigation(delay = 2000) {
-            clearTimeout(hideTimeout);
+            if (hideTimeout) clearTimeout(hideTimeout);
             hideTimeout = setTimeout(() => {
                 navigation.classList.remove('visible');
                 isNavigationVisible = false;
@@ -658,7 +903,7 @@
                 const deltaY = endY - startY;
                 const deltaTime = endTime - startTime;
                 
-                // 개선된 스와이프 감지
+                // 스와이프 감지
                 if (Math.abs(deltaX) > 30 && 
                     deltaTime < 500 && 
                     Math.abs(deltaX) > Math.abs(deltaY)) {
@@ -676,6 +921,8 @@
             
             // 실시간 스와이프 피드백
             document.addEventListener('touchmove', (e) => {
+                if (isPopupOpen) return; // 팝업 열린 상태에서는 무시
+                
                 const currentX = e.touches[0].clientX;
                 const deltaX = currentX - startX;
                 
@@ -687,10 +934,55 @@
                     }
                 }
             });
+            
+            // 터치 토글
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                // 팝업이나 네비게이션 영역 제외
+                if (e.target.closest('.highlight-number') || 
+                    e.target.closest('.navigation') ||
+                    e.target.closest('.data-popup') ||
+                    e.target.closest('.popup-overlay')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
         }
         
         // 키보드 네비게이션
         document.addEventListener('keydown', (e) => {
+            // ESC로 팝업 닫기 우선
+            if (e.key === 'Escape') {
+                if (isPopupOpen) {
+                    e.preventDefault();
+                    hideDataSource();
+                    return;
+                }
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+                clearTimeout(hideTimeout);
+                return;
+            }
+            
+            // 팝업 열린 상태에서는 네비게이션 키 무시
+            if (isPopupOpen) return;
+            
             switch(e.key) {
                 case 'ArrowRight':
                 case 'ArrowDown':
@@ -698,12 +990,6 @@
                 case 'Enter':
                     e.preventDefault();
                     window.location.href = 'slide2.html';
-                    break;
-                case 'Escape':
-                    hideDataSource();
-                    navigation.classList.remove('visible');
-                    isNavigationVisible = false;
-                    clearTimeout(hideTimeout);
                     break;
                 case 'n':
                 case 'N':
@@ -725,7 +1011,24 @@
             }
         });
         
-        // 페이지 로드 애니메이션
+        // 팝업 이벤트 리스너
+        document.addEventListener('DOMContentLoaded', function() {
+            // 오버레이 클릭으로 닫기
+            document.getElementById('popupOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideDataSource();
+                }
+            });
+            
+            // 닫기 버튼
+            document.getElementById('popupCloseBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                hideDataSource();
+            });
+        });
+        
+        // 페이지 로드 애니메이션 - 투자자 임팩트 최적화
         window.addEventListener('load', function() {
             const patientImpact = document.querySelector('.patient-impact');
             const logo = document.querySelector('.logo');
@@ -735,48 +1038,48 @@
             const taglineSubtitle = document.querySelector('.tagline-subtitle');
             const implantImage = document.querySelector('.implant-image');
             
-            // 순차적 애니메이션 실행
+            // 순차적 애니메이션 - 3초 임팩트 원칙
             setTimeout(() => {
-                // 1. 환자 통계 (가장 먼저, 임팩트 있게)
+                // 1. 환자 통계 (즉시 임팩트)
                 patientImpact.style.opacity = '1';
                 patientImpact.style.transform = 'translateX(0)';
                 
-                // 2. 로고와 부제목 (브랜드 섹션으로 함께)
+                // 2. 로고 (브랜드 인식)
                 setTimeout(() => {
                     logo.style.opacity = '1';
                     logo.style.transform = 'translateY(0) scale(1)';
                 }, 300);
                 
-                // 3. 부제목 (로고 바로 뒤에)
+                // 3. 부제목 (브랜드 완성)
                 setTimeout(() => {
                     subtitle.style.opacity = '1';
                     subtitle.style.transform = 'translateY(0)';
                 }, 500);
                 
-                // 4. 제품 이미지
+                // 4. 제품 이미지 (시각적 증명)
                 setTimeout(() => {
                     implantImage.style.opacity = '1';
                     implantImage.style.transform = 'translateX(0) scale(1)';
                 }, 700);
                 
-                // 5. 미션 스테이트먼트 (감동적으로)
+                // 5. 미션 스테이트먼트 (감정적 연결)
                 setTimeout(() => {
                     missionStatement.style.opacity = '1';
                     missionStatement.style.transform = 'translateY(0)';
                 }, 900);
                 
-                // 6. 태그라인 부제목
+                // 6. 태그라인 (행동 유도)
                 setTimeout(() => {
                     taglineSubtitle.style.opacity = '1';
                     taglineSubtitle.style.transform = 'translateY(0)';
                 }, 1100);
                 
-                // 7. 회사명 (마지막에 자연스럽게, 하단에서)
+                // 7. 회사명 (신뢰성)
                 setTimeout(() => {
                     company.style.opacity = '1';
                 }, 1500);
                 
-                // 8. 네비게이션 힌트 (첫 페이지는 더 오래)
+                // 8. 네비게이션 힌트 (메인 페이지는 더 오래)
                 setTimeout(() => {
                     showNavigation();
                     hideNavigation(4000);
@@ -785,7 +1088,7 @@
             }, 500);
         });
         
-        // 접근성 향상
+        // 접근성 및 성능 최적화
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 showNavigation();
