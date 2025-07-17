@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KiiS - 178M Patients Are Waiting for One More Chance</title>
     <style>
         * {
@@ -486,11 +487,11 @@
             color: #ffd700;
         }
         
-        /* Mobile Optimization - Updated with Alignment Principles */
+        /* Mobile Optimization - Galaxy Smartphone Specific */
         @media (max-width: 1200px) {
             .main-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
             }
             
             .paradox-grid {
@@ -557,83 +558,116 @@
             }
         }
         
+        /* Medium mobile screens (tablets) */
         @media (max-width: 768px) {
             body {
-                padding: 20px;
+                padding: 15px;
             }
             
             .title {
-                font-size: 36px;
-                text-align: center; /* Mobile: center titles */
+                font-size: 28px;
+                text-align: center;
+                line-height: 1.1;
+                margin-bottom: 12px;
             }
             
             .subtitle {
-                font-size: 22px;
-                text-align: center; /* Mobile: center subtitles */
+                font-size: 16px;
+                text-align: center;
+                line-height: 1.3;
             }
             
             .crisis-section, .hope-section {
-                padding: 25px;
+                padding: 20px;
             }
             
             .section-title {
-                font-size: 24px;
-                text-align: center; /* Mobile: center section titles */
+                font-size: 20px;
+                text-align: center;
+                margin-bottom: 20px;
             }
             
             .hope-main-title {
-                font-size: 28px;
-                text-align: center; /* Always centered */
+                font-size: 22px;
+                text-align: center;
+                line-height: 1.2;
+            }
+            
+            .hope-main-subtitle {
+                font-size: 14px;
+                line-height: 1.4;
             }
             
             .card-title {
-                font-size: 18px;
+                font-size: 16px;
             }
             
             .card-quote {
-                font-size: 16px;
+                font-size: 14px;
+                line-height: 1.3;
             }
             
             .card-details, .card-hope {
-                font-size: 15px;
+                font-size: 13px;
+                line-height: 1.3;
             }
             
             .solution-title {
-                font-size: 16px;
-            }
-            
-            .solution-text {
                 font-size: 15px;
             }
             
+            .solution-text {
+                font-size: 13px;
+                line-height: 1.3;
+            }
+            
             .market-title {
-                font-size: 24px;
-                text-align: center; /* Mobile: center market title */
+                font-size: 20px;
+                text-align: center;
+                margin-bottom: 20px;
             }
             
             .opportunity-title {
-                font-size: 18px;
-                text-align: center; /* Mobile: center opportunity titles */
+                font-size: 16px;
+                text-align: center;
+                margin-bottom: 12px;
             }
             
             .paradox-value {
-                font-size: 16px;
+                font-size: 14px;
+                line-height: 1.2;
+            }
+            
+            .paradox-label {
+                font-size: 12px;
             }
             
             .growth-arrow {
-                font-size: 18px;
+                font-size: 16px;
+            }
+            
+            .growth-label {
+                font-size: 14px;
             }
             
             .timing-result {
-                font-size: 16px;
-                text-align: center; /* Mobile: center timing result */
+                font-size: 14px;
+                text-align: center;
+                line-height: 1.3;
+                padding: 10px;
+            }
+            
+            .timing-text {
+                font-size: 14px;
             }
             
             /* Mobile-specific adjustments for better visual flow */
             .crisis-card, .solution-card {
-                text-align: center; /* Mobile: center all card content */
-                border-left: none; /* Remove left border on mobile */
-                border-top: 4px solid; /* Add top border instead */
+                text-align: center;
+                border-left: none;
+                border-top: 4px solid;
+                padding: 15px;
+                margin-bottom: 15px;
             }
             
             .crisis-card.medical {
@@ -654,6 +688,289 @@
             
             .solution-card:hover {
                 border-top-color: #ffd700;
+            }
+        }
+        
+        /* Small mobile screens (Galaxy S series standard) */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            .title {
+                font-size: 24px;
+                line-height: 1.1;
+                margin-bottom: 10px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+                line-height: 1.3;
+            }
+            
+            .main-content {
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+            
+            .crisis-section, .hope-section {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .crisis-title, .hope-title {
+                font-size: 18px;
+            }
+            
+            .hope-main {
+                padding: 20px;
+                border-radius: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .hope-main-title {
+                font-size: 20px;
+                margin-bottom: 8px;
+                line-height: 1.2;
+            }
+            
+            .hope-main-subtitle {
+                font-size: 13px;
+                line-height: 1.4;
+            }
+            
+            .card-icon, .solution-icon {
+                font-size: 20px;
+                width: 30px;
+            }
+            
+            .card-title {
+                font-size: 15px;
+            }
+            
+            .card-quote {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+            
+            .card-details, .card-hope {
+                font-size: 12px;
+                line-height: 1.3;
+            }
+            
+            .solution-title {
+                font-size: 14px;
+            }
+            
+            .solution-text {
+                font-size: 12px;
+                line-height: 1.3;
+            }
+            
+            .crisis-card, .solution-card {
+                padding: 12px;
+                margin-bottom: 12px;
+                border-radius: 12px;
+            }
+            
+            .market-summary {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            
+            .market-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .market-content {
+                gap: 15px;
+            }
+            
+            .opportunity-section {
+                padding: 15px;
+                border-radius: 12px;
+            }
+            
+            .opportunity-title {
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+            
+            .paradox-item {
+                padding: 12px;
+                border-radius: 8px;
+            }
+            
+            .paradox-label {
+                font-size: 11px;
+                margin-bottom: 4px;
+            }
+            
+            .paradox-value {
+                font-size: 13px;
+                line-height: 1.2;
+            }
+            
+            .timing-item {
+                padding: 8px 12px;
+                border-radius: 6px;
+            }
+            
+            .timing-icon {
+                font-size: 16px;
+            }
+            
+            .timing-text {
+                font-size: 12px;
+            }
+            
+            .timing-plus, .timing-equals {
+                font-size: 16px;
+            }
+            
+            .timing-result {
+                font-size: 13px;
+                padding: 8px;
+                border-radius: 6px;
+            }
+            
+            .growth-item {
+                padding: 10px;
+                border-radius: 6px;
+                flex-direction: column;
+                gap: 3px;
+            }
+            
+            .growth-arrow {
+                font-size: 14px;
+            }
+            
+            .growth-label {
+                font-size: 12px;
+            }
+            
+            .growth-result {
+                font-size: 14px;
+                padding: 12px;
+                border-radius: 8px;
+            }
+            
+            .source-popup {
+                max-width: 90%;
+                padding: 25px;
+                margin: 20px;
+                border-radius: 15px;
+                max-height: 70vh;
+            }
+            
+            .source-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+                padding-right: 30px;
+            }
+            
+            .source-content h3 {
+                font-size: 15px;
+                margin: 15px 0 8px 0;
+            }
+            
+            .source-content p {
+                font-size: 13px;
+                margin-bottom: 12px;
+                line-height: 1.4;
+            }
+            
+            .source-content li {
+                font-size: 13px;
+                margin-bottom: 6px;
+                line-height: 1.4;
+            }
+            
+            .source-close {
+                font-size: 24px;
+                top: 12px;
+                right: 15px;
+            }
+        }
+        
+        /* Extra small screens (Galaxy fold, older phones) */
+        @media (max-width: 360px) {
+            body {
+                padding: 8px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+            }
+            
+            .section-title {
+                font-size: 16px;
+            }
+            
+            .hope-main-title {
+                font-size: 18px;
+            }
+            
+            .hope-main-subtitle {
+                font-size: 12px;
+            }
+            
+            .crisis-section, .hope-section {
+                padding: 12px;
+            }
+            
+            .card-title {
+                font-size: 14px;
+            }
+            
+            .card-quote {
+                font-size: 12px;
+            }
+            
+            .card-details, .card-hope {
+                font-size: 11px;
+            }
+            
+            .solution-title {
+                font-size: 13px;
+            }
+            
+            .solution-text {
+                font-size: 11px;
+            }
+            
+            .market-title {
+                font-size: 16px;
+            }
+            
+            .opportunity-title {
+                font-size: 14px;
+            }
+            
+            .paradox-value {
+                font-size: 12px;
+            }
+            
+            .timing-text {
+                font-size: 11px;
+            }
+            
+            .timing-result {
+                font-size: 12px;
             }
         }
         
