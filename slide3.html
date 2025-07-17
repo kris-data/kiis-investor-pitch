@@ -1,19 +1,4 @@
-'market-size': {
-                title: '$3.0B Market Size Definition',
-                content: `
-                    <h3>📊 Market Size Breakdown</h3>
-                    <p><strong>Definition:</strong> Manufacturer-level implant product sales in the US market</p>
-                    <ul>
-                        <li><strong>Current Market (2024):</strong> $1.5B manufacturer sales</li>
-                        <li><strong>Forecast (2030):</strong> $3.0B manufacturer sales</li>
-                        <li><strong>Patient-Level Value:</strong> $17,000 average total treatment cost</li>
-                        <li><strong>Calculation:</strong> 178M patients × 10% penetration × $17,000 = $3.0B+ market</li>
-                    </ul>
-                    <h3>🎯 Market Definition Scope</h3>
-                    <p>This represents implant hardware sales only (screws, abutments, prosthetics). Does not include surgical fees, bone grafts, or ancillary procedures, making the total addressable market significantly larger.</p>
-                    <p><strong>Sources:</strong> iData Research 2025, Straumann Annual Report, ADA Economic Impact Studies</p>
-                `
-            },<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -247,7 +232,7 @@
         
         .drivers-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
             margin-bottom: 30px;
         }
@@ -600,8 +585,7 @@
             }
             
             .drivers-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .forecast-content {
@@ -1145,21 +1129,53 @@
         let isNavigationVisible = false;
         let hideTimeout;
         
-        // Source data for popups
+        // Source data for popups - CLEAN VERSION
         const sources = {
+            'patient-population': {
+                title: '178M Americans Need Dental Implants',
+                content: `
+                    <h3>📊 Population Data</h3>
+                    <p><strong>Source:</strong> American Dental Association (ADA) 2024 Health Statistics</p>
+                    <ul>
+                        <li><strong>Total affected:</strong> 178 million Americans have lost one or more teeth</li>
+                        <li><strong>Age breakdown:</strong> 35% adults 35-44, 65% adults 65+</li>
+                        <li><strong>Geographic spread:</strong> Nationwide, higher rates in rural areas</li>
+                        <li><strong>Annual increase:</strong> 3-5 million new cases yearly</li>
+                    </ul>
+                    <h3>🔍 Definition</h3>
+                    <p>Includes all Americans missing one or more permanent teeth due to decay, disease, or trauma who could benefit from implant treatment. Does not include wisdom teeth or orthodontic extractions.</p>
+                `
+            },
             'penetration-rate': {
                 title: '5.7% US Implant Penetration Rate',
                 content: `
-                    <h3>📊 America's Paradox</h3>
-                    <p><strong>Source:</strong> International Dental Implant Market Analysis 2024</p>
+                    <h3>📊 Penetration Rate Definition</h3>
+                    <p><strong>Definition:</strong> Percentage of tooth loss patients who have received at least one dental implant</p>
+                    <p><strong>Calculation:</strong> (Americans with implants ÷ Americans with tooth loss) × 100</p>
                     <ul>
-                        <li><strong>US Rate:</strong> 5.7% (lowest among developed nations)</li>
+                        <li><strong>US Rate:</strong> 5.7% (10.1M patients with implants ÷ 178M with tooth loss)</li>
                         <li><strong>Comparison:</strong> Switzerland 38%, Germany 25%, South Korea 13.3%</li>
                         <li><strong>Opportunity Gap:</strong> Even reaching 10% would mean doubling the market</li>
-                        <li><strong>Patient Impact:</strong> 167M patients (94.3%) still without access</li>
+                        <li><strong>Untreated:</strong> 167M patients (94.3%) still without implant access</li>
                     </ul>
-                    <h3>🌍 Global Context</h3>
-                    <p>Despite having the world's most advanced healthcare infrastructure, the US ranks 6th in implant accessibility. This isn't a failure — it's an unprecedented opportunity.</p>
+                    <h3>📚 Sources</h3>
+                    <p>International Dental Implant Market Analysis 2024, Straumann Global Market Report, ADA Clinical Statistics</p>
+                `
+            },
+            'market-size': {
+                title: '$3.0B Market Size Definition',
+                content: `
+                    <h3>📊 Market Size Breakdown</h3>
+                    <p><strong>Definition:</strong> Manufacturer-level implant product sales in the US market</p>
+                    <ul>
+                        <li><strong>Current Market (2024):</strong> $1.5B manufacturer sales</li>
+                        <li><strong>Forecast (2030):</strong> $3.0B manufacturer sales</li>
+                        <li><strong>Includes:</strong> Implant fixtures, abutments, prosthetic components</li>
+                        <li><strong>Excludes:</strong> Surgical fees, bone grafts, lab costs</li>
+                    </ul>
+                    <h3>🎯 Market Definition Scope</h3>
+                    <p>This represents implant hardware sales only (screws, abutments, prosthetics). Does not include surgical fees, bone grafts, or ancillary procedures, making the total addressable market significantly larger.</p>
+                    <p><strong>Sources:</strong> iData Research 2025, Straumann Annual Report, ADA Economic Impact Studies</p>
                 `
             },
             'silver-tsunami': {
@@ -1192,6 +1208,21 @@
                     <p>Patients who delayed treatment are now seeking permanent solutions rather than temporary fixes. The pain of waiting has increased willingness to invest in long-term outcomes.</p>
                 `
             },
+            'patient-empowerment': {
+                title: '67% Patient Self-Advocacy',
+                content: `
+                    <h3>🔍 Informed Patient Revolution</h3>
+                    <p><strong>Source:</strong> Dental Economics 2024 Patient Behavior Study</p>
+                    <ul>
+                        <li><strong>67% of patients</strong> research alternative treatments when told "not a candidate"</li>
+                        <li><strong>83% seek second opinions</strong> for complex procedures</li>
+                        <li><strong>Online research:</strong> Average 14 hours before major dental decisions</li>
+                        <li><strong>Social proof:</strong> 74% influenced by patient success stories</li>
+                    </ul>
+                    <h3>💡 Implant Market Impact</h3>
+                    <p>Patients no longer accept "no" as final answer. They actively seek practices and technologies that can provide solutions traditional dentistry cannot offer.</p>
+                `
+            },
             'market-forecast': {
                 title: '$3.0B Conservative Baseline',
                 content: `
@@ -1208,7 +1239,7 @@
                     <p><strong>Historical Precedent:</strong> When technology leaps occur in medical devices, markets often grow 2-3x faster than conservative projections.</p>
                     <p><strong>Sources:</strong> McKinsey Healthcare Innovation Reports, Medical Device Market Analysis 2024</p>
                 `
-            },
+            }
         };
         
         // Source popup functions
