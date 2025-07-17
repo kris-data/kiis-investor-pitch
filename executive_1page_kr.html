@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiiS Executive Summary - 178만 명의 미소를 되찾다</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+        
+        body {
+            font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: white;
+            font-size: 11px;
+        }
+        
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 10mm;
+            min-height: 297mm;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 헤더 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8mm;
+            padding-bottom: 3mm;
+            border-bottom: 2px solid #1e40af;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .company-info h1 {
+            font-size: 24px;
+            color: #1e40af;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        
+        .company-info .tagline {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .date-info {
+            text-align: right;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        /* 메인 컨텐츠 영역 */
+        .main-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6mm;
+            margin-bottom: 6mm;
+        }
+        
+        /* 왼쪽 컬럼 */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 5mm;
+        }
+        
+        /* 오른쪽 컬럼 */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 5mm;
+        }
+        
+        /* 카드 스타일 */
+        .card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 4mm;
+            border-left: 4px solid #1e40af;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .card.problem {
+            border-left-color: #dc2626;
+            background: #fef2f2;
+        }
+        
+        .card.solution {
+            border-left-color: #059669;
+            background: #f0fdf4;
+        }
+        
+        .card.market {
+            border-left-color: #7c3aed;
+            background: #faf5ff;
+        }
+        
+        .card.investment {
+            border-left-color: #ffd700;
+            background: #fffbeb;
+        }
+        
+        .card h3 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3mm;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .card-icon {
+            font-size: 16px;
+        }
+        
+        .card p {
+            font-size: 11px;
+            line-height: 1.4;
+            margin-bottom: 2mm;
+        }
+        
+        .card ul {
+            font-size: 10px;
+            padding-left: 4mm;
+            line-height: 1.3;
+        }
+        
+        .card li {
+            margin-bottom: 1mm;
+        }
+        
+        /* 특별 강조 요소들 */
+        .highlight-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #dc2626;
+            display: block;
+            margin: 1mm 0;
+        }
+        
+        .solution-number {
+            font-size: 16px;
+            font-weight: bold;
+            color: #059669;
+            display: block;
+            margin: 1mm 0;
+        }
+        
+        .market-size {
+            font-size: 20px;
+            font-weight: bold;
+            color: #7c3aed;
+            text-align: center;
+            margin: 2mm 0;
+        }
+        
+        .investment-highlight {
+            font-size: 16px;
+            font-weight: bold;
+            color: #dc2626;
+            text-align: center;
+            margin: 2mm 0;
+            padding: 2mm;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* 3가지 장벽 그리드 */
+        .barriers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2mm;
+            margin: 3mm 0;
+        }
+        
+        .barrier-item {
+            text-align: center;
+            padding: 2mm;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .barrier-icon {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 1mm;
+        }
+        
+        .barrier-title {
+            font-size: 9px;
+            font-weight: bold;
+            margin-bottom: 1mm;
+            color: #374151;
+        }
+        
+        .barrier-desc {
+            font-size: 8px;
+            color: #6b7280;
+            line-height: 1.2;
+        }
+        
+        /* 솔루션 그리드 */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2mm;
+            margin: 3mm 0;
+        }
+        
+        .solution-item {
+            text-align: center;
+            padding: 2mm;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #d1fae5;
+        }
+        
+        .solution-icon {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 1mm;
+            color: #059669;
+        }
+        
+        .solution-title {
+            font-size: 9px;
+            font-weight: bold;
+            margin-bottom: 1mm;
+            color: #059669;
+        }
+        
+        .solution-desc {
+            font-size: 8px;
+            color: #374151;
+            line-height: 1.2;
+        }
+        
+        /* 하단 영역 */
+        .footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 4mm;
+            margin-top: auto;
+            padding-top: 4mm;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .footer-section h4 {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 2mm;
+            color: #1e40af;
+        }
+        
+        .footer-section p {
+            font-size: 10px;
+            line-height: 1.3;
+            margin-bottom: 1mm;
+        }
+        
+        .contact-info {
+            font-size: 9px;
+            color: #666;
+        }
+        
+        .qr-placeholder {
+            width: 40px;
+            height: 40px;
+            background: #f3f4f6;
+            border: 2px dashed #9ca3af;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: #6b7280;
+            margin: 2mm auto;
+        }
+        
+        /* 인쇄 최적화 */
+        @media print {
+            body {
+                font-size: 10px;
+            }
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 5mm;
+            }
+            .card {
+                break-inside: avoid;
+            }
+        }
+        
+        /* 컬러 강조 클래스 */
+        .text-primary { color: #1e40af; }
+        .text-success { color: #059669; }
+        .text-warning { color: #dc2626; }
+        .text-gold { color: #ffd700; }
+        
+        .bg-primary { background-color: #1e40af; color: white; }
+        .bg-success { background-color: #059669; color: white; }
+        .bg-warning { background-color: #dc2626; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">K</div>
+                <div class="company-info">
+                    <h1>KiiS</h1>
+                    <div class="tagline">Kim's Ingrowth Implant System</div>
+                </div>
+            </div>
+            <div class="date-info">
+                <div><strong>Executive Summary</strong></div>
+                <div>2025년 7월</div>
+                <div>Series A 투자 제안서</div>
+            </div>
+        </div>
+
+        <!-- 메인 컨텐츠 -->
+        <div class="main-content">
+            <!-- 왼쪽 컬럼 -->
+            <div class="left-column">
+                <!-- 문제 정의 -->
+                <div class="card problem">
+                    <h3><span class="card-icon">⚠️</span>해결하고자 하는 문제</h3>
+                    <p><span class="highlight-number">178만 명의 미국인</span>이 한 개 이상의 치아를 잃었지만, 현재 시스템은 이들을 제대로 서비스하지 못하고 있습니다.</p>
+                    
+                    <div class="barriers-grid">
+                        <div class="barrier-item">
+                            <span class="barrier-icon">💰</span>
+                            <div class="barrier-title">높은 비용</div>
+                            <div class="barrier-desc">치아당 $3-6K + 골이식</div>
+                        </div>
+                        <div class="barrier-item">
+                            <span class="barrier-icon">⏱️</span>
+                            <div class="barrier-title">복잡한 과정</div>
+                            <div class="barrier-desc">4-9개월 + 다수 방문</div>
+                        </div>
+                        <div class="barrier-item">
+                            <span class="barrier-icon">🚫</span>
+                            <div class="barrier-title">환자 제외</div>
+                            <div class="barrier-desc">불량 골질 환자 배제</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KiiS 솔루션 -->
+                <div class="card solution">
+                    <h3><span class="card-icon">🚀</span>KiiS 통합 솔루션</h3>
+                    <p>혁신적인 <strong>Ingrowth 기술</strong>로 3가지 시장 장벽을 동시에 해결합니다.</p>
+                    
+                    <div class="solutions-grid">
+                        <div class="solution-item">
+                            <span class="solution-icon">💎</span>
+                            <div class="solution-title">비용 절감</div>
+                            <div class="solution-desc">골이식 불필요</div>
+                        </div>
+                        <div class="solution-item">
+                            <span class="solution-icon">⚡</span>
+                            <div class="solution-title">절차 간소화</div>
+                            <div class="solution-desc">단일 세션 가능</div>
+                        </div>
+                        <div class="solution-item">
+                            <span class="solution-icon">🎯</span>
+                            <div class="solution-title">범용 접근성</div>
+                            <div class="solution-desc">불량 골질환자 치료 가능</div>
+                        </div>
+                    </div>
+                    
+                    <p><span class="solution-number">✓ FDA 승인 경로 확보</span></p>
+                    <p><span class="solution-number">✓ 한국 제조 파트너십 체결</span></p>
+                </div>
+
+                <!-- 추진력 & 검증 -->
+                <div class="card">
+                    <h3><span class="card-icon">📈</span>추진력 & 검증</h3>
+                    <ul>
+                        <li><strong>기술 검증:</strong> 6주 Micro-CT 연구에서 40% 향상된 골접촉</li>
+                        <li><strong>특허 포트폴리오:</strong> 핵심 기술 IP 확보</li>
+                        <li><strong>제조 준비:</strong> 한국 OEM 파트너와 생산 체계 구축</li>
+                        <li><strong>규제 경로:</strong> FDA 510K 제출 준비 완료</li>
+                        <li><strong>시장 검증:</strong> 초기 고객 관심 확보</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 오른쪽 컬럼 -->
+            <div class="right-column">
+                <!-- 시장 기회 -->
+                <div class="card market">
+                    <h3><span class="card-icon">🌍</span>시장 기회</h3>
+                    <div class="market-size">$69억 시장</div>
+                    <p style="text-align: center; font-size: 12px; color: #7c3aed; margin-bottom: 3mm;">
+                        <strong>미국 치과 임플란트 시장 (2024)</strong>
+                    </p>
+                    
+                    <ul>
+                        <li><strong>현재 침투율:</strong> 단 5.7% (선진국 최하위)</li>
+                        <li><strong>연간 성장률:</strong> 8.1% CAGR</li>
+                        <li><strong>타겟 시장:</strong> 연간 600만 개 임플란트</li>
+                        <li><strong>경쟁 우위:</strong> 기존 솔루션 대비 차별화된 접근</li>
+                    </ul>
+                    
+                    <p style="margin-top: 3mm;"><strong>KiiS 기회:</strong> 기존에 치료받지 못한 환자층을 새로운 치료 대상으로 전환</p>
+                </div>
+
+                <!-- 수익성 & 확장성 -->
+                <div class="card">
+                    <h3><span class="card-icon">💼</span>수익성 & 확장성</h3>
+                    <ul>
+                        <li><strong>제조 파트너십:</strong> 한국 OEM 업체와 협력</li>
+                        <li><strong>디지털 플랫폼:</strong> 온라인 마케팅 및 판매</li>
+                        <li><strong>의료진 교육:</strong> KiiS 기술 트레이닝</li>
+                        <li><strong>플랫폼 확장:</strong> 치과 → 정형외과 응용</li>
+                    </ul>
+                    
+                    <p style="margin-top: 2mm;"><strong>시장 진입 전략:</strong></p>
+                    <ul>
+                        <li>1단계: KiiS-Plus (510K) - 중급/가성비 시장 진입</li>
+                        <li>2단계: KiiS-Relax (De Novo) - 프리미엄 복잡 케이스 시장</li>
+                        <li>3단계: 정형외과 임플란트 확장</li>
+                    </ul>
+                </div>
+
+                <!-- 투자 제안 -->
+                <div class="card investment">
+                    <h3><span class="card-icon">💰</span>투자 제안</h3>
+                    <div class="investment-highlight">
+                        $1-2M 투자 유치<br>
+                        $8-12M 밸류에이션
+                    </div>
+                    
+                    <p><strong>자금 사용 계획:</strong></p>
+                    <ul>
+                        <li><strong>40%</strong> 시장 진입 (마케팅, 영업팀)</li>
+                        <li><strong>30%</strong> 제조 (OEM 파트너십, 재고)</li>
+                        <li><strong>20%</strong> FDA & 규제 (510K, 품질보증)</li>
+                        <li><strong>10%</strong> 운영 (법무, 회계, 비상금)</li>
+                    </ul>
+                    
+                    <p style="margin-top: 3mm;"><strong>투자자 혜택:</strong></p>
+                    <ul>
+                        <li>8-17% 지분 (투자 규모에 따라)</li>
+                        <li>최소 투자: $50K</li>
+                        <li>목표 마감: 2025년 Q3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 하단 영역 -->
+        <div class="footer">
+            <div class="footer-section">
+                <h4>왜 지금인가?</h4>
+                <p>• 고령화로 인한 치과 임플란트 수요 급증</p>
+                <p>• 기존 기술의 한계로 인한 혁신 필요성</p>
+                <p>• FDA 승인 경로와 제조 파트너십 확보</p>
+                <p>• 경험 많은 팀과 검증된 기술</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>팀 & 파트너십</h4>
+                <p><strong>HUMED LIFESCIENCES</strong></p>
+                <p>• 의료기기 전문 경영진</p>
+                <p>• 한국 제조 파트너 확보</p>
+                <p>• FDA 규제 경험 보유</p>
+                <p>• 글로벌 네트워크 구축</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>연락처</h4>
+                <div class="contact-info">
+                    <p><strong>투자 문의:</strong></p>
+                    <p>📧 invest@kiis.com</p>
+                    <p>📞 +1-555-KIIS-INV</p>
+                    <p>🌐 kiis-investor-pitch.com</p>
+                </div>
+                <div class="qr-placeholder">QR코드</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 인쇄 최적화
+        window.addEventListener('beforeprint', function() {
+            document.body.style.fontSize = '9px';
+        });
+        
+        window.addEventListener('afterprint', function() {
+            document.body.style.fontSize = '11px';
+        });
+        
+        // QR 코드 생성 (실제 구현시)
+        function generateQR() {
+            // QR 코드 라이브러리 연동
+            console.log('QR 코드 생성: https://kris-data.github.io/kiis-investor-pitch/');
+        }
+        
+        // 페이지 로드시 QR 코드 생성
+        document.addEventListener('DOMContentLoaded', generateQR);
+    </script>
+</body>
+</html>
