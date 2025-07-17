@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Financial Projections & Milestones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 40px 60px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* 헤더 섹션 */
+        .main-header {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .main-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .title-highlight {
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: #e0e7ff;
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* 매출 성장 그래프 섹션 */
+        .growth-chart-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #ffd700;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .growth-chart-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 320px;
+            margin: 40px 0;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            padding: 60px 50px 20px 50px;
+        }
+
+        .chart-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 18%;
+        }
+
+        .bar {
+            width: 65px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 15px;
+            position: relative;
+            transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: bottom;
+            opacity: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .bar.visible {
+            opacity: 1;
+        }
+
+        /* 통일된 골드 그라디언트 */
+        .bar-2025 { 
+            height: 8px; 
+            background: linear-gradient(to top, #4b5563, #6b7280);
+        }
+        .bar-2026 { 
+            height: 45px; 
+            background: linear-gradient(to top, #b45309, #d97706, #ffd700);
+        }
+        .bar-2027 { 
+            height: 110px; 
+            background: linear-gradient(to top, #b45309, #d97706, #ffd700);
+        }
+        .bar-2028 { 
+            height: 190px; 
+            background: linear-gradient(to top, #b45309, #d97706, #ffd700);
+        }
+        .bar-2029 { 
+            height: 260px; 
+            background: linear-gradient(to top, #b45309, #d97706, #ffd700);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -45px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            white-space: nowrap;
+        }
+
+        .bar-year {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e0e7ff;
+            margin-top: 12px;
+        }
+
+
+
+        /* 성장률 표시 */
+        .growth-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .growth-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #e0e7ff;
+            backdrop-filter: blur(10px);
+        }
+
+        .growth-badge .growth-multiplier {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        /* Phase 기반 로드맵 섹션 */
+        .roadmap-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #10b981;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .roadmap-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .roadmap-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .phase-group {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .phase-group.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .phase-group:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .phase-group-title {
+            font-size: 18px;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .phase-item {
+            margin-bottom: 18px;
+            border-left: 2px solid rgba(16, 185, 129, 0.5);
+            padding-left: 15px;
+        }
+
+        .phase-header {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .phase-period {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .phase-activities {
+            font-size: 12px;
+            color: #e8f4fd;
+            line-height: 1.4;
+        }
+
+        .phase-activities li {
+            margin-bottom: 4px;
+            list-style: none;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .phase-activities li:before {
+            content: "▸";
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* 제품 혁신 하이라이트 */
+        .product-innovation {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            border-radius: 8px;
+            padding: 3px 8px;
+            margin-left: 8px;
+            font-size: 10px;
+            color: #ffd700;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* 네비게이션 시스템 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 1200px) {
+            .roadmap-timeline {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .growth-indicators {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 28px;
+                line-height: 1.1;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+                line-height: 1.3;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .roadmap-timeline {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .chart-container {
+                padding: 40px 20px 20px 20px;
+                height: 280px;
+            }
+            
+            .bar {
+                width: 50px;
+            }
+            
+            .bar-value {
+                font-size: 15px;
+                top: -35px;
+            }
+            
+            .bar-year {
+                font-size: 14px;
+            }
+            
+            .growth-indicators {
+                gap: 15px;
+            }
+            
+            .growth-badge {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+            
+            .title {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+            }
+            
+            .chart-container {
+                padding: 30px 15px 15px 15px;
+                height: 240px;
+            }
+            
+            .bar {
+                width: 35px;
+            }
+            
+            .bar-value {
+                font-size: 13px;
+                top: -30px;
+            }
+            
+            .bar-year {
+                font-size: 12px;
+            }
+            
+            .growth-indicators {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .growth-badge {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .title {
+                font-size: 22px;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+            }
+            
+            .section-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 메인 헤더 -->
+        <div class="main-header" id="mainHeader">
+            <h1 class="title">
+                Financial Projections & <span class="title-highlight">Milestones</span>
+            </h1>
+            <p class="subtitle">
+                Data-Driven Growth Strategy with Clear Execution Roadmap
+            </p>
+        </div>
+
+        <div class="content-sections">
+            <!-- 매출 성장 그래프 -->
+            <div class="growth-chart-section">
+                <div class="section-title">4-Year Accelerating Growth: $0M → $12M+</div>
+                <div class="chart-container">
+                    <div class="chart-bar">
+                        <div class="bar bar-2025 visible">
+                            <div class="bar-value">$0M</div>
+                        </div>
+                        <div class="bar-year">2025</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar bar-2026">
+                            <div class="bar-value">$1M</div>
+                        </div>
+                        <div class="bar-year">2026</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar bar-2027">
+                            <div class="bar-value">$3M</div>
+                        </div>
+                        <div class="bar-year">2027</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar bar-2028">
+                            <div class="bar-value">$6M</div>
+                        </div>
+                        <div class="bar-year">2028</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar bar-2029">
+                            <div class="bar-value">$12M</div>
+                        </div>
+                        <div class="bar-year">2029</div>
+                    </div>
+
+                </div>
+                
+                <!-- 성장률 표시 -->
+                <div class="growth-indicators">
+                    <div class="growth-badge">
+                        2026-2027: <span class="growth-multiplier">3x Growth</span>
+                    </div>
+                    <div class="growth-badge">
+                        2027-2028: <span class="growth-multiplier">2x Growth</span>
+                    </div>
+                    <div class="growth-badge">
+                        2028-2029: <span class="growth-multiplier">2x Growth</span>
+                    </div>
+                    <div class="growth-badge">
+                        2030+: <span class="growth-multiplier">Orthopedic Expansion</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 기반 로드맵 -->
+            <div class="roadmap-section">
+                <div class="section-title">Strategic Execution Roadmap by Phase</div>
+                <div class="roadmap-timeline">
+                    <!-- 기반 구축 & 인증 (2025-2026) -->
+                    <div class="phase-group">
+                        <div class="phase-group-title">Foundation & Certification</div>
+                        
+                        <div class="phase-item">
+                            <div class="phase-header">Phase 1: Business Foundation</div>
+                            <div class="phase-period">2025 Q3-Q4</div>
+                            <ul class="phase-activities">
+                                <li>Investment funding completion</li>
+                                <li>AI-integrated e-commerce development</li>
+                                <li>OEM manufacturing partnerships</li>
+                            </ul>
+                        </div>
+
+                        <div class="phase-item">
+                            <div class="phase-header">Phase 2: Certification & Systems</div>
+                            <div class="phase-period">2026 Q1-Q2</div>
+                            <ul class="phase-activities">
+                                <li>Korean manufacturing certification + FDA registration</li>
+                                <li>Quality monitoring systems</li>
+                                <li>Customer service infrastructure</li>
+                            </ul>
+                        </div>
+
+                        <div class="phase-item">
+                            <div class="phase-header">Phase 3: Launch Preparation</div>
+                            <div class="phase-period">2026 Q2-Q3</div>
+                            <ul class="phase-activities">
+                                <li>FDA 510K approval <span class="product-innovation">PRODUCT</span></li>
+                                <li>E-commerce platform completion</li>
+                                <li>Marketing content creation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 시장 진입 & 성장 (2026-2028) -->
+                    <div class="phase-group">
+                        <div class="phase-group-title">Market Entry & Growth</div>
+                        
+                        <div class="phase-item">
+                            <div class="phase-header">Phase 4: Market Entry</div>
+                            <div class="phase-period">2026 Q3-Q4</div>
+                            <ul class="phase-activities">
+                                <li>E-commerce platform launch</li>
+                                <li>Early adopter campaigns</li>
+                                <li>Customer testimonial collection</li>
+                            </ul>
+                        </div>
+
+                        <div class="phase-item">
+                            <div class="phase-header">Phase 5: Growth Acceleration</div>
+                            <div class="phase-period">2027-2028</div>
+                            <ul class="phase-activities">
+                                <li>Direct sales expansion</li>
+                                <li>Major dental partnerships</li>
+                                <li>International market research</li>
+                                <li>Production capacity scaling</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 프리미엄 확대 & 미래 (2029+) -->
+                    <div class="phase-group">
+                        <div class="phase-group-title">Premium & Expansion</div>
+                        
+                        <div class="phase-item">
+                            <div class="phase-header">Phase 6: Premium Launch</div>
+                            <div class="phase-period">2029</div>
+                            <ul class="phase-activities">
+                                <li>KiiS-Relax injectable system <span class="product-innovation">PRODUCT</span></li>
+                                <li>Premium market penetration</li>
+                                <li>Market leadership establishment</li>
+                                <li>Advanced AI platform features <span class="product-innovation">TECH</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="phase-item">
+                            <div class="phase-header">Phase 7: Market Expansion</div>
+                            <div class="phase-period">2030+</div>
+                            <ul class="phase-activities">
+                                <li>US orthopedic market entry <span class="product-innovation">EXPANSION</span></li>
+                                <li>Global market expansion</li>
+                                <li>Multi-patent IP portfolio</li>
+                                <li>Strategic partnerships</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 네비게이션 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    <div class="navigation" id="navigation">
+        <a href="slide10.html" class="nav-btn prev">Back</a>
+        <a href="slide12.html" class="nav-btn next">Next</a>
+    </div>
+
+    <script>
+        // 터치 디바이스 감지
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        let isNavigationVisible = false;
+        let hideTimeout;
+        let lastMouseY = 0;
+
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+
+        // 네비게이션 표시/숨김
+        function showNavigation() {
+            if (hideTimeout) clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+
+        function hideNavigation(delay = 2000) {
+            if (hideTimeout) clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+
+        // 페이지 로드 애니메이션
+        function startLoadingAnimation() {
+            const header = document.getElementById('mainHeader');
+            const growthSection = document.querySelector('.growth-chart-section');
+            const roadmapSection = document.querySelector('.roadmap-section');
+            
+            // 헤더 애니메이션
+            setTimeout(() => {
+                header.classList.add('visible');
+            }, 300);
+            
+            // 성장 차트 섹션
+            setTimeout(() => {
+                growthSection.classList.add('visible');
+            }, 700);
+            
+            // 차트 바 순차 애니메이션 (가속화 패턴)
+            setTimeout(() => {
+                const bars = document.querySelectorAll('.bar');
+                const delays = [0, 300, 600, 1000, 1500]; // 가속화되는 딜레이
+                bars.forEach((bar, index) => {
+                    if (index > 0) { // 첫 번째 바는 이미 visible
+                        setTimeout(() => {
+                            bar.classList.add('visible');
+                        }, delays[index]);
+                    }
+                });
+            }, 1000);
+            
+            // 로드맵 섹션
+            setTimeout(() => {
+                roadmapSection.classList.add('visible');
+            }, 2200);
+            
+            // Phase 그룹 순차 애니메이션
+            setTimeout(() => {
+                const phaseGroups = document.querySelectorAll('.phase-group');
+                phaseGroups.forEach((group, index) => {
+                    setTimeout(() => {
+                        group.classList.add('visible');
+                    }, index * 200);
+                });
+            }, 2500);
+            
+            // 네비게이션 힌트 표시
+            setTimeout(() => {
+                showNavigation();
+                hideNavigation(3000);
+            }, 3800);
+        }
+
+        // 호버존 이벤트
+        hoverZone.addEventListener('mouseenter', showNavigation);
+        hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+
+        // 마우스 위치 추적 (PC만)
+        if (!isTouchDevice) {
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) showNavigation();
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
+                }
+            });
+        }
+
+        // 터치 네비게이션
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                if (e.touches[0].clientY > window.innerHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        window.location.href = 'slide10.html';
+                    } else {
+                        window.location.href = 'slide12.html';
+                    }
+                }
+            });
+            
+            // 터치 토글
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                if (e.target.closest('.navigation') || 
+                    e.target.closest('.hover-zone') ||
+                    e.target.closest('.phase-group')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide10.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide12.html';
+                    break;
+                case 'n':
+                case 'N':
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+                case 'Escape':
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                    clearTimeout(hideTimeout);
+                    break;
+            }
+        });
+
+        // 페이지 로드시 애니메이션 시작
+        window.addEventListener('load', startLoadingAnimation);
+    </script>
+</body>
+</html>
