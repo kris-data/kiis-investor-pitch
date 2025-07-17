@@ -1,4 +1,4 @@
-# KiiS 투자자 프레젠테이션 디자인 시스템 v2.0
+# KiiS 투자자 프레젠테이션 디자인 시스템 v2.1
 
 ## 📋 목차
 1. [핵심 철학](#핵심-철학)
@@ -7,10 +7,11 @@
 4. [타이포그래피 시스템](#타이포그래피-시스템)
 5. [레이아웃 및 간격 체계](#레이아웃-및-간격-체계)
 6. [색상 및 시각적 위계](#색상-및-시각적-위계)
-7. [네비게이션 시스템](#네비게이션-시스템)
-8. [애니메이션 및 상호작용](#애니메이션-및-상호작용)
-9. [개발 구현 가이드](#개발-구현-가이드)
-10. [품질 보증 체크리스트](#품질-보증-체크리스트)
+7. [**이미지 처리 및 통합 시스템**](#이미지-처리-및-통합-시스템) ← **NEW**
+8. [네비게이션 시스템](#네비게이션-시스템)
+9. [애니메이션 및 상호작용](#애니메이션-및-상호작용)
+10. [개발 구현 가이드](#개발-구현-가이드)
+11. [품질 보증 체크리스트](#품질-보증-체크리스트)
 
 ---
 
@@ -371,6 +372,310 @@ line-height: 1.4; /* 본문 */
 
 ---
 
+## 이미지 처리 및 통합 시스템
+
+### 📸 이미지 처리 핵심 원칙
+
+#### **1. 경로 구조 표준화**
+```html
+<!-- KiiS 프로젝트 표준 경로 -->
+/kiis-investor-pitch/public/images/[image-name].jpg
+
+<!-- 실제 사용 예시 -->
+<img src="/kiis-investor-pitch/public/images/patient-kiisplus-proposition.jpg" 
+     alt="KiiS-Plus Target Patient" 
+     class="patient-image">
+```
+
+#### **2. 필수 Fallback 시스템**
+```html
+<!-- 기본 템플릿 - 이미지 + 대체 플레이스홀더 -->
+<img src="/path/to/image.jpg" 
+     alt="Descriptive Alt Text" 
+     class="responsive-image"
+     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+<div class="image-placeholder" style="display: none;">
+    <div class="placeholder-icon">🎯</div>
+    <div class="placeholder-text">대체 텍스트<br>설명</div>
+</div>
+```
+
+### 🎨 이미지 스타일링 시스템
+
+#### **환자/인물 이미지 스타일**
+```css
+/* 환자 이미지 - 카드 내 통합용 */
+.patient-image {
+    width: 100%;
+    height: 200px;                    /* 카드: 200px */
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center 15%;      /* 상단 중심 크롭 */
+    margin-bottom: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.patient-image:hover {
+    transform: scale(1.02);
+}
+
+/* 풀 페이지 환자 이미지 */
+.patient-hero-image {
+    width: 100%;
+    height: 350px;                    /* 풀 페이지: 350px */
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: center 15%;
+    margin-bottom: 25px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+```
+
+#### **기술/제품 이미지 스타일**
+```css
+/* 제품 이미지 */
+.product-image {
+    width: 100%;
+    height: 250px;
+    border-radius: 15px;
+    object-fit: contain;              /* 제품은 전체 표시 */
+    object-position: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* 다이어그램/차트 이미지 */
+.diagram-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+}
+```
+
+#### **플레이스홀더 시스템**
+```css
+/* 통합 플레이스홀더 스타일 */
+.image-placeholder {
+    width: 100%;
+    height: inherit;                  /* 상위 이미지와 동일 높이 */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: inherit;           /* 상위 이미지와 동일 반경 */
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: inherit;           /* 상위 이미지와 동일 마진 */
+}
+
+.placeholder-icon {
+    font-size: 36px;                 /* 카드용: 36px */
+    margin-bottom: 10px;
+    color: #ffd700;
+}
+
+.placeholder-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.3;
+}
+
+/* 풀 페이지용 플레이스홀더 */
+.hero-placeholder .placeholder-icon {
+    font-size: 48px;                 /* 히어로용: 48px */
+    margin-bottom: 15px;
+}
+
+.hero-placeholder .placeholder-text {
+    font-size: 16px;
+}
+```
+
+### 📱 반응형 이미지 처리
+
+#### **모바일 최적화**
+```css
+/* 768px 이하 - 중간 모바일 */
+@media (max-width: 768px) {
+    .patient-image,
+    .patient-hero-image {
+        height: 250px;                /* 원본의 80% */
+        margin-bottom: 15px;
+    }
+    
+    .placeholder-icon {
+        font-size: 32px;             /* 원본의 85% */
+    }
+    
+    .placeholder-text {
+        font-size: 13px;
+    }
+}
+
+/* 480px 이하 - 갤럭시 S 표준 */
+@media (max-width: 480px) {
+    .patient-image {
+        height: 180px;               /* 원본의 65% */
+        margin-bottom: 12px;
+        border-radius: 12px;
+    }
+    
+    .patient-hero-image {
+        height: 220px;               /* 원본의 65% */
+        margin-bottom: 15px;
+    }
+    
+    .placeholder-icon {
+        font-size: 28px;            /* 원본의 75% */
+        margin-bottom: 8px;
+    }
+    
+    .placeholder-text {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+}
+
+/* 360px 이하 - 컴팩트 폰 */
+@media (max-width: 360px) {
+    .patient-image {
+        height: 150px;               /* 원본의 50% */
+        border-radius: 10px;
+    }
+    
+    .patient-hero-image {
+        height: 200px;               /* 원본의 55% */
+    }
+    
+    .placeholder-icon {
+        font-size: 24px;            /* 원본의 65% */
+    }
+    
+    .placeholder-text {
+        font-size: 11px;
+    }
+}
+```
+
+### 🔧 이미지 통합 구현 패턴
+
+#### **환자 이미지 카드 통합 패턴**
+```html
+<!-- KiiS-Plus 환자 타겟팅 예시 -->
+<div class="product-strategy kiis-plus">
+    <!-- 환자 이미지 섹션 -->
+    <img src="/kiis-investor-pitch/public/images/patient-kiisplus-proposition.jpg" 
+         alt="KiiS-Plus Target Patient - Professional Mid-Age Adult" 
+         class="patient-image"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display: none;">
+        <div class="placeholder-icon">👨‍💼</div>
+        <div class="placeholder-text">Type 1-2 Market<br>Value-Conscious Patient</div>
+    </div>
+    
+    <!-- 나머지 카드 콘텐츠 -->
+    <div class="product-header">
+        <div class="product-name">KiiS-Plus</div>
+        <div class="market-badge">Type 1-2 Market</div>
+    </div>
+    <!-- ... -->
+</div>
+```
+
+#### **풀 페이지 이미지 통합 패턴**
+```html
+<!-- slide10 스타일 환자 가치 제안 -->
+<div class="value-card">
+    <img src="/kiis-investor-pitch/public/images/patient-kiisrelax-proposition.jpg" 
+         alt="KiiS-Relax Patient Value Proposition" 
+         class="patient-hero-image"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder hero-placeholder" style="display: none;">
+        <div class="placeholder-icon">👩‍🦳</div>
+        <div class="placeholder-text">Type 3-4 Premium<br>Complex Case Patient<br>KiiS-Relax Solution</div>
+    </div>
+    <!-- ... -->
+</div>
+```
+
+### 🎯 이미지 명명 규칙
+
+#### **파일명 컨벤션**
+```
+환자 이미지:
+- patient-[product]-[context].jpg
+- patient-kiisplus-proposition.jpg
+- patient-kiisrelax-proposition.jpg
+
+제품 이미지:
+- product-[name]-[view].jpg
+- product-kiisplus-render.jpg
+- product-kiisrelax-cutaway.jpg
+
+다이어그램:
+- diagram-[topic]-[type].jpg
+- diagram-market-analysis.jpg
+- diagram-technology-comparison.jpg
+
+차트/그래프:
+- chart-[data]-[type].jpg
+- chart-market-size-growth.jpg
+- chart-revenue-projection.jpg
+```
+
+### ⚡ 성능 최적화 가이드
+
+#### **이미지 최적화 체크리스트**
+- [ ] **파일 크기**: 200KB 이하 (환자 이미지 기준)
+- [ ] **해상도**: 최대 1200px 너비
+- [ ] **포맷**: JPG (사진), PNG (투명배경), WebP (지원시)
+- [ ] **압축**: 85% 품질 유지
+- [ ] **Alt 텍스트**: 의미 있는 설명 포함
+
+#### **로딩 최적화**
+```css
+/* 이미지 로딩 최적화 */
+.patient-image,
+.product-image {
+    loading: lazy;                   /* Native lazy loading */
+    transition: opacity 0.3s ease;  /* 부드러운 로딩 */
+}
+
+/* 로딩 상태 스타일 */
+.image-loading {
+    opacity: 0.7;
+    filter: blur(2px);
+}
+
+.image-loaded {
+    opacity: 1;
+    filter: none;
+}
+```
+
+### 🔍 이미지 품질 보증
+
+#### **필수 검증 항목**
+- [ ] **모든 디바이스에서 적절한 크기로 표시**
+- [ ] **Fallback 플레이스홀더 정상 동작**
+- [ ] **Alt 텍스트 접근성 준수**
+- [ ] **로딩 실패시 레이아웃 파괴 없음**
+- [ ] **호버 효과 부드러운 동작**
+
+#### **테스트 환경**
+- [ ] **Chrome DevTools**: 네트워크 상태별 테스트
+- [ ] **모바일 시뮬레이터**: 다양한 화면 크기
+- [ ] **실제 디바이스**: 갤럭시 S, iPhone
+- [ ] **느린 네트워크**: 이미지 로딩 실패 시뮬레이션
+
+---
+
 ## 네비게이션 시스템
 
 ### 🧭 통합 네비게이션 (slide2 성공 모델)
@@ -682,6 +987,16 @@ function hideSource() {
 - [ ] 적절한 간격 및 패딩
 - [ ] 터치 영역 44px 이상
 
+#### **이미지 처리** ← **NEW**
+- [ ] **모든 이미지에 Fallback 플레이스홀더 구현**
+- [ ] **표준 경로 구조 준수** (/kiis-investor-pitch/public/images/)
+- [ ] **반응형 이미지 크기 조정** (모바일 50-80% 축소)
+- [ ] **Alt 텍스트 의미 있게 작성**
+- [ ] **onerror 이벤트 핸들러 구현**
+- [ ] **이미지 로딩 실패시 레이아웃 유지**
+- [ ] **hover 효과 부드럽게 동작**
+- [ ] **파일 크기 200KB 이하 유지**
+
 #### **상호작용**
 - [ ] 네비게이션 4가지 방식 모두 동작
 - [ ] 팝업 열기/닫기 정상 동작
@@ -710,17 +1025,26 @@ function hideSource() {
 - [ ] **키보드** 단축키
 - [ ] **팝업** 모든 방식으로 열기/닫기
 
+#### **이미지 테스트** ← **NEW**
+- [ ] **정상 로딩**: 모든 이미지 정상 표시
+- [ ] **로딩 실패**: 플레이스홀더 정상 표시
+- [ ] **네트워크 제한**: 느린 연결에서 테스트
+- [ ] **다양한 화면**: 데스크톱, 태블릿, 모바일
+- [ ] **캐시 무효화**: 강력 새로고침 테스트
+
 ### 📊 성능 기준
 
 #### **로딩 성능**
 - 초기 렌더링: < 1초
 - 완전 로딩: < 3초
 - 애니메이션 시작: < 1.5초
+- **이미지 로딩**: < 2초 (개별 이미지)
 
 #### **사용성 기준**
 - 터치 반응: < 100ms
 - 네비게이션 표시: < 200ms
 - 페이지 전환: < 500ms
+- **이미지 호버**: < 150ms 반응
 
 ### 🎯 투자자 프레젠테이션 품질 기준
 
@@ -743,12 +1067,15 @@ function hideSource() {
 - [ ] 색상 대비 4.5:1 이상 유지
 - [ ] 타이포그래피 위계 명확
 - [ ] 브랜드 아이덴티티 일관성
+- [ ] **이미지 품질**: 선명하고 적절한 해상도
+- [ ] **시각적 연속성**: 이미지와 텍스트의 조화
 
 #### **기술적 신뢰성**
 - [ ] 모든 링크 및 상호작용 동작
 - [ ] 크로스 브라우저 호환성
 - [ ] 모바일 최적화 완성도
 - [ ] 오류 없는 코드 품질
+- [ ] **이미지 안정성**: 로딩 실패시에도 레이아웃 유지
 
 ---
 
@@ -761,11 +1088,15 @@ function hideSource() {
   - 갤럭시 스마트폰 최적화 전략 수립
   - 타이포그래피 시스템 정교화
   - 품질 보증 프로세스 강화
-- **v2.1**: 투자자 신뢰도 원칙 통합
+- **v2.1**: 투자자 신뢰도 원칙 통합 + 이미지 처리 시스템 구축
   - 클레임 검증 체계 수립
   - 현실적 타임라인 가이드라인 추가
   - 투자 의존성 명시 방법론 구축
   - 과장 방지 및 정확성 검증 프로세스 강화
+  - **이미지 처리 및 통합 시스템 추가**
+  - **표준 경로 구조 및 Fallback 시스템 구축**
+  - **반응형 이미지 스타일링 가이드라인**
+  - **성능 최적화 및 품질 보증 체크리스트 확장**
 
 ### 🔄 지속적 개선 프로세스
 1. **실제 사용 피드백** 수집
@@ -774,19 +1105,36 @@ function hideSource() {
 4. **투자자 반응** 기반 조정
 5. **사실 확인** 및 클레임 검증
 6. **타임라인 업데이트** 및 현실성 점검
+7. **이미지 품질 모니터링** 및 최적화
 
-### 🎯 slide4 적용 사례 (v2.1 기준)
+### 🎯 slide7 적용 사례 (v2.1 기준)
 
 #### **Before (v2.0)**
-- "FDA Fast Track Approved - Market ready in 2025"
-- "3x faster healing" (구체적 숫자 클레임)
-- "Q2 2025: Final FDA submission"
+```html
+<!-- 이미지 없음, 텍스트만 -->
+<div class="product-strategy kiis-plus">
+    <div class="product-name">KiiS-Plus</div>
+    <!-- ... -->
+</div>
+```
 
 #### **After (v2.1)**
-- "FDA Pre-Submission Approved - Ready for final submission"
-- "Enhanced healing outcomes" (방향성 표현)
-- "Investment → 2026 Market Ready" (의존성 명시)
+```html
+<!-- 이미지 + Fallback 시스템 완비 -->
+<div class="product-strategy kiis-plus">
+    <img src="/kiis-investor-pitch/public/images/patient-kiisplus-proposition.jpg" 
+         alt="KiiS-Plus Target Patient" 
+         class="patient-image"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display: none;">
+        <div class="placeholder-icon">👨‍💼</div>
+        <div class="placeholder-text">Type 1-2 Market<br>Value-Conscious Patient</div>
+    </div>
+    <div class="product-name">KiiS-Plus</div>
+    <!-- ... -->
+</div>
+```
 
 ---
 
-*이 디자인 시스템은 KiiS의 투자자 프레젠테이션 품질을 보장하고, 환자를 위한 우리의 진정성과 사업에 대한 확신을 정확하고 신뢰할 수 있는 방식으로 전달하기 위한 살아있는 문서입니다.*
+*이 디자인 시스템은 KiiS의 투자자 프레젠테이션 품질을 보장하고, 환자를 위한 우리의 진정성과 사업에 대한 확신을 정확하고 신뢰할 수 있는 방식으로 전달하기 위한 살아있는 문서입니다. v2.1에서는 이미지 처리 시스템을 통해 시각적 임팩트와 기술적 안정성을 모두 확보했습니다.*
