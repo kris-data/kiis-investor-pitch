@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KiiS - Market Positioning & Dual Product Strategy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 40px 60px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 헤더 섹션 */
+        .main-header {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .title {
+            font-size: 42px;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        
+        .title-highlight {
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #e0e7ff;
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* 상단 벤치마킹 섹션 */
+        .benchmark-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #ffd700;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .benchmark-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .benchmark-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .benchmark-item {
+            flex: 1;
+            padding: 0 20px;
+        }
+        
+        .benchmark-company {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .benchmark-strategy {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.3;
+        }
+        
+        .benchmark-arrow {
+            font-size: 24px;
+            color: #ffd700;
+            margin: 0 10px;
+        }
+        
+        .kiis-strategy {
+            background: linear-gradient(145deg, #1e40af, #1d4ed8);
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+        }
+        
+        .kiis-strategy .benchmark-company {
+            color: #ffd700;
+            font-size: 18px;
+        }
+        
+        /* 메인 콘텐츠 그리드 */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            flex: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* 제품 전략 카드 */
+        .product-strategy {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 25px;
+            padding: 35px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        /* 환자 이미지 스타일 */
+        .patient-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            object-position: center 15%;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .patient-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .placeholder-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .placeholder-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.3;
+        }
+        
+        .product-strategy:hover {
+            transform: translateY(-8px);
+            border-color: #ffd700;
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.2);
+        }
+        
+        .product-strategy.kiis-plus {
+            background: linear-gradient(145deg, rgba(30, 64, 175, 0.4), rgba(59, 130, 246, 0.2));
+            border-left: 6px solid #3b82f6;
+        }
+        
+        .product-strategy.kiis-relax {
+            background: linear-gradient(145deg, rgba(16, 185, 129, 0.4), rgba(5, 150, 105, 0.2));
+            border-left: 6px solid #10b981;
+        }
+        
+        .product-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .product-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-right: 20px;
+        }
+        
+        .market-badge {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .type12-badge {
+            background: linear-gradient(45deg, #3b82f6, #1e40af);
+            color: white;
+        }
+        
+        .type34-badge {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .market-analysis {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .analysis-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .analysis-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .market-stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .market-insight {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+            font-style: italic;
+        }
+        
+        .strategy-section {
+            margin-bottom: 25px;
+        }
+        
+        .strategy-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .strategy-tagline {
+            font-size: 16px;
+            font-style: italic;
+            color: #ffd700;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+        
+        .strategy-description {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        
+        .strategy-highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .key-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+        
+        .benefit-icon {
+            font-size: 20px;
+            margin-right: 12px;
+            color: #ffd700;
+        }
+        
+        .benefit-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.3;
+        }
+        
+        .innovation-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* 하단 학술 권위 섹션 - 수정됨 */
+        .academic-authority {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.1));
+            border: 3px solid #ffd700;
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .authority-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .authority-message {
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 1.4;
+            margin-bottom: 25px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .authority-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .authority-feature {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .authority-feature:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        
+        .feature-description {
+            font-size: 12px;
+            color: #e0e7ff;
+            line-height: 1.3;
+        }
+        
+        /* 환자 중심 아이콘 */
+        .professor-authority {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .professor-authority:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* 팝업 시스템 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1500;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+        
+        .source-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1600;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: none;
+            animation: popupSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes popupSlideIn {
+            from {
+                transform: translate(-50%, -60%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+        
+        .source-popup h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            padding-right: 40px;
+        }
+        
+        .source-popup p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 16px;
+            color: #e0e7ff;
+        }
+        
+        .source-popup ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .source-popup li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            color: #e0e7ff;
+        }
+        
+        .source-popup strong {
+            color: #ffd700;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #fff;
+        }
+        
+        /* 네비게이션 시스템 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .benchmark-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .benchmark-arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+            
+            .authority-features {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .title {
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            body {
+                padding: 30px 40px;
+            }
+        }
+        
+                @media (max-width: 768px) {
+            .patient-image,
+            .image-placeholder {
+                height: 150px;
+                margin-bottom: 15px;
+            }
+            
+            .placeholder-icon {
+                font-size: 28px;
+            }
+            
+            .placeholder-text {
+                font-size: 12px;
+            }
+            body {
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 26px;
+                line-height: 1.1;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+                line-height: 1.3;
+            }
+            
+            .product-strategy {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+            
+            .product-name {
+                font-size: 28px;
+            }
+            
+            .strategy-title {
+                font-size: 18px;
+            }
+            
+            .authority-title {
+                font-size: 24px;
+            }
+            
+            .authority-message {
+                font-size: 16px;
+            }
+            
+            .source-popup {
+                padding: 25px;
+                max-width: 90%;
+                margin: 20px;
+            }
+            
+            .source-popup h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .source-popup p {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 메인 헤더 -->
+        <div class="main-header" id="mainHeader">
+            <h1 class="title">
+                <span class="title-highlight">Market Positioning</span> &<br>
+                Dual Product Strategy
+            </h1>
+            <p class="subtitle">
+                Strategic positioning analysis and competitive advantage through innovative dual-market approach
+            </p>
+        </div>
+        
+        <!-- 상단 벤치마킹 섹션 -->
+        <div class="benchmark-section" id="benchmarkSection">
+            <div class="benchmark-title">Current Leaders' Multi-Brand Strategy vs KiiS Innovation</div>
+            <div class="benchmark-content">
+                <div class="benchmark-item">
+                    <div class="benchmark-company">Straumann Group</div>
+                    <div class="benchmark-strategy">Straumann (Premium)<br>+ Neodent (Value)</div>
+                </div>
+                
+                <div class="benchmark-arrow">→</div>
+                
+                <div class="benchmark-item">
+                    <div class="benchmark-company">Envista Holdings</div>
+                    <div class="benchmark-strategy">Nobel Biocare (Premium)<br>+ Implant Direct (Value)</div>
+                </div>
+                
+                <div class="benchmark-arrow">→</div>
+                
+                <div class="benchmark-item kiis-strategy">
+                    <div class="benchmark-company">KiiS Innovation</div>
+                    <div class="benchmark-strategy">One Technology<br><strong>Two Disruptions</strong></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 메인 콘텐츠 그리드 -->
+        <div class="main-content" id="mainContent">
+            <!-- KiiS-Plus 전략 -->
+            <div class="product-strategy kiis-plus" onclick="showSource('kiisplus')">
+                <div class="innovation-badge">510K Pathway</div>
+                
+                <!-- 환자 이미지 통합 -->
+                <img src="/kiis-investor-pitch/public/images/patient-kiisplus-proposition.jpg" 
+                     alt="KiiS-Plus Target Patient" 
+                     class="patient-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder" style="display: none;">
+                    <div class="placeholder-icon">👨‍💼</div>
+                    <div class="placeholder-text">Type 1-2 Market<br>Value-Conscious Patient</div>
+                </div>
+                
+                <div class="product-header">
+                    <div class="product-name">KiiS-Plus</div>
+                    <div class="market-badge type12-badge">Type 1-2 Market</div>
+                </div>
+                
+                <div class="market-analysis">
+                    <div class="analysis-title">📊 Current Market Reality</div>
+                    <div class="analysis-content">
+                        <div class="market-stat">Straumann 30%</div>
+                        <div class="market-stat">Nobel 25%</div>
+                        <div class="market-stat">Astra 20%</div>
+                        <div class="market-stat">75% Oligopoly</div>
+                    </div>
+                    <div class="market-insight">
+                        Premium brands dominate Type 1-2 market with high price barriers excluding many patients
+                    </div>
+                </div>
+                
+                <div class="strategy-section">
+                    <div class="strategy-title">Premium Performance at Competitive Price</div>
+                    <div class="strategy-tagline">"Breaking the Premium Oligopoly"</div>
+                    <div class="strategy-description">
+                        Disrupt existing market structure with <span class="strategy-highlight">15-20% lower pricing</span> 
+                        while delivering <span class="strategy-highlight">equivalent efficacy</span> through 510K pathway
+                    </div>
+                </div>
+                
+                <div class="key-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✅</div>
+                        <div class="benefit-text">FDA 510K pathway - proven safety & compatibility</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💰</div>
+                        <div class="benefit-text">15-20% cost reduction vs premium brands</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔄</div>
+                        <div class="benefit-text">Compatible with existing tools & procedures</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎯</div>
+                        <div class="benefit-text">Rapid market penetration in established segment</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- KiiS-Relax 전략 -->
+            <div class="product-strategy kiis-relax" onclick="showSource('kiisrelax')">
+                <div class="innovation-badge">De Novo Innovation</div>
+                
+                <!-- 환자 이미지 통합 -->
+                <img src="/kiis-investor-pitch/public/images/patient-kiisrelax-proposition.jpg" 
+                     alt="KiiS-Relax Target Patient" 
+                     class="patient-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder" style="display: none;">
+                    <div class="placeholder-icon">👩‍🦳</div>
+                    <div class="placeholder-text">Type 3-4 Market<br>Complex Case Patient</div>
+                </div>
+                
+                <div class="product-header">
+                    <div class="product-name">KiiS-Relax</div>
+                    <div class="market-badge type34-badge">Type 3-4 Market</div>
+                </div>
+                
+                <div class="market-analysis">
+                    <div class="analysis-title">🎯 Market Gap Opportunity</div>
+                    <div class="analysis-content">
+                        <div class="market-stat">40% Excluded</div>
+                        <div class="market-stat">No Clear Leader</div>
+                        <div class="market-stat">Fragmented</div>
+                        <div class="market-stat">High Failure</div>
+                    </div>
+                    <div class="market-insight">
+                        Type 3-4 patients face limited solutions with high failure rates or complete exclusion from treatment
+                    </div>
+                </div>
+                
+                <div class="strategy-section">
+                    <div class="strategy-title">Making the Impossible Possible</div>
+                    <div class="strategy-tagline">"Creating New Premium Category"</div>
+                    <div class="strategy-description">
+                        Lead untapped market with <span class="strategy-highlight">De Novo breakthrough</span> technology, 
+                        providing <span class="strategy-highlight">unique reliability</span> in challenging cases
+                    </div>
+                </div>
+                
+                <div class="key-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚀</div>
+                        <div class="benefit-text">FDA De Novo breakthrough technology pathway</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💊</div>
+                        <div class="benefit-text">Hollow inner channel for targeted drug delivery</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🦴</div>
+                        <div class="benefit-text">No bone grafting required for Type 3-4 cases</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <div class="benefit-text">Faster healing & reduced surgical complexity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 하단 학술 권위 섹션 - 수정됨 -->
+        <div class="academic-authority" id="academicAuthority">
+            <h3 class="authority-title">Academic Authority + Network = Market Adoption</h3>
+            <p class="authority-message">
+                OSU Professor-Inventor credibility combined with university network 
+                creates unmatched practitioner confidence and adoption acceleration
+            </p>
+            
+            <div class="authority-features">
+                <div class="authority-feature">
+                    <span class="feature-icon">🎓</span>
+                    <div class="feature-title">PROFESSOR-INVENTOR AUTHORITY</div>
+                    <div class="feature-description">Direct academic credibility drives trust</div>
+                </div>
+                
+                <div class="authority-feature">
+                    <span class="feature-icon">🏛️</span>
+                    <div class="feature-title">INSTITUTIONAL BACKING</div>
+                    <div class="feature-description">OSU license provides legitimacy</div>
+                </div>
+                
+                <div class="authority-feature">
+                    <span class="feature-icon">🌐</span>
+                    <div class="feature-title">ALUMNI NETWORK EFFECT</div>
+                    <div class="feature-description">Cost-effective practitioner conversion</div>
+                </div>
+            </div>
+            
+            <!-- 교수 권위 아이콘 -->
+            <div class="professor-authority" title="Professor-Inventor Academic Authority">
+                🎓
+            </div>
+        </div>
+    </div>
+    
+    <!-- 네비게이션 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    <div class="navigation" id="navigation">
+        <a href="slide6.html" class="nav-btn prev">Back</a>
+        <a href="slide8.html" class="nav-btn next">Next</a>
+    </div>
+    
+    <!-- 팝업 시스템 -->
+    <div class="overlay" id="overlay"></div>
+    <div class="source-popup" id="sourcePopup">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div id="sourceContent"></div>
+    </div>
+    
+    <script>
+        // 전역 변수
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let isNavigationVisible = false;
+        let hideTimeout;
+        let isPopupOpen = false;
+        
+        // 데이터 소스 - 업데이트됨
+        const sources = {
+            'kiisplus': {
+                title: 'KiiS-Plus: Type 1-2 Market Disruption Strategy',
+                content: `
+                    <p><strong>Current Market Oligopoly:</strong></p>
+                    <p>Type 1-2 patients (60% of total market) are dominated by three major players creating artificial pricing barriers.</p>
+                    
+                    <p><strong>Market Leaders & Share:</strong></p>
+                    <ul>
+                        <li><strong>Straumann Group:</strong> 30% market share</li>
+                        <li><strong>Nobel Biocare:</strong> 25% market share</li>
+                        <li><strong>Astra Tech:</strong> 20% market share</li>
+                        <li><strong>Combined:</strong> 75% oligopoly control</li>
+                    </ul>
+                    
+                    <p><strong>KiiS-Plus Disruption Strategy:</strong></p>
+                    <ul>
+                        <li><strong>Price Advantage:</strong> 15-20% lower than premium competitors (realistic competitive pricing)</li>
+                        <li><strong>510K Pathway:</strong> Proven safety and efficacy standards</li>
+                        <li><strong>Practice Integration:</strong> Compatible with existing surgical protocols</li>
+                        <li><strong>Value Proposition:</strong> Premium performance at competitive pricing</li>
+                    </ul>
+                    
+                    <p><strong>Market Impact:</strong></p>
+                    <ul>
+                        <li>Expand treatment access to price-sensitive patient segments</li>
+                        <li>Force premium brands to justify pricing premiums</li>
+                        <li>Establish KiiS as credible premium alternative</li>
+                        <li>Build market share through value-conscious practitioners</li>
+                    </ul>
+                    
+                    <p><strong>Expected Outcome:</strong> Steady penetration of established market with realistic pricing strategy</p>
+                `
+            },
+            'kiisrelax': {
+                title: 'KiiS-Relax: Type 3-4 Market Leadership Strategy',
+                content: `
+                    <p><strong>Underserved Market Opportunity:</strong></p>
+                    <p>Type 3-4 patients (40% of total population) face limited solutions with high failure rates or complete treatment exclusion.</p>
+                    
+                    <p><strong>Current Market Gaps:</strong></p>
+                    <ul>
+                        <li><strong>No Clear Leader:</strong> Fragmented market with multiple small players</li>
+                        <li><strong>40% Patient Exclusion:</strong> Poor bone quality limits treatment options</li>
+                        <li><strong>High Failure Rates:</strong> 20-30% failure in challenging cases</li>
+                        <li><strong>Complex Procedures:</strong> Often require costly bone grafting</li>
+                    </ul>
+                    
+                    <p><strong>KiiS-Relax Innovation Advantages:</strong></p>
+                    <ul>
+                        <li><strong>De Novo Technology:</strong> FDA breakthrough designation pathway</li>
+                        <li><strong>Spiral Side Openings:</strong> Superior bone integration in weak bone</li>
+                        <li><strong>Hollow Inner Channel:</strong> Targeted drug delivery capability</li>
+                        <li><strong>Eliminates Grafting:</strong> Direct implantation in challenging cases</li>
+                    </ul>
+                    
+                    <p><strong>Market Creation Strategy:</strong></p>
+                    <ul>
+                        <li>Transform excluded patients into treatment candidates</li>
+                        <li>Establish new premium category for complex cases</li>
+                        <li>Build practitioner confidence through superior outcomes</li>
+                        <li>Capture first-mover advantage in underserved segment</li>
+                    </ul>
+                    
+                    <p><strong>Expected Outcome:</strong> Market leadership in Type 3-4 segment while expanding total addressable market</p>
+                `
+            }
+        };
+        
+        // 팝업 시스템
+        function showSource(sourceId) {
+            const source = sources[sourceId];
+            if (!source) return;
+            
+            document.getElementById('sourceContent').innerHTML = `
+                <h3>${source.title}</h3>
+                ${source.content}
+            `;
+            
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('sourcePopup');
+            
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+            
+            document.body.dataset.originalOverflow = document.body.style.overflow || 'auto';
+            document.body.style.overflow = 'hidden';
+            
+            isPopupOpen = true;
+        }
+        
+        function hideSource() {
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('sourcePopup');
+            
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+            
+            const originalOverflow = document.body.dataset.originalOverflow || 'auto';
+            document.body.style.overflow = originalOverflow;
+            delete document.body.dataset.originalOverflow;
+            
+            isPopupOpen = false;
+        }
+        
+        // 네비게이션 시스템
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+        
+        function showNavigation() {
+            if (hideTimeout) clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+        
+        function hideNavigation(delay = 2000) {
+            if (hideTimeout) clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+        
+        // PC 네비게이션
+        if (!isTouchDevice) {
+            if (hoverZone) {
+                hoverZone.addEventListener('mouseenter', showNavigation);
+                hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+            }
+            
+            let lastMouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) showNavigation();
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
+                }
+            });
+            
+            navigation.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+                showNavigation();
+            });
+            navigation.addEventListener('mouseleave', () => hideNavigation(1000));
+        }
+        
+        // 터치 디바이스 네비게이션
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                if (e.touches[0].clientY > window.innerHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        window.location.href = 'slide6.html';
+                    } else {
+                        window.location.href = 'slide8.html';
+                    }
+                }
+            });
+            
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                if (e.target.closest('.product-strategy') || 
+                    e.target.closest('.benchmark-section') ||
+                    e.target.closest('.source-popup') ||
+                    e.target.closest('.navigation') ||
+                    e.target.closest('.overlay')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+        
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (isPopupOpen) {
+                    e.preventDefault();
+                    hideSource();
+                    return;
+                }
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+                clearTimeout(hideTimeout);
+                return;
+            }
+            
+            if (isPopupOpen) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide6.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide8.html';
+                    break;
+                case 'n':
+                case 'N':
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+            }
+        });
+        
+        // 팝업 이벤트 리스너
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('overlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideSource();
+                }
+            });
+            
+            document.getElementById('closeBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                hideSource();
+            });
+        });
+        
+        // 페이지 로드 애니메이션
+        window.addEventListener('load', function() {
+            const header = document.querySelector('.main-header');
+            const benchmark = document.querySelector('.benchmark-section');
+            const mainContent = document.querySelector('.main-content');
+            const academicAuthority = document.querySelector('.academic-authority');
+            
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+                
+                setTimeout(() => {
+                    benchmark.style.opacity = '1';
+                    benchmark.style.transform = 'translateY(0)';
+                }, 400);
+                
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.transform = 'translateY(0)';
+                }, 800);
+                
+                setTimeout(() => {
+                    academicAuthority.style.opacity = '1';
+                    academicAuthority.style.transform = 'translateY(0)';
+                }, 1200);
+                
+                setTimeout(() => {
+                    showNavigation();
+                    hideNavigation(3000);
+                }, 1800);
+                
+            }, 300);
+        });
+        
+        // 접근성 향상
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                showNavigation();
+                hideNavigation(5000);
+            }
+        });
+        
+        window.addEventListener('resize', () => {
+            if (isNavigationVisible) {
+                clearTimeout(hideTimeout);
+                hideNavigation(1000);
+            }
+        });
+        
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+            btn.addEventListener('focus', () => {
+                showNavigation();
+                clearTimeout(hideTimeout);
+            });
+        });
+    </script>
+</body>
+</html>
