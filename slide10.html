@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Integrated Expertise for KiiS Market Success</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 40px 60px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* 헤더 섹션 */
+        .main-header {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .main-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .title-highlight {
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: #e0e7ff;
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .content-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Leadership 섹션 */
+        .leadership-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #ffd700;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .leadership-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #ffd700;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .leader-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .leader-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .leader-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffd700;
+            flex-shrink: 0;
+        }
+
+        .leader-info {
+            flex: 1;
+        }
+
+        .leader-name {
+            font-size: 18px;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .leader-title {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .leader-details {
+            font-size: 12px;
+            color: #e8f4fd;
+            line-height: 1.4;
+        }
+
+        .leader-details strong {
+            color: #ffffff;
+        }
+
+        /* Advisors 섹션 */
+        .advisors-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #10b981;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .advisors-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .advisors-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .advisor-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .advisor-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .advisor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+        }
+
+        .advisor-photo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #10b981;
+            margin: 0 auto 15px auto;
+            display: block;
+        }
+
+        .advisor-name {
+            font-size: 16px;
+            color: #10b981;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .advisor-title {
+            font-size: 13px;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .advisor-details {
+            font-size: 11px;
+            color: #e8f4fd;
+            line-height: 1.3;
+        }
+
+        .advisor-details strong {
+            color: #ffffff;
+        }
+
+        /* 네비게이션 시스템 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 1200px) {
+            .board-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .advisors-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 28px;
+                line-height: 1.1;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+                line-height: 1.3;
+            }
+            
+            .leader-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .leader-photo {
+                margin: 0 auto 15px auto;
+            }
+            
+            .leadership-section,
+            .advisors-section {
+                padding: 25px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+            
+            .title {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .leader-card,
+            .advisor-card {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .title {
+                font-size: 22px;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 메인 헤더 -->
+        <div class="main-header" id="mainHeader">
+            <h1 class="title">
+                <span class="title-highlight">Integrated Expertise</span><br>
+                for KiiS Market Success
+            </h1>
+            <p class="subtitle">
+                Academic Innovation + Industry Experience + Market Access = Strategic Advantage
+            </p>
+        </div>
+
+        <div class="content-sections">
+            <!-- Core Leadership -->
+            <div class="leadership-section">
+                <div class="section-title">CORE LEADERSHIP</div>
+                <div class="board-grid">
+                    <!-- Dogyoon Kim -->
+                    <div class="leader-card">
+                        <img src="/kiis-investor-pitch/public/images/dogyoon-kim.jpg" 
+                             alt="Dogyoon Kim" 
+                             class="leader-photo" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiIGZpbGw9IiMxZTQwYWYiLz4KPHN2ZyB4PSIyNSIgeT0iMjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZkNzAwIj4KPHA+REs8L3A+Cjwvc3ZnPgo8L3N2Zz4=';">
+                        <div class="leader-info">
+                            <div class="leader-name">Dogyoon Kim, Co-Founder & CSA</div>
+                            <div class="leader-title">Technology Innovation & Academic Authority</div>
+                            <div class="leader-details">
+                                <strong>Inventor of KiiS Technology</strong> (US Patent 9757213B2)<br>
+                                <strong>Professor,</strong> Ohio State University College of Dentistry<br>
+                                <strong>PhD Mechanical Engineering,</strong> RPI | <strong>MS/BS Biology,</strong> Yonsei
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hongsuk Kim -->
+                    <div class="leader-card">
+                        <img src="/kiis-investor-pitch/public/images/hongsuk-kim.jpg" 
+                             alt="Hongsuk Kim" 
+                             class="leader-photo" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiIGZpbGw9IiMxZTQwYWYiLz4KPHN2ZyB4PSIyNSIgeT0iMjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZkNzAwIj4KPHA+SEsuPC9wPgo8L3N2Zz4KPC9zdmc+';">
+                        <div class="leader-info">
+                            <div class="leader-name">Hongsuk Kim, CEO</div>
+                            <div class="leader-title">Global Commercialization & Market Execution</div>
+                            <div class="leader-details">
+                                <strong>Global brand experience</strong> at Samsung, J&J, AB InBev, P&G<br>
+                                <strong>Medical device commercialization</strong> expertise at J&J China<br>
+                                <strong>Harvard A.M. Statistics</strong> | <strong>Korea University B.A. Business</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- John Hong -->
+                    <div class="leader-card">
+                        <img src="/kiis-investor-pitch/public/images/john-hong.jpg" 
+                             alt="John Y. Hong" 
+                             class="leader-photo" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiIGZpbGw9IiMxZTQwYWYiLz4KPHN2ZyB4PSIyNSIgeT0iMjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZkNzAwIj4KPHA+SkguPC9wPgo8L3N2Zz4KPC9zdmc+';">
+                        <div class="leader-info">
+                            <div class="leader-name">John Y. Hong, Strategic Advisor</div>
+                            <div class="leader-title">Dental Market Access & Industry Network</div>
+                            <div class="leader-details">
+                                <strong>Practicing Dentist</strong> with direct market insight<br>
+                                <strong>Entrepreneur & Real Estate Developer</strong> with business acumen<br>
+                                <strong>DDS,</strong> University of Oklahoma | <strong>MS Industrial Engineering,</strong> Georgia Tech
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jinyong Oh -->
+                    <div class="leader-card">
+                        <img src="/kiis-investor-pitch/public/images/jinyong-oh.jpg" 
+                             alt="Jinyong Oh" 
+                             class="leader-photo" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiIGZpbGw9IiMxZTQwYWYiLz4KPHN2ZyB4PSIyNSIgeT0iMjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZkNzAwIj4KPHA+Sk88L3A+Cjwvc3ZnPgo8L3N2Zz4=';">
+                        <div class="leader-info">
+                            <div class="leader-name">Jinyong Oh, Co-Founder & Strategic Advisor</div>
+                            <div class="leader-title">Corporate Strategy & Investment Network</div>
+                            <div class="leader-details">
+                                <strong>Medical devices & pharma experience</strong> at J&J, P&G<br>
+                                <strong>Angel investor & startup mentor</strong> with network access<br>
+                                <strong>MIT MBA</strong> | <strong>Harvard Business School AMP</strong> | <strong>Seoul National University BA</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Advisors -->
+            <div class="advisors-section">
+                <div class="section-title">STRATEGIC ADVISORS</div>
+                <div class="advisors-grid">
+                    <!-- Paul Fagan -->
+                    <div class="advisor-card">
+                        <img src="/kiis-investor-pitch/public/images/paul-fagan.jpg" 
+                             alt="Paul Fagan" 
+                             class="advisor-photo" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHZpZXdCb3g9IjAgMCA3MCA3MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzUiIGN5PSIzNSIgcj0iMzUiIGZpbGw9IiMxMGI5ODEiLz4KPHN2ZyB4PSIyMCIgeT0iMTUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZkNzAwIj4KPHA+UEY8L3A+Cjwvc3ZnPgo8L3N2Zz4=';">
+                        <div class="advisor-name">Paul Fagan</div>
+                        <div class="advisor-title">Life Sciences Entrepreneurship</div>
+                        <div class="advisor-details">
+                            <strong>Serial entrepreneur</strong> in life sciences<br>
+                            <strong>CEO,</strong> ECM Therapeutics<br>
+                            <strong>Successful exit experience</strong><br>
+                            <strong>MIT MBA, Lawyer & CPA</strong>
+                        </div>
+                    </div>
+
+                    <!-- Dr. Sreenivas Koka -->
+                    <div class="advisor-card">
+                        <img src="/kiis-investor-pitch/public/images/sreenivas-koka.jpg" 
+                             alt="Dr. Sreenivas Koka" 
+                             class="advisor-photo" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHZpZXdCb3g9IjAgMCA3MCA3MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzUiIGN5PSIzNSIgcj0iMzUiIGZpbGw9IiMxMGI5ODEiLz4KPHN2ZyB4PSIyMCIgeT0iMTUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZkNzAwIj4KPHA+U0s8L3A+Cjwvc3ZnPgo8L3N2Zz4=';">
+                        <div class="advisor-name">Dr. Sreenivas Koka</div>
+                        <div class="advisor-title">Clinical Validation & Market Adoption</div>
+                        <div class="advisor-details">
+                            <strong>Dean,</strong> University of Mississippi School of Dentistry<br>
+                            <strong>Former Chairman,</strong> Mayo Clinic Dental Specialties<br>
+                            <strong>PhD Oral Biology,</strong> University of Nebraska<br>
+                            <strong>MBA,</strong> MIT Sloan
+                        </div>
+                    </div>
+
+                    <!-- Tomas Cole -->
+                    <div class="advisor-card">
+                        <img src="/kiis-investor-pitch/public/images/tomas-cole.jpg" 
+                             alt="Tomas Cole" 
+                             class="advisor-photo" 
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHZpZXdCb3g9IjAgMCA3MCA3MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzUiIGN5PSIzNSIgcj0iMzUiIGZpbGw9IiMxMGI5ODEiLz4KPHN2ZyB4PSIyMCIgeT0iMTUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZkNzAwIj4KPHA+VEM8L3A+Cjwvc3ZnPgo8L3N2Zz4=';">
+                        <div class="advisor-name">Tomas Cole</div>
+                        <div class="advisor-title">Manufacturing & Operations Excellence</div>
+                        <div class="advisor-details">
+                            <strong>VP Operations,</strong> Inkbit (3D printing)<br>
+                            <strong>VP Operations,</strong> Dentsply Sirona<br>
+                            <strong>Co-founder,</strong> Atlantis Components<br>
+                            <strong>BS Mechanical Engineering & MBA,</strong> MIT
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 네비게이션 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    <div class="navigation" id="navigation">
+        <a href="slide9.html" class="nav-btn prev">Back</a>
+        <a href="slide11.html" class="nav-btn next">Next</a>
+    </div>
+
+    <script>
+        // 터치 디바이스 감지
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        let isNavigationVisible = false;
+        let hideTimeout;
+        let lastMouseY = 0;
+
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+
+        // 네비게이션 표시/숨김
+        function showNavigation() {
+            if (hideTimeout) clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+
+        function hideNavigation(delay = 2000) {
+            if (hideTimeout) clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+
+        // 페이지 로드 애니메이션
+        function startLoadingAnimation() {
+            const header = document.getElementById('mainHeader');
+            const leadershipSection = document.querySelector('.leadership-section');
+            const advisorsSection = document.querySelector('.advisors-section');
+            
+            // 헤더 애니메이션
+            setTimeout(() => {
+                header.classList.add('visible');
+            }, 300);
+            
+            // 리더십 섹션 애니메이션
+            setTimeout(() => {
+                leadershipSection.classList.add('visible');
+            }, 700);
+            
+            // 리더 카드 순차 애니메이션
+            setTimeout(() => {
+                const leaderCards = document.querySelectorAll('.leader-card');
+                leaderCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 150);
+                });
+            }, 1000);
+            
+            // 어드바이저 섹션 애니메이션
+            setTimeout(() => {
+                advisorsSection.classList.add('visible');
+            }, 1400);
+            
+            // 어드바이저 카드 순차 애니메이션
+            setTimeout(() => {
+                const advisorCards = document.querySelectorAll('.advisor-card');
+                advisorCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 100);
+                });
+            }, 1700);
+            
+            // 네비게이션 힌트 표시
+            setTimeout(() => {
+                showNavigation();
+                hideNavigation(3000);
+            }, 2500);
+        }
+
+        // 호버존 이벤트
+        hoverZone.addEventListener('mouseenter', showNavigation);
+        hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+
+        // 마우스 위치 추적 (PC만)
+        if (!isTouchDevice) {
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) showNavigation();
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
+                }
+            });
+        }
+
+        // 터치 네비게이션
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                if (e.touches[0].clientY > window.innerHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        window.location.href = 'slide9.html';
+                    } else {
+                        window.location.href = 'slide11.html';
+                    }
+                }
+            });
+            
+            // 터치 토글
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                if (e.target.closest('.navigation') || 
+                    e.target.closest('.hover-zone') ||
+                    e.target.closest('.leader-card') ||
+                    e.target.closest('.advisor-card')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide9.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide11.html';
+                    break;
+                case 'n':
+                case 'N':
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+                case 'Escape':
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                    clearTimeout(hideTimeout);
+                    break;
+            }
+        });
+
+        // 페이지 로드시 애니메이션 시작
+        window.addEventListener('load', startLoadingAnimation);
+    </script>
+</body>
+</html>
