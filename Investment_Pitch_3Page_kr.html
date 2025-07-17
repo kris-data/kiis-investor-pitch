@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KiiS 투자 제안서 - 178만 명의 미소를 되찾다</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            line-height: 1.4;
+            color: #ffffff;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
+        .page {
+            max-width: 1400px;
+            min-height: 100vh;
+            margin: 0 auto;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+        }
+        
+        .page:last-child {
+            page-break-after: auto;
+        }
+        
+        /* 메인 헤더 */
+        .main-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.1;
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            color: #e0e7ff;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        .page-info {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+        
+        /* 메인 콘텐츠 */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        /* 히어로 섹션 */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.8), rgba(239, 68, 68, 0.6));
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-number {
+            font-size: 64px;
+            font-weight: bold;
+            color: #ffd700;
+            display: block;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            line-height: 1.1;
+        }
+        
+        .hero-text {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        .hero-stat {
+            font-size: 18px;
+            color: #e0e7ff;
+            opacity: 0.9;
+            line-height: 1.3;
+        }
+        
+        /* 카드 그리드 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .card-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        /* 카드 스타일 */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+        
+        .card-problem {
+            border-left: 4px solid #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .card-solution {
+            border-left: 4px solid #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .card-market {
+            border-left: 4px solid #8b5cf6;
+            background: rgba(139, 92, 246, 0.1);
+        }
+        
+        .card-investment {
+            border-left: 4px solid #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.2;
+        }
+        
+        .card-icon {
+            font-size: 28px;
+        }
+        
+        .card-content {
+            font-size: 16px;
+            line-height: 1.4;
+            color: #e0e7ff;
+        }
+        
+        /* 작은 카드 */
+        .mini-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .mini-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        .mini-card-icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .mini-card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        
+        .mini-card-desc {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.3;
+        }
+        
+        /* 데이터 표시 */
+        .data-highlight {
+            background: linear-gradient(135deg, #ffd700, #f59e0b);
+            color: #000000;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+        
+        .big-number {
+            font-size: 48px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+        
+        .data-label {
+            font-size: 16px;
+            opacity: 0.8;
+            line-height: 1.3;
+        }
+        
+        /* 진행 바 */
+        .progress-item {
+            margin-bottom: 15px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #e0e7ff;
+        }
+        
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+        
+        /* 제품 전략 카드 */
+        .product-strategy {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .product-strategy:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+        
+        .strategy-badge {
+            background: #1e40af;
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .strategy-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ffd700;
+            line-height: 1.2;
+        }
+        
+        .strategy-desc {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.3;
+        }
+        
+        /* 타임라인 */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .timeline-date {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-event {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.3;
+        }
+        
+        .timeline-separator {
+            width: 2px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 15px;
+        }
+        
+        /* 리스트 */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #e0e7ff;
+            line-height: 1.3;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-icon {
+            color: #10b981;
+            font-size: 16px;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 1200px) {
+            .page {
+                padding: 30px 40px;
+            }
+            
+            .title {
+                font-size: 40px;
+            }
+            
+            .subtitle {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page {
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .hero-number {
+                font-size: 48px;
+            }
+            
+            .hero-text {
+                font-size: 22px;
+            }
+            
+            .card-grid,
+            .card-grid-3 {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .card {
+                padding: 20px;
+                text-align: center;
+            }
+            
+            .card-title {
+                font-size: 20px;
+                justify-content: center;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .timeline-separator {
+                width: 40px;
+                height: 2px;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page {
+                padding: 15px 10px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .hero-number {
+                font-size: 36px;
+            }
+            
+            .hero-text {
+                font-size: 18px;
+            }
+            
+            .card-title {
+                font-size: 18px;
+            }
+            
+            .big-number {
+                font-size: 36px;
+            }
+            
+            .strategy-title {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .title {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .hero-number {
+                font-size: 32px;
+            }
+            
+            .hero-text {
+                font-size: 16px;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            .card-title {
+                font-size: 16px;
+            }
+            
+            .big-number {
+                font-size: 32px;
+            }
+        }
+        
+        /* 인쇄 최적화 */
+        @media print {
+            .page {
+                padding: 15mm;
+                margin: 0;
+            }
+            
+            .card:hover,
+            .mini-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+        
+        /* 로딩 애니메이션 */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 페이지 1: 기 - 문제 제기와 감정적 몰입 -->
+    <div class="page">
+        <div class="main-header animate-in">
+            <h1 class="title">178만 명의 미소를 되찾다</h1>
+            <p class="subtitle">KiiS 혁신으로 치과 임플란트의 새로운 가능성을 열다</p>
+            <div class="page-info">Series A 투자 제안서 | 2025년 7월 | Page 1 of 3</div>
+        </div>
+
+        <div class="main-content">
+            <!-- 히어로 섹션 -->
+            <div class="hero-section animate-in">
+                <span class="hero-number">178M</span>
+                <div class="hero-text">미국에서 한 개 이상의 치아를 잃은 사람들</div>
+                <div class="hero-stat">하지만 단 5.7%만이 임플란트 치료를 받고 있습니다</div>
+            </div>
+
+            <!-- 문제 정의 -->
+            <div class="card card-problem animate-in">
+                <h3 class="card-title">
+                    <span class="card-icon">⚠️</span>
+                    왜 94.3%는 치료받지 못할까?
+                </h3>
+                <div class="card-content">
+                    <p style="font-size: 18px; margin-bottom: 25px; color: #ffffff; font-weight: 500;">
+                        세계 최대 치과 임플란트 시장이지만, 선진국 중 최하위 치료율
+                    </p>
+                    
+                    <div class="card-grid-3">
+                        <div class="mini-card">
+                            <span class="mini-card-icon" style="color: #ef4444;">💰</span>
+                            <div class="mini-card-title">높은 비용 장벽</div>
+                            <div class="mini-card-desc">
+                                치아당 $3-6K<br>
+                                + 골이식 $1.5-3K<br>
+                                = 환자 부담 가중
+                            </div>
+                        </div>
+                        <div class="mini-card">
+                            <span class="mini-card-icon" style="color: #ef4444;">⏱️</span>
+                            <div class="mini-card-title">복잡한 과정</div>
+                            <div class="mini-card-desc">
+                                4-9개월 소요<br>
+                                6회 이상 방문<br>
+                                70% 환자 포기
+                            </div>
+                        </div>
+                        <div class="mini-card">
+                            <span class="mini-card-icon" style="color: #ef4444;">🚫</span>
+                            <div class="mini-card-title">환자 제외</div>
+                            <div class="mini-card-desc">
+                                40% 불량 골질<br>
+                                당뇨, 흡연자<br>
+                                고령자 배제
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 시장 기회 -->
+            <div class="card card-market animate-in">
+                <h3 class="card-title">
+                    <span class="card-icon">🌍</span>
+                    거대한 기회, 낮은 침투율
+                </h3>
+                <div class="card-content">
+                    <div class="card-grid">
+                        <div>
+                            <div class="data-highlight">
+                                <span class="big-number">$6.9B</span>
+                                <div class="data-label">2024년 미국 시장 규모</div>
+                            </div>
+                            <ul class="feature-list">
+                                <li><span class="feature-icon">📈</span> 연 10-11% 성장률</li>
+                                <li><span class="feature-icon">👴</span> 베이비부머 은발 쓰나미</li>
+                                <li><span class="feature-icon">💉</span> 코로나 이후 수요 폭증</li>
+                                <li><span class="feature-icon">🎯</span> $12B 목표 (2030년)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 20px; color: #8b5cf6; font-size: 18px;">선진국 임플란트 침투율 비교</h4>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>스위스</span><span>38.0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>독일</span><span>25.0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 66%;"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>한국</span><span>13.3%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 35%;"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span style="color: #ef4444; font-weight: bold;">미국 🇺🇸</span><span style="color: #ef4444; font-weight: bold;">5.7%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 15%; background: linear-gradient(90deg, #ef4444, #f87171);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 페이지 2: 승 - 솔루션과 기술적 우위 -->
+    <div class="page">
+        <div class="main-header animate-in">
+            <h1 class="title">KiiS 혁신 기술</h1>
+            <p class="subtitle">3가지 시장 장벽을 동시에 해결하는 솔루션</p>
+            <div class="page-info">Series A 투자 제안서 | 2025년 7월 | Page 2 of 3</div>
+        </div>
+
+        <div class="main-content">
+            <!-- KiiS 솔루션 -->
+            <div class="card card-solution animate-in">
+                <h3 class="card-title">
+                    <span class="card-icon">🚀</span>
+                    세계 최초 Spiral Side Opening + Hollow Inner Channel
+                </h3>
+                <div class="card-content">
+                    <p style="font-size: 18px; margin-bottom: 25px; color: #ffffff; font-weight: 500;">
+                        혁신적인 Ingrowth 기술로 모든 환자가 접근 가능한 임플란트 시대 개막
+                    </p>
+                    
+                    <div class="card-grid-3">
+                        <div class="mini-card" style="border: 2px solid #10b981; background: rgba(16, 185, 129, 0.1);">
+                            <span class="mini-card-icon" style="color: #10b981;">💎</span>
+                            <div class="mini-card-title" style="color: #10b981;">비용 혁신</div>
+                            <div class="mini-card-desc">
+                                <strong>골이식 불필요</strong><br>
+                                30-40% 비용 절감<br>
+                                중급 시장 접근성
+                            </div>
+                        </div>
+                        <div class="mini-card" style="border: 2px solid #10b981; background: rgba(16, 185, 129, 0.1);">
+                            <span class="mini-card-icon" style="color: #10b981;">⚡</span>
+                            <div class="mini-card-title" style="color: #10b981;">과정 간소화</div>
+                            <div class="mini-card-desc">
+                                <strong>단일 세션 가능</strong><br>
+                                기존 도구 호환<br>
+                                의사 워크플로우 최적화
+                            </div>
+                        </div>
+                        <div class="mini-card" style="border: 2px solid #10b981; background: rgba(16, 185, 129, 0.1);">
+                            <span class="mini-card-icon" style="color: #10b981;">🎯</span>
+                            <div class="mini-card-title" style="color: #10b981;">접근성 확대</div>
+                            <div class="mini-card-desc">
+                                <strong>불량 골질 치료 가능</strong><br>
+                                당뇨, 고령환자 포함<br>
+                                치료 대상 확장
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 기술 검증 & FDA -->
+            <div class="card-grid">
+                <div class="card animate-in">
+                    <h3 class="card-title">
+                        <span class="card-icon">🔬</span>
+                        과학적 증명
+                    </h3>
+                    <div class="card-content">
+                        <div class="data-highlight">
+                            <span class="big-number">40%</span>
+                            <div class="data-label">골접촉 향상 (6주 Micro-CT 연구)</div>
+                        </div>
+                        <ul class="feature-list">
+                            <li><span class="feature-icon">✓</span> 향상된 3D 고정력</li>
+                            <li><span class="feature-icon">✓</span> 빠른 골통합</li>
+                            <li><span class="feature-icon">✓</span> 즉시 임플란트 가능</li>
+                            <li><span class="feature-icon">✓</span> 구조적 안정성 증대</li>
+                            <li><span class="feature-icon">✓</span> OSU 학술 연구 협력</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card animate-in">
+                    <h3 class="card-title">
+                        <span class="card-icon">🏛️</span>
+                        FDA 승인 경로
+                    </h3>
+                    <div class="card-content">
+                        <div style="margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <strong style="color: #10b981;">Phase 1: KiiS-Plus</strong>
+                                <span style="color: #10b981; font-weight: bold;">✓ 준비완료</span>
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.2); color: #ffffff; padding: 15px; border-radius: 8px; font-size: 14px; line-height: 1.4;">
+                                510K Pre-submission 긍정적 피드백<br>
+                                Spiral Side Opening 기술 승인 경로 확보
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <strong style="color: #ffd700;">Phase 2: KiiS-Relax</strong>
+                                <span style="color: #ffd700; font-weight: bold;">🚀 Future</span>
+                            </div>
+                            <div style="background: rgba(255, 215, 0, 0.2); color: #ffffff; padding: 15px; border-radius: 8px; font-size: 14px; line-height: 1.4;">
+                                De Novo 혁신 플랫폼<br>
+                                Hollow Inner Channel 약물 전달 시스템
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 이중 시장 전략 -->
+            <div class="card animate-in">
+                <h3 class="card-title">
+                    <span class="card-icon">🎯</span>
+                    이중 시장 진입 전략
+                </h3>
+                <div class="card-content">
+                    <div class="card-grid">
+                        <div class="product-strategy" style="border: 2px solid #3b82f6; background: rgba(59, 130, 246, 0.1);">
+                            <div class="strategy-badge" style="background: #3b82f6;">Type 1-2 Market</div>
+                            <div class="strategy-title" style="color: #60a5fa;">
+                                💙 KiiS-Plus
+                            </div>
+                            <div style="margin-bottom: 15px; font-size: 16px; color: #e0e7ff; font-weight: 500;">
+                                중급/가성비 시장
+                            </div>
+                            <ul class="feature-list" style="font-size: 13px;">
+                                <li><span class="feature-icon">👥</span> 35-65세 가격 민감 고객</li>
+                                <li><span class="feature-icon">💰</span> 30-40% 가격 우위</li>
+                                <li><span class="feature-icon">🏥</span> 보험 호환성</li>
+                                <li><span class="feature-icon">⚡</span> 510K 빠른 시장 진입</li>
+                            </ul>
+                        </div>
+                        <div class="product-strategy" style="border: 2px solid #ffd700; background: rgba(255, 215, 0, 0.1);">
+                            <div class="strategy-badge" style="background: #f59e0b;">Type 3-4 Premium</div>
+                            <div class="strategy-title" style="color: #ffd700;">
+                                👑 KiiS-Relax
+                            </div>
+                            <div style="margin-bottom: 15px; font-size: 16px; color: #e0e7ff; font-weight: 500;">
+                                프리미엄 복잡 케이스
+                            </div>
+                            <ul class="feature-list" style="font-size: 13px;">
+                                <li><span class="feature-icon">👴</span> 50-70+ 고소득층</li>
+                                <li><span class="feature-icon">🦴</span> 불량 골질 전문</li>
+                                <li><span class="feature-icon">💊</span> 약물 전달 시스템</li>
+                                <li><span class="feature-icon">🚀</span> De Novo 혁신 기술</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 페이지 3: 전결 - 실행 계획과 투자 제안 -->
+    <div class="page">
+        <div class="main-header animate-in">
+            <h1 class="title">투자 제안 & 실행 계획</h1>
+            <p class="subtitle">검증된 기술과 명확한 로드맵으로 시장을 선도하다</p>
+            <div class="page-info">Series A 투자 제안서 | 2025년 7월 | Page 3 of 3</div>
+        </div>
+
+        <div class="main-content">
+            <!-- 시장 진입 전략 -->
+            <div class="card animate-in">
+                <h3 class="card-title">
+                    <span class="card-icon">🚀</span>
+                    단계별 시장 진입 전략
+                </h3>
+                <div class="card-content">
+                    <div class="card-grid-3">
+                        <div class="product-strategy" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 197, 253, 0.1)); border: 2px solid #3b82f6;">
+                            <div class="strategy-title" style="font-size: 20px; color: #60a5fa;">1단계</div>
+                            <div style="font-weight: bold; margin-bottom: 10px; color: #ffffff;">KiiS-Plus (510K)</div>
+                            <div class="strategy-desc">중급/가성비 시장 진입<br>기존 프리미엄 대비 차별화</div>
+                        </div>
+                        <div class="product-strategy" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.1)); border: 2px solid #10b981;">
+                            <div class="strategy-title" style="font-size: 20px; color: #34d399;">2단계</div>
+                            <div style="font-weight: bold; margin-bottom: 10px; color: #ffffff;">KiiS-Relax (De Novo)</div>
+                            <div class="strategy-desc">프리미엄 복잡 케이스<br>약물 전달 혁신</div>
+                        </div>
+                        <div class="product-strategy" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(254, 240, 138, 0.1)); border: 2px solid #ffd700;">
+                            <div class="strategy-title" style="font-size: 20px; color: #ffd700;">3단계</div>
+                            <div style="font-weight: bold; margin-bottom: 10px; color: #ffffff;">정형외과 확장</div>
+                            <div class="strategy-desc">검증된 기술 플랫폼<br>글로벌 시장 진출</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 투자 제안 & 자금 사용 -->
+            <div class="card-grid">
+                <div class="card card-investment animate-in">
+                    <h3 class="card-title">
+                        <span class="card-icon">💰</span>
+                        투자 제안
+                    </h3>
+                    <div class="card-content">
+                        <div class="data-highlight">
+                            <span class="big-number">$1-2M</span>
+                            <div class="data-label">목표 투자 유치</div>
+                            <div style="font-size: 16px; margin-top: 10px; opacity: 0.8;">
+                                $8-12M 밸류에이션
+                            </div>
+                        </div>
+                        <h4 style="margin: 20px 0 15px 0; color: #ffd700; font-size: 16px;">투자자 혜택</h4>
+                        <ul class="feature-list" style="font-size: 14px;">
+                            <li><span class="feature-icon">📊</span> 8-17% 지분 (투자규모별)</li>
+                            <li><span class="feature-icon">💎</span> 최소 투자: $50K</li>
+                            <li><span class="feature-icon">⏰</span> 목표 마감: 2025 Q3</li>
+                            <li><span class="feature-icon">🎯</span> Exit: 3-5년 내 전략적 매각</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card animate-in">
+                    <h3 class="card-title">
+                        <span class="card-icon">📊</span>
+                        자금 사용 계획
+                    </h3>
+                    <div class="card-content">
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span>시장 진입 (마케팅, 영업)</span><span style="font-weight: bold; color: #10b981;">40%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span>제조 (OEM, 재고)</span><span style="font-weight: bold; color: #10b981;">30%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span>FDA & 규제</span><span style="font-weight: bold; color: #10b981;">20%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span>운영 (법무, 회계)</span><span style="font-weight: bold; color: #10b981;">10%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 10%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 실행 역량 -->
+            <div class="card animate-in">
+                <h3 class="card-title">
+                    <span class="card-icon">🏆</span>
+                    실행 역량과 추진력
+                </h3>
+                <div class="card-content">
+                    <div class="card-grid">
+                        <div>
+                            <h4 style="margin-bottom: 15px; color: #10b981; font-size: 18px;">✓ 검증된 기반</h4>
+                            <ul class="feature-list">
+                                <li><span class="feature-icon">🔬</span> Micro-CT 40% 향상 데이터</li>
+                                <li><span class="feature-icon">📋</span> FDA 510K 승인 경로</li>
+                                <li><span class="feature-icon">🏭</span> 한국 제조 파트너십</li>
+                                <li><span class="feature-icon">🎓</span> OSU 학술 연구 협력</li>
+                                <li><span class="feature-icon">🛡️</span> 핵심 기술 특허 확보</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 15px; color: #3b82f6; font-size: 18px;">✓ 디지털 우위</h4>
+                            <ul class="feature-list">
+                                <li><span class="feature-icon">💻</span> 온라인 직판 모델</li>
+                                <li><span class="feature-icon">🤖</span> AI 기반 제품 추천</li>
+                                <li><span class="feature-icon">📚</span> 아카데믹 교육 프로그램</li>
+                                <li><span class="feature-icon">🎯</span> 타겟 마케팅 전략</li>
+                                <li><span class="feature-icon">📈</span> ImplantDirect 모델 벤치마크</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 타임라인 -->
+            <div class="card animate-in">
+                <h3 class="card-title">
+                    <span class="card-icon">⏰</span>
+                    실행 타임라인
+                </h3>
+                <div class="card-content">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025 Q3</div>
+                            <div class="timeline-event">투자 유치 완료</div>
+                        </div>
+                        <div class="timeline-separator"></div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025 Q4</div>
+                            <div class="timeline-event">FDA 510K 제출</div>
+                        </div>
+                        <div class="timeline-separator"></div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2026 Q2</div>
+                            <div class="timeline-event">KiiS-Plus 출시</div>
+                        </div>
+                        <div class="timeline-separator"></div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2027-29</div>
+                            <div class="timeline-event">확장 & Exit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 연락처 -->
+            <div style="text-align: center; margin-top: 30px; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 15px;">
+                <h4 style="color: #ffd700; font-size: 18px; margin-bottom: 15px;">투자 문의</h4>
+                <p style="color: #e0e7ff; font-size: 14px; line-height: 1.4;">
+                    <strong>HUMED LIFESCIENCES</strong><br>
+                    📧 invest@kiis.com | 📞 +1-555-KIIS-INV<br>
+                    🌐 kiis-investor-pitch.com
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 로딩 애니메이션
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 200);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // 진행 바 애니메이션
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.progress-fill');
+                progressBars.forEach(bar => {
+                    bar.style.opacity = '1';
+                });
+            }, 1000);
+        });
+        
+        // 인쇄 최적화
+        window.addEventListener('beforeprint', function() {
+            document.body.style.fontSize = '14px';
+        });
+        
+        window.addEventListener('afterprint', function() {
+            document.body.style.fontSize = '16px';
+        });
+    </script>
+</body>
+</html>
