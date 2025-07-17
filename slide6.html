@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KiiS - Breaking All 3 Market Barriers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 40px 60px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 헤더 섹션 */
+        .main-header {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+        
+        .title-highlight {
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 22px;
+            color: #e0e7ff;
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* 메인 그리드 - 개선된 barrier-solution 쌍 레이아웃 */
+        .barriers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto 80px auto auto;
+            gap: 40px;
+            flex: 1;
+            position: relative;
+            align-items: start;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .barrier-solution-pair {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+            align-items: center;
+        }
+        
+        /* 개별 쌍의 화살표 - barrier 바로 아래, solution 바로 위에 배치 */
+        .pair-arrow {
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(180deg, #ffd700, rgba(255, 215, 0, 0.3));
+            margin: 15px 0;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        .pair-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: -4px;
+            width: 0;
+            height: 0;
+            border-top: 12px solid #ffd700;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+        
+        /* 상단 문제점 카드들 */
+        .barrier-card {
+            background: linear-gradient(145deg, #374151, #4b5563);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-left: 4px solid #ef4444;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .barrier-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .barrier-card:hover::before {
+            left: 100%;
+        }
+        
+        .barrier-card:hover {
+            transform: translateY(-8px);
+            border-color: #ef4444;
+            box-shadow: 0 15px 40px rgba(239, 68, 68, 0.2);
+        }
+        
+        .barrier-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ef4444;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            line-height: 1.2;
+        }
+        
+        .barrier-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .barrier-image {
+            width: 100%;
+            max-width: 200px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 10px 0 15px 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .barrier-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+        
+        /* 하단 솔루션 카드들 */
+        .solution-card {
+            background: linear-gradient(145deg, #10b981, #059669);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-left: 4px solid #10b981;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            min-height: 280px;
+        }
+        
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .solution-card:hover::before {
+            left: 100%;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-8px);
+            border-color: #ffd700;
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3);
+        }
+        
+        .solution-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            line-height: 1.2;
+        }
+        
+        .solution-icon {
+            font-size: 22px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .solution-image {
+            width: 100%;
+            max-width: 200px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 10px 0 15px 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .solution-benefit {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+        
+        .benefit-highlight {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        /* 클릭 가능한 텍스트 */
+        .clickable-text {
+            color: #ffd700;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .clickable-text::after {
+            content: "ℹ️";
+            position: absolute;
+            top: -3px;
+            right: -18px;
+            font-size: 10px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        
+        .clickable-text:hover {
+            color: #fff;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            text-decoration-color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .clickable-text:hover::after {
+            opacity: 1;
+        }
+        
+        /* 팝업 시스템 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1500;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+        
+        .source-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1600;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: none;
+            animation: popupSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes popupSlideIn {
+            from {
+                transform: translate(-50%, -60%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+        
+        .source-popup h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            padding-right: 40px;
+        }
+        
+        .source-popup p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 16px;
+            color: #e0e7ff;
+        }
+        
+        .source-popup ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .source-popup li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            color: #e0e7ff;
+        }
+        
+        .source-popup strong {
+            color: #ffd700;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #fff;
+        }
+        
+        /* 네비게이션 시스템 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
+        }
+        
+        /* KiiS 솔루션 섹션 */
+        .kiis-solution {
+            grid-column: 1 / 4;
+            grid-row: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .kiis-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-size: 30px;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .kiis-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        .kiis-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 1200px) {
+            .barriers-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(3, auto);
+                gap: 40px;
+                position: static;
+            }
+            
+            .barrier-solution-pair {
+                gap: 0;
+            }
+            
+            .pair-arrow {
+                height: 25px;
+                margin: 10px 0;
+            }
+            
+            .title {
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            body {
+                padding: 30px 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 28px;
+                line-height: 1.1;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+                line-height: 1.3;
+            }
+            
+            .barrier-card, .solution-card {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+            
+            .solution-card {
+                min-height: 250px;
+            }
+            
+            .barrier-image, .solution-image {
+                max-width: 160px;
+                height: 100px;
+            }
+            
+            .barrier-title, .solution-title {
+                font-size: 18px;
+                line-height: 1.2;
+            }
+            
+            .barrier-description, .solution-benefit {
+                font-size: 13px;
+            }
+            
+            .kiis-logo {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .kiis-text {
+                font-size: 20px;
+            }
+            
+            .source-popup {
+                padding: 25px;
+                max-width: 90%;
+                margin: 20px;
+            }
+            
+            .source-popup h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .source-popup p {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+            
+            .main-header {
+                margin-bottom: 30px;
+            }
+            
+            .title {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .barriers-grid {
+                gap: 20px;
+            }
+            
+            .barrier-card, .solution-card {
+                padding: 15px 12px;
+                border-radius: 12px;
+            }
+            
+            .barrier-title, .solution-title {
+                font-size: 16px;
+            }
+            
+            .barrier-description, .solution-benefit {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+            
+            .kiis-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                margin-right: 15px;
+            }
+            
+            .kiis-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 메인 헤더 -->
+        <div class="main-header" id="mainHeader">
+            <h1 class="title">
+                <span class="title-highlight">Breaking All 3</span><br>
+                Market Barriers
+            </h1>
+            <p class="subtitle">
+                How KiiS transforms market limitations into competitive advantages
+            </p>
+        </div>
+        
+        <!-- 메인 그리드 - 개선된 barrier-solution 쌍 구조 -->
+        <div class="barriers-grid" id="barriersGrid">
+            <!-- Pair 1: Cost Barrier → Cost Solution -->
+            <div class="barrier-solution-pair">
+                <div class="barrier-card" onclick="showSource('costproblem')">
+                    <div class="barrier-title">
+                        <span class="barrier-icon">💰</span>
+                        High Cost Barrier
+                    </div>
+                    <img src="/kiis-investor-pitch/public/images/happy-family-cost-relief.jpg" 
+                         alt="Cost Relief for Families" 
+                         class="barrier-image"
+                         onerror="this.style.display='none';">
+                    <div class="barrier-description">
+                        <span class="clickable-text" onclick="event.stopPropagation(); showSource('costproblem')">$3K-$6K per tooth</span> + grafting costs exclude many patients
+                    </div>
+                </div>
+                
+                <div class="pair-arrow"></div>
+                
+                <div class="solution-card" onclick="showSource('costsolution')">
+                    <div class="solution-title">
+                        <span class="solution-icon">💎</span>
+                        Cost Reduction
+                    </div>
+                    <img src="/kiis-investor-pitch/public/images/cost-reduction-solution.jpg" 
+                         alt="Cost Reduction Solution" 
+                         class="solution-image"
+                         onerror="this.style.display='none';">
+                    <div class="solution-benefit">
+                        <span class="benefit-highlight">Eliminates bone grafts</span> in most cases<br>
+                        Significantly reduces total treatment cost
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pair 2: Procedure Barrier → Process Solution -->
+            <div class="barrier-solution-pair">
+                <div class="barrier-card" onclick="showSource('procedureproblem')">
+                    <div class="barrier-title">
+                        <span class="barrier-icon">⏱️</span>
+                        Complex Procedures
+                    </div>
+                    <img src="/kiis-investor-pitch/public/images/procedure-inefficiency.jpg" 
+                         alt="Procedure Inefficiency" 
+                         class="barrier-image"
+                         onerror="this.style.display='none';">
+                    <div class="barrier-description">
+                        <span class="clickable-text" onclick="event.stopPropagation(); showSource('procedureproblem')">4-9 months timeline</span> with multiple visits reduces adoption
+                    </div>
+                </div>
+                
+                <div class="pair-arrow"></div>
+                
+                <div class="solution-card" onclick="showSource('processolution')">
+                    <div class="solution-title">
+                        <span class="solution-icon">⚡</span>
+                        Process Simplification
+                    </div>
+                    <img src="/kiis-investor-pitch/public/images/process-simplification.jpg" 
+                         alt="Process Simplification" 
+                         class="solution-image"
+                         onerror="this.style.display='none';">
+                    <div class="solution-benefit">
+                        <span class="benefit-highlight">Single session surgery</span> potential<br>
+                        Enhanced healing reduces timeline
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pair 3: Access Barrier → Access Solution -->
+            <div class="barrier-solution-pair">
+                <div class="barrier-card" onclick="showSource('treatmentproblem')">
+                    <div class="barrier-title">
+                        <span class="barrier-icon">🚫</span>
+                        Patient Exclusion
+                    </div>
+                    <img src="/kiis-investor-pitch/public/images/elderly-woman-confidence.jpg" 
+                         alt="Elderly Patient Confidence" 
+                         class="barrier-image"
+                         onerror="this.style.display='none';">
+                    <div class="barrier-description">
+                        <span class="clickable-text" onclick="event.stopPropagation(); showSource('treatmentproblem')">Poor bone quality</span> excludes significant patient population
+                    </div>
+                </div>
+                
+                <div class="pair-arrow"></div>
+                
+                <div class="solution-card" onclick="showSource('accesssolution')">
+                    <div class="solution-title">
+                        <span class="solution-icon">🎯</span>
+                        Universal Access
+                    </div>
+                    <img src="/kiis-investor-pitch/public/images/universal-access-solution.jpg" 
+                         alt="Universal Access Solution" 
+                         class="solution-image"
+                         onerror="this.style.display='none';">
+                    <div class="solution-benefit">
+                        <span class="benefit-highlight">Type 3-4 bone compatible</span><br>
+                        Expands treatable patient population
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KiiS 통합 솔루션 섹션 -->
+        <div class="kiis-solution" style="margin-top: 40px; opacity: 0; transform: scale(0.8); transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);">
+            <div class="kiis-logo" onclick="showSource('kiissolution')">K</div>
+            <div class="kiis-text">KiiS: Unified Solution for All 3 Barriers</div>
+        </div>
+    </div>
+    
+    <!-- 네비게이션 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    <div class="navigation" id="navigation">
+        <a href="slide5.html" class="nav-btn prev">Back</a>
+        <a href="slide7.html" class="nav-btn next">Next</a>
+    </div>
+    
+    <!-- 팝업 시스템 -->
+    <div class="overlay" id="overlay"></div>
+    <div class="source-popup" id="sourcePopup">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div id="sourceContent"></div>
+    </div>
+    
+    <script>
+        // 전역 변수
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let isNavigationVisible = false;
+        let hideTimeout;
+        let isPopupOpen = false;
+        
+        // 데이터 소스
+        const sources = {
+            'costproblem': {
+                title: 'High Cost Barrier Challenge',
+                content: `
+                    <p><strong>Current Market Reality:</strong></p>
+                    <p>High upfront costs ($3K-$6K per tooth + additional grafting procedures) create significant barriers to dental implant adoption.</p>
+                    
+                    <p><strong>Cost Structure Breakdown:</strong></p>
+                    <ul>
+                        <li><strong>Implant Procedure:</strong> $3,000-$6,000 per tooth</li>
+                        <li><strong>Bone Grafting:</strong> Additional $1,500-$3,000 when needed</li>
+                        <li><strong>Multiple Visits:</strong> Indirect costs from time off work</li>
+                        <li><strong>Insurance Gaps:</strong> Limited coverage for complex procedures</li>
+                    </ul>
+                    
+                    <p><strong>Market Impact:</strong></p>
+                    <ul>
+                        <li>Over 60% of potential patients defer treatment due to cost</li>
+                        <li>Premium pricing limits market penetration</li>
+                        <li>Economic downturns significantly impact procedure volume</li>
+                        <li>Competitive pressure from lower-cost alternatives</li>
+                    </ul>
+                    
+                    <p><strong>Business Opportunity:</strong> Cost reduction enables market expansion to previously excluded economic segments.</p>
+                `
+            },
+            'procedureproblem': {
+                title: 'Complex Procedure Challenge',
+                content: `
+                    <p><strong>Current Treatment Complexity:</strong></p>
+                    <p>Traditional implant procedures require 4-9 months with multiple appointments, creating inefficiencies for both patients and practices.</p>
+                    
+                    <p><strong>Process Complexity Issues:</strong></p>
+                    <ul>
+                        <li><strong>Multi-Stage Surgery:</strong> Initial placement, healing period, crown placement</li>
+                        <li><strong>Extended Timeline:</strong> 4-9 months total treatment time</li>
+                        <li><strong>Multiple Appointments:</strong> 4-8 visits required on average</li>
+                        <li><strong>High Dropout Rate:</strong> Significant patient attrition during treatment</li>
+                    </ul>
+                    
+                    <p><strong>Practice Impact:</strong></p>
+                    <ul>
+                        <li>Reduced patient throughput and practice efficiency</li>
+                        <li>Complex scheduling and resource management</li>
+                        <li>Higher overhead costs per successful case</li>
+                        <li>Patient satisfaction challenges during healing period</li>
+                    </ul>
+                    
+                    <p><strong>Market Limitation:</strong> Process complexity reduces case acceptance and limits practice growth potential.</p>
+                `
+            },
+            'treatmentproblem': {
+                title: 'Patient Exclusion Challenge',
+                content: `
+                    <p><strong>Significant Market Exclusion:</strong></p>
+                    <p>Substantial portion of patients with poor bone quality are excluded from traditional implant therapy, limiting market penetration.</p>
+                    
+                    <p><strong>Exclusion Factors:</strong></p>
+                    <ul>
+                        <li><strong>Bone Density Issues:</strong> Type 3-4 bone quality challenges</li>
+                        <li><strong>Medical Conditions:</strong> Diabetes, smoking, age-related factors</li>
+                        <li><strong>Previous Tooth Loss:</strong> Bone resorption over time</li>
+                        <li><strong>Anatomical Limitations:</strong> Insufficient bone volume or quality</li>
+                    </ul>
+                    
+                    <p><strong>Demographics Most Affected:</strong></p>
+                    <ul>
+                        <li>Elderly population with greatest need</li>
+                        <li>Patients with compromised health conditions</li>
+                        <li>Long-term denture wearers with bone loss</li>
+                        <li>Patients who cannot afford bone augmentation</li>
+                    </ul>
+                    
+                    <p><strong>Market Opportunity:</strong> Converting excluded patients into treatable candidates represents massive market expansion potential.</p>
+                `
+            },
+            'kiissolution': {
+                title: 'KiiS: Unified Breakthrough Solution',
+                content: `
+                    <p><strong>Revolutionary Technology Platform:</strong></p>
+                    <p>KiiS represents a paradigm shift that simultaneously addresses all three major market barriers through innovative design and enhanced biological performance.</p>
+                    
+                    <p><strong>Unified Solution Approach:</strong></p>
+                    <ul>
+                        <li><strong>Cost Barrier:</strong> Eliminates need for bone grafts in most cases</li>
+                        <li><strong>Complexity Barrier:</strong> Enables simplified, faster procedures</li>
+                        <li><strong>Exclusion Barrier:</strong> Works effectively in compromised bone conditions</li>
+                        <li><strong>Quality Enhancement:</strong> Superior outcomes with existing tools</li>
+                    </ul>
+                    
+                    <p><strong>Market Transformation Impact:</strong></p>
+                    <ul>
+                        <li>Converts excluded patients into treatment candidates</li>
+                        <li>Reduces financial barriers to treatment adoption</li>
+                        <li>Simplifies practice workflows and training requirements</li>
+                        <li>Creates competitive advantages for early adopters</li>
+                    </ul>
+                    
+                    <p><strong>Investment Thesis:</strong> KiiS doesn't just improve existing solutions—it fundamentally transforms the market by eliminating barriers that have constrained growth for decades.</p>
+                `
+            },
+            'costsolution': {
+                title: 'Significant Cost Reduction Achievement',
+                content: `
+                    <p><strong>Dramatic Cost Structure Improvement:</strong></p>
+                    <p>KiiS eliminates the need for bone grafting in most cases, creating substantial cost savings for both patients and practices.</p>
+                    
+                    <p><strong>Cost Reduction Mechanisms:</strong></p>
+                    <ul>
+                        <li><strong>Eliminated Bone Grafts:</strong> Removes $1.5K-$3K additional procedures</li>
+                        <li><strong>Reduced Appointments:</strong> Fewer visits lower overhead costs</li>
+                        <li><strong>Simplified Workflow:</strong> Less complex procedures reduce time investment</li>
+                        <li><strong>Better Insurance Coverage:</strong> Simpler procedures often have better coverage</li>
+                    </ul>
+                    
+                    <p><strong>Market Expansion Impact:</strong></p>
+                    <ul>
+                        <li>Opens treatment to previously excluded economic segments</li>
+                        <li>Improves case acceptance rates</li>
+                        <li>Enables competitive pricing strategies</li>
+                        <li>Increases practice profitability through volume</li>
+                    </ul>
+                    
+                    <p><strong>Competitive Advantage:</strong> Cost reduction creates sustainable competitive moat while improving patient access.</p>
+                `
+            },
+            'processolution': {
+                title: 'Revolutionary Process Simplification',
+                content: `
+                    <p><strong>Streamlined Treatment Protocol:</strong></p>
+                    <p>KiiS enables simplified surgical procedures with enhanced healing, dramatically reducing treatment complexity and timeline.</p>
+                    
+                    <p><strong>Process Improvements:</strong></p>
+                    <ul>
+                        <li><strong>Single Session Potential:</strong> Often possible at time of extraction</li>
+                        <li><strong>Enhanced Healing:</strong> Improved osseointegration reduces waiting time</li>
+                        <li><strong>Fewer Complications:</strong> Simplified process reduces risk factors</li>
+                        <li><strong>Improved Compliance:</strong> Simpler protocol improves patient adherence</li>
+                    </ul>
+                    
+                    <p><strong>Practice Benefits:</strong></p>
+                    <ul>
+                        <li>Higher patient throughput and efficiency</li>
+                        <li>Reduced scheduling complexity</li>
+                        <li>Improved cash flow from faster completion</li>
+                        <li>Enhanced patient satisfaction and referrals</li>
+                    </ul>
+                    
+                    <p><strong>Market Impact:</strong> Process simplification removes adoption barriers and enables practice growth acceleration.</p>
+                `
+            },
+            'accesssolution': {
+                title: 'Universal Access Achievement',
+                content: `
+                    <p><strong>Expanding Treatment Eligibility:</strong></p>
+                    <p>KiiS technology works effectively in Type 3-4 bone density conditions, enabling treatment for previously excluded patient populations.</p>
+                    
+                    <p><strong>Access Expansion Features:</strong></p>
+                    <ul>
+                        <li><strong>Bone Quality Tolerance:</strong> Functions effectively in compromised bone</li>
+                        <li><strong>Reduced Health Restrictions:</strong> Suitable for more medical conditions</li>
+                        <li><strong>Age-Friendly Design:</strong> Less invasive approach for elderly patients</li>
+                        <li><strong>Simplified Requirements:</strong> Reduces need for pre-treatment procedures</li>
+                    </ul>
+                    
+                    <p><strong>Population Impact:</strong></p>
+                    <ul>
+                        <li>Elderly patients with natural bone loss</li>
+                        <li>Diabetic patients with healing challenges</li>
+                        <li>Long-term denture wearers</li>
+                        <li>Patients seeking immediate solutions</li>
+                    </ul>
+                    
+                    <p><strong>Market Expansion:</strong> Converting excluded patients represents immediate addressable market growth opportunity.</p>
+                `
+            }
+        };
+        
+        // 팝업 시스템
+        function showSource(sourceId) {
+            const source = sources[sourceId];
+            if (!source) return;
+            
+            document.getElementById('sourceContent').innerHTML = `
+                <h3>${source.title}</h3>
+                ${source.content}
+            `;
+            
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('sourcePopup');
+            
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+            
+            // 스크롤 방지
+            document.body.dataset.originalOverflow = document.body.style.overflow || 'auto';
+            document.body.style.overflow = 'hidden';
+            
+            isPopupOpen = true;
+        }
+        
+        function hideSource() {
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('sourcePopup');
+            
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+            
+            // 스크롤 복원
+            const originalOverflow = document.body.dataset.originalOverflow || 'auto';
+            document.body.style.overflow = originalOverflow;
+            delete document.body.dataset.originalOverflow;
+            
+            isPopupOpen = false;
+        }
+        
+        // 네비게이션 시스템
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+        
+        function showNavigation() {
+            if (hideTimeout) clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+        
+        function hideNavigation(delay = 2000) {
+            if (hideTimeout) clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+        
+        // PC 네비게이션
+        if (!isTouchDevice) {
+            if (hoverZone) {
+                hoverZone.addEventListener('mouseenter', showNavigation);
+                hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+            }
+            
+            let lastMouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) showNavigation();
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
+                }
+            });
+            
+            navigation.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+                showNavigation();
+            });
+            navigation.addEventListener('mouseleave', () => hideNavigation(1000));
+        }
+        
+        // 터치 디바이스 네비게이션
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                if (e.touches[0].clientY > window.innerHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        window.location.href = 'slide5.html';
+                    } else {
+                        window.location.href = 'slide7.html';
+                    }
+                }
+            });
+            
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                if (e.target.closest('.barrier-card') || 
+                    e.target.closest('.solution-card') || 
+                    e.target.closest('.source-popup') ||
+                    e.target.closest('.navigation') ||
+                    e.target.closest('.overlay')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+        
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (isPopupOpen) {
+                    e.preventDefault();
+                    hideSource();
+                    return;
+                }
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+                clearTimeout(hideTimeout);
+                return;
+            }
+            
+            if (isPopupOpen) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide5.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide7.html';
+                    break;
+                case 'n':
+                case 'N':
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+            }
+        });
+        
+        // 팝업 이벤트 리스너
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('overlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideSource();
+                }
+            });
+            
+            document.getElementById('closeBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                hideSource();
+            });
+        });
+        
+        // 페이지 로드 애니메이션
+        window.addEventListener('load', function() {
+            const header = document.querySelector('.main-header');
+            const barriersGrid = document.querySelector('.barriers-grid');
+            const pairs = document.querySelectorAll('.barrier-solution-pair');
+            const kiisSection = document.querySelector('.kiis-solution');
+            
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+                
+                setTimeout(() => {
+                    barriersGrid.style.opacity = '1';
+                    barriersGrid.style.transform = 'translateY(0)';
+                    
+                    pairs.forEach((pair, index) => {
+                        setTimeout(() => {
+                            const barrier = pair.querySelector('.barrier-card');
+                            const solution = pair.querySelector('.solution-card');
+                            const arrow = pair.querySelector('.pair-arrow');
+                            
+                            barrier.style.opacity = '1';
+                            barrier.style.transform = 'translateY(0)';
+                            
+                            setTimeout(() => {
+                                arrow.style.opacity = '1';
+                            }, 300);
+                            
+                            setTimeout(() => {
+                                solution.style.opacity = '1';
+                                solution.style.transform = 'translateY(0)';
+                            }, 600);
+                            
+                        }, index * 800);
+                    });
+                }, 400);
+                
+                setTimeout(() => {
+                    kiisSection.style.opacity = '1';
+                    kiisSection.style.transform = 'scale(1)';
+                }, 3000);
+                
+                setTimeout(() => {
+                    showNavigation();
+                    hideNavigation(3000);
+                }, 4000);
+                
+            }, 300);
+        });
+        
+        // 접근성 향상
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                showNavigation();
+                hideNavigation(5000);
+            }
+        });
+        
+        window.addEventListener('resize', () => {
+            if (isNavigationVisible) {
+                clearTimeout(hideTimeout);
+                hideNavigation(1000);
+            }
+        });
+        
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+            btn.addEventListener('focus', () => {
+                showNavigation();
+                clearTimeout(hideTimeout);
+            });
+        });
+    </script>
+</body>
+</html>
