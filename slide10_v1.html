@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KiiS - Patient-Centered Value Proposition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 60px 80px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #ffffff;
+        }
+        
+        .title .highlight {
+            color: #ffd700;
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            flex: 1;
+            align-items: center;
+        }
+        
+        .value-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 25px;
+            padding: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.2);
+        }
+        
+        .value-card.kiis-plus {
+            background: linear-gradient(145deg, rgba(30, 64, 175, 0.4), rgba(59, 130, 246, 0.2));
+            border-left: 6px solid #3b82f6;
+        }
+        
+        .value-card.kiis-relax {
+            background: linear-gradient(145deg, rgba(16, 185, 129, 0.4), rgba(5, 150, 105, 0.2));
+            border-left: 6px solid #10b981;
+        }
+        
+        .patient-image {
+            width: 100%;
+            height: 350px;
+            border-radius: 20px;
+            object-fit: cover;
+            object-position: center 15%;
+            margin-bottom: 25px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .patient-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 3px dashed rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .placeholder-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+        
+        .product-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .product-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-right: 20px;
+        }
+        
+        .fda-badge {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .fda-510k {
+            background: linear-gradient(45deg, #3b82f6, #1e40af);
+            color: white;
+        }
+        
+        .fda-denovo {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .patient-segment {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .segment-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        
+        .segment-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .segment-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .value-proposition {
+            margin-bottom: 20px;
+        }
+        
+        .value-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .value-subtitle {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        
+        .key-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+        
+        .benefit-icon {
+            font-size: 20px;
+            margin-right: 12px;
+            color: #ffd700;
+        }
+        
+        .benefit-text {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.3;
+        }
+        
+        .innovation-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* 네비게이션 호버 감지 영역 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+        
+        /* 네비게이션 스타일 */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
+        }
+        
+        @media (max-width: 1200px) {
+            .value-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .title {
+                font-size: 36px;
+                margin-bottom: 50px;
+            }
+            
+            .value-card {
+                padding: 25px;
+            }
+            
+            .patient-image,
+            .image-placeholder {
+                height: 280px;
+            }
+            
+            .product-name {
+                font-size: 28px;
+            }
+            
+            .value-title {
+                font-size: 18px;
+            }
+            
+            body {
+                padding: 40px;
+            }
+            
+            .navigation {
+                padding: 12px 20px;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">
+            <span class="highlight">Patient-Centered</span> Value Proposition
+        </h1>
+        
+        <div class="value-grid">
+            <!-- KiiS-Plus Card -->
+            <div class="value-card kiis-plus" onclick="showDetails('kiisplus')">
+                <div class="innovation-badge">510K Pathway</div>
+                
+                <img src="/kiis-investor-pitch/public/images/patient-kiisplus-proposition.jpg" 
+                     alt="KiiS-Plus Patient Value" 
+                     class="patient-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder" style="display: none;">
+                    <div class="placeholder-icon">👨‍⚕️</div>
+                    <div class="placeholder-text">Type 1-2 Market<br>Value-Conscious Patient<br>KiiS-Plus Solution</div>
+                </div>
+                
+                <div class="product-header">
+                    <div class="product-name">KiiS-Plus</div>
+                    <div class="fda-badge fda-510k">510K Cleared</div>
+                </div>
+                
+                <div class="patient-segment">
+                    <div class="segment-title">Type 1-2 Mid/Value Market</div>
+                    <div class="segment-details">
+                        <div class="segment-item">35-65 aged</div>
+                        <div class="segment-item">Value-conscious</div>
+                        <div class="segment-item">Seeking affordable solutions</div>
+                    </div>
+                </div>
+                
+                <div class="value-proposition">
+                    <div class="value-title">"Premium technology made accessible"</div>
+                    <div class="value-subtitle">Delivers premium implant performance at affordable price</div>
+                </div>
+                
+                <div class="key-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✅</div>
+                        <div class="benefit-text">FDA-cleared safety & compatibility</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💰</div>
+                        <div class="benefit-text">30-40% cost reduction vs premium brands</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔄</div>
+                        <div class="benefit-text">Compatible with existing tools & procedures</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🏥</div>
+                        <div class="benefit-text">Insurance coverage compatibility</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- KiiS-Relax Card -->
+            <div class="value-card kiis-relax" onclick="showDetails('kiisrelax')">
+                <div class="innovation-badge">510K + De Novo</div>
+                
+                <img src="/kiis-investor-pitch/public/images/patient-kiisrelax-proposition.jpg" 
+                     alt="KiiS-Relax Patient Value" 
+                     class="patient-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder" style="display: none;">
+                    <div class="placeholder-icon">👵</div>
+                    <div class="placeholder-text">Type 3-4 Premium<br>Complex Case Patient<br>KiiS-Relax Solution</div>
+                </div>
+                
+                <div class="product-header">
+                    <div class="product-name">KiiS-Relax</div>
+                    <div class="fda-badge fda-denovo">De Novo Innovation</div>
+                </div>
+                
+                <div class="patient-segment">
+                    <div class="segment-title">Type 3-4 Premium Market</div>
+                    <div class="segment-details">
+                        <div class="segment-item">50-70+ aged</div>
+                        <div class="segment-item">High income ($75k+)</div>
+                        <div class="segment-item">Weak bone eligibility</div>
+                        <div class="segment-item">Worried about surgical pain</div>
+                    </div>
+                </div>
+                
+                <div class="value-proposition">
+                    <div class="value-title">"Makes complex implants refreshingly simple"</div>
+                    <div class="value-subtitle">No bone graft. No stress. Offers premium solution with faster healing and lower failure risk</div>
+                </div>
+                
+                <div class="key-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚀</div>
+                        <div class="benefit-text">FDA De Novo breakthrough technology</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💊</div>
+                        <div class="benefit-text">Hollow Inner Channel for drug delivery</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🦴</div>
+                        <div class="benefit-text">No bone grafting required for weak bone</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <div class="benefit-text">Faster healing & reduced surgical stress</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 네비게이션 호버 감지 영역 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    
+    <!-- 네비게이션 -->
+    <div class="navigation" id="navigation">
+        <a href="slide9.html" class="nav-btn prev">Back</a>
+        <a href="slide11.html" class="nav-btn next">Next</a>
+    </div>
+    
+    <script>
+        // 상세 정보 표시 함수 (향후 확장 가능)
+        function showDetails(productType) {
+            if (productType === 'kiisplus') {
+                console.log('KiiS-Plus 상세 정보 클릭됨');
+                // 향후 상세 팝업 또는 다른 페이지로 이동 가능
+            } else if (productType === 'kiisrelax') {
+                console.log('KiiS-Relax 상세 정보 클릭됨');
+                // 향후 상세 팝업 또는 다른 페이지로 이동 가능
+            }
+        }
+        
+        // 네비게이션 기능
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let hideTimeout;
+        let isNavigationVisible = false;
+        
+        // 네비게이션 표시
+        function showNavigation() {
+            clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+        
+        // 네비게이션 숨기기
+        function hideNavigation(delay = 2000) {
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+        
+        // PC/데스크톱: 마우스 호버 기능
+        if (!isTouchDevice) {
+            let lastMouseY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) {
+                        showNavigation();
+                    }
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
+                }
+            });
+            
+            navigation.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+                showNavigation();
+            });
+            
+            navigation.addEventListener('mouseleave', () => {
+                hideNavigation(1000);
+            });
+        }
+        
+        // 터치 디바이스: 터치 및 스와이프 기능
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                const touchY = e.touches[0].clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (touchY > windowHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        window.location.href = 'slide9.html';
+                    } else {
+                        window.location.href = 'slide11.html';
+                    }
+                }
+            });
+            
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                if (e.target.closest('.value-card') || 
+                    e.target.closest('.navigation')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+        
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide9.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide11.html';
+                    break;
+                case 'Escape':
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                    clearTimeout(hideTimeout);
+                    break;
+                case 'n':
+                case 'N':
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+            }
+        });
+        
+        // 페이지 로드 시 애니메이션
+        window.addEventListener('load', function() {
+            const title = document.querySelector('.title');
+            const valueCards = document.querySelectorAll('.value-card');
+            
+            // 초기 상태 설정
+            title.style.opacity = '0';
+            title.style.transform = 'translateY(-30px)';
+            title.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            valueCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = `translateX(${index === 0 ? '-50px' : '50px'})`;
+                card.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            // 순차적 애니메이션 실행
+            setTimeout(() => {
+                // 1. 타이틀 애니메이션
+                title.style.opacity = '1';
+                title.style.transform = 'translateY(0)';
+                
+                // 2. 가치 제안 카드들 애니메이션
+                setTimeout(() => {
+                    valueCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateX(0)';
+                        }, index * 300);
+                    });
+                }, 500);
+                
+                // 3. 네비게이션 힌트
+                setTimeout(() => {
+                    showNavigation();
+                    hideNavigation(2500);
+                }, 2500);
+                
+            }, 500);
+        });
+        
+        // 접근성 향상
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                showNavigation();
+                hideNavigation(5000);
+            }
+        });
+        
+        // 브라우저 크기 변경 대응
+        window.addEventListener('resize', () => {
+            if (isNavigationVisible) {
+                clearTimeout(hideTimeout);
+                hideNavigation(1000);
+            }
+        });
+        
+        // 네비게이션 링크 이벤트
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+            
+            btn.addEventListener('focus', () => {
+                showNavigation();
+                clearTimeout(hideTimeout);
+            });
+        });
+        
+        // 개발자 콘솔 로그
+        console.log('🎯 KiiS Slide10 환자 중심 가치 제안 로드됨');
+        console.log('💊 KiiS-Plus: 510K 경로 - 기존 호환성 + 비용 절감');
+        console.log('🚀 KiiS-Relax: 510K + De Novo - 혁신 기능 + 약물 전달');
+    </script>
+</body>
+</html>
