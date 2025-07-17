@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KiiS - Go-To-Market Strategy</title>
     <style>
         * {
@@ -11,251 +12,406 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             color: white;
             min-height: 100vh;
-            padding: 60px 80px;
+            padding: 40px 60px;
         }
         
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            height: calc(100vh - 120px);
+            min-height: calc(100vh - 80px);
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
         }
         
-        .left-side {
-            flex: 1;
-            padding-right: 60px;
-            max-width: 700px;
-        }
-        
-        .right-side {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 600px;
+        /* 헤더 - 간결화 */
+        .main-header {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .title {
-            font-size: 56px;
+            font-size: 42px;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+        
+        .title-highlight {
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 22px;
+            color: #e0e7ff;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+        
+        /* 핵심 가치 제안 - 새로운 최상단 섹션 */
+        .core-value {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            border: 3px solid #ffd700;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .value-statement {
+            font-size: 28px;
             font-weight: bold;
             color: #ffd700;
-            margin-bottom: 60px;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            line-height: 1.1;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
-        .strategy-list {
-            list-style: none;
-            padding: 0;
+        .value-details {
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 1.4;
         }
         
-        .strategy-item {
+        /* 성공 모델 - 단순화 */
+        .proven-success {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .proven-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
-            padding: 25px 30px;
-            background: linear-gradient(145deg, #1e40af, #1d4ed8);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-left: 4px solid #ffd700;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            gap: 10px;
+        }
+        
+        .success-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid rgba(16, 185, 129, 0.3);
             transition: all 0.3s ease;
             cursor: pointer;
         }
         
-        .strategy-item:hover {
-            transform: translateY(-5px) translateX(10px);
-            border-left-color: #ffffff;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(145deg, #2563eb, #1e40af);
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: #10b981;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
         }
         
-        .strategy-number {
+        .metric-number {
             font-size: 32px;
             font-weight: bold;
-            color: #ffd700;
-            margin-right: 25px;
-            min-width: 50px;
-            text-align: center;
+            color: #10b981;
+            margin-bottom: 8px;
+            display: block;
         }
         
-        .strategy-text {
-            font-size: 22px;
-            font-weight: 500;
+        .metric-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.3;
-            color: white;
         }
         
-        .strategy-text .highlight {
-            color: #ffd700;
+        /* 핵심 차별화 - 실제 경쟁사 이미지 활용 */
+        .innovation-edge {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .comparison-title {
+            font-size: 26px;
             font-weight: bold;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
-        .rocket-container {
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            position: relative;
+        }
+        
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .competitor-card {
+            border-color: #666;
+        }
+        
+        .kiis-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+            position: relative;
+        }
+        
+        /* 경쟁사 실제 웹사이트 이미지 */
+        .competitor-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.9;
+        }
+        
+        /* KiiS 혁신 비전 섹션 - 이미지 대신 인터랙티브 콘텐츠 */
+        .kiis-vision {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa);
+            border: 2px solid #ffd700;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            max-width: 500px;
-            height: 600px;
-            position: relative;
-        }
-        
-        .rocket {
-            position: relative;
-            width: 80px;
-            height: 200px;
-            margin-bottom: 60px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .rocket-body {
-            width: 80px;
-            height: 120px;
-            background: linear-gradient(145deg, #3b82f6, #1e40af);
-            border-radius: 40px 40px 10px 10px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-        }
-        
-        .rocket-nose {
-            width: 0;
-            height: 0;
-            border-left: 40px solid transparent;
-            border-right: 40px solid transparent;
-            border-bottom: 60px solid #ffd700;
-            position: absolute;
-            top: -60px;
-            left: 0;
-            filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.4));
-        }
-        
-        .rocket-fin {
-            width: 30px;
-            height: 50px;
-            background: linear-gradient(145deg, #1e40af, #1d4ed8);
-            position: absolute;
-            bottom: 10px;
-            border-radius: 5px;
-        }
-        
-        .rocket-fin.left {
-            left: -15px;
-            transform: skew(-10deg);
-        }
-        
-        .rocket-fin.right {
-            right: -15px;
-            transform: skew(10deg);
-        }
-        
-        .rocket-window {
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle, #87ceeb 0%, #4682b4 100%);
-            border-radius: 50%;
-            position: absolute;
-            top: 30px;
-            left: 25px;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .rocket-fire {
-            width: 40px;
-            height: 80px;
-            background: linear-gradient(180deg, #ff6b35 0%, #f7931e 30%, #ffd700 70%, transparent 100%);
-            border-radius: 50% 50% 0 0;
-            position: absolute;
-            bottom: -70px;
-            left: 20px;
-            animation: flicker 0.5s ease-in-out infinite alternate;
-            filter: blur(2px);
-        }
-        
-        .strategy-label {
             text-align: center;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            border: 2px dashed rgba(255, 215, 0, 0.5);
-            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            animation: kiisGlow 3s ease-in-out infinite alternate;
         }
         
-        .label-title {
-            font-size: 28px;
+        @keyframes kiisGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.7); }
+        }
+        
+        .kiis-vision::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 215, 0, 0.1), 
+                transparent,
+                rgba(255, 215, 0, 0.1),
+                transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .vision-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .vision-text {
+            color: #ffd700;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 2;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .tech-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 215, 0, 0.9);
+            color: #000;
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 3;
+        }
+        
+        .company-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        
+        .competitor-name { color: #888; }
+        .kiis-name { color: #ffd700; }
+        
+        .key-advantage {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffd700;
+        }
+        
+        .advantage-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+        
+        /* VS 배지 - 중앙 오버레이 */
+        .vs-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            color: #000;
+            font-size: 24px;
+            font-weight: bold;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            z-index: 10;
+            border: 3px solid rgba(0, 0, 0, 0.8);
+        }
+        
+        .innovation-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* 실행 전략 - 단순화 */
+        .execution-strategy {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+            border: 2px solid #ffd700;
+            border-radius: 25px;
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .strategy-title {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .strategy-flow {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .step-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .step-card:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .step-number {
+            font-size: 18px;
             font-weight: bold;
             color: #ffd700;
             margin-bottom: 10px;
         }
         
-        .label-subtitle {
-            font-size: 18px;
+        .step-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .step-desc {
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.8);
+            line-height: 1.3;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-10px) rotate(1deg); }
-            66% { transform: translateY(-5px) rotate(-1deg); }
-        }
-        
-        @keyframes flicker {
-            0% { transform: scaleY(1) scaleX(1); opacity: 1; }
-            100% { transform: scaleY(1.1) scaleX(0.9); opacity: 0.8; }
-        }
-        
-        .implant-visual {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.8)) brightness(1.2) contrast(1.3);
-            border-radius: 20px;
-            transition: transform 0.3s ease;
-        }
-        
-        .implant-visual:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-        
-        .visual-placeholder {
-            width: 500px;
-            height: 600px;
-            background: linear-gradient(145deg, rgba(59, 130, 246, 0.3), rgba(30, 64, 175, 0.2));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            border: 2px dashed rgba(255, 215, 0, 0.5);
+        .target-goal {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
             text-align: center;
         }
         
-        .placeholder-icon {
-            font-size: 80px;
-            margin-bottom: 30px;
-            color: #ffd700;
-        }
-        
-        .placeholder-text {
-            font-size: 24px;
-            margin-bottom: 15px;
+        .goal-highlight {
+            font-size: 22px;
             color: #ffd700;
             font-weight: bold;
+            margin-bottom: 8px;
         }
         
-        .placeholder-subtitle {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.7);
+        .goal-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
         }
         
-        /* 네비게이션 호버 감지 영역 */
+        /* 네비게이션 시스템 */
         .hover-zone {
             position: fixed;
             bottom: 0;
@@ -266,7 +422,6 @@
             pointer-events: auto;
         }
         
-        /* 네비게이션 스타일 */
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -289,7 +444,6 @@
         .navigation.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
         }
         
         .nav-btn {
@@ -316,223 +470,343 @@
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
         
-        .nav-btn.prev::before {
-            content: "←";
-            font-size: 16px;
-        }
+        .nav-btn.prev::before { content: "←"; font-size: 16px; }
+        .nav-btn.next::after { content: "→"; font-size: 16px; }
         
-        .nav-btn.next::after {
-            content: "→";
-            font-size: 16px;
-        }
-        
+        /* 반응형 디자인 - v2.1 기준 */
         @media (max-width: 1200px) {
-            .container {
-                flex-direction: column;
-                text-align: center;
-                padding: 40px 0;
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
             
-            .left-side {
-                padding-right: 0;
-                margin-bottom: 40px;
-                max-width: 100%;
+            .vs-badge {
+                position: static;
+                transform: none;
+                margin: 0 auto 20px auto;
+                order: 1;
             }
             
-            .title {
-                font-size: 42px;
-                margin-bottom: 40px;
+            .competitor-card {
+                order: 0;
             }
             
-            .strategy-item {
-                padding: 20px 25px;
-                margin-bottom: 20px;
+            .kiis-card {
+                order: 2;
             }
             
-            .strategy-number {
-                font-size: 28px;
-                margin-right: 20px;
+            .success-metrics {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
             
-            .strategy-text {
+            .strategy-flow {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 20px 15px; }
+            
+            .title { 
+                font-size: 28px; 
+                line-height: 1.1; 
+            }
+            
+            .subtitle { 
+                font-size: 16px; 
+                line-height: 1.3; 
+            }
+            
+            .value-statement {
+                font-size: 20px;
+                line-height: 1.2;
+            }
+            
+            .value-details {
+                font-size: 15px;
+            }
+            
+            .proven-success,
+            .execution-strategy {
+                padding: 20px;
+            }
+            
+            .comparison-card {
+                padding: 20px;
+            }
+            
+            .strategy-title {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title { 
+                font-size: 24px; 
+            }
+            
+            .subtitle { 
+                font-size: 14px; 
+            }
+            
+            .value-statement {
                 font-size: 18px;
             }
             
-            .rocket-container {
-                width: 350px;
-                height: 400px;
+            .value-details {
+                font-size: 13px;
             }
             
-            .rocket {
-                width: 60px;
+            .kiis-vision {
                 height: 150px;
-                margin-bottom: 40px;
+                margin-bottom: 15px;
             }
             
-            .rocket-body {
-                width: 60px;
-                height: 90px;
-                border-radius: 30px 30px 8px 8px;
+            .vision-icon {
+                font-size: 36px;
+                margin-bottom: 6px;
             }
             
-            .rocket-nose {
-                border-left: 30px solid transparent;
-                border-right: 30px solid transparent;
-                border-bottom: 45px solid #ffd700;
-                top: -45px;
-            }
-            
-            .rocket-fin {
-                width: 20px;
-                height: 35px;
-            }
-            
-            .rocket-fin.left {
-                left: -10px;
-            }
-            
-            .rocket-fin.right {
-                right: -10px;
-            }
-            
-            .rocket-window {
-                width: 20px;
-                height: 20px;
-                top: 20px;
-                left: 20px;
-            }
-            
-            .rocket-fire {
-                width: 30px;
-                height: 60px;
-                bottom: -50px;
-                left: 15px;
-            }
-            
-            .label-title {
-                font-size: 22px;
-            }
-            
-            .label-subtitle {
-                font-size: 14px;
-            }
-            
-            body {
-                padding: 40px;
-            }
-            
-            .navigation {
-                padding: 12px 20px;
-            }
-            
-            .nav-btn {
-                padding: 10px 16px;
+            .vision-text {
                 font-size: 12px;
+            }
+            
+            .vs-badge {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+            
+            .metric-number {
+                font-size: 24px;
+            }
+            
+            .metric-label {
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .title { 
+                font-size: 22px; 
+            }
+            
+            .subtitle { 
+                font-size: 13px; 
+            }
+            
+            .value-statement {
+                font-size: 16px;
+            }
+            
+            .core-value,
+            .proven-success,
+            .execution-strategy {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="left-side">
-            <h1 class="title">Go-To-Market Strategy</h1>
-            
-            <ol class="strategy-list">
-                <li class="strategy-item">
-                    <span class="strategy-number">1.</span>
-                    <span class="strategy-text">Product Positioning for <span class="highlight">Dual Market Expansion</span></span>
-                </li>
-                
-                <li class="strategy-item">
-                    <span class="strategy-number">2.</span>
-                    <span class="strategy-text"><span class="highlight">Superiority Claims</span> Marketing</span>
-                </li>
-                
-                <li class="strategy-item">
-                    <span class="strategy-number">3.</span>
-                    <span class="strategy-text"><span class="highlight">Digital First</span> Sales Channel</span>
-                </li>
-                
-                <li class="strategy-item">
-                    <span class="strategy-number">4.</span>
-                    <span class="strategy-text">Manufacturing Partnership in <span class="highlight">Korea</span></span>
-                </li>
-                
-                <li class="strategy-item">
-                    <span class="strategy-number">5.</span>
-                    <span class="strategy-text">Seasoned Leadership in <span class="highlight">global Life sciences</span></span>
-                </li>
-            </ol>
+        <!-- 메인 헤더 -->
+        <div class="main-header" id="mainHeader">
+            <h1 class="title">
+                <span class="title-highlight">Go-To-Market</span>:<br>
+                Digital-First Disruption
+            </h1>
+            <p class="subtitle">
+                Proven model + Revolutionary technology = Market leadership
+            </p>
         </div>
         
-        <div class="right-side">
-            <!-- CSS로 만든 로켓 아이콘 -->
-            <div class="rocket-container">
-                <div class="rocket">
-                    <div class="rocket-body"></div>
-                    <div class="rocket-nose"></div>
-                    <div class="rocket-fin left"></div>
-                    <div class="rocket-fin right"></div>
-                    <div class="rocket-window"></div>
-                    <div class="rocket-fire"></div>
+        <!-- 핵심 가치 제안 - 새로 추가 -->
+        <div class="core-value" id="coreValue">
+            <div class="value-statement">
+                🚀 Better Tools, Proven Playbook, Realistic Goals
+            </div>
+            <div class="value-details">
+                Following Implant Direct's $225M success with breakthrough technology and smarter execution
+            </div>
+        </div>
+        
+        <!-- 성공 모델 증거 - 단순화 -->
+        <div class="proven-success" id="provenSuccess">
+            <h2 class="proven-title">
+                ✅ Benchmarking Digital-First Success
+            </h2>
+            
+            <div class="success-metrics">
+                <div class="metric-card" onclick="showSource('acquisition')">
+                    <span class="metric-number">$225M</span>
+                    <div class="metric-label">Implant Direct<br>Acquisition Value</div>
                 </div>
-                <div class="strategy-label">
-                    <div class="label-title">Go-To-Market Strategy</div>
-                    <div class="label-subtitle">Strategic Market Expansion</div>
+                <div class="metric-card" onclick="showSource('marketshare')">
+                    <span class="metric-number">7%</span>
+                    <div class="metric-label">Market Share<br>in 4 Years</div>
                 </div>
+                <div class="metric-card" onclick="showSource('advantage')">
+                    <span class="metric-number">65%</span>
+                    <div class="metric-label">Cost Savings<br>vs Premium</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 핵심 차별화 - 실제 경쟁사 분석 -->
+        <div class="innovation-edge" id="innovationEdge">
+            <h2 class="comparison-title">🔍 Competitive Intelligence Analysis</h2>
+            
+            <div class="comparison-grid">
+                <!-- Implant Direct 실제 웹사이트 -->
+                <div class="comparison-card competitor-card">
+                    <img src="/kiis-investor-pitch/public/images/implant-direct-website.jpg" 
+                         alt="Implant Direct Website - Market Leader Analysis" 
+                         class="competitor-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder" style="display: none; height: 200px;">
+                        <div class="placeholder-icon">🌐</div>
+                        <div class="placeholder-text">Implant Direct<br>Market Leader<br>E-commerce Platform</div>
+                    </div>
+                    
+                    <div class="company-name competitor-name">Implant Direct</div>
+                    <div class="key-advantage">Mass Market Leader</div>
+                    <div class="advantage-desc">
+                        Standard implants<br>
+                        Basic e-commerce<br>
+                        Generic education
+                    </div>
+                </div>
+
+                <!-- KiiS 혁신 비전 -->
+                <div class="comparison-card kiis-card">
+                    <div class="innovation-badge">Next-Gen</div>
+                    
+                    <!-- 인터랙티브 비전 섹션 - 이미지 대신 -->
+                    <div class="kiis-vision">
+                        <div class="tech-badge">COMING</div>
+                        <div class="vision-icon">🚀🧠💎</div>
+                        <div class="vision-text">
+                            AI-POWERED PLATFORM<br>
+                            IN DEVELOPMENT
+                        </div>
+                    </div>
+                    
+                    <div class="company-name kiis-name">KiiS</div>
+                    <div class="key-advantage">Innovation-First</div>
+                    <div class="advantage-desc">
+                        Breakthrough technology<br>
+                        AI-powered commerce<br>
+                        OSU academic authority
+                    </div>
+                </div>
+                
+                <!-- VS 배지 -->
+                <div class="vs-badge">VS</div>
+            </div>
+        </div>
+        
+        <!-- 실행 전략 - 단순화 -->
+        <div class="execution-strategy" id="executionStrategy">
+            <h2 class="strategy-title">🎯 Smart Execution Strategy</h2>
+            
+            <div class="strategy-flow">
+                <div class="step-card">
+                    <div class="step-number">Year 1</div>
+                    <div class="step-title">OSU Launch</div>
+                    <div class="step-desc">Academic network + early validation</div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">Year 2-3</div>
+                    <div class="step-title">Digital Scale</div>
+                    <div class="step-desc">AI platform + proven tactics</div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">Year 4-5</div>
+                    <div class="step-title">Leadership</div>
+                    <div class="step-desc">Sustainable growth + category definition</div>
+                </div>
+            </div>
+            
+            <div class="target-goal">
+                <div class="goal-highlight">Year 4 Target: 0.5% Market Share (~$12M Revenue)</div>
+                <div class="goal-subtitle">Focused approach • Quality over speed • Proven digital model</div>
             </div>
         </div>
     </div>
     
-    <!-- 네비게이션 호버 감지 영역 -->
-    <div class="hover-zone" id="hoverZone"></div>
-    
     <!-- 네비게이션 -->
+    <div class="hover-zone" id="hoverZone"></div>
     <div class="navigation" id="navigation">
         <a href="slide7.html" class="nav-btn prev">Back</a>
         <a href="slide9.html" class="nav-btn next">Next</a>
     </div>
     
     <script>
-        // CSS 애니메이션 로켓 표시 (이미지 없음)
-        console.log('🎯 KiiS Slide8 로드됨 - CSS 로켓 애니메이션으로 표시');
-        console.log('🚀 GitHub Pages에서는 heroproduct1.png 이미지로 교체 가능');
+        // 전역 변수
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let isNavigationVisible = false;
+        let hideTimeout;
         
-        // 네비게이션 기능
+        // 데이터 소스 (간소화)
+        const sources = {
+            'acquisition': {
+                title: '$225M Proven Success',
+                content: 'Implant Direct acquired by Danaher for $225M in 2010, just 4 years after launching digital-first model in 2006.'
+            },
+            'marketshare': {
+                title: '7% Market Domination',
+                content: 'Achieved 7% US market share (~$147M revenue) through direct-to-dentist model and disruptive pricing.'
+            },
+            'advantage': {
+                title: '65% Cost Innovation',
+                content: 'Direct sales model eliminated distribution costs, enabling 65% savings vs premium competitors while maintaining quality.'
+            }
+        };
+        
+        // 간단한 알림 함수
+        function showSource(sourceId) {
+            const source = sources[sourceId];
+            if (source) {
+                alert(source.title + '\n\n' + source.content);
+            }
+        }
+        
+        // 네비게이션 시스템
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        let hideTimeout;
-        let isNavigationVisible = false;
         
-        // 네비게이션 표시
         function showNavigation() {
-            clearTimeout(hideTimeout);
+            if (hideTimeout) clearTimeout(hideTimeout);
             navigation.classList.add('visible');
             isNavigationVisible = true;
         }
         
-        // 네비게이션 숨기기
         function hideNavigation(delay = 2000) {
-            clearTimeout(hideTimeout);
+            if (hideTimeout) clearTimeout(hideTimeout);
             hideTimeout = setTimeout(() => {
                 navigation.classList.remove('visible');
                 isNavigationVisible = false;
             }, delay);
         }
         
-        // PC/데스크톱: 마우스 호버 기능
+        // PC 네비게이션
         if (!isTouchDevice) {
-            let lastMouseY = 0;
+            if (hoverZone) {
+                hoverZone.addEventListener('mouseenter', showNavigation);
+                hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+            }
             
+            let lastMouseY = 0;
             document.addEventListener('mousemove', (e) => {
                 lastMouseY = e.clientY;
                 const windowHeight = window.innerHeight;
                 
                 if (lastMouseY > windowHeight - 120) {
-                    if (!isNavigationVisible) {
-                        showNavigation();
-                    }
+                    if (!isNavigationVisible) showNavigation();
                 } else if (isNavigationVisible && !navigation.matches(':hover')) {
                     hideNavigation(1500);
                 }
@@ -542,13 +816,10 @@
                 clearTimeout(hideTimeout);
                 showNavigation();
             });
-            
-            navigation.addEventListener('mouseleave', () => {
-                hideNavigation(1000);
-            });
+            navigation.addEventListener('mouseleave', () => hideNavigation(1000));
         }
         
-        // 터치 디바이스: 터치 및 스와이프 기능
+        // 모바일 네비게이션
         if (isTouchDevice) {
             let startX = 0;
             let startY = 0;
@@ -559,10 +830,7 @@
                 startY = e.touches[0].clientY;
                 startTime = Date.now();
                 
-                const touchY = e.touches[0].clientY;
-                const windowHeight = window.innerHeight;
-                
-                if (touchY > windowHeight - 120) {
+                if (e.touches[0].clientY > window.innerHeight - 120) {
                     showNavigation();
                     hideNavigation(3000);
                 }
@@ -591,8 +859,7 @@
             
             let tapCount = 0;
             document.addEventListener('touchend', (e) => {
-                if (e.target.closest('.strategy-item') || 
-                    e.target.closest('.implant-visual') || 
+                if (e.target.closest('.metric-card') || 
                     e.target.closest('.navigation')) {
                     return;
                 }
@@ -618,6 +885,13 @@
         
         // 키보드 네비게이션
         document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+                clearTimeout(hideTimeout);
+                return;
+            }
+            
             switch(e.key) {
                 case 'ArrowLeft':
                 case 'ArrowUp':
@@ -629,11 +903,6 @@
                 case ' ':
                     e.preventDefault();
                     window.location.href = 'slide9.html';
-                    break;
-                case 'Escape':
-                    navigation.classList.remove('visible');
-                    isNavigationVisible = false;
-                    clearTimeout(hideTimeout);
                     break;
                 case 'n':
                 case 'N':
@@ -649,72 +918,31 @@
             }
         });
         
-        // 페이지 로드 시 애니메이션
+        // 페이지 로드 애니메이션 - v2.1 최적화
         window.addEventListener('load', function() {
-            const title = document.querySelector('.title');
-            const strategyItems = document.querySelectorAll('.strategy-item');
-            const rocketContainer = document.querySelector('.rocket-container');
+            const elements = [
+                { selector: '.main-header', delay: 0 },
+                { selector: '.core-value', delay: 400 },
+                { selector: '.proven-success', delay: 600 },
+                { selector: '.innovation-edge', delay: 800 },
+                { selector: '.execution-strategy', delay: 1000 }
+            ];
             
-            // 초기 상태 설정
-            title.style.opacity = '0';
-            title.style.transform = 'translateY(-30px) scale(0.9)';
-            title.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            strategyItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-100px)';
-                item.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            });
-            
-            if (rocketContainer) {
-                rocketContainer.style.opacity = '0';
-                rocketContainer.style.transform = 'translateX(50px) scale(0.8)';
-                rocketContainer.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
-            }
-            
-            // 순차적 애니메이션 실행
-            setTimeout(() => {
-                // 1. 타이틀 애니메이션
-                title.style.opacity = '1';
-                title.style.transform = 'translateY(0) scale(1)';
-                
-                // 2. 전략 아이템들 순차 애니메이션
+            elements.forEach(({ selector, delay }) => {
                 setTimeout(() => {
-                    strategyItems.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateX(0)';
-                        }, index * 150);
-                    });
-                }, 400);
-                
-                // 3. 로켓 컨테이너 애니메이션
-                setTimeout(() => {
-                    if (rocketContainer) {
-                        rocketContainer.style.opacity = '1';
-                        rocketContainer.style.transform = 'translateX(0) scale(1)';
+                    const element = document.querySelector(selector);
+                    if (element) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
                     }
-                }, 800);
-                
-                // 4. 네비게이션 힌트
-                setTimeout(() => {
-                    showNavigation();
-                    hideNavigation(2500);
-                }, 2200);
-                
-            }, 500);
-        });
-        
-        // 전략 아이템 클릭 이벤트
-        document.querySelectorAll('.strategy-item').forEach((item, index) => {
-            item.addEventListener('click', () => {
-                console.log(`전략 ${index + 1} 클릭됨`);
-                // 클릭 효과 추가
-                item.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    item.style.transform = '';
-                }, 150);
+                }, delay);
             });
+            
+            // 네비게이션 힌트
+            setTimeout(() => {
+                showNavigation();
+                hideNavigation(3000);
+            }, 1500);
         });
         
         // 접근성 향상
@@ -725,24 +953,11 @@
             }
         });
         
-        // 브라우저 크기 변경 대응
         window.addEventListener('resize', () => {
             if (isNavigationVisible) {
                 clearTimeout(hideTimeout);
                 hideNavigation(1000);
             }
-        });
-        
-        // 네비게이션 링크 이벤트
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                clearTimeout(hideTimeout);
-            });
-            
-            btn.addEventListener('focus', () => {
-                showNavigation();
-                clearTimeout(hideTimeout);
-            });
         });
     </script>
 </body>
