@@ -396,6 +396,7 @@
             background: rgba(255, 255, 255, 0.05);
             border: none;
             font-family: inherit;
+            width: 100%;
         }
 
         .data-source-section:hover {
@@ -602,7 +603,7 @@
                             <span class="detail-value">Lower than Average</span>
                         </div>
                     </div>
-                    <button type="button" class="data-source-section" onclick="alert('Valuation Guide: Hiossen $50M+, BioHorizons $200M, MegaGen $1B+. FDA Ready stage $8-12M. KiiS premiums: Tech +20%, FDA +15%, Team +10%.')">ℹ️ Valuation Sources</button>
+                    <button class="data-source-section" onclick="window.alert('Valuation Guide: Hiossen $50M+, BioHorizons $200M, MegaGen $1B+. FDA Ready stage $8-12M. KiiS premiums: Tech +20%, FDA +15%, Team +10%.')">ℹ️ Valuation Sources</button>
                 </div>
 
                 <!-- 투자 조건 -->
@@ -626,7 +627,7 @@
                             <span class="detail-value">Q3 2025</span>
                         </div>
                     </div>
-                    <div class="data-source-section" onclick="alert('Investment Terms: Based on revised funding requirements for optimized market entry strategy and 12-month focused execution plan. Equity range reflects conservative to optimistic valuation scenarios with reduced dilution.')">ℹ️ Terms Basis</div>
+                    <button class="data-source-section" onclick="window.alert('Investment Terms: Based on revised funding requirements for optimized market entry strategy and 12-month focused execution plan. Equity range reflects conservative to optimistic valuation scenarios with reduced dilution.')">ℹ️ Terms Basis</button>
                 </div>
             </div>
 
@@ -867,10 +868,8 @@
             document.addEventListener('touchend', (e) => {
                 if (e.target.closest('.navigation') || 
                     e.target.closest('.hover-zone') ||
-                    e.target.closest('.term-card') ||
-                    e.target.closest('.funding-item') ||
-                    e.target.closest('.milestone-item') ||
-                    e.target.closest('.cta-button')) {
+                    e.target.closest('.cta-button') ||
+                    e.target.closest('.data-source-section')) {
                     return;
                 }
                 
