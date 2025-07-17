@@ -109,7 +109,7 @@
             background: rgba(255, 255, 255, 0.1);
             border: 2px dashed rgba(255, 255, 255, 0.3);
             border-radius: 15px;
-            display: none; /* 기본적으로 숨김 */
+            display: none;
             align-items: center;
             justify-content: center;
             flex-direction: column;
@@ -547,6 +547,99 @@
                 margin-bottom: 12px;
             }
         }
+        
+        /* 갤럭시 S 표준 (480px 이하) */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+            
+            .main-header {
+                margin-bottom: 30px;
+            }
+            
+            .title {
+                font-size: 24px;
+                line-height: 1.1;
+                margin-bottom: 12px;
+            }
+            
+            .title-highlight {
+                font-size: 26px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+                line-height: 1.3;
+            }
+            
+            .benefit-card {
+                padding: 20px 15px;
+                border-radius: 12px;
+            }
+            
+            .benefit-title {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+            
+            .benefit-content {
+                font-size: 12px;
+            }
+            
+            .impact-section {
+                padding: 25px;
+            }
+            
+            .impact-title {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+            
+            .impact-message {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+            
+            .impact-subtitle {
+                font-size: 14px;
+            }
+            
+            .source-popup {
+                padding: 20px;
+                max-width: 95%;
+                margin: 10px;
+                border-radius: 15px;
+            }
+        }
+        
+        /* 컴팩트 폰 (360px 이하) */
+        @media (max-width: 360px) {
+            body {
+                padding: 12px 8px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .title-highlight {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+            }
+            
+            .impact-title {
+                font-size: 20px;
+            }
+            
+            .source-popup {
+                padding: 15px;
+                margin: 5px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -653,7 +746,7 @@
     <!-- 네비게이션 -->
     <div class="hover-zone" id="hoverZone"></div>
     <div class="navigation" id="navigation">
-        <a href="slide4.html" class="nav-btn prev">Back</a>
+        <a href="slide3.html" class="nav-btn prev">Back</a>
         <a href="slide6.html" class="nav-btn next">Next</a>
     </div>
     
@@ -665,178 +758,49 @@
     </div>
     
     <script>
-        // 전역 변수
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        let isNavigationVisible = false;
-        let hideTimeout;
-        let isPopupOpen = false;
+        // 전역 변수 - ES5 호환성
+        var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        var isNavigationVisible = false;
+        var hideTimeout;
+        var isPopupOpen = false;
         
         // 과학적 증거 데이터
-        const sources = {
+        var sources = {
             'microct': {
                 title: '6-Week Micro-CT Scientific Evidence',
-                content: `
-                    <p><strong>Gold Standard Clinical Validation:</strong></p>
-                    <p>Micro-CT imaging at 10 μm resolution provides the highest precision evidence of bone formation around KiiS implants, demonstrating superior osseointegration compared to traditional designs.</p>
-                    
-                    <p><strong>Verified Study Results (6 weeks post-implantation):</strong></p>
-                    <ul>
-                        <li><strong>Bone-Implant Contact:</strong> 40% increase in direct bone contact area</li>
-                        <li><strong>Integration Speed:</strong> 3x faster initial osseointegration vs traditional implants</li>
-                        <li><strong>Bone Density:</strong> Enhanced mineralization around spiral channels</li>
-                        <li><strong>Stability Metrics:</strong> Superior biomechanical fixation in Type 3-4 bone</li>
-                    </ul>
-                    
-                    <p><strong>Clinical Significance:</strong></p>
-                    <ul>
-                        <li><strong>Immediate Loading:</strong> Potential for same-day restoration in select cases</li>
-                        <li><strong>Success Rate:</strong> Higher predictability in challenging bone conditions</li>
-                        <li><strong>Healing Time:</strong> Reduced integration period from months to weeks</li>
-                        <li><strong>Long-term Stability:</strong> Enhanced bone remodeling and adaptation</li>
-                    </ul>
-                    
-                    <p><strong>Scientific Method:</strong> Micro-CT scanning at 10 μm resolution is recognized as the gold standard for quantitative bone analysis in implant research.</p>
-                `
+                content: '<p><strong>Gold Standard Clinical Validation:</strong></p><p>Micro-CT imaging at 10 μm resolution provides the highest precision evidence of bone formation around KiiS implants, demonstrating superior osseointegration compared to traditional designs.</p><p><strong>Verified Study Results (6 weeks post-implantation):</strong></p><ul><li><strong>Bone-Implant Contact:</strong> 40% increase in direct bone contact area</li><li><strong>Integration Speed:</strong> 3x faster initial osseointegration vs traditional implants</li><li><strong>Bone Density:</strong> Enhanced mineralization around spiral channels</li><li><strong>Stability Metrics:</strong> Superior biomechanical fixation in Type 3-4 bone</li></ul><p><strong>Clinical Significance:</strong></p><ul><li><strong>Immediate Loading:</strong> Potential for same-day restoration in select cases</li><li><strong>Success Rate:</strong> Higher predictability in challenging bone conditions</li><li><strong>Healing Time:</strong> Reduced integration period from months to weeks</li><li><strong>Long-term Stability:</strong> Enhanced bone remodeling and adaptation</li></ul><p><strong>Scientific Method:</strong> Micro-CT scanning at 10 μm resolution is recognized as the gold standard for quantitative bone analysis in implant research.</p>'
             },
             'paradigmshift': {
                 title: 'Revolutionary Design Innovation',
-                content: `
-                    <p><strong>Paradigm Shift in Implant Technology:</strong></p>
-                    <p>KiiS represents a fundamental departure from conventional implant design, incorporating breakthrough features that address core limitations of current technologies.</p>
-                    
-                    <p><strong>Breakthrough Design Elements:</strong></p>
-                    <ul>
-                        <li><strong>Spiral Side Openings:</strong> First-ever bone ingrowth channels that create 3D anchoring</li>
-                        <li><strong>Hollow Inner Channel:</strong> Built-in medication delivery system for targeted healing</li>
-                        <li><strong>Dual-Function Architecture:</strong> Combines mechanical stability with biological enhancement</li>
-                        <li><strong>Surface Optimization:</strong> Maximized bone contact through innovative geometry</li>
-                    </ul>
-                    
-                    <p><strong>Scientific Advantages:</strong></p>
-                    <ul>
-                        <li><strong>Enhanced Vascularization:</strong> Spiral channels promote blood flow and nutrient delivery</li>
-                        <li><strong>Mechanical Interlocking:</strong> 3D bone ingrowth creates superior retention</li>
-                        <li><strong>Controlled Microenvironment:</strong> Optimized healing conditions around implant</li>
-                        <li><strong>Biomimetic Design:</strong> Mimics natural bone healing patterns</li>
-                    </ul>
-                    
-                    <p><strong>Validated Innovation:</strong> US Patent protection and FDA pathway confirmation demonstrate scientific and regulatory validation of breakthrough technology.</p>
-                `
+                content: '<p><strong>Paradigm Shift in Implant Technology:</strong></p><p>KiiS represents a fundamental departure from conventional implant design, incorporating breakthrough features that address core limitations of current technologies.</p><p><strong>Breakthrough Design Elements:</strong></p><ul><li><strong>Spiral Side Openings:</strong> First-ever bone ingrowth channels that create 3D anchoring</li><li><strong>Hollow Inner Channel:</strong> Built-in medication delivery system for targeted healing</li><li><strong>Dual-Function Architecture:</strong> Combines mechanical stability with biological enhancement</li><li><strong>Surface Optimization:</strong> Maximized bone contact through innovative geometry</li></ul><p><strong>Scientific Advantages:</strong></p><ul><li><strong>Enhanced Vascularization:</strong> Spiral channels promote blood flow and nutrient delivery</li><li><strong>Mechanical Interlocking:</strong> 3D bone ingrowth creates superior retention</li><li><strong>Controlled Microenvironment:</strong> Optimized healing conditions around implant</li><li><strong>Biomimetic Design:</strong> Mimics natural bone healing patterns</li></ul><p><strong>Validated Innovation:</strong> US Patent protection and FDA pathway confirmation demonstrate scientific and regulatory validation of breakthrough technology.</p>'
             },
             'bonegrowth': {
                 title: 'Superior Bone Contact - Scientific Validation',
-                content: `
-                    <p><strong>Enhanced Clinical Performance:</strong></p>
-                    <p>Micro-CT analysis demonstrates significantly improved bone-to-implant contact area compared to traditional implants, providing measurable evidence of superior integration.</p>
-                    
-                    <p><strong>Measurement Methodology:</strong></p>
-                    <ul>
-                        <li><strong>Imaging Standard:</strong> 10 μm resolution Micro-CT scanning</li>
-                        <li><strong>Analysis Protocol:</strong> 3D volumetric assessment of bone contact</li>
-                        <li><strong>Comparison Baseline:</strong> Traditional screw-type implants</li>
-                        <li><strong>Time Points:</strong> 2, 4, and 6 weeks post-implantation</li>
-                    </ul>
-                    
-                    <p><strong>Clinical Benefits:</strong></p>
-                    <ul>
-                        <li><strong>Enhanced Stability:</strong> Superior primary and secondary stability</li>
-                        <li><strong>Load Distribution:</strong> Better force dispersion reduces bone stress</li>
-                        <li><strong>Type 3-4 Bone Success:</strong> Effective in challenging bone densities</li>
-                        <li><strong>Reduced Failure Risk:</strong> Higher predictability of successful integration</li>
-                    </ul>
-                    
-                    <p><strong>Market Impact:</strong> This measurable advantage enables successful treatment of patients currently excluded from traditional implant therapy due to poor bone quality.</p>
-                `
+                content: '<p><strong>Enhanced Clinical Performance:</strong></p><p>Micro-CT analysis demonstrates significantly improved bone-to-implant contact area compared to traditional implants, providing measurable evidence of superior integration.</p><p><strong>Measurement Methodology:</strong></p><ul><li><strong>Imaging Standard:</strong> 10 μm resolution Micro-CT scanning</li><li><strong>Analysis Protocol:</strong> 3D volumetric assessment of bone contact</li><li><strong>Comparison Baseline:</strong> Traditional screw-type implants</li><li><strong>Time Points:</strong> 2, 4, and 6 weeks post-implantation</li></ul><p><strong>Clinical Benefits:</strong></p><ul><li><strong>Enhanced Stability:</strong> Superior primary and secondary stability</li><li><strong>Load Distribution:</strong> Better force dispersion reduces bone stress</li><li><strong>Type 3-4 Bone Success:</strong> Effective in challenging bone densities</li><li><strong>Reduced Failure Risk:</strong> Higher predictability of successful integration</li></ul><p><strong>Market Impact:</strong> This measurable advantage enables successful treatment of patients currently excluded from traditional implant therapy due to poor bone quality.</p>'
             },
             'osseointegration': {
                 title: 'Enhanced Osseointegration - Biological Mechanism',
-                content: `
-                    <p><strong>Improved Biological Response:</strong></p>
-                    <p>KiiS spiral channels facilitate enhanced osseointegration through improved vascularization and optimized cellular migration pathways compared to traditional implants.</p>
-                    
-                    <p><strong>Biological Mechanisms:</strong></p>
-                    <ul>
-                        <li><strong>Vascular Ingrowth:</strong> Spiral channels provide pathways for blood vessel formation</li>
-                        <li><strong>Osteoblast Migration:</strong> Enhanced cell recruitment to implant surface</li>
-                        <li><strong>Nutrient Transport:</strong> Improved oxygen and nutrient delivery to healing tissues</li>
-                        <li><strong>Growth Factor Concentration:</strong> Spiral geometry creates optimal microenvironment</li>
-                    </ul>
-                    
-                    <p><strong>Clinical Timeline:</strong></p>
-                    <ul>
-                        <li><strong>Week 1-2:</strong> Initial cellular response and vascular sprouting</li>
-                        <li><strong>Week 3-4:</strong> Enhanced osteoid formation within spiral channels</li>
-                        <li><strong>Week 5-6:</strong> Improved bone formation and mechanical integration</li>
-                        <li><strong>Standard Timeline:</strong> Traditional implants typically require 3-6 months for full osseointegration</li>
-                    </ul>
-                    
-                    <p><strong>Patient Benefits:</strong> Enhanced healing quality enables more predictable outcomes and potentially earlier loading in select cases, improving patient comfort during the healing phase.</p>
-                `
+                content: '<p><strong>Improved Biological Response:</strong></p><p>KiiS spiral channels facilitate enhanced osseointegration through improved vascularization and optimized cellular migration pathways compared to traditional implants.</p><p><strong>Biological Mechanisms:</strong></p><ul><li><strong>Vascular Ingrowth:</strong> Spiral channels provide pathways for blood vessel formation</li><li><strong>Osteoblast Migration:</strong> Enhanced cell recruitment to implant surface</li><li><strong>Nutrient Transport:</strong> Improved oxygen and nutrient delivery to healing tissues</li><li><strong>Growth Factor Concentration:</strong> Spiral geometry creates optimal microenvironment</li></ul><p><strong>Clinical Timeline:</strong></p><ul><li><strong>Week 1-2:</strong> Initial cellular response and vascular sprouting</li><li><strong>Week 3-4:</strong> Enhanced osteoid formation within spiral channels</li><li><strong>Week 5-6:</strong> Improved bone formation and mechanical integration</li><li><strong>Standard Timeline:</strong> Traditional implants typically require 3-6 months for full osseointegration</li></ul><p><strong>Patient Benefits:</strong> Enhanced healing quality enables more predictable outcomes and potentially earlier loading in select cases, improving patient comfort during the healing phase.</p>'
             },
             'compatibility': {
                 title: 'Surgical Compatibility - Practice Integration',
-                content: `
-                    <p><strong>Seamless Practice Integration:</strong></p>
-                    <p>KiiS implants are engineered for compatibility with existing dental equipment and surgical protocols, minimizing barriers to adoption.</p>
-                    
-                    <p><strong>Equipment Compatibility:</strong></p>
-                    <ul>
-                        <li><strong>Drilling Protocol:</strong> Standard implant site preparation procedures</li>
-                        <li><strong>Surgical Instruments:</strong> Works with conventional implant placement tools</li>
-                        <li><strong>Prosthetic Platform:</strong> Compatible with existing abutment systems</li>
-                        <li><strong>Imaging Systems:</strong> Standard radiographic and CBCT assessment</li>
-                    </ul>
-                    
-                    <p><strong>Training Requirements:</strong></p>
-                    <ul>
-                        <li><strong>Surgical Technique:</strong> Familiar placement protocol for experienced clinicians</li>
-                        <li><strong>Learning Curve:</strong> Minimal additional training required</li>
-                        <li><strong>Case Selection:</strong> Similar assessment criteria with expanded indications</li>
-                        <li><strong>Post-operative Care:</strong> Standard healing and loading protocols</li>
-                    </ul>
-                    
-                    <p><strong>Business Advantage:</strong> Minimal equipment investment and reduced training requirements accelerate market adoption and reduce practice transition costs.</p>
-                `
+                content: '<p><strong>Seamless Practice Integration:</strong></p><p>KiiS implants are engineered for compatibility with existing dental equipment and surgical protocols, minimizing barriers to adoption.</p><p><strong>Equipment Compatibility:</strong></p><ul><li><strong>Drilling Protocol:</strong> Standard implant site preparation procedures</li><li><strong>Surgical Instruments:</strong> Works with conventional implant placement tools</li><li><strong>Prosthetic Platform:</strong> Compatible with existing abutment systems</li><li><strong>Imaging Systems:</strong> Standard radiographic and CBCT assessment</li></ul><p><strong>Training Requirements:</strong></p><ul><li><strong>Surgical Technique:</strong> Familiar placement protocol for experienced clinicians</li><li><strong>Learning Curve:</strong> Minimal additional training required</li><li><strong>Case Selection:</strong> Similar assessment criteria with expanded indications</li><li><strong>Post-operative Care:</strong> Standard healing and loading protocols</li></ul><p><strong>Business Advantage:</strong> Minimal equipment investment and reduced training requirements accelerate market adoption and reduce practice transition costs.</p>'
             },
             'paper': {
                 title: 'Research Paper: Bone Regeneration into Side Openings and Hollow Inner Channel',
-                content: `
-                    <p><strong>Publication:</strong> Journal of the Mechanical Behavior of Biomedical Materials, Vol. 101 (2020)</p>
-                    <p><strong>Authors:</strong> Do-Gyoon Kim, Kyoung-Hwa Kim, Yethyeon Jo, Jue Yeon Lee, Yoon Jeong Park, et al.</p>
-                    
-                    <p><strong>핵심 연구 내용:</strong></p>
-                    <ul>
-                        <li><strong>연구 목적:</strong> 측면 개구부와 중공 내부 채널을 가진 임플란트의 골재생 능력 검증</li>
-                        <li><strong>실험 방법:</strong> 12개월간의 체내 실험을 통한 골재생 분석</li>
-                        <li><strong>주요 발견:</strong> 나선형 측면 개구부를 통한 3차원 골성장 확인</li>
-                        <li><strong>임상적 의의:</strong> 기존 임플란트 대비 우수한 골통합성 입증</li>
-                    </ul>
-                    
-                    <p><strong>Key Research Findings:</strong></p>
-                    <ul>
-                        <li><strong>Bone Regeneration:</strong> Successfully demonstrated bone ingrowth through spiral side openings</li>
-                        <li><strong>Inner Channel:</strong> Hollow design enables targeted drug delivery and enhanced healing</li>
-                        <li><strong>3D Anchoring:</strong> Spiral channels create mechanical interlocking superior to traditional threads</li>
-                        <li><strong>Clinical Validation:</strong> 12-month study confirms enhanced osseointegration</li>
-                    </ul>
-                    
-                    <p><strong>Scientific Impact:</strong> This peer-reviewed research provides the scientific foundation for KiiS technology, validating the revolutionary approach to implant design.</p>
-                `
+                content: '<p><strong>Publication:</strong> Journal of the Mechanical Behavior of Biomedical Materials, Vol. 101 (2020)</p><p><strong>Authors:</strong> Do-Gyoon Kim, Kyoung-Hwa Kim, Yethyeon Jo, Jue Yeon Lee, Yoon Jeong Park, et al.</p><p><strong>핵심 연구 내용:</strong></p><ul><li><strong>연구 목적:</strong> 측면 개구부와 중공 내부 채널을 가진 임플란트의 골재생 능력 검증</li><li><strong>실험 방법:</strong> 12개월간의 체내 실험을 통한 골재생 분석</li><li><strong>주요 발견:</strong> 나선형 측면 개구부를 통한 3차원 골성장 확인</li><li><strong>임상적 의의:</strong> 기존 임플란트 대비 우수한 골통합성 입증</li></ul><p><strong>Key Research Findings:</strong></p><ul><li><strong>Bone Regeneration:</strong> Successfully demonstrated bone ingrowth through spiral side openings</li><li><strong>Inner Channel:</strong> Hollow design enables targeted drug delivery and enhanced healing</li><li><strong>3D Anchoring:</strong> Spiral channels create mechanical interlocking superior to traditional threads</li><li><strong>Clinical Validation:</strong> 12-month study confirms enhanced osseointegration</li></ul><p><strong>Scientific Impact:</strong> This peer-reviewed research provides the scientific foundation for KiiS technology, validating the revolutionary approach to implant design.</p>'
             }
         };
         
         // 팝업 시스템
         function showSource(sourceId) {
-            const source = sources[sourceId];
+            var source = sources[sourceId];
             if (!source) return;
             
-            document.getElementById('sourceContent').innerHTML = `
-                <h3>${source.title}</h3>
-                ${source.content}
-            `;
+            document.getElementById('sourceContent').innerHTML = '<h3>' + source.title + '</h3>' + source.content;
             
-            const overlay = document.getElementById('overlay');
-            const popup = document.getElementById('sourcePopup');
+            var overlay = document.getElementById('overlay');
+            var popup = document.getElementById('sourcePopup');
             
             overlay.style.display = 'block';
             popup.style.display = 'block';
@@ -846,8 +810,8 @@
         }
         
         function hideSource() {
-            const overlay = document.getElementById('overlay');
-            const popup = document.getElementById('sourcePopup');
+            var overlay = document.getElementById('overlay');
+            var popup = document.getElementById('sourcePopup');
             
             overlay.style.display = 'none';
             popup.style.display = 'none';
@@ -857,8 +821,8 @@
         }
         
         // 네비게이션 시스템
-        const navigation = document.getElementById('navigation');
-        const hoverZone = document.getElementById('hoverZone');
+        var navigation = document.getElementById('navigation');
+        var hoverZone = document.getElementById('hoverZone');
         
         function showNavigation() {
             if (hideTimeout) clearTimeout(hideTimeout);
@@ -866,9 +830,10 @@
             isNavigationVisible = true;
         }
         
-        function hideNavigation(delay = 2000) {
+        function hideNavigation(delay) {
+            if (delay === undefined) delay = 2000;
             if (hideTimeout) clearTimeout(hideTimeout);
-            hideTimeout = setTimeout(() => {
+            hideTimeout = setTimeout(function() {
                 navigation.classList.remove('visible');
                 isNavigationVisible = false;
             }, delay);
@@ -893,12 +858,14 @@
             // 호버존 이벤트
             if (hoverZone) {
                 hoverZone.addEventListener('mouseenter', showNavigation);
-                hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+                hoverZone.addEventListener('mouseleave', function() {
+                    hideNavigation(1000);
+                });
             }
         });
         
         // 키보드 네비게이션
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 if (isPopupOpen) {
                     e.preventDefault();
@@ -917,7 +884,7 @@
                 case 'ArrowLeft':
                 case 'ArrowUp':
                     e.preventDefault();
-                    window.location.href = 'slide4.html';
+                    window.location.href = 'slide3.html';
                     break;
                 case 'ArrowRight':
                 case 'ArrowDown':
@@ -941,31 +908,31 @@
         
         // 페이지 로드 애니메이션
         window.addEventListener('load', function() {
-            const header = document.querySelector('.main-header');
-            const imageSection = document.querySelector('.image-section');
-            const benefitsSection = document.querySelector('.benefits-section');
-            const impactSection = document.querySelector('.impact-section');
+            var header = document.querySelector('.main-header');
+            var imageSection = document.querySelector('.image-section');
+            var benefitsSection = document.querySelector('.benefits-section');
+            var impactSection = document.querySelector('.impact-section');
             
-            setTimeout(() => {
+            setTimeout(function() {
                 header.style.opacity = '1';
                 header.style.transform = 'translateY(0)';
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     imageSection.style.opacity = '1';
                     imageSection.style.transform = 'translateX(0)';
                 }, 400);
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     benefitsSection.style.opacity = '1';
                     benefitsSection.style.transform = 'translateX(0)';
                 }, 800);
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     impactSection.style.opacity = '1';
                     impactSection.style.transform = 'translateY(0)';
                 }, 1200);
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     showNavigation();
                     hideNavigation(3000);
                 }, 1800);
@@ -975,10 +942,10 @@
         
         // 마우스 위치 추적 (PC 전용)
         if (!isTouchDevice) {
-            let lastMouseY = 0;
-            document.addEventListener('mousemove', (e) => {
+            var lastMouseY = 0;
+            document.addEventListener('mousemove', function(e) {
                 lastMouseY = e.clientY;
-                const windowHeight = window.innerHeight;
+                var windowHeight = window.innerHeight;
                 
                 if (lastMouseY > windowHeight - 120) {
                     if (!isNavigationVisible) showNavigation();
@@ -990,11 +957,11 @@
         
         // 터치 네비게이션
         if (isTouchDevice) {
-            let startX = 0;
-            let startY = 0;
-            let startTime = 0;
+            var startX = 0;
+            var startY = 0;
+            var startTime = 0;
             
-            document.addEventListener('touchstart', (e) => {
+            document.addEventListener('touchstart', function(e) {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 startTime = Date.now();
@@ -1005,24 +972,54 @@
                 }
             });
             
-            document.addEventListener('touchend', (e) => {
-                const endX = e.changedTouches[0].clientX;
-                const endY = e.changedTouches[0].clientY;
-                const endTime = Date.now();
+            document.addEventListener('touchend', function(e) {
+                var endX = e.changedTouches[0].clientX;
+                var endY = e.changedTouches[0].clientY;
+                var endTime = Date.now();
                 
-                const deltaX = endX - startX;
-                const deltaY = endY - startY;
-                const deltaTime = endTime - startTime;
+                var deltaX = endX - startX;
+                var deltaY = endY - startY;
+                var deltaTime = endTime - startTime;
                 
                 if (Math.abs(deltaX) > 50 && 
                     deltaTime < 300 && 
                     Math.abs(deltaX) > Math.abs(deltaY)) {
                     
                     if (deltaX > 0) {
-                        window.location.href = 'slide4.html';
+                        window.location.href = 'slide3.html';
                     } else {
                         window.location.href = 'slide6.html';
                     }
+                }
+            });
+            
+            var tapCount = 0;
+            document.addEventListener('touchend', function(e) {
+                // Exclude interactive areas
+                if (e.target.closest('.clickable-text') || 
+                    e.target.closest('.navigation') ||
+                    e.target.closest('.source-popup') ||
+                    e.target.closest('.overlay') ||
+                    e.target.closest('.tech-image') ||
+                    e.target.closest('.placeholder-image')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(function() {
+                        if (tapCount === 1) {
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
                 }
             });
         }
