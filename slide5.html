@@ -109,7 +109,7 @@
             background: rgba(255, 255, 255, 0.1);
             border: 2px dashed rgba(255, 255, 255, 0.3);
             border-radius: 15px;
-            display: flex;
+            display: none; /* 기본적으로 숨김 */
             align-items: center;
             justify-content: center;
             flex-direction: column;
@@ -653,8 +653,8 @@
     <!-- 네비게이션 -->
     <div class="hover-zone" id="hoverZone"></div>
     <div class="navigation" id="navigation">
-        <a href="#" class="nav-btn prev" onclick="alert('Previous Slide')">Back</a>
-        <a href="#" class="nav-btn next" onclick="alert('Next Slide')">Next</a>
+        <a href="slide4.html" class="nav-btn prev">Back</a>
+        <a href="slide6.html" class="nav-btn next">Next</a>
     </div>
     
     <!-- 팝업 시스템 -->
@@ -917,13 +917,13 @@
                 case 'ArrowLeft':
                 case 'ArrowUp':
                     e.preventDefault();
-                    alert('Previous Slide');
+                    window.location.href = 'slide4.html';
                     break;
                 case 'ArrowRight':
                 case 'ArrowDown':
                 case ' ':
                     e.preventDefault();
-                    alert('Next Slide');
+                    window.location.href = 'slide6.html';
                     break;
                 case 'n':
                 case 'N':
@@ -1019,9 +1019,9 @@
                     Math.abs(deltaX) > Math.abs(deltaY)) {
                     
                     if (deltaX > 0) {
-                        alert('Previous Slide');
+                        window.location.href = 'slide4.html';
                     } else {
-                        alert('Next Slide');
+                        window.location.href = 'slide6.html';
                     }
                 }
             });
