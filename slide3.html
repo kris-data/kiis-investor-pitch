@@ -27,7 +27,7 @@
             margin: 0 auto;
         }
         
-        /* 메인 헤더 - "One More Chance" 메시지와 연결 */
+        /* 메인 헤더 - 간소화 */
         .main-header {
             text-align: center;
             margin-bottom: 50px;
@@ -55,18 +55,11 @@
             color: #e0e7ff;
             font-weight: 400;
             line-height: 1.4;
-            max-width: 900px;
-            margin: 0 auto 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .bridge-connection {
-            font-size: 18px;
-            color: #ffd700;
-            font-style: italic;
-            margin-top: 10px;
-        }
-        
-        /* 핵심 메트릭스 섹션 - 3-2-1 구조 */
+        /* 핵심 메트릭스 - 3개로 간소화 */
         .hero-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -131,7 +124,7 @@
             line-height: 1.3;
         }
         
-        /* 출처 신뢰도 표시 */
+        /* 신뢰도 표시 간소화 */
         .source-indicator {
             display: inline-block;
             background: rgba(16, 185, 129, 0.2);
@@ -144,99 +137,52 @@
             font-weight: 500;
         }
         
-        /* 국가별 비교 섹션 */
-        .comparison-section {
-            background: rgba(30, 64, 175, 0.2);
+        /* 국가 비교 간소 표시 */
+        .comparison-note {
+            display: inline-block;
+            background: rgba(251, 146, 60, 0.1);
+            color: #fb923c;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 15px;
+            margin-top: 8px;
+            border: 1px solid rgba(251, 146, 60, 0.3);
+            font-weight: 500;
+            font-style: normal;
+        }
+        
+        .comparison-note:hover {
+            background: rgba(251, 146, 60, 0.2);
+            color: #fed7aa;
+        }
+        
+        /* 기회 메시지 섹션 - 새로 추가 */
+        .opportunity-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid rgba(16, 185, 129, 0.3);
             border-radius: 25px;
-            padding: 40px;
+            padding: 30px;
+            text-align: center;
             margin-bottom: 50px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .comparison-title {
-            text-align: center;
+        .opportunity-title {
             font-size: 28px;
-            color: #ffd700;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        
-        .opportunity-message {
-            text-align: center;
-            font-size: 24px;
             color: #10b981;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-        
-        .countries-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .country-item {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .country-item.usa {
-            background: linear-gradient(135deg, #ffd700, #f59e0b);
-            color: #000;
-            border-color: #ffd700;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .country-item:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.5);
-        }
-        
-        .country-name {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        
-        .country-rate {
-            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
         }
         
-        .country-price {
-            font-size: 12px;
-            opacity: 0.8;
+        .opportunity-subtitle {
+            font-size: 20px;
+            color: #ffffff;
+            line-height: 1.4;
         }
         
-        .usa-highlight {
-            color: #000;
-            font-weight: bold;
-        }
-        
-        /* 데이터 출처 표시 */
-        .data-source {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 12px;
-            color: #94a3b8;
-            font-style: italic;
-        }
-        
-        /* 성장 드라이버 섹션 */
+        /* 성장 동력 - 간소화된 2x2 구조 */
         .growth-section {
             margin-bottom: 50px;
             opacity: 0;
@@ -254,8 +200,8 @@
         
         .drivers-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
             margin-bottom: 30px;
         }
         
@@ -263,7 +209,7 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 15px;
-            padding: 25px 20px;
+            padding: 25px;
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -281,29 +227,29 @@
         }
         
         .driver-title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             color: #ffffff;
             margin-bottom: 8px;
         }
         
         .driver-number {
-            font-size: 20px;
+            font-size: 24px;
             color: #ffd700;
             font-weight: bold;
             margin-bottom: 5px;
         }
         
         .driver-description {
-            font-size: 13px;
+            font-size: 14px;
             color: #e0e7ff;
             line-height: 1.3;
         }
         
-        /* 시장 예측 섹션 - 보수적 예측 vs 혁신 잠재력 */
-        .forecast-section {
-            background: rgba(16, 185, 129, 0.1);
-            border: 2px solid rgba(16, 185, 129, 0.3);
+        /* 시장 규모 - 보수적 + 혁신 잠재력 */
+        .market-section {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.4);
             border-radius: 25px;
             padding: 40px;
             margin-bottom: 50px;
@@ -312,80 +258,79 @@
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .forecast-title {
+        .market-title {
             text-align: center;
             font-size: 28px;
-            color: #10b981;
+            color: #ffd700;
             font-weight: bold;
             margin-bottom: 30px;
         }
         
-        .forecast-content {
+        .market-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
         }
         
-        .forecast-numbers {
+        .market-numbers {
             text-align: center;
         }
         
-        .market-growth {
-            font-size: 36px;
+        .market-size {
+            font-size: 42px;
             color: #ffd700;
             font-weight: bold;
             margin-bottom: 10px;
         }
         
-        .growth-details {
+        .market-details {
             font-size: 16px;
             color: #e0e7ff;
             line-height: 1.4;
+            margin-bottom: 10px;
         }
         
-        /* 보수적 예측 강조 */
-        .conservative-note {
+        .conservative-label {
             display: inline-block;
             background: rgba(255, 215, 0, 0.1);
             color: #ffd700;
             font-size: 12px;
             padding: 4px 10px;
             border-radius: 15px;
-            margin-top: 10px;
             border: 1px solid rgba(255, 215, 0, 0.3);
             font-weight: 500;
         }
         
-        .forecast-drivers {
+        .market-drivers {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
         
-        .driver-item {
+        .market-driver {
             display: flex;
             align-items: center;
             gap: 15px;
             padding: 15px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
-            border-left: 4px solid #10b981;
+            border-left: 4px solid #ffd700;
         }
         
-        .driver-icon-small {
+        .market-driver-icon {
             font-size: 24px;
             width: 40px;
             text-align: center;
         }
         
-        .driver-text {
+        .market-driver-text {
             font-size: 16px;
             color: #e0e7ff;
             line-height: 1.3;
         }
         
-        /* KiiS 포지셔닝 섹션 - 감정적 마무리 */
+        /* KiiS 포지셔닝 - 감정적 마무리 */
         .positioning-section {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
             border: 3px solid #ffd700;
@@ -615,15 +560,12 @@
                 gap: 30px;
             }
             
-            .countries-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
             .drivers-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+                gap: 25px;
             }
             
-            .forecast-content {
+            .market-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
@@ -665,10 +607,6 @@
                 line-height: 1.3;
             }
             
-            .bridge-connection {
-                font-size: 16px;
-            }
-            
             .stat-number {
                 font-size: 36px;
             }
@@ -681,30 +619,16 @@
                 font-size: 14px;
             }
             
-            .comparison-title {
+            .opportunity-title {
                 font-size: 24px;
             }
             
-            .opportunity-message {
-                font-size: 20px;
+            .opportunity-subtitle {
+                font-size: 18px;
             }
             
-            .countries-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            
-            .country-name {
-                font-size: 13px;
-            }
-            
-            .country-rate {
-                font-size: 16px;
-            }
-            
-            .drivers-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .growth-title {
+                font-size: 24px;
             }
             
             .driver-icon {
@@ -712,15 +636,19 @@
             }
             
             .driver-title {
-                font-size: 15px;
+                font-size: 16px;
             }
             
             .driver-number {
-                font-size: 18px;
+                font-size: 20px;
             }
             
-            .market-growth {
-                font-size: 28px;
+            .market-title {
+                font-size: 24px;
+            }
+            
+            .market-size {
+                font-size: 32px;
             }
             
             .positioning-title {
@@ -735,16 +663,6 @@
                 padding: 25px;
                 max-width: 90%;
                 margin: 20px;
-            }
-            
-            .source-title {
-                font-size: 18px;
-                margin-bottom: 15px;
-            }
-            
-            .source-content p {
-                font-size: 14px;
-                margin-bottom: 12px;
             }
         }
         
@@ -773,10 +691,6 @@
                 line-height: 1.3;
             }
             
-            .bridge-connection {
-                font-size: 14px;
-            }
-            
             .hero-stats {
                 gap: 20px;
                 margin-bottom: 30px;
@@ -799,29 +713,18 @@
                 font-size: 12px;
             }
             
-            .comparison-section {
-                padding: 25px;
+            .opportunity-message {
+                padding: 20px;
                 margin-bottom: 30px;
             }
             
-            .comparison-title {
+            .opportunity-title {
                 font-size: 20px;
-                margin-bottom: 15px;
+                margin-bottom: 12px;
             }
             
-            .opportunity-message {
+            .opportunity-subtitle {
                 font-size: 16px;
-                margin-bottom: 20px;
-            }
-            
-            .countries-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            
-            .country-item {
-                padding: 15px 12px;
-                border-radius: 12px;
             }
             
             .growth-section {
@@ -848,42 +751,42 @@
             }
             
             .driver-number {
-                font-size: 16px;
+                font-size: 18px;
             }
             
             .driver-description {
                 font-size: 12px;
             }
             
-            .forecast-section {
+            .market-section {
                 padding: 25px;
                 margin-bottom: 30px;
             }
             
-            .forecast-title {
+            .market-title {
                 font-size: 20px;
                 margin-bottom: 20px;
             }
             
-            .market-growth {
-                font-size: 24px;
+            .market-size {
+                font-size: 28px;
             }
             
-            .growth-details {
+            .market-details {
                 font-size: 14px;
             }
             
-            .driver-item {
+            .market-driver {
                 padding: 12px;
                 gap: 12px;
             }
             
-            .driver-icon-small {
+            .market-driver-icon {
                 font-size: 20px;
                 width: 35px;
             }
             
-            .driver-text {
+            .market-driver-text {
                 font-size: 14px;
             }
             
@@ -910,29 +813,6 @@
                 max-width: 95%;
                 margin: 10px;
                 border-radius: 15px;
-            }
-            
-            .source-title {
-                font-size: 16px;
-                margin-bottom: 12px;
-                padding-right: 30px;
-            }
-            
-            .source-content p {
-                font-size: 13px;
-                margin-bottom: 10px;
-                line-height: 1.4;
-            }
-            
-            .source-content li {
-                font-size: 13px;
-                margin-bottom: 6px;
-            }
-            
-            .close-btn {
-                font-size: 24px;
-                top: 12px;
-                right: 15px;
             }
         }
         
@@ -962,7 +842,7 @@
                 font-size: 13px;
             }
             
-            .comparison-title {
+            .opportunity-title {
                 font-size: 18px;
             }
             
@@ -970,8 +850,12 @@
                 font-size: 18px;
             }
             
-            .market-growth {
-                font-size: 20px;
+            .market-title {
+                font-size: 18px;
+            }
+            
+            .market-size {
+                font-size: 24px;
             }
             
             .positioning-title {
@@ -982,151 +866,100 @@
                 padding: 15px;
                 margin: 5px;
             }
-            
-            .source-title {
-                font-size: 14px;
-            }
-            
-            .source-content p {
-                font-size: 12px;
-                line-height: 1.3;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 메인 헤더 - Slide2 "One More Chance"와 연결 -->
+        <!-- 메인 헤더 - Slide2 연결성 강화 -->
         <div class="main-header">
             <h1 class="title">
                 <span class="title-highlight">178 Million Patients</span><br>
                 Deserve One More Chance
             </h1>
             <p class="subtitle">
-                The richest country in the world has the lowest implant access rate among developed nations. 
+                The richest country in the world has the lowest implant penetration among developed nations. 
                 This isn't a problem — it's the biggest healthcare opportunity of our time.
-            </p>
-            <p class="bridge-connection">
-                From individual despair to massive market potential
             </p>
         </div>
         
-        <!-- 핵심 메트릭스 - 3-2-1 구조 -->
+        <!-- 핵심 메트릭스 - 3개로 간소화 -->
         <div class="hero-stats">
             <div class="stat-card">
                 <div class="stat-number clickable" data-source="patient-population">178M</div>
-                <div class="stat-label">Tooth Loss Sufferers</div>
-                <div class="stat-description">"Every patient from Slide2 represents thousands more with the same despair"</div>
-                <div class="source-indicator">ADA 2024 Data</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number clickable" data-source="market-size">$3.0B</div>
-                <div class="stat-label">Market Size by 2030</div>
-                <div class="stat-description">"Massive untapped opportunity in world's largest healthcare market"</div>
-                <div class="conservative-note">Conservative Baseline</div>
+                <div class="stat-label">Americans Need Implants</div>
+                <div class="stat-description">Every patient represents thousands waiting for their chance</div>
+                <div class="source-indicator">ADA 2024</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-number clickable" data-source="penetration-rate">5.7%</div>
-                <div class="stat-label">Current Penetration Rate</div>
-                <div class="stat-description">"94.3% of patients still waiting for their One More Chance"</div>
-                <div class="source-indicator">Straumann Global Report</div>
+                <div class="stat-label">Current Access Rate</div>
+                <div class="stat-description">94.3% still waiting — massive untapped opportunity</div>
+                <div class="comparison-note clickable" data-source="country-comparison">Lowest among developed nations</div>
+                <div class="source-indicator">Straumann Report</div>
             </div>
-        </div>
-        
-        <!-- 국가별 비교 - 기회 중심 프레이밍 -->
-        <div class="comparison-section">
-            <div class="comparison-title">🌍 Lower Penetration = Higher Opportunity</div>
-            <div class="opportunity-message">America isn't behind — America has the most untapped potential</div>
             
-            <div class="countries-grid">
-                <div class="country-item">
-                    <div class="country-name">Switzerland</div>
-                    <div class="country-rate">38.0%</div>
-                </div>
-                <div class="country-item">
-                    <div class="country-name">Germany</div>
-                    <div class="country-rate">25.0%</div>
-                </div>
-                <div class="country-item">
-                    <div class="country-name">South Korea</div>
-                    <div class="country-rate">13.3%</div>
-                </div>
-                <div class="country-item">
-                    <div class="country-name">Netherlands</div>
-                    <div class="country-rate">9.0%</div>
-                </div>
-                <div class="country-item">
-                    <div class="country-name">Japan</div>
-                    <div class="country-rate">7.2%</div>
-                </div>
-                <div class="country-item usa">
-                    <div class="country-name usa-highlight">USA ⭐</div>
-                    <div class="country-rate usa-highlight">5.7%</div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-number clickable" data-source="market-size">$3.0B</div>
+                <div class="stat-label">Market by 2030</div>
+                <div class="stat-description">Conservative baseline — breakthrough innovation upside</div>
+                <div class="source-indicator">iData Research</div>
             </div>
-            <div class="data-source">Sources: International Dental Federation, Straumann Annual Reports 2024</div>
         </div>
         
-        <!-- 성장 드라이버 - 3가지 핵심 -->
+        <!-- 기회 메시지 -->
+        <div class="opportunity-message">
+            <div class="opportunity-title">🚀 Lower Penetration = Higher Opportunity</div>
+            <div class="opportunity-subtitle">America isn't behind — America has the most untapped potential</div>
+        </div>
+        
+        <!-- 성장 동력 - 2x2로 간소화 -->
         <div class="growth-section">
-            <div class="growth-title">🚀 Why This Opportunity is Growing Now</div>
+            <div class="growth-title">📈 Why This Opportunity is Growing Now</div>
             
             <div class="drivers-grid">
                 <div class="driver-card">
                     <span class="driver-icon">👴</span>
                     <div class="driver-title">Silver Tsunami</div>
                     <div class="driver-number clickable" data-source="silver-tsunami">76M</div>
-                    <div class="driver-description">Baby Boomers entering high-need age</div>
-                    <div class="source-indicator">US Census 2025</div>
-                </div>
-                
-                <div class="driver-card">
-                    <span class="driver-icon">💉</span>
-                    <div class="driver-title">Post-COVID Recovery</div>
-                    <div class="driver-number clickable" data-source="covid-recovery">$2.8B</div>
-                    <div class="driver-description">Deferred dental care creating pent-up demand</div>
-                    <div class="source-indicator">ADA Health Institute</div>
+                    <div class="driver-description">Baby Boomers entering peak need years</div>
+                    <div class="source-indicator">US Census</div>
                 </div>
                 
                 <div class="driver-card">
                     <span class="driver-icon">🔍</span>
                     <div class="driver-title">Patient Empowerment</div>
                     <div class="driver-number clickable" data-source="patient-empowerment">67%</div>
-                    <div class="driver-description">Patients actively research alternatives before accepting "no"</div>
-                    <div class="source-indicator">Dental Economics 2024</div>
+                    <div class="driver-description">Patients research alternatives before accepting "no"</div>
+                    <div class="source-indicator">Dental Economics</div>
                 </div>
             </div>
         </div>
         
-        <!-- 시장 예측 섹션 - 보수적 예측 vs 혁신 잠재력 -->
-        <div class="forecast-section">
-            <div class="forecast-title">📈 $3.0B is Just the Conservative Baseline</div>
+        <!-- 시장 규모 - 보수적 + 혁신 잠재력 -->
+        <div class="market-section">
+            <div class="market-title">💰 $3.0B is Just the Conservative Baseline</div>
             
-            <div class="forecast-content">
-                <div class="forecast-numbers">
-                    <div class="market-growth clickable" data-source="market-forecast">$1.5B → $3.0B</div>
-                    <div class="growth-details">Industry forecast assumes<br>gradual improvements only</div>
-                    <div class="conservative-note">Based on current technology</div>
+            <div class="market-content">
+                <div class="market-numbers">
+                    <div class="market-size clickable" data-source="market-forecast">$1.5B → $3.0B</div>
+                    <div class="market-details">Current industry forecast assumes<br>gradual improvements only</div>
+                    <div class="conservative-label">Based on existing technology</div>
                 </div>
                 
-                <div class="forecast-drivers">
-                    <div class="driver-item">
-                        <span class="driver-icon-small">🚀</span>
-                        <div class="driver-text"><strong>Breakthrough Innovation</strong> could accelerate growth beyond $3B</div>
+                <div class="market-drivers">
+                    <div class="market-driver">
+                        <span class="market-driver-icon">🚀</span>
+                        <div class="market-driver-text"><strong>Breakthrough Innovation</strong> could accelerate growth beyond $3B</div>
                     </div>
-                    <div class="driver-item">
-                        <span class="driver-icon-small">⚡</span>
-                        <div class="driver-text"><strong>Barrier Elimination</strong> could unlock millions of new patients</div>
+                    <div class="market-driver">
+                        <span class="market-driver-icon">⚡</span>
+                        <div class="market-driver-text"><strong>Barrier Elimination</strong> could unlock millions of new patients</div>
                     </div>
-                    <div class="driver-item">
-                        <span class="driver-icon-small">💡</span>
-                        <div class="driver-text"><strong>Access Revolution</strong> could double penetration rates</div>
-                    </div>
-                    <div class="driver-item">
-                        <span class="driver-icon-small">🎯</span>
-                        <div class="driver-text"><strong>First-Mover Advantage</strong> in breakthrough technology = market leadership</div>
+                    <div class="market-driver">
+                        <span class="market-driver-icon">🎯</span>
+                        <div class="market-driver-text"><strong>First-Mover Advantage</strong> = market leadership position</div>
                     </div>
                 </div>
             </div>
@@ -1136,10 +969,10 @@
         <div class="positioning-section">
             <div class="positioning-title">🎯 Right Technology. Right Time. Real Impact.</div>
             <div class="positioning-message">
-                KiiS doesn't just ride the wave — we accelerate market growth into patient access
+                KiiS doesn't just ride the wave — we create the conditions for market acceleration
             </div>
             <div class="positioning-subtitle">
-                178M patients waiting + $3B opportunity + FDA-validated innovation = Investment of a lifetime
+                178M patients + $3B opportunity + FDA innovation = Investment of a lifetime
             </div>
         </div>
     </div>
@@ -1162,146 +995,45 @@
     
     <script>
         // Global variables
-        let isPopupOpen = false;
-        let isNavigationVisible = false;
-        let hideTimeout;
+        var isPopupOpen = false;
+        var isNavigationVisible = false;
+        var hideTimeout;
         
-        // Enhanced source data - 투자자 신뢰도 강화
-        const sources = {
+        // Source data - completely clean version
+        var sources = {
+            'country-comparison': {
+                title: 'US vs Developed Nations - Penetration Rates',
+                content: '<h3>🌍 International Comparison</h3><p><strong>USA: 5.7% penetration rate</strong> — Lowest among developed economies</p><div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;"><div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; text-align: center;"><div style="font-size: 18px; color: #ffd700; font-weight: bold;">Switzerland</div><div style="font-size: 24px; color: #ffffff; font-weight: bold;">38.0%</div><div style="font-size: 12px; color: #e0e7ff;">Premium market leader</div></div><div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; text-align: center;"><div style="font-size: 18px; color: #ffd700; font-weight: bold;">Germany</div><div style="font-size: 24px; color: #ffffff; font-weight: bold;">25.0%</div><div style="font-size: 12px; color: #e0e7ff;">Strong insurance coverage</div></div><div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; text-align: center;"><div style="font-size: 18px; color: #ffd700; font-weight: bold;">South Korea</div><div style="font-size: 24px; color: #ffffff; font-weight: bold;">13.3%</div><div style="font-size: 12px; color: #e0e7ff;">Rapid adoption growth</div></div><div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; text-align: center;"><div style="font-size: 18px; color: #ffd700; font-weight: bold;">Netherlands</div><div style="font-size: 24px; color: #ffffff; font-weight: bold;">9.0%</div><div style="font-size: 12px; color: #e0e7ff;">Universal healthcare</div></div><div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; text-align: center;"><div style="font-size: 18px; color: #ffd700; font-weight: bold;">Japan</div><div style="font-size: 24px; color: #ffffff; font-weight: bold;">7.2%</div><div style="font-size: 12px; color: #e0e7ff;">Technology advanced</div></div><div style="background: linear-gradient(135deg, #fb923c, #f97316); padding: 15px; border-radius: 10px; text-align: center; border: 2px solid #ffd700;"><div style="font-size: 18px; color: #000; font-weight: bold;">🇺🇸 USA</div><div style="font-size: 24px; color: #000; font-weight: bold;">5.7%</div><div style="font-size: 12px; color: #000; font-weight: 600;">HIGHEST OPPORTUNITY</div></div></div><h3>💡 Investment Insight</h3><p><strong>Lower penetration = Higher opportunity.</strong> The US market has the most room for growth among developed economies.</p><ul><li><strong>Market Size:</strong> US market is 10x larger than Switzerland despite lower penetration</li><li><strong>Economic Capacity:</strong> Americans have purchasing power for premium solutions</li><li><strong>Technology Readiness:</strong> Infrastructure exists for rapid scaling</li><li><strong>Regulatory Environment:</strong> FDA approval pathway provides competitive moats</li></ul><h3>📚 Data Sources</h3><p><strong>Primary:</strong> Straumann Global Market Report 2024, International Dental Federation Database</p><p><strong>Methodology:</strong> National health surveys and manufacturer sales data across 15 countries (2023-2024)</p>'
+            },
             'patient-population': {
                 title: '178M Americans Need Dental Implants',
-                content: `
-                    <h3>📊 Population Data</h3>
-                    <p><strong>Primary Source:</strong> American Dental Association (ADA) 2024 Health Statistics</p>
-                    <ul>
-                        <li><strong>Total affected:</strong> 178 million Americans have lost one or more permanent teeth</li>
-                        <li><strong>Age breakdown:</strong> 35% adults 35-44, 65% adults 65+</li>
-                        <li><strong>Geographic spread:</strong> Nationwide, higher concentration in rural and lower-income areas</li>
-                        <li><strong>Annual increase:</strong> 3-5 million new cases yearly due to aging population</li>
-                    </ul>
-                    <h3>🔍 Definition & Methodology</h3>
-                    <p>Includes all Americans missing one or more permanent teeth due to decay, disease, or trauma who could medically benefit from implant treatment. Excludes wisdom teeth and planned orthodontic extractions.</p>
-                    <p><strong>Data Collection:</strong> National health surveys, dental practice records, insurance claims analysis (2023-2024)</p>
-                `
+                content: '<h3>📊 Population Data</h3><p><strong>Primary Source:</strong> American Dental Association (ADA) 2024 Health Statistics</p><ul><li><strong>Total affected:</strong> 178 million Americans have lost one or more permanent teeth</li><li><strong>Age breakdown:</strong> 35% adults 35-44, 65% adults 65+</li><li><strong>Annual increase:</strong> 3-5 million new cases yearly due to aging population</li></ul><h3>🔍 Definition</h3><p>Includes all Americans missing one or more permanent teeth due to decay, disease, or trauma who could medically benefit from implant treatment.</p><p><strong>Data Collection:</strong> National health surveys, dental practice records, insurance claims analysis (2023-2024)</p>'
             },
             'penetration-rate': {
                 title: '5.7% US Implant Penetration Rate',
-                content: `
-                    <h3>📊 Calculation Methodology</h3>
-                    <p><strong>Definition:</strong> Percentage of tooth loss patients who have received at least one dental implant</p>
-                    <p><strong>Formula:</strong> (Americans with implants ÷ Americans with tooth loss) × 100</p>
-                    <ul>
-                        <li><strong>US Rate:</strong> 5.7% (10.1M patients with implants ÷ 178M with tooth loss)</li>
-                        <li><strong>International Comparison:</strong> Switzerland 38%, Germany 25%, South Korea 13.3%</li>
-                        <li><strong>Opportunity Gap:</strong> Even reaching 10% would mean doubling the current market</li>
-                        <li><strong>Untreated Population:</strong> 167.9M patients (94.3%) still without implant access</li>
-                    </ul>
-                    <h3>📚 Data Sources</h3>
-                    <p><strong>Primary:</strong> Straumann Global Market Report 2024, ADA Clinical Statistics</p>
-                    <p><strong>Secondary:</strong> International Dental Federation Global Database, National health surveys</p>
-                    <p><strong>Verification:</strong> Cross-referenced with Medicare/Medicaid claims data and major implant manufacturer sales reports</p>
-                `
+                content: '<h3>📊 Calculation</h3><p><strong>Formula:</strong> (Americans with implants ÷ Americans with tooth loss) × 100</p><ul><li><strong>US Rate:</strong> 5.7% (10.1M patients with implants ÷ 178M with tooth loss)</li><li><strong>International Context:</strong> Switzerland 38%, Germany 25%, South Korea 13.3%</li><li><strong>Opportunity:</strong> Even reaching 10% would double the current market</li></ul><h3>📚 Sources</h3><p><strong>Primary:</strong> Straumann Global Market Report 2024, ADA Clinical Statistics</p><p><strong>Verification:</strong> Cross-referenced with Medicare/Medicaid claims and manufacturer sales reports</p>'
             },
             'market-size': {
                 title: '$3.0B Market Size - Conservative Baseline',
-                content: `
-                    <h3>📊 Market Definition & Scope</h3>
-                    <p><strong>Market Segment:</strong> Manufacturer-level implant product sales in US market</p>
-                    <ul>
-                        <li><strong>Current Market (2024):</strong> $1.5B in manufacturer sales</li>
-                        <li><strong>Conservative Forecast (2030):</strong> $3.0B in manufacturer sales</li>
-                        <li><strong>Includes:</strong> Implant fixtures, abutments, prosthetic components, surgical instruments</li>
-                        <li><strong>Excludes:</strong> Surgical fees, bone grafts, lab costs, ancillary procedures</li>
-                    </ul>
-                    <h3>🎯 Why "Conservative"</h3>
-                    <p>This projection assumes gradual improvement in current technologies and barriers. Does not account for breakthrough innovations that could eliminate cost, time, or candidacy barriers.</p>
-                    <p><strong>Total Addressable Market:</strong> Including all related services and procedures, the total opportunity exceeds $15B</p>
-                    <h3>📚 Sources</h3>
-                    <p><strong>Primary:</strong> iData Research 2025, Straumann Annual Report, Nobel Biocare Market Analysis</p>
-                    <p><strong>Methodology:</strong> Bottom-up analysis combining manufacturer sales data, practice revenue reports, and insurance reimbursement trends</p>
-                `
+                content: '<h3>📊 Market Scope</h3><ul><li><strong>Current (2024):</strong> $1.5B in manufacturer-level sales</li><li><strong>Forecast (2030):</strong> $3.0B manufacturer sales</li><li><strong>Includes:</strong> Implant fixtures, abutments, prosthetic components</li><li><strong>Total Market:</strong> Including services exceeds $15B</li></ul><h3>🎯 Why "Conservative"</h3><p>Assumes gradual improvement in current technologies. Does not account for breakthrough innovations that could eliminate cost, time, or candidacy barriers.</p><h3>📚 Sources</h3><p><strong>Primary:</strong> iData Research 2025, Straumann Annual Report, Nobel Biocare Market Analysis</p>'
             },
             'silver-tsunami': {
                 title: '76M Baby Boomers Silver Tsunami',
-                content: `
-                    <h3>👴 Demographic Opportunity Analysis</h3>
-                    <p><strong>Primary Source:</strong> US Census Bureau 2025 Population Projections, AARP Healthcare Studies</p>
-                    <ul>
-                        <li><strong>76 Million Baby Boomers</strong> (born 1946-1964) entering peak dental need age (65-85)</li>
-                        <li><strong>Peak Impact Period:</strong> 2025-2035 will see highest tooth loss incidence rates</li>
-                        <li><strong>Economic Capacity:</strong> $70 trillion in accumulated wealth (Federal Reserve 2024)</li>
-                        <li><strong>Health Consciousness:</strong> Most health-aware and proactive generation in history</li>
-                        <li><strong>Technology Adoption:</strong> 78% actively research healthcare options online</li>
-                    </ul>
-                    <h3>📈 Market Timing Significance</h3>
-                    <p>This demographic shift occurs once per century. Companies positioned correctly during this window can capture generational wealth transfer into healthcare solutions.</p>
-                    <p><strong>Historical Precedent:</strong> Similar opportunities drove growth in joint replacements (1990s), cardiac devices (2000s), and cancer treatments (2010s)</p>
-                `
-            },
-            'covid-recovery': {
-                title: '$2.8B Deferred Dental Care Recovery',
-                content: `
-                    <h3>💉 Post-Pandemic Healthcare Rebound</h3>
-                    <p><strong>Primary Sources:</strong> ADA Health Policy Institute, CDC Health Statistics 2024, McKinsey Healthcare Recovery Reports</p>
-                    <ul>
-                        <li><strong>$2.8 Billion</strong> in deferred dental procedures during 2020-2022 period</li>
-                        <li><strong>Average Delay:</strong> 18 months in elective and preventive dental care</li>
-                        <li><strong>Severity Increase:</strong> 43% of delayed cases now require more complex treatment</li>
-                        <li><strong>Recovery Pattern:</strong> Gradual return accelerating through 2025-2027</li>
-                        <li><strong>Patient Mindset Shift:</strong> 67% now prioritize permanent solutions over temporary fixes</li>
-                    </ul>
-                    <h3>🎯 Strategic Investment Timing</h3>
-                    <p>Patients who delayed treatment are now seeking definitive solutions rather than repeated temporary interventions. The pain of waiting has increased willingness to invest in long-term outcomes.</p>
-                    <p><strong>Market Evidence:</strong> 34% increase in implant consultations in 2024 vs 2019 baseline</p>
-                `
+                content: '<h3>👴 Demographic Opportunity</h3><p><strong>Sources:</strong> US Census Bureau 2025, AARP Healthcare Studies</p><ul><li><strong>76 Million Baby Boomers</strong> entering peak dental need age (65-85)</li><li><strong>Peak Period:</strong> 2025-2035 highest tooth loss incidence</li><li><strong>Economic Capacity:</strong> $70 trillion accumulated wealth (Federal Reserve 2024)</li><li><strong>Technology Adoption:</strong> 78% research healthcare options online</li></ul><h3>📈 Market Timing</h3><p>This demographic shift occurs once per century. Companies positioned correctly can capture generational wealth transfer into healthcare solutions.</p>'
             },
             'patient-empowerment': {
                 title: '67% Patient Self-Advocacy Revolution',
-                content: `
-                    <h3>🔍 Informed Patient Behavior Study</h3>
-                    <p><strong>Primary Source:</strong> Dental Economics 2024 Patient Behavior Study (N=12,000 patients across 500 practices)</p>
-                    <ul>
-                        <li><strong>67% of patients</strong> actively research alternative treatments when told "not a candidate"</li>
-                        <li><strong>83% seek second opinions</strong> for complex or expensive procedures</li>
-                        <li><strong>Research Behavior:</strong> Average 14 hours of online research before major dental decisions</li>
-                        <li><strong>Social Proof Impact:</strong> 74% influenced by patient success stories and reviews</li>
-                        <li><strong>Technology Awareness:</strong> 59% specifically ask about "new technologies" during consultations</li>
-                    </ul>
-                    <h3>💡 Market Impact</h3>
-                    <p>Patients no longer accept "no" as a final answer. They actively seek practices and technologies that can provide solutions traditional dentistry cannot offer.</p>
-                    <p><strong>Business Implication:</strong> Practices offering advanced solutions see 45% higher case acceptance rates</p>
-                    <p><strong>Methodology:</strong> 24-month longitudinal study tracking patient decision-making patterns across major metropolitan areas</p>
-                `
+                content: '<h3>🔍 Patient Behavior Study</h3><p><strong>Source:</strong> Dental Economics 2024 Patient Behavior Study (N=12,000 patients)</p><ul><li><strong>67% actively research</strong> alternative treatments when told "not a candidate"</li><li><strong>83% seek second opinions</strong> for complex procedures</li><li><strong>Research Behavior:</strong> Average 14 hours online research before decisions</li><li><strong>Technology Awareness:</strong> 59% specifically ask about "new technologies"</li></ul><h3>💡 Market Impact</h3><p>Patients actively seek practices offering solutions traditional dentistry cannot provide. Practices with advanced solutions see 45% higher case acceptance.</p>'
             },
             'market-forecast': {
-                title: 'Why $3.0B is Conservative - Breakthrough Potential',
-                content: `
-                    <h3>📈 Conservative Projection Assumptions</h3>
-                    <p><strong>Current Industry Forecasts</strong> are based on incremental improvements only:</p>
-                    <ul>
-                        <li><strong>Assumes:</strong> Slow penetration growth from 5.7% to 8-10% by 2030</li>
-                        <li><strong>Assumes:</strong> No major technological disruptions</li>
-                        <li><strong>Assumes:</strong> Current cost, time, and candidacy barriers remain largely unchanged</li>
-                        <li><strong>Assumes:</strong> Conservative patient adoption rates similar to past decades</li>
-                    </ul>
-                    <h3>🚀 Innovation Upside Potential</h3>
-                    <p><strong>Breakthrough Technologies</strong> that eliminate key barriers could accelerate growth to $5B+ by 2030:</p>
-                    <ul>
-                        <li><strong>Cost Reduction:</strong> 50% cost reduction could double addressable market</li>
-                        <li><strong>Time Compression:</strong> Single-visit procedures could increase patient flow 3x</li>
-                        <li><strong>Candidacy Expansion:</strong> Solutions for "poor bone" patients adds 40% more candidates</li>
-                    </ul>
-                    <h3>📚 Historical Precedent Analysis</h3>
-                    <p><strong>Medical Device Disruptions:</strong> When breakthrough technologies emerge, markets often grow 2-3x faster than conservative projections</p>
-                    <p><strong>Examples:</strong> Laser eye surgery (1990s), robotic surgery (2000s), CAR-T therapy (2010s)</p>
-                    <p><strong>Sources:</strong> McKinsey Healthcare Innovation Reports, Medical Device Market Analysis 2024, AdvaMed Technology Impact Studies</p>
-                `
+                title: 'Why $3.0B is Conservative - Innovation Upside',
+                content: '<h3>📈 Conservative Assumptions</h3><p><strong>Current forecasts assume:</strong></p><ul><li>Slow penetration growth from 5.7% to 8-10% by 2030</li><li>No major technological disruptions</li><li>Current cost, time, and candidacy barriers remain</li></ul><h3>🚀 Innovation Upside</h3><p><strong>Breakthrough technologies could accelerate growth to $5B+ by 2030:</strong></p><ul><li><strong>Cost Reduction:</strong> 50% cost reduction could double market</li><li><strong>Time Compression:</strong> Single-visit procedures = 3x patient flow</li><li><strong>Candidacy Expansion:</strong> Solutions for "poor bone" = 40% more candidates</li></ul><h3>📚 Historical Context</h3><p>Medical device disruptions often grow 2-3x faster than conservative projections. Examples: Laser eye surgery (1990s), robotic surgery (2000s)</p>'
             }
         };
         
         // Source popup functions
         function showSource(sourceId) {
-            const source = sources[sourceId];
+            var source = sources[sourceId];
             if (!source) return;
             
             document.getElementById('sourceTitle').textContent = source.title;
@@ -1322,7 +1054,7 @@
             document.getElementById('sourcePopup').style.display = 'none';
             
             // Restore original overflow
-            const originalOverflow = document.body.dataset.originalOverflow || 'auto';
+            var originalOverflow = document.body.dataset.originalOverflow || 'auto';
             document.body.style.overflow = originalOverflow;
             delete document.body.dataset.originalOverflow;
             
@@ -1334,19 +1066,20 @@
             if (hideTimeout) {
                 clearTimeout(hideTimeout);
             }
-            const navigation = document.getElementById('navigation');
+            var navigation = document.getElementById('navigation');
             if (navigation) {
                 navigation.classList.add('visible');
                 isNavigationVisible = true;
             }
         }
         
-        function hideNavigation(delay = 2000) {
+        function hideNavigation(delay) {
+            if (delay === undefined) delay = 2000;
             if (hideTimeout) {
                 clearTimeout(hideTimeout);
             }
-            hideTimeout = setTimeout(() => {
-                const navigation = document.getElementById('navigation');
+            hideTimeout = setTimeout(function() {
+                var navigation = document.getElementById('navigation');
                 if (navigation) {
                     navigation.classList.remove('visible');
                     isNavigationVisible = false;
@@ -1371,25 +1104,26 @@
             });
             
             // Add click events to all clickable data elements
-            document.querySelectorAll('.clickable[data-source]').forEach(element => {
-                element.addEventListener('click', function(e) {
+            var clickables = document.querySelectorAll('.clickable[data-source]');
+            for (var i = 0; i < clickables.length; i++) {
+                clickables[i].addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     showSource(this.dataset.source);
                 });
-            });
+            }
         });
         
         // Touch and mouse navigation
-        const navigation = document.getElementById('navigation');
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        var navigation = document.getElementById('navigation');
+        var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         
         // PC/Desktop: Mouse hover functionality
         if (!isTouchDevice) {
-            let lastMouseY = 0;
-            document.addEventListener('mousemove', (e) => {
+            var lastMouseY = 0;
+            document.addEventListener('mousemove', function(e) {
                 lastMouseY = e.clientY;
-                const windowHeight = window.innerHeight;
+                var windowHeight = window.innerHeight;
                 
                 if (lastMouseY > windowHeight - 120) {
                     if (!isNavigationVisible) {
@@ -1400,29 +1134,29 @@
                 }
             });
             
-            navigation.addEventListener('mouseenter', () => {
+            navigation.addEventListener('mouseenter', function() {
                 clearTimeout(hideTimeout);
                 showNavigation();
             });
             
-            navigation.addEventListener('mouseleave', () => {
+            navigation.addEventListener('mouseleave', function() {
                 hideNavigation(1000);
             });
         }
         
         // Touch devices: Tap and swipe functionality
         if (isTouchDevice) {
-            let startX = 0;
-            let startY = 0;
-            let startTime = 0;
+            var startX = 0;
+            var startY = 0;
+            var startTime = 0;
             
-            document.addEventListener('touchstart', (e) => {
+            document.addEventListener('touchstart', function(e) {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 startTime = Date.now();
                 
-                const touchY = e.touches[0].clientY;
-                const windowHeight = window.innerHeight;
+                var touchY = e.touches[0].clientY;
+                var windowHeight = window.innerHeight;
                 
                 if (touchY > windowHeight - 120) {
                     showNavigation();
@@ -1430,14 +1164,14 @@
                 }
             });
             
-            document.addEventListener('touchend', (e) => {
-                const endX = e.changedTouches[0].clientX;
-                const endY = e.changedTouches[0].clientY;
-                const endTime = Date.now();
+            document.addEventListener('touchend', function(e) {
+                var endX = e.changedTouches[0].clientX;
+                var endY = e.changedTouches[0].clientY;
+                var endTime = Date.now();
                 
-                const deltaX = endX - startX;
-                const deltaY = endY - startY;
-                const deltaTime = endTime - startTime;
+                var deltaX = endX - startX;
+                var deltaY = endY - startY;
+                var deltaTime = endTime - startTime;
                 
                 if (Math.abs(deltaX) > 50 && 
                     deltaTime < 300 && 
@@ -1451,8 +1185,8 @@
                 }
             });
             
-            let tapCount = 0;
-            document.addEventListener('touchend', (e) => {
+            var tapCount = 0;
+            document.addEventListener('touchend', function(e) {
                 // Exclude interactive areas
                 if (e.target.closest('.clickable') || 
                     e.target.closest('.navigation') ||
@@ -1463,7 +1197,7 @@
                 
                 tapCount++;
                 if (tapCount === 1) {
-                    setTimeout(() => {
+                    setTimeout(function() {
                         if (tapCount === 1) {
                             if (isNavigationVisible) {
                                 navigation.classList.remove('visible');
@@ -1481,7 +1215,7 @@
         }
         
         // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', function(e) {
             // Handle ESC for popup first
             if (e.key === 'Escape') {
                 if (isPopupOpen) {
@@ -1522,84 +1256,85 @@
         
         // Page load animation
         window.addEventListener('load', function() {
-            const header = document.querySelector('.main-header');
-            const heroStats = document.querySelector('.hero-stats');
-            const comparisonSection = document.querySelector('.comparison-section');
-            const growthSection = document.querySelector('.growth-section');
-            const forecastSection = document.querySelector('.forecast-section');
-            const positioningSection = document.querySelector('.positioning-section');
+            var header = document.querySelector('.main-header');
+            var heroStats = document.querySelector('.hero-stats');
+            var opportunityMessage = document.querySelector('.opportunity-message');
+            var growthSection = document.querySelector('.growth-section');
+            var marketSection = document.querySelector('.market-section');
+            var positioningSection = document.querySelector('.positioning-section');
             
             // Sequential animation for maximum impact
-            setTimeout(() => {
-                // 1. Header first - set the emotional tone
+            setTimeout(function() {
+                // 1. Header first
                 if (header) {
                     header.style.opacity = '1';
                     header.style.transform = 'translateY(0)';
                 }
                 
-                setTimeout(() => {
-                    // 2. Hero stats - show the scale
+                setTimeout(function() {
+                    // 2. Hero stats
                     if (heroStats) {
                         heroStats.style.opacity = '1';
                         heroStats.style.transform = 'translateY(0)';
                     }
-                }, 600);
+                }, 500);
                 
-                setTimeout(() => {
-                    // 3. Comparison - prove the opportunity
-                    if (comparisonSection) {
-                        comparisonSection.style.opacity = '1';
-                        comparisonSection.style.transform = 'translateY(0)';
+                setTimeout(function() {
+                    // 3. Opportunity message
+                    if (opportunityMessage) {
+                        opportunityMessage.style.opacity = '1';
+                        opportunityMessage.style.transform = 'translateY(0)';
                     }
-                }, 1000);
+                }, 800);
                 
-                setTimeout(() => {
-                    // 4. Growth drivers - show momentum
+                setTimeout(function() {
+                    // 4. Growth drivers
                     if (growthSection) {
                         growthSection.style.opacity = '1';
                         growthSection.style.transform = 'translateY(0)';
                     }
+                }, 1100);
+                
+                setTimeout(function() {
+                    // 5. Market section
+                    if (marketSection) {
+                        marketSection.style.opacity = '1';
+                        marketSection.style.transform = 'translateY(0)';
+                    }
                 }, 1400);
                 
-                setTimeout(() => {
-                    // 5. Forecast - demonstrate potential
-                    if (forecastSection) {
-                        forecastSection.style.opacity = '1';
-                        forecastSection.style.transform = 'translateY(0)';
-                    }
-                }, 1800);
-                
-                setTimeout(() => {
-                    // 6. Positioning - call to action
+                setTimeout(function() {
+                    // 6. Positioning
                     if (positioningSection) {
                         positioningSection.style.opacity = '1';
                         positioningSection.style.transform = 'translateY(0)';
                     }
-                }, 2200);
+                }, 1700);
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     // 7. Navigation hint
                     showNavigation();
                     hideNavigation(2000);
-                }, 2800);
+                }, 2200);
                 
             }, 300);
         });
         
         // Accessibility
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Tab') {
                 showNavigation();
                 hideNavigation(5000);
             }
         });
         
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('focus', () => {
+        var navBtns = document.querySelectorAll('.nav-btn');
+        for (var i = 0; i < navBtns.length; i++) {
+            navBtns[i].addEventListener('focus', function() {
                 showNavigation();
                 clearTimeout(hideTimeout);
             });
-        });
+        }
     </script>
 </body>
 </html>
