@@ -152,13 +152,13 @@
             height: 100%;
         }
         
-        /* 환자 이미지 스타일 - 최적화됨 */
+        /* 환자 이미지 스타일 - v2.1 최적화 */
         .patient-image {
             width: 100%;
-            height: 260px;                    /* 200px → 260px로 증가 */
+            height: 280px;                    /* 최적화된 높이 */
             border-radius: 15px;
             object-fit: cover;
-            object-position: center 30%;      /* 15% → 30%로 조정 */
+            object-position: center 20%;      /* 자연스러운 상단 크롭 */
             margin-bottom: 20px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease;
@@ -170,7 +170,7 @@
         
         .image-placeholder {
             width: 100%;
-            height: 260px;                    /* 이미지와 동일하게 조정 */
+            height: 280px;                    /* 이미지와 동일 높이 */
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             border: 2px dashed rgba(255, 255, 255, 0.3);
@@ -360,7 +360,7 @@
             text-transform: uppercase;
         }
         
-        /* 하단 학술 권위 섹션 - 수정됨 */
+        /* 하단 학술 권위 섹션 */
         .academic-authority {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.1));
             border: 3px solid #ffd700;
@@ -612,7 +612,7 @@
             font-size: 16px;
         }
         
-        /* 반응형 디자인 */
+        /* 반응형 디자인 - v2.1 기준 */
         @media (max-width: 1200px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -651,7 +651,7 @@
         @media (max-width: 768px) {
             .patient-image,
             .image-placeholder {
-                height: 200px;                /* 260px의 77% */
+                height: 220px;                /* 280px의 79% */
                 margin-bottom: 15px;
             }
             
@@ -718,8 +718,27 @@
         @media (max-width: 480px) {
             .patient-image,
             .image-placeholder {
-                height: 160px;                /* 260px의 62% */
+                height: 180px;                /* 280px의 64% */
                 border-radius: 12px;
+            }
+            
+            .placeholder-icon {
+                font-size: 24px;
+            }
+            
+            .placeholder-text {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .patient-image,
+            .image-placeholder {
+                height: 160px;                /* 280px의 57% */
+            }
+            
+            .placeholder-icon {
+                font-size: 22px;
             }
         }
     </style>
@@ -768,9 +787,9 @@
             <div class="product-strategy kiis-plus" onclick="showSource('kiisplus')">
                 <div class="innovation-badge">510K Pathway</div>
                 
-                <!-- 환자 이미지 통합 -->
+                <!-- 환자 이미지 통합 - v2.1 최적화 -->
                 <img src="/kiis-investor-pitch/public/images/patient-kiisplus-proposition.jpg" 
-                     alt="KiiS-Plus Target Patient" 
+                     alt="KiiS-Plus Target Patient - Professional Mid-Age Adult" 
                      class="patient-image"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <div class="image-placeholder" style="display: none;">
@@ -829,9 +848,9 @@
             <div class="product-strategy kiis-relax" onclick="showSource('kiisrelax')">
                 <div class="innovation-badge">De Novo Innovation</div>
                 
-                <!-- 환자 이미지 통합 -->
+                <!-- 환자 이미지 통합 - v2.1 최적화 -->
                 <img src="/kiis-investor-pitch/public/images/patient-kiisrelax-proposition.jpg" 
-                     alt="KiiS-Relax Target Patient" 
+                     alt="KiiS-Relax Target Patient - Senior Complex Case" 
                      class="patient-image"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <div class="image-placeholder" style="display: none;">
@@ -887,7 +906,7 @@
             </div>
         </div>
         
-        <!-- 하단 학술 권위 섹션 - 수정됨 -->
+        <!-- 하단 학술 권위 섹션 -->
         <div class="academic-authority" id="academicAuthority">
             <h3 class="authority-title">Academic Authority + Network = Market Adoption</h3>
             <p class="authority-message">
@@ -943,7 +962,7 @@
         let hideTimeout;
         let isPopupOpen = false;
         
-        // 데이터 소스 - 업데이트됨
+        // 데이터 소스
         const sources = {
             'kiisplus': {
                 title: 'KiiS-Plus: Type 1-2 Market Disruption Strategy',
