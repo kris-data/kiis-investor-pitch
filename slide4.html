@@ -14,13 +14,13 @@
 
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             min-height: 100vh;
             color: #ffffff;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
         }
 
         .container {
@@ -254,6 +254,7 @@
             margin-bottom: 30px;
         }
 
+        /* v2.1 이미지 시스템 적용 */
         .innovation-image {
             width: 100%;
             max-width: 300px;
@@ -263,6 +264,46 @@
             margin: 20px auto;
             display: block;
             border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .innovation-image:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            max-width: 300px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+        }
+
+        .image-placeholder:hover {
+            border-color: rgba(255, 215, 0, 0.5);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .placeholder-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .placeholder-text {
+            font-size: 16px;
+            color: #e0e7ff;
+            line-height: 1.3;
         }
 
         .feature-list {
@@ -407,6 +448,7 @@
             line-height: 1.4;
         }
 
+        /* Phase 이미지 - v2.1 시스템 적용 */
         .phase-image {
             width: 100%;
             max-width: 200px;
@@ -423,6 +465,39 @@
             transform: scale(1.05);
             border-color: rgba(255, 215, 0, 0.6);
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .phase-placeholder {
+            width: 100%;
+            max-width: 200px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            margin: 15px auto 20px;
+            transition: all 0.3s ease;
+        }
+
+        .phase-placeholder:hover {
+            border-color: rgba(255, 215, 0, 0.5);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .phase-placeholder-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+
+        .phase-placeholder-text {
+            font-size: 12px;
+            color: #94a3b8;
+            line-height: 1.2;
         }
 
         .phase-highlights {
@@ -454,7 +529,7 @@
             border-left-color: #a855f7;
         }
 
-        /* 투자자 신뢰도 섹션 */
+        /* 투자자 신뢰도 섹션 - v2.1 보수적 표현 */
         .investor-confidence {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
             border: 3px solid #ffd700;
@@ -577,7 +652,17 @@
             color: #ffd700;
         }
 
-        /* 반응형 */
+        .nav-btn.prev::before {
+            content: "←";
+            margin-right: 8px;
+        }
+
+        .nav-btn.next::after {
+            content: "→";
+            margin-left: 8px;
+        }
+
+        /* 반응형 - v2.1 기준 */
         @media (max-width: 1200px) {
             .container {
                 padding: 30px 40px;
@@ -659,6 +744,14 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 0;
+            }
+
+            .container {
+                padding: 15px 10px;
+            }
+
             .title {
                 font-size: 24px;
             }
@@ -693,6 +786,10 @@
             .roadmap-phase {
                 padding: 20px;
             }
+
+            .innovation-card {
+                padding: 25px 15px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -710,7 +807,12 @@
 
             .innovation-card,
             .roadmap-phase {
-                padding: 20px 15px;
+                padding: 20px 12px;
+            }
+
+            .timeline-step {
+                min-width: 160px;
+                padding: 15px;
             }
         }
     </style>
@@ -720,7 +822,7 @@
         <!-- 메인 헤더 -->
         <div class="main-header" id="mainHeader">
             <h1 class="title">FDA-Validated Innovation Ready for Market</h1>
-            <p class="subtitle">US Patent Protection + Regulatory Pathway = Low-Risk Investment in $3B Opportunity</p>
+            <p class="subtitle">US Patent Protection + Regulatory Pathway = Reduced Risk Investment in $3B Opportunity</p>
         </div>
 
         <!-- 투자 타임라인 -->
@@ -742,7 +844,6 @@
                     <div class="timeline-step-content">Market Entry<br>Revenue Generation</div>
                 </div>
             </div>
-            <div class="timeline-note">*Timeline dependent on successful funding completion</div>
         </div>
 
         <!-- 특허 + FDA 통합 섹션 -->
@@ -755,7 +856,14 @@
                     <p class="innovation-subtitle">World's First Spiral Side Opening Design</p>
                 </div>
                 
-                <img src="/kiis-investor-pitch/public/images/patent-document.jpg" alt="US Patent Document" class="innovation-image">
+                <img src="/kiis-investor-pitch/public/images/patent-document.jpg" 
+                     alt="US Patent Document" 
+                     class="innovation-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder">
+                    <div class="placeholder-icon">📋</div>
+                    <div class="placeholder-text">US Patent 9,757,213 B2<br>Spiral Opening Technology</div>
+                </div>
                 
                 <div class="feature-list">
                     <div class="feature-item">US Patent 9,757,213 B2 (2017-2037)</div>
@@ -775,7 +883,14 @@
                     <p class="innovation-subtitle">510K Pre-submission Positive Response</p>
                 </div>
                 
-                <img src="/kiis-investor-pitch/public/images/fda-validation-process.jpg" alt="FDA Validation Process" class="innovation-image">
+                <img src="/kiis-investor-pitch/public/images/fda-validation-process.jpg" 
+                     alt="FDA Validation Process" 
+                     class="innovation-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder">
+                    <div class="placeholder-icon">✅</div>
+                    <div class="placeholder-text">FDA 510K Pathway<br>Pre-submission Approved</div>
+                </div>
                 
                 <div class="feature-list">
                     <div class="feature-item">Pre-submission meeting completed</div>
@@ -801,12 +916,18 @@
                         <p class="phase-description">FDA 510K ready for immediate market impact</p>
                     </div>
                     
-                    <img src="/kiis-investor-pitch/public/images/kiis-product-innovation.jpg" alt="KiiS Spiral Innovation" class="phase-image">
+                    <img src="/kiis-investor-pitch/public/images/kiis-product-innovation.jpg" 
+                         alt="KiiS Spiral Innovation" 
+                         class="phase-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="phase-placeholder">
+                        <div class="phase-placeholder-icon">🦴</div>
+                        <div class="phase-placeholder-text">Spiral Opening<br>Technology</div>
+                    </div>
                     
                     <div class="phase-highlights">
                         <div class="phase-highlight">✓ Patent protected until 2037</div>
-                        <div class="phase-highlight">✓ FDA pre-submission approved</div>
-                        <div class="phase-highlight">✓ Manufacturing partners ready</div>
+                        <div class="phase-highlight">✓ FDA pathway confirmed</div>
                         <div class="phase-highlight">✓ Revenue from Year 1</div>
                     </div>
                 </div>
@@ -819,13 +940,19 @@
                         <p class="phase-description">Porous structure + medication delivery platform</p>
                     </div>
                     
-                    <img src="/kiis-investor-pitch/public/images/kiis-product-innovation-hallowchannel.jpg" alt="KiiS Hollow Channel Innovation" class="phase-image">
+                    <img src="/kiis-investor-pitch/public/images/kiis-product-innovation-hallowchannel.jpg" 
+                         alt="KiiS Hollow Channel Innovation" 
+                         class="phase-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="phase-placeholder">
+                        <div class="phase-placeholder-icon">💉</div>
+                        <div class="phase-placeholder-text">Hollow Channel<br>Injection System</div>
+                    </div>
                     
                     <div class="phase-highlights">
-                        <div class="phase-highlight">→ PCT patent filing (2025-2026)</div>
-                        <div class="phase-highlight">→ Dual direction openings (0.1-0.7mm)</div>
-                        <div class="phase-highlight">→ Injectable agent delivery</div>
-                        <div class="phase-highlight">→ Premium market expansion</div>
+                        <div class="phase-highlight">→ PCT patent filing ready</div>
+                        <div class="phase-highlight">→ Injectable delivery system</div>
+                        <div class="phase-highlight">→ Premium market entry</div>
                     </div>
                 </div>
 
@@ -837,13 +964,19 @@
                         <p class="phase-description">Orthopedic screws and medical device platform</p>
                     </div>
                     
-                    <img src="/kiis-investor-pitch/public/images/slide4-tech-platform-orthopedic.png" alt="Orthopedic Platform Technology" class="phase-image">
+                    <img src="/kiis-investor-pitch/public/images/slide4-tech-platform-orthopedic.png" 
+                         alt="Orthopedic Platform Technology" 
+                         class="phase-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="phase-placeholder">
+                        <div class="phase-placeholder-icon">🦴</div>
+                        <div class="phase-placeholder-text">Orthopedic<br>Platform</div>
+                    </div>
                     
                     <div class="phase-highlights">
-                        <div class="phase-highlight">→ Hip, knee, spine applications</div>
-                        <div class="phase-highlight">→ Universal bone healing solution</div>
-                        <div class="phase-highlight">→ Global market expansion</div>
-                        <div class="phase-highlight">→ Platform-based IP portfolio</div>
+                        <div class="phase-highlight">→ Orthopedic applications</div>
+                        <div class="phase-highlight">→ Global platform expansion</div>
+                        <div class="phase-highlight">→ Multi-patent IP portfolio</div>
                     </div>
                 </div>
             </div>
@@ -851,10 +984,10 @@
 
         <!-- 투자자 신뢰도 섹션 -->
         <div class="investor-confidence" id="investorConfidence">
-            <h3 class="confidence-title">Low Risk + High Reward = Investor's Dream</h3>
+            <h3 class="confidence-title">Reduced Risk + Significant Opportunity</h3>
             <p class="confidence-message">
-                Patent protection eliminates competitive risk. FDA validation removes regulatory uncertainty. 
-                Result: Clear path to market dominance in $3B opportunity.
+                Patent protection reduces competitive risk. FDA validation removes regulatory uncertainty. 
+                Result: Clear pathway to participate in $3B market opportunity.
             </p>
             
             <div class="confidence-pillars">
@@ -887,37 +1020,37 @@
     </div>
 
     <script>
-        // 전역 변수
-        let isNavigationVisible = false;
-        let hideTimeout;
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        // 전역 변수 - ES5 호환성
+        var isNavigationVisible = false;
+        var hideTimeout;
+        var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
         // 로딩 애니메이션
         function initializeAnimations() {
-            setTimeout(() => {
+            setTimeout(function() {
                 document.getElementById('mainHeader').classList.add('visible');
             }, 400);
 
-            setTimeout(() => {
+            setTimeout(function() {
                 document.getElementById('investmentTimeline').classList.add('visible');
             }, 700);
 
-            setTimeout(() => {
+            setTimeout(function() {
                 document.getElementById('innovationShowcase').classList.add('visible');
             }, 1000);
 
-            setTimeout(() => {
+            setTimeout(function() {
                 document.getElementById('productRoadmap').classList.add('visible');
             }, 1300);
 
-            setTimeout(() => {
+            setTimeout(function() {
                 document.getElementById('investorConfidence').classList.add('visible');
             }, 1600);
 
             // 네비게이션 힌트 (2초간 표시)
-            setTimeout(() => {
+            setTimeout(function() {
                 showNavigation();
-                setTimeout(() => {
+                setTimeout(function() {
                     hideNavigation(0);
                 }, 2000);
             }, 2200);
@@ -930,8 +1063,9 @@
             isNavigationVisible = true;
         }
 
-        function hideNavigation(delay = 2000) {
-            hideTimeout = setTimeout(() => {
+        function hideNavigation(delay) {
+            if (delay === undefined) delay = 2000;
+            hideTimeout = setTimeout(function() {
                 document.getElementById('navigation').classList.remove('visible');
                 isNavigationVisible = false;
             }, delay);
@@ -939,8 +1073,8 @@
 
         // 마우스 이벤트 처리 (PC)
         function handleMouseMove(e) {
-            const windowHeight = window.innerHeight;
-            const mouseY = e.clientY;
+            var windowHeight = window.innerHeight;
+            var mouseY = e.clientY;
             
             if (mouseY > windowHeight - 120) {
                 showNavigation();
@@ -950,8 +1084,8 @@
         }
 
         // 터치 이벤트 처리 (모바일)
-        let touchStartY = 0;
-        let touchStartX = 0;
+        var touchStartY = 0;
+        var touchStartX = 0;
 
         function handleTouchStart(e) {
             touchStartY = e.touches[0].clientY;
@@ -959,11 +1093,11 @@
         }
 
         function handleTouchEnd(e) {
-            const touchEndY = e.changedTouches[0].clientY;
-            const touchEndX = e.changedTouches[0].clientX;
-            const diffY = touchStartY - touchEndY;
-            const diffX = touchStartX - touchEndX;
-            const windowHeight = window.innerHeight;
+            var touchEndY = e.changedTouches[0].clientY;
+            var touchEndX = e.changedTouches[0].clientX;
+            var diffY = touchStartY - touchEndY;
+            var diffX = touchStartX - touchEndX;
+            var windowHeight = window.innerHeight;
 
             // 하단 터치로 네비게이션 토글
             if (touchStartY > windowHeight - 120) {
@@ -1014,12 +1148,12 @@
         }
 
         // 네비게이션 호버 이벤트
-        const navigation = document.getElementById('navigation');
-        navigation.addEventListener('mouseenter', () => {
+        var navigation = document.getElementById('navigation');
+        navigation.addEventListener('mouseenter', function() {
             if (hideTimeout) clearTimeout(hideTimeout);
         });
 
-        navigation.addEventListener('mouseleave', () => {
+        navigation.addEventListener('mouseleave', function() {
             hideNavigation(1500);
         });
 
