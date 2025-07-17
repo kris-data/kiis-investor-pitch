@@ -363,7 +363,32 @@
             text-transform: uppercase;
         }
         
-        /* 하단 학술 권위 섹션 */
+        /* 핵심 가치 제안 섹션 - 새로 추가 */
+        .core-value {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            border: 3px solid #ffd700;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .value-statement {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .value-details {
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 1.4;
+        }
         .academic-authority {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.1));
             border: 3px solid #ffd700;
@@ -770,6 +795,16 @@
             </p>
         </div>
         
+        <!-- 핵심 가치 제안 - 새로 추가 -->
+        <div class="core-value" id="coreValue">
+            <div class="value-statement">
+                🚀 One Technology, Two Disruptions
+            </div>
+            <div class="value-details">
+                KiiS revolutionizes both established Type 1-2 market and creates new Type 3-4 opportunities
+            </div>
+        </div>
+        
         <!-- 상단 벤치마킹 섹션 -->
         <div class="benchmark-section" id="benchmarkSection">
             <div class="benchmark-title">Current Leaders' Multi-Brand Strategy vs KiiS Innovation</div>
@@ -797,7 +832,7 @@
         
         <!-- 메인 콘텐츠 그리드 -->
         <div class="main-content" id="mainContent">
-            <!-- KiiS-Plus 전략 -->
+            <!-- KiiS-Plus 전략 - 간소화 -->
             <div class="product-strategy kiis-plus" onclick="showSource('kiisplus')">
                 <div class="innovation-badge">510K Pathway</div>
                 
@@ -817,24 +852,22 @@
                 </div>
                 
                 <div class="market-analysis">
-                    <div class="analysis-title">📊 Current Market Reality</div>
+                    <div class="analysis-title">📊 Market Opportunity</div>
                     <div class="analysis-content">
-                        <div class="market-stat">Straumann 30%</div>
-                        <div class="market-stat">Nobel 25%</div>
-                        <div class="market-stat">Astra 20%</div>
                         <div class="market-stat">75% Oligopoly</div>
+                        <div class="market-stat">High Price Barriers</div>
                     </div>
                     <div class="market-insight">
-                        Premium brands dominate Type 1-2 market with high price barriers excluding many patients
+                        Premium brands create artificial pricing barriers excluding many patients
                     </div>
                 </div>
                 
                 <div class="strategy-section">
                     <div class="strategy-title">Premium Performance at Competitive Price</div>
-                    <div class="strategy-tagline">"Breaking the Premium Oligopoly"</div>
+                    <div class="strategy-tagline">"Lowering Economic Barriers"</div>
                     <div class="strategy-description">
-                        Disrupt existing market structure with <span class="strategy-highlight">15-20% lower pricing</span> 
-                        while delivering <span class="strategy-highlight">equivalent efficacy</span> through 510K pathway
+                        <span class="strategy-highlight">15-20% lower pricing</span> 
+                        with <span class="strategy-highlight">equivalent efficacy</span> through 510K pathway
                     </div>
                 </div>
                 
@@ -847,18 +880,10 @@
                         <div class="benefit-icon">💰</div>
                         <div class="benefit-text">15-20% cost reduction vs premium brands</div>
                     </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🔄</div>
-                        <div class="benefit-text">Compatible with existing tools & procedures</div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🎯</div>
-                        <div class="benefit-text">Rapid market penetration in established segment</div>
-                    </div>
                 </div>
             </div>
             
-            <!-- KiiS-Relax 전략 -->
+            <!-- KiiS-Relax 전략 - 간소화 -->
             <div class="product-strategy kiis-relax" onclick="showSource('kiisrelax')">
                 <div class="innovation-badge">De Novo Innovation</div>
                 
@@ -878,15 +903,13 @@
                 </div>
                 
                 <div class="market-analysis">
-                    <div class="analysis-title">🎯 Market Gap Opportunity</div>
+                    <div class="analysis-title">🎯 Market Gap</div>
                     <div class="analysis-content">
                         <div class="market-stat">40% Excluded</div>
                         <div class="market-stat">No Clear Leader</div>
-                        <div class="market-stat">Fragmented</div>
-                        <div class="market-stat">High Failure</div>
                     </div>
                     <div class="market-insight">
-                        Type 3-4 patients face limited solutions with high failure rates or complete exclusion from treatment
+                        Type 3-4 patients face limited solutions with high failure rates
                     </div>
                 </div>
                 
@@ -894,7 +917,7 @@
                     <div class="strategy-title">Making the Impossible Possible</div>
                     <div class="strategy-tagline">"Creating New Premium Category"</div>
                     <div class="strategy-description">
-                        Lead untapped market with <span class="strategy-highlight">De Novo breakthrough</span> technology, 
+                        <span class="strategy-highlight">De Novo breakthrough</span> technology 
                         providing <span class="strategy-highlight">unique reliability</span> in challenging cases
                     </div>
                 </div>
@@ -905,48 +928,19 @@
                         <div class="benefit-text">FDA De Novo breakthrough technology pathway</div>
                     </div>
                     <div class="benefit-item">
-                        <div class="benefit-icon">💊</div>
-                        <div class="benefit-text">Hollow inner channel for targeted drug delivery</div>
-                    </div>
-                    <div class="benefit-item">
                         <div class="benefit-icon">🦴</div>
                         <div class="benefit-text">No bone grafting required for Type 3-4 cases</div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">⚡</div>
-                        <div class="benefit-text">Faster healing & reduced surgical complexity</div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- 하단 학술 권위 섹션 -->
+        <!-- 하단 학술 권위 섹션 - 간소화 -->
         <div class="academic-authority" id="academicAuthority">
-            <h3 class="authority-title">Academic Authority + Network = Market Adoption</h3>
+            <h3 class="authority-title">OSU Professor-Inventor Authority</h3>
             <p class="authority-message">
-                OSU Professor-Inventor credibility combined with university network 
-                creates unmatched practitioner confidence and adoption acceleration
+                Academic credibility + university network = accelerated market adoption
             </p>
-            
-            <div class="authority-features">
-                <div class="authority-feature">
-                    <span class="feature-icon">🎓</span>
-                    <div class="feature-title">PROFESSOR-INVENTOR AUTHORITY</div>
-                    <div class="feature-description">Direct academic credibility drives trust</div>
-                </div>
-                
-                <div class="authority-feature">
-                    <span class="feature-icon">🏛️</span>
-                    <div class="feature-title">INSTITUTIONAL BACKING</div>
-                    <div class="feature-description">OSU license provides legitimacy</div>
-                </div>
-                
-                <div class="authority-feature">
-                    <span class="feature-icon">🌐</span>
-                    <div class="feature-title">ALUMNI NETWORK EFFECT</div>
-                    <div class="feature-description">Cost-effective practitioner conversion</div>
-                </div>
-            </div>
             
             <!-- 교수 권위 아이콘 -->
             <div class="professor-authority" title="Professor-Inventor Academic Authority">
@@ -1253,6 +1247,7 @@
         // 페이지 로드 애니메이션
         window.addEventListener('load', function() {
             const header = document.querySelector('.main-header');
+            const coreValue = document.querySelector('.core-value');
             const benchmark = document.querySelector('.benchmark-section');
             const mainContent = document.querySelector('.main-content');
             const academicAuthority = document.querySelector('.academic-authority');
@@ -1262,9 +1257,14 @@
                 header.style.transform = 'translateY(0)';
                 
                 setTimeout(() => {
+                    coreValue.style.opacity = '1';
+                    coreValue.style.transform = 'translateY(0)';
+                }, 400);
+                
+                setTimeout(() => {
                     benchmark.style.opacity = '1';
                     benchmark.style.transform = 'translateY(0)';
-                }, 400);
+                }, 600);
                 
                 setTimeout(() => {
                     mainContent.style.opacity = '1';
@@ -1274,12 +1274,12 @@
                 setTimeout(() => {
                     academicAuthority.style.opacity = '1';
                     academicAuthority.style.transform = 'translateY(0)';
-                }, 1200);
+                }, 1000);
                 
                 setTimeout(() => {
                     showNavigation();
                     hideNavigation(3000);
-                }, 1800);
+                }, 1500);
                 
             }, 300);
         });
