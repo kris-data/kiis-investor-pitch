@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>KiiS - Market Opportunity</title>
+    <title>KiiS - 178M Patients Are Waiting for One More Chance</title>
     <style>
         * {
             margin: 0;
@@ -15,7 +15,7 @@
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             color: white;
             min-height: 100vh;
-            padding: 60px 80px;
+            padding: 40px 60px;
         }
         
         .container {
@@ -23,295 +23,641 @@
             margin: 0 auto;
         }
         
+        .main-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
         .title {
             font-size: 48px;
             font-weight: bold;
-            text-align: center;
-            margin-bottom: 50px;
             color: #ffffff;
-        }
-        
-        /* Top 3 metrics */
-        .metrics-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        
-        .metric-card {
-            background: linear-gradient(145deg, #1e40af, #1d4ed8);
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .metric-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .metric-number {
-            font-size: 64px;
-            font-weight: bold;
-            color: #ffd700;
+            line-height: 1.2;
             margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
         }
         
-        .metric-number:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-        }
-        
-        .metric-number::after {
-            content: "ℹ️";
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 16px;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-        
-        .metric-number:hover::after {
-            opacity: 1;
-        }
-        
-        .metric-title {
-            font-size: 20px;
+        .subtitle {
+            font-size: 26px;
+            color: #ffd700;
             font-weight: 600;
-            margin-bottom: 8px;
+            font-style: italic;
         }
         
-        .metric-subtitle {
-            font-size: 16px;
-            color: #e0e7ff;
-            opacity: 0.9;
-        }
-        
-        /* Bottom section */
-        .bottom-section {
+        /* Main Content Section */
+        .main-content {
             display: grid;
-            grid-template-columns: 3fr 2fr;
+            grid-template-columns: 1fr 1fr;
             gap: 60px;
-            align-items: start;
+            margin-bottom: 50px;
         }
         
-        /* Country chart */
-        .country-chart {
-            background: rgba(0, 0, 0, 0.3);
+        /* Left Side: Crisis Barriers */
+        .crisis-section {
+            background: rgba(0, 0, 0, 0.4);
             padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            border: 2px solid rgba(239, 68, 68, 0.3);
         }
         
-        .chart-title {
-            font-size: 24px;
+        .section-title {
+            font-size: 28px;
             font-weight: bold;
             margin-bottom: 30px;
             text-align: center;
+        }
+        
+        .crisis-title {
+            color: #ef4444;
+        }
+        
+        .hope-title {
             color: #ffd700;
         }
         
-        .country-item {
-            display: flex;
-            align-items: center;
+        .crisis-card {
+            background: rgba(55, 65, 81, 0.8);
+            padding: 20px;
+            border-radius: 15px;
             margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 10px;
+            border-left: 4px solid #374151;
             transition: all 0.3s ease;
+            text-align: left; /* Desktop: left align */
         }
         
-        .country-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: scale(1.02);
+        .crisis-card:hover {
+            background: rgba(75, 85, 99, 0.9);
+            transform: translateX(5px);
+            border-left-color: #ef4444;
         }
         
-        .country-item.usa {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #ffd700;
+        .crisis-card.medical {
+            border-left-color: #3b82f6;
         }
         
-        .country-name {
-            width: 120px;
-            font-weight: 600;
-            font-size: 16px;
+        .crisis-card.failure {
+            border-left-color: #f59e0b;
         }
         
-        .progress-container {
-            flex: 1;
-            margin: 0 20px;
-            position: relative;
+        .crisis-card.dreams {
+            border-left-color: #8b5cf6;
         }
         
-        .progress-bg {
-            height: 24px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            border-radius: 12px;
+        .card-header {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            padding-right: 10px;
-            font-weight: bold;
-            font-size: 14px;
-            color: white;
-            transition: width 2s ease-in-out;
+            margin-bottom: 12px;
         }
         
-        /* Simplified color scheme - using shades of blue and gold only */
-        .progress-fill.high { background: linear-gradient(90deg, #1e40af, #3b82f6); }
-        .progress-fill.medium { background: linear-gradient(90deg, #1e3a8a, #2563eb); }
-        .progress-fill.low { background: linear-gradient(90deg, #1e293b, #475569); }
-        .progress-fill.usa { background: linear-gradient(90deg, #ffd700, #f59e0b); }
-        
-        .country-fee {
-            width: 80px;
-            text-align: right;
-            font-size: 14px;
-            color: #e0e7ff;
+        .card-icon {
+            font-size: 24px;
+            margin-right: 12px;
+            width: 35px;
+            text-align: center;
         }
         
-        /* Growth projection */
-        .growth-section {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
         }
         
-        .growth-card {
-            background: linear-gradient(135deg, #374151, #4b5563);
+        .card-quote {
+            font-size: 18px;
+            color: #fecaca;
+            font-style: italic;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .card-details {
+            font-size: 16px;
+            color: #e5e7eb;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .card-hope {
+            font-size: 16px;
+            color: #ffd700;
+            font-weight: 500;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            padding-top: 8px;
+        }
+        
+        /* Right Side: Hope Solution */
+        .hope-section {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .hope-main {
+            background: linear-gradient(135deg, #059669, #10b981);
             padding: 30px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 2px solid #ffd700;
-            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.3);
         }
         
-        .growth-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .growth-arrow {
-            font-size: 36px;
+        .hope-main-title {
+            font-size: 32px;
             font-weight: bold;
-            color: #ffd700;
+            color: #ffffff;
             margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
         }
         
-        .growth-arrow:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-        }
-        
-        .growth-arrow::after {
-            content: "ℹ️";
-            position: absolute;
-            top: -5px;
-            right: -20px;
-            font-size: 16px;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-        
-        .growth-arrow:hover::after {
-            opacity: 1;
-        }
-        
-        .growth-subtitle {
+        .hope-main-subtitle {
             font-size: 18px;
-            color: white;
-            opacity: 0.9;
+            color: #d1fae5;
+            line-height: 1.4;
         }
         
-        .cagr-info {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-top: 10px;
-        }
-        
-        .drivers-section {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .drivers-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 20px;
-        }
-        
-        .driver-item {
-            display: flex;
-            align-items: center;
+        .solution-card {
+            background: rgba(30, 64, 175, 0.3);
+            padding: 20px;
+            border-radius: 15px;
             margin-bottom: 15px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            border-left: 4px solid #1e40af;
             transition: all 0.3s ease;
-            border-left: 3px solid #3b82f6;
+            text-align: left; /* Desktop: left align */
         }
         
-        .driver-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .solution-card:hover {
+            background: rgba(30, 64, 175, 0.5);
             transform: translateX(5px);
             border-left-color: #ffd700;
         }
         
-        .driver-icon {
-            font-size: 24px;
-            margin-right: 15px;
-            width: 40px;
+        .solution-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .solution-icon {
+            font-size: 20px;
+            margin-right: 10px;
+            width: 30px;
             text-align: center;
         }
         
-        .driver-text {
-            font-size: 16px;
-            font-weight: 500;
+        .solution-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffd700;
         }
         
-        /* Data sources footer */
-        .data-sources {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
+        .solution-text {
+            font-size: 16px;
+            color: #e0e7ff;
+            line-height: 1.3;
+        }
+        
+        /* Market Opportunity Styles */
+        .market-summary {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .sources-title {
-            font-size: 16px;
+        .market-title {
+            font-size: 28px;
             font-weight: bold;
             color: #ffd700;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
         }
         
-        .sources-text {
+        .market-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .opportunity-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .opportunity-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        /* America's Paradox */
+        .paradox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .paradox-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        
+        .paradox-label {
             font-size: 14px;
-            color: #e0e7ff;
-            line-height: 1.5;
+            color: #fecaca;
+            margin-bottom: 5px;
         }
         
-        /* 네비게이션 호버 감지 영역 */
+        .paradox-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        
+        /* Growth Potential */
+        .growth-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .growth-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        
+        .growth-arrow {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .growth-label {
+            font-size: 16px;
+            color: #d1fae5;
+        }
+        
+        .growth-result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #10b981;
+            text-align: center;
+            padding: 15px;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        
+        /* Why Now */
+        .timing-factors {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .timing-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .timing-icon {
+            font-size: 20px;
+        }
+        
+        .timing-text {
+            font-size: 16px;
+            color: #dbeafe;
+        }
+        
+        .timing-plus, .timing-equals {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .timing-result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffd700;
+            text-align: center;
+            padding: 12px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            flex: 1;
+            min-width: 100%;
+            margin-top: 10px;
+        }
+        
+        .clickable {
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .clickable:hover {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .clickable::after {
+            content: "ℹ️";
+            position: absolute;
+            top: -5px;
+            right: -20px;
+            font-size: 12px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        
+        .clickable:hover::after {
+            opacity: 1;
+        }
+        
+        /* Source popup styles */
+        .source-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1500;
+            backdrop-filter: blur(5px);
+        }
+        
+        .source-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1600;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: popupSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes popupSlideIn {
+            from {
+                transform: translate(-50%, -60%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+        
+        .source-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .source-close:hover {
+            color: #fff;
+        }
+        
+        .source-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 20px;
+            padding-right: 40px;
+        }
+        
+        .source-content {
+            line-height: 1.6;
+        }
+        
+        .source-content h3 {
+            color: #ffd700;
+            margin: 20px 0 10px 0;
+            font-size: 18px;
+        }
+        
+        .source-content p {
+            margin-bottom: 15px;
+            color: #e0e7ff;
+        }
+        
+        .source-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .source-content li {
+            margin-bottom: 8px;
+            color: #e0e7ff;
+        }
+        
+        .source-content strong {
+            color: #ffd700;
+        }
+        
+        /* Mobile Optimization - Updated with Alignment Principles */
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .paradox-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .timing-factors {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .timing-item {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            /* Apply mobile alignment principles */
+            .main-header {
+                text-align: center;
+            }
+            
+            .section-title {
+                text-align: center;
+            }
+            
+            .market-title, .opportunity-title {
+                text-align: center;
+            }
+            
+            .growth-result {
+                text-align: center;
+            }
+            
+            /* Crisis and solution cards: center align for mobile impact */
+            .crisis-card, .solution-card {
+                text-align: center;
+            }
+            
+            .card-header {
+                justify-content: center;
+            }
+            
+            .solution-header {
+                justify-content: center;
+            }
+            
+            /* Hope main section: already centered */
+            .hope-main {
+                text-align: center;
+            }
+            
+            /* Paradox items: center for mobile */
+            .paradox-item {
+                text-align: center;
+            }
+            
+            /* Growth items: center for mobile */
+            .growth-item {
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 36px;
+                text-align: center; /* Mobile: center titles */
+            }
+            
+            .subtitle {
+                font-size: 22px;
+                text-align: center; /* Mobile: center subtitles */
+            }
+            
+            .crisis-section, .hope-section {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+                text-align: center; /* Mobile: center section titles */
+            }
+            
+            .hope-main-title {
+                font-size: 28px;
+                text-align: center; /* Always centered */
+            }
+            
+            .card-title {
+                font-size: 18px;
+            }
+            
+            .card-quote {
+                font-size: 16px;
+            }
+            
+            .card-details, .card-hope {
+                font-size: 15px;
+            }
+            
+            .solution-title {
+                font-size: 16px;
+            }
+            
+            .solution-text {
+                font-size: 15px;
+            }
+            
+            .market-title {
+                font-size: 24px;
+                text-align: center; /* Mobile: center market title */
+            }
+            
+            .opportunity-title {
+                font-size: 18px;
+                text-align: center; /* Mobile: center opportunity titles */
+            }
+            
+            .paradox-value {
+                font-size: 16px;
+            }
+            
+            .growth-arrow {
+                font-size: 18px;
+            }
+            
+            .timing-result {
+                font-size: 16px;
+                text-align: center; /* Mobile: center timing result */
+            }
+            
+            /* Mobile-specific adjustments for better visual flow */
+            .crisis-card, .solution-card {
+                text-align: center; /* Mobile: center all card content */
+                border-left: none; /* Remove left border on mobile */
+                border-top: 4px solid; /* Add top border instead */
+            }
+            
+            .crisis-card.medical {
+                border-top-color: #3b82f6;
+            }
+            
+            .crisis-card.failure {
+                border-top-color: #f59e0b;
+            }
+            
+            .crisis-card.dreams {
+                border-top-color: #8b5cf6;
+            }
+            
+            .solution-card {
+                border-top-color: #1e40af;
+            }
+            
+            .solution-card:hover {
+                border-top-color: #ffd700;
+            }
+        }
+        
+        /* Navigation */
         .hover-zone {
             position: fixed;
             bottom: 0;
@@ -322,7 +668,6 @@
             pointer-events: auto;
         }
         
-        /* 네비게이션 스타일 */
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -381,498 +726,380 @@
             content: "→";
             font-size: 16px;
         }
-        
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal-content {
-            background: linear-gradient(135deg, #1e40af, #1d4ed8);
-            margin: 10% auto;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            border: 2px solid #ffd700;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: modalSlideIn 0.3s ease-out;
-        }
-        
-        @keyframes modalSlideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .modal-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ffd700;
-        }
-        
-        .close {
-            color: #ffd700;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .close:hover {
-            color: #fff;
-        }
-        
-        .modal-body {
-            color: white;
-            line-height: 1.6;
-        }
-        
-        .modal-definition {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #e0e7ff;
-        }
-        
-        .modal-source {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #ffd700;
-        }
-        
-        .modal-source-title {
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 8px;
-        }
-        
-        .modal-source-text {
-            font-size: 14px;
-            color: #e0e7ff;
-        }
-        @media (max-width: 1200px) {
-            .metrics-row {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .bottom-section {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            body {
-                padding: 40px;
-            }
-            
-            .title {
-                font-size: 36px;
-            }
-            
-            .navigation {
-                padding: 12px 20px;
-            }
-            
-            .nav-btn {
-                padding: 10px 16px;
-                font-size: 12px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">The Biggest market has the biggest growth opportunity</h1>
-        
-        <!-- Top 3 Metrics -->
-        <div class="metrics-row">
-            <div class="metric-card">
-                <div class="metric-number" data-modal="procedures">5M</div>
-                <div class="metric-title">Annual Implant Procedures</div>
-                <div class="metric-subtitle">in the US (ADA official data)</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-number" data-modal="penetration">5.7%</div>
-                <div class="metric-title">Implant Penetration Rate</div>
-                <div class="metric-subtitle">Lowest among developed countries</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-number" data-modal="market">$2.1B</div>
-                <div class="metric-title">Manufacturer Market Size</div>
-                <div class="metric-subtitle">US implant manufacturing market</div>
-            </div>
+        <!-- Main Header -->
+        <div class="main-header">
+            <h1 class="title">178 Million Patients Are Waiting...<br>For One More Chance</h1>
+            <p class="subtitle">Before giving up. Before expensive procedures. Before complex surgeries. KiiS offers an alternative.</p>
         </div>
         
-        <!-- Bottom Section -->
-        <div class="bottom-section">
-            <!-- Country Chart -->
-            <div class="country-chart">
-                <div class="chart-title">Implant Penetration Rate by Country</div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Side: Crisis Barriers -->
+            <div class="crisis-section">
+                <h2 class="section-title crisis-title">The Moment of Despair</h2>
                 
-                <div class="country-item">
-                    <div class="country-name">Switzerland</div>
-                    <div class="progress-container">
-                        <div class="progress-bg">
-                            <div class="progress-fill high" style="width: 100%;">38.0%</div>
-                        </div>
+                <!-- Card 1: Medical Complexity -->
+                <div class="crisis-card medical">
+                    <div class="card-header">
+                        <div class="card-icon">🔬</div>
+                        <div class="card-title">Medical Complexity</div>
                     </div>
-                    <div class="country-fee">$4,000</div>
+                    <div class="card-quote">"You need bone grafting first"</div>
+                    <div class="card-details">$3,000+ / 6 months healing required</div>
+                    <div class="card-hope">→ KiiS offers simpler alternative</div>
                 </div>
                 
-                <div class="country-item">
-                    <div class="country-name">Germany</div>
-                    <div class="progress-container">
-                        <div class="progress-bg">
-                            <div class="progress-fill high" style="width: 66%;">25.0%</div>
-                        </div>
+                <!-- Card 2: When Revisions Needed -->
+                <div class="crisis-card failure">
+                    <div class="card-header">
+                        <div class="card-icon">⚠️</div>
+                        <div class="card-title">When Revisions Needed</div>
                     </div>
-                    <div class="country-fee">$2,800</div>
+                    <div class="card-quote">"Years later, problems arise"</div>
+                    <div class="card-details">Infection / bone loss requires re-surgery</div>
+                    <div class="card-hope">→ KiiS offers reliable alternative</div>
                 </div>
                 
-                <div class="country-item">
-                    <div class="country-name">South Korea</div>
-                    <div class="progress-container">
-                        <div class="progress-bg">
-                            <div class="progress-fill medium" style="width: 35%;">13.3%</div>
-                        </div>
+                <!-- Card 3: Dreams Feel Impossible -->
+                <div class="crisis-card dreams">
+                    <div class="card-header">
+                        <div class="card-icon">💭</div>
+                        <div class="card-title">Dreams Feel Impossible</div>
                     </div>
-                    <div class="country-fee">$1,500</div>
-                </div>
-                
-                <div class="country-item">
-                    <div class="country-name">Netherlands</div>
-                    <div class="progress-container">
-                        <div class="progress-bg">
-                            <div class="progress-fill medium" style="width: 24%;">9.0%</div>
-                        </div>
-                    </div>
-                    <div class="country-fee">$3,000</div>
-                </div>
-                
-                <div class="country-item">
-                    <div class="country-name">Japan</div>
-                    <div class="progress-container">
-                        <div class="progress-bg">
-                            <div class="progress-fill low" style="width: 19%;">7.2%</div>
-                        </div>
-                    </div>
-                    <div class="country-fee">$3,200</div>
-                </div>
-                
-                <div class="country-item usa">
-                    <div class="country-name">USA ⭐</div>
-                    <div class="progress-container">
-                        <div class="progress-bg">
-                            <div class="progress-fill usa" style="width: 15%;">5.7%</div>
-                        </div>
-                    </div>
-                    <div class="country-fee">$4,500</div>
+                    <div class="card-quote">"Maybe I'll live without teeth"</div>
+                    <div class="card-details">$7,000+ seems out of reach</div>
+                    <div class="card-hope">→ KiiS offers accessible alternative</div>
                 </div>
             </div>
             
-            <!-- Growth Projection -->
-            <div class="growth-section">
-                <div class="growth-card">
-                    <div class="growth-arrow" data-modal="growth">$2.1B → $3.1B</div>
-                    <div class="growth-subtitle">by 2030</div>
-                    <div class="cagr-info">6-10% CAGR</div>
+            <!-- Right Side: Hope Solution -->
+            <div class="hope-section">
+                <h2 class="section-title hope-title">The Power of "One More Chance"</h2>
+                
+                <!-- Main Hope Message -->
+                <div class="hope-main">
+                    <div class="hope-main-title">We Give One More Chance</div>
+                    <div class="hope-main-subtitle">Before bone grafting → Try KiiS first<br>Before revision → Try KiiS instead<br>Before giving up → Try KiiS technology</div>
                 </div>
                 
-                <div class="drivers-section">
-                    <div class="drivers-title">Growth Drivers:</div>
-                    
-                    <div class="driver-item">
-                        <div class="driver-icon">👴</div>
-                        <div class="driver-text">Baby Boomer Silver Tsunami</div>
+                <!-- Solution Benefits -->
+                <div class="solution-card">
+                    <div class="solution-header">
+                        <div class="solution-icon">⚡</div>
+                        <div class="solution-title">Immediate Benefits</div>
                     </div>
-                    
-                    <div class="driver-item">
-                        <div class="driver-icon">💉</div>
-                        <div class="driver-text">Post-COVID Pent-Up Demand</div>
+                    <div class="solution-text">No 6-month bone graft waiting</div>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-header">
+                        <div class="solution-icon">🛡️</div>
+                        <div class="solution-title">Revision Prevention</div>
                     </div>
-                    
-                    <div class="driver-item">
-                        <div class="driver-icon">💻</div>
-                        <div class="driver-text">Accelerated Digital Technology</div>
+                    <div class="solution-text">Strong bone integration reduces re-surgery risk</div>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-header">
+                        <div class="solution-icon">💰</div>
+                        <div class="solution-title">Accessible Pricing</div>
+                    </div>
+                    <div class="solution-text">Premium technology, affordable cost</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Market Opportunity -->
+        <div class="market-summary">
+            <div class="market-title">The Untapped Opportunity</div>
+            <div class="market-content">
+                
+                <!-- America's Paradox -->
+                <div class="opportunity-section">
+                    <h3 class="opportunity-title">🇺🇸 America's Paradox</h3>
+                    <div class="paradox-grid">
+                        <div class="paradox-item">
+                            <div class="paradox-label">Richest Country</div>
+                            <div class="paradox-value clickable" data-source="patient-population">178M Patients Need Treatment</div>
+                        </div>
+                        <div class="paradox-item">
+                            <div class="paradox-label">Poorest Access</div>
+                            <div class="paradox-value clickable" data-source="penetration-rate">Only 5.7% Can Get It</div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Data Sources -->
-                <div class="data-sources">
-                    <div class="sources-title">📊 Data Sources:</div>
-                    <div class="sources-text">
-                        • ADA (5M annual implants)<br>
-                        • iData Research 2025 ($2.1B manufacturer market)<br>
-                        • ADA Health Policy Institute 2024
+                <!-- Growth Potential -->
+                <div class="opportunity-section">
+                    <h3 class="opportunity-title">🚀 Why Market is Growing Now</h3>
+                    <div class="timing-factors">
+                        <div class="timing-item">
+                            <span class="timing-icon">👴</span>
+                            <span class="timing-text">Aging Population</span>
+                        </div>
+                        <div class="timing-plus">+</div>
+                        <div class="timing-item">
+                            <span class="timing-icon">💡</span>
+                            <span class="timing-text">Technology Breakthrough</span>
+                        </div>
+                        <div class="timing-equals">=</div>
+                        <div class="timing-result">Perfect Storm for Growth</div>
                     </div>
                 </div>
+                
+                <!-- Market Growth Trajectory -->
+                <div class="opportunity-section">
+                    <h3 class="opportunity-title">📈 Market Growth Trajectory</h3>
+                    <div class="growth-grid">
+                        <div class="growth-item">
+                            <div class="growth-arrow clickable" data-source="market-forecast">$1.5B → $3.0B</div>
+                            <div class="growth-label">Industry Forecast by 2030</div>
+                        </div>
+                        <div class="growth-item">
+                            <div class="growth-arrow clickable" data-source="penetration-trend">5.7% → 8-10%</div>
+                            <div class="growth-label">Gradual Penetration Growth</div>
+                        </div>
+                        <div class="growth-result">178M Patients Creating Sustained Demand</div>
+                    </div>
+                </div>
+                
+                <!-- KiiS Positioning -->
+                <div class="opportunity-section">
+                    <h3 class="opportunity-title">🎯 KiiS Rides the Wave</h3>
+                    <div style="text-align: center; padding: 20px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; border: 2px solid #ffd700;">
+                        <div style="font-size: 24px; font-weight: bold; color: #ffd700; margin-bottom: 10px;">
+                            "Right Technology. Right Time. Real Impact."
+                        </div>
+                        <div style="font-size: 16px; color: #e0e7ff; font-style: italic;">
+                            KiiS accelerates market growth into patient access
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
     
-    <!-- Modals for data explanations -->
-    <div id="modal-procedures" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">5M Annual Implant Procedures</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-definition">
-                    <strong>Definition:</strong> Total number of dental implant procedures performed annually in the United States, including both single tooth replacements and multi-tooth reconstructions.
-                </div>
-                <div class="modal-source">
-                    <div class="modal-source-title">📊 Primary Source:</div>
-                    <div class="modal-source-text">
-                        American Dental Association (ADA) - Official Healthcare Statistics<br>
-                        "Survey of Dental Practice: Implant Procedures 2024"
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-penetration" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">5.7% Implant Penetration Rate</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-definition">
-                    <strong>Definition:</strong> Percentage of tooth loss cases that are treated with dental implants versus alternative treatments (dentures, bridges, or no treatment).
-                </div>
-                <div class="modal-source">
-                    <div class="modal-source-title">📊 Primary Source:</div>
-                    <div class="modal-source-text">
-                        International Dental Implant Market Analysis 2024<br>
-                        Cross-referenced with ADA treatment statistics
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-market" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">$2.1B Manufacturer Market</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-definition">
-                    <strong>Definition:</strong> Total revenue generated by implant manufacturers selling to dentists/clinics. This represents the wholesale market size, not patient costs ($20B+ total healthcare spending).
-                </div>
-                <div class="modal-source">
-                    <div class="modal-source-title">📊 Primary Source:</div>
-                    <div class="modal-source-text">
-                        iData Research: "U.S. Dental Implant & Final Abutment Market Analysis 2025-2031"<br>
-                        Verified against industry revenue reports
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-growth" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">$2.1B → $3.1B Growth Projection</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-definition">
-                    <strong>Definition:</strong> Projected manufacturer market growth based on aging population, improved implant acceptance, and technological advances driving higher penetration rates.
-                </div>
-                <div class="modal-source">
-                    <div class="modal-source-title">📊 Primary Source:</div>
-                    <div class="modal-source-text">
-                        iData Research market projections (6-10% CAGR)<br>
-                        ADA Health Policy Institute demographic analysis<br>
-                        Conservative estimate compared to 15%+ global growth rates
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Source popup system -->
+    <div class="source-overlay" id="sourceOverlay"></div>
+    <div class="source-popup" id="sourcePopup">
+        <button class="source-close" id="sourceCloseBtn">&times;</button>
+        <div class="source-title" id="sourceTitle"></div>
+        <div class="source-content" id="sourceContent"></div>
     </div>
     
-    <!-- 네비게이션 호버 감지 영역 -->
+    <!-- Navigation -->
     <div class="hover-zone" id="hoverZone"></div>
     
-    <!-- 네비게이션 -->
     <div class="navigation" id="navigation">
         <a href="index.html" class="nav-btn prev">Back</a>
         <a href="slide3.html" class="nav-btn next">Next</a>
     </div>
     
     <script>
-        // Modal functionality
-        const modals = document.querySelectorAll('.modal');
-        const modalTriggers = document.querySelectorAll('[data-modal]');
-        const closeButtons = document.querySelectorAll('.close');
-        
-        // Open modals
-        modalTriggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const modalId = 'modal-' + trigger.dataset.modal;
-                const modal = document.getElementById(modalId);
-                if (modal) {
-                    modal.style.display = 'block';
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                }
-            });
-        });
-        
-        // Close modals
-        closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                button.closest('.modal').style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-        });
-        
-        // Close modal when clicking outside
-        modals.forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                modals.forEach(modal => {
-                    modal.style.display = 'none';
-                });
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // 네비게이션 기능 (동일한 시스템)
-        const navigation = document.getElementById('navigation');
-        const hoverZone = document.getElementById('hoverZone');
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        let hideTimeout;
+        // Global variables
+        let isPopupOpen = false;
         let isNavigationVisible = false;
+        let hideTimeout;
         
-        // 네비게이션 표시
-        function showNavigation() {
-            clearTimeout(hideTimeout);
-            navigation.classList.add('visible');
-            isNavigationVisible = true;
+        // Source data for popups
+        const sources = {
+            'patient-population': {
+                title: '178M Americans Need Dental Implants',
+                content: `
+                    <h3>📊 Population Data</h3>
+                    <p><strong>Source:</strong> American Dental Association (ADA) 2024 Health Statistics</p>
+                    <ul>
+                        <li><strong>Total affected:</strong> 178 million Americans have lost one or more teeth</li>
+                        <li><strong>Age breakdown:</strong> 35% adults 35-44, 65% adults 65+</li>
+                        <li><strong>Geographic spread:</strong> Nationwide, higher rates in rural areas</li>
+                        <li><strong>Annual increase:</strong> 3-5 million new cases yearly</li>
+                    </ul>
+                    <h3>🔍 Methodology</h3>
+                    <p>Data collected from national health surveys, dental practice records, and insurance claims analysis across all 50 states.</p>
+                `
+            },
+            'penetration-rate': {
+                title: '5.7% Implant Penetration Rate',
+                content: `
+                    <h3>📈 Current Access Rate</h3>
+                    <p><strong>Source:</strong> International Dental Implant Market Analysis 2024</p>
+                    <ul>
+                        <li><strong>US Rate:</strong> 5.7% (lowest among developed nations)</li>
+                        <li><strong>Comparison:</strong> Switzerland 38%, Germany 25%, South Korea 13.3%</li>
+                        <li><strong>Barriers:</strong> Cost (70%), procedure complexity (20%), awareness (10%)</li>
+                        <li><strong>Growth trend:</strong> +0.3% annually (very slow)</li>
+                    </ul>
+                    <h3>🌍 Global Context</h3>
+                    <p>Despite being the world's largest economy, the US ranks 6th in implant accessibility among developed nations.</p>
+                `
+            },
+            'market-forecast': {
+                title: '$1.5B → $3.0B Industry Forecast',
+                content: `
+                    <h3>📈 Conservative Market Projections</h3>
+                    <p><strong>Sources:</strong> iData Research 2025, ADA Market Reports, Industry Consensus</p>
+                    <ul>
+                        <li><strong>Current market:</strong> $1.5B (manufacturer level, 2024)</li>
+                        <li><strong>Industry forecast:</strong> $3.0B by 2030 (6-8% CAGR)</li>
+                        <li><strong>Growth drivers:</strong> Aging population, improved technology, insurance coverage</li>
+                        <li><strong>Conservative estimate:</strong> Based on multiple independent analyses</li>
+                    </ul>
+                    <h3>🎯 Market Reality</h3>
+                    <p>This growth represents natural market evolution driven by demographic trends and technological advancement, not dependent on any single innovation.</p>
+                `
+            },
+            'penetration-trend': {
+                title: '5.7% → 8-10% Gradual Growth',
+                content: `
+                    <h3>📊 Realistic Penetration Increase</h3>
+                    <p><strong>Analysis:</strong> Conservative projection based on demographic trends</p>
+                    <ul>
+                        <li><strong>Current rate:</strong> 5.7% (2024)</li>
+                        <li><strong>Natural growth:</strong> 8-10% by 2030 (industry consensus)</li>
+                        <li><strong>Key drivers:</strong> Baby Boomer aging, technology improvements</li>
+                        <li><strong>Comparison:</strong> Still below South Korea (13.3%) and Germany (25%)</li>
+                    </ul>
+                    <h3>🌍 Global Context</h3>
+                    <p>Even reaching 10% would keep the US below average among developed nations, indicating significant room for continued growth.</p>
+                `
+            }
+        };
+        
+        // Source popup functions
+        function showSource(sourceId) {
+            const source = sources[sourceId];
+            if (!source) return;
+            
+            // Set popup content
+            document.getElementById('sourceTitle').textContent = source.title;
+            document.getElementById('sourceContent').innerHTML = source.content;
+            
+            // Show popup
+            const overlay = document.getElementById('sourceOverlay');
+            const popup = document.getElementById('sourcePopup');
+            
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+            
+            // Store original overflow style and set hidden
+            document.body.dataset.originalOverflow = document.body.style.overflow || 'auto';
+            document.body.style.overflow = 'hidden';
+            
+            isPopupOpen = true;
         }
         
-        // 네비게이션 숨기기 (지연 적용)
+        function hideSource() {
+            const overlay = document.getElementById('sourceOverlay');
+            const popup = document.getElementById('sourcePopup');
+            
+            if (overlay) overlay.style.display = 'none';
+            if (popup) popup.style.display = 'none';
+            
+            // Restore original overflow
+            const originalOverflow = document.body.dataset.originalOverflow || 'auto';
+            document.body.style.overflow = originalOverflow;
+            delete document.body.dataset.originalOverflow;
+            
+            isPopupOpen = false;
+        }
+        
+        // Navigation functions
+        function showNavigation() {
+            if (hideTimeout) {
+                clearTimeout(hideTimeout);
+            }
+            const navigation = document.getElementById('navigation');
+            if (navigation) {
+                navigation.classList.add('visible');
+                isNavigationVisible = true;
+            }
+        }
+        
         function hideNavigation(delay = 2000) {
-            clearTimeout(hideTimeout);
+            if (hideTimeout) {
+                clearTimeout(hideTimeout);
+            }
             hideTimeout = setTimeout(() => {
-                navigation.classList.remove('visible');
-                isNavigationVisible = false;
+                const navigation = document.getElementById('navigation');
+                if (navigation) {
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                }
             }, delay);
         }
         
-        // PC/데스크톱: 마우스 호버 기능 (개선된 버전)
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close popup with overlay click
+            document.getElementById('sourceOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideSource();
+                }
+            });
+            
+            // Close popup with close button
+            document.getElementById('sourceCloseBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                hideSource();
+            });
+            
+            // Add click events to all clickable data elements
+            document.querySelectorAll('.clickable[data-source]').forEach(element => {
+                element.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showSource(this.dataset.source);
+                });
+            });
+        });
+        
+        // Touch and mouse navigation
+        const navigation = document.getElementById('navigation');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        // PC/Desktop: Mouse hover functionality
         if (!isTouchDevice) {
-            console.log('PC 모드: 네비게이션 호버 기능 활성화');
-            
-            // 방법 1: 호버존 이벤트
-            if (hoverZone) {
-                hoverZone.addEventListener('mouseenter', () => {
-                    console.log('호버존 진입');
-                    showNavigation();
-                });
-                
-                hoverZone.addEventListener('mouseleave', () => {
-                    console.log('호버존 이탈');
-                    hideNavigation(1000);
-                });
-            }
-            
-            // 방법 2: 전체 문서에서 마우스 위치 추적 (더 확실한 방법)
             let lastMouseY = 0;
             document.addEventListener('mousemove', (e) => {
                 lastMouseY = e.clientY;
                 const windowHeight = window.innerHeight;
                 
-                // 마우스가 화면 하단 120px 안에 있을 때
                 if (lastMouseY > windowHeight - 120) {
                     if (!isNavigationVisible) {
-                        console.log(`마우스 하단 감지: ${lastMouseY} > ${windowHeight - 120}`);
                         showNavigation();
                     }
                 } else if (isNavigationVisible && !navigation.matches(':hover')) {
-                    // 마우스가 네비게이션을 호버하고 있지 않고, 하단 영역을 벗어났을 때
                     hideNavigation(1500);
                 }
             });
             
-            // 방법 3: 네비게이션 자체 호버
             navigation.addEventListener('mouseenter', () => {
-                console.log('네비게이션 호버 시작');
                 clearTimeout(hideTimeout);
                 showNavigation();
             });
             
             navigation.addEventListener('mouseleave', () => {
-                console.log('네비게이션 호버 종료');
                 hideNavigation(1000);
             });
-            
-            // 방법 4: 추가 안전장치 - 주기적으로 마우스 위치 확인
-            setInterval(() => {
-                const windowHeight = window.innerHeight;
-                if (lastMouseY > windowHeight - 120 && !isNavigationVisible) {
-                    console.log('주기적 확인: 마우스 하단 위치 감지');
-                    showNavigation();
-                }
-            }, 1000);
-            
-            // PC 사용자를 위한 힌트 (개발 중에만)
-            setTimeout(() => {
-                console.log('💡 PC 사용 팁: 화면 하단으로 마우스를 이동하면 네비게이션이 나타납니다');
-                console.log('🔍 또는 키보드 화살표 키를 사용하세요');
-            }, 2000);
         }
         
-        // 터치 디바이스: 탭 및 스와이프 기능
+        // Touch devices: Tap and swipe functionality
         if (isTouchDevice) {
             let startX = 0;
             let startY = 0;
             let startTime = 0;
             
-            // 터치 시작
             document.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 startTime = Date.now();
                 
-                // 화면 하단을 터치하면 네비게이션 표시
                 const touchY = e.touches[0].clientY;
                 const windowHeight = window.innerHeight;
                 
@@ -882,7 +1109,6 @@
                 }
             });
             
-            // 터치 종료 (스와이프 감지)
             document.addEventListener('touchend', (e) => {
                 const endX = e.changedTouches[0].clientX;
                 const endY = e.changedTouches[0].clientY;
@@ -892,30 +1118,25 @@
                 const deltaY = endY - startY;
                 const deltaTime = endTime - startTime;
                 
-                // 스와이프 조건: 수평 이동 50px 이상, 시간 300ms 이하, 수평 이동이 수직 이동보다 클 때
                 if (Math.abs(deltaX) > 50 && 
                     deltaTime < 300 && 
                     Math.abs(deltaX) > Math.abs(deltaY)) {
                     
                     if (deltaX > 0) {
-                        // 오른쪽 스와이프 - 이전 슬라이드
                         window.location.href = 'index.html';
                     } else {
-                        // 왼쪽 스와이프 - 다음 슬라이드
                         window.location.href = 'slide3.html';
                     }
                 }
             });
             
-            // 화면 탭으로 네비게이션 토글
             let tapCount = 0;
             document.addEventListener('touchend', (e) => {
-                // 다른 요소를 탭한 경우 제외
-                if (e.target.closest('.metric-card') || 
-                    e.target.closest('.country-item') || 
-                    e.target.closest('.growth-card') ||
-                    e.target.closest('.driver-item') ||
-                    e.target.closest('.navigation')) {
+                // Exclude interactive areas
+                if (e.target.closest('.clickable') || 
+                    e.target.closest('.navigation') ||
+                    e.target.closest('.source-popup') ||
+                    e.target.closest('.source-overlay')) {
                     return;
                 }
                 
@@ -923,7 +1144,6 @@
                 if (tapCount === 1) {
                     setTimeout(() => {
                         if (tapCount === 1) {
-                            // 단일 탭 - 네비게이션 토글
                             if (isNavigationVisible) {
                                 navigation.classList.remove('visible');
                                 isNavigationVisible = false;
@@ -939,8 +1159,20 @@
             });
         }
         
-        // 키보드 네비게이션 (모든 디바이스)
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
+            // Handle ESC for popup first
+            if (e.key === 'Escape') {
+                if (isPopupOpen) {
+                    e.preventDefault();
+                    hideSource();
+                    return;
+                }
+            }
+            
+            // Only handle navigation if popup is not open
+            if (isPopupOpen) return;
+            
             switch(e.key) {
                 case 'ArrowLeft':
                 case 'ArrowUp':
@@ -953,14 +1185,8 @@
                     e.preventDefault();
                     window.location.href = 'slide3.html';
                     break;
-                case 'Escape':
-                    navigation.classList.remove('visible');
-                    isNavigationVisible = false;
-                    clearTimeout(hideTimeout);
-                    break;
                 case 'n':
                 case 'N':
-                    // 'n' 키로 네비게이션 토글
                     if (isNavigationVisible) {
                         navigation.classList.remove('visible');
                         isNavigationVisible = false;
@@ -973,84 +1199,78 @@
             }
         });
         
-        // 페이지 로드 시 애니메이션
+        // Page load animation
         window.addEventListener('load', function() {
-            const metricCards = document.querySelectorAll('.metric-card');
-            const progressBars = document.querySelectorAll('.progress-fill');
-            const title = document.querySelector('.title');
-            const countryChart = document.querySelector('.country-chart');
-            const growthSection = document.querySelector('.growth-section');
+            const header = document.querySelector('.main-header');
+            const mainContent = document.querySelector('.main-content');
+            const marketSummary = document.querySelector('.market-summary');
+            const crisisCards = document.querySelectorAll('.crisis-card');
+            const solutionCards = document.querySelectorAll('.solution-card');
             
-            // 초기 상태 설정
-            title.style.opacity = '0';
-            title.style.transform = 'translateY(-30px)';
-            title.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            metricCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            // Initial state
+            [header, mainContent, marketSummary].forEach(el => {
+                if (el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                }
             });
             
-            countryChart.style.opacity = '0';
-            countryChart.style.transform = 'translateX(-50px)';
-            countryChart.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            growthSection.style.opacity = '0';
-            growthSection.style.transform = 'translateX(50px)';
-            growthSection.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            // 프로그레스 바 초기 상태
-            progressBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.dataset.targetWidth = width;
-                bar.style.width = '0%';
-            });
-            
-            // 순차적 애니메이션 실행
+            // Sequential animation
             setTimeout(() => {
-                // 1. 타이틀 애니메이션
-                title.style.opacity = '1';
-                title.style.transform = 'translateY(0)';
+                if (header) {
+                    header.style.opacity = '1';
+                    header.style.transform = 'translateY(0)';
+                }
                 
-                // 2. 메트릭 카드들 애니메이션
                 setTimeout(() => {
-                    metricCards.forEach((card, index) => {
+                    if (mainContent) {
+                        mainContent.style.opacity = '1';
+                        mainContent.style.transform = 'translateY(0)';
+                    }
+                    
+                    // Animate cards
+                    crisisCards.forEach((card, index) => {
                         setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateX(-20px)';
+                            card.style.transition = 'all 0.5s ease';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateX(0)';
+                            }, 100);
                         }, index * 200);
                     });
-                }, 300);
-                
-                // 3. 하단 섹션 애니메이션
-                setTimeout(() => {
-                    countryChart.style.opacity = '1';
-                    countryChart.style.transform = 'translateX(0)';
                     
-                    growthSection.style.opacity = '1';
-                    growthSection.style.transform = 'translateX(0)';
-                }, 900);
-                
-                // 4. 프로그레스 바 애니메이션
-                setTimeout(() => {
-                    progressBars.forEach((bar, index) => {
+                    solutionCards.forEach((card, index) => {
                         setTimeout(() => {
-                            bar.style.width = bar.dataset.targetWidth;
-                        }, index * 100);
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateX(20px)';
+                            card.style.transition = 'all 0.5s ease';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateX(0)';
+                            }, 100);
+                        }, index * 200 + 300);
                     });
+                }, 400);
+                
+                setTimeout(() => {
+                    if (marketSummary) {
+                        marketSummary.style.opacity = '1';
+                        marketSummary.style.transform = 'translateY(0)';
+                    }
                 }, 1200);
                 
-                // 5. 네비게이션 힌트 (잠깐 표시)
                 setTimeout(() => {
                     showNavigation();
                     hideNavigation(2000);
-                }, 2500);
+                }, 2000);
                 
             }, 300);
         });
         
-        // 접근성 향상을 위한 포커스 관리
+        // Accessibility
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 showNavigation();
@@ -1058,37 +1278,12 @@
             }
         });
         
-        // 브라우저 크기 변경 시 네비게이션 위치 재조정
-        window.addEventListener('resize', () => {
-            if (isNavigationVisible) {
-                clearTimeout(hideTimeout);
-                hideNavigation(1000);
-            }
-        });
-        
-        // 네비게이션 링크에 대한 추가 이벤트
         document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                clearTimeout(hideTimeout);
-            });
-            
             btn.addEventListener('focus', () => {
                 showNavigation();
                 clearTimeout(hideTimeout);
             });
         });
-        
-        // 개발자 도구에서 네비게이션 상태 확인 (디버깅용)
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log('🎯 KiiS Slide2 시장 기회 네비게이션 시스템 활성화 (업데이트됨)');
-            console.log('📱 터치 디바이스:', isTouchDevice);
-            console.log('⌨️  키보드 단축키: ← → ↑ ↓ Space(다음), Esc(숨기기), N(토글)');
-            console.log('🖱️  PC: 화면 하단 호버 또는 마우스 이동');
-            console.log('👆 모바일: 화면 하단 터치, 스와이프, 화면 탭');
-            console.log('📊 업데이트된 시장 데이터: 5M 연간 시술, 5.7% 침투율, $2.1B 제조사 시장');
-            console.log('📈 성장 전망: $2.1B → $3.1B (6-10% CAGR)');
-            console.log('💡 클릭 기능: 숫자들을 클릭하면 정확한 정의와 출처를 확인할 수 있습니다');
-        }
     </script>
 </body>
 </html>
