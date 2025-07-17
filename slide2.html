@@ -216,275 +216,51 @@
             line-height: 1.3;
         }
         
-        /* Market Opportunity Styles */
-        .market-summary {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .market-title {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 30px;
+        /* Bridge Section - NEW */
+        .bridge-section {
             text-align: center;
-        }
-        
-        .market-content {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        
-        .opportunity-section {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 4px solid #ffd700;
-        }
-        
-        .opportunity-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 15px;
-        }
-        
-        /* America's Paradox */
-        .paradox-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        
-        .paradox-item {
-            text-align: center;
-            padding: 15px;
-            background: rgba(239, 68, 68, 0.1);
-            border-radius: 10px;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-        
-        .paradox-label {
-            font-size: 14px;
-            color: #fecaca;
-            margin-bottom: 5px;
-        }
-        
-        .paradox-value {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffffff;
-        }
-        
-        /* Growth Potential */
-        .growth-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .growth-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 8px;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-        
-        .growth-arrow {
-            font-size: 22px;
-            font-weight: bold;
-            color: #ffd700;
-        }
-        
-        .growth-label {
-            font-size: 16px;
-            color: #d1fae5;
-        }
-        
-        .growth-result {
-            font-size: 18px;
-            font-weight: bold;
-            color: #10b981;
-            text-align: center;
-            padding: 15px;
-            background: rgba(16, 185, 129, 0.2);
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-        
-        /* Why Now */
-        .timing-factors {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .timing-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 15px;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 8px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-        
-        .timing-icon {
-            font-size: 20px;
-        }
-        
-        .timing-text {
-            font-size: 16px;
-            color: #dbeafe;
-        }
-        
-        .timing-plus, .timing-equals {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffd700;
-        }
-        
-        .timing-result {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffd700;
-            text-align: center;
-            padding: 12px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            flex: 1;
-            min-width: 100%;
-            margin-top: 10px;
-        }
-        
-        .clickable {
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .clickable:hover {
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .clickable::after {
-            content: "ℹ️";
-            position: absolute;
-            top: -5px;
-            right: -20px;
-            font-size: 12px;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-        
-        .clickable:hover::after {
-            opacity: 1;
-        }
-        
-        /* Source popup styles */
-        .source-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1500;
-            backdrop-filter: blur(5px);
-        }
-        
-        .source-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #1e40af, #1d4ed8);
-            color: white;
+            margin-top: 40px;
             padding: 40px;
-            border-radius: 20px;
-            border: 2px solid #ffd700;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            z-index: 1600;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: popupSlideIn 0.3s ease-out;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 25px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
         }
         
-        @keyframes popupSlideIn {
-            from {
-                transform: translate(-50%, -60%);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-50%, -50%);
-                opacity: 1;
-            }
-        }
-        
-        .source-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #ffd700;
+        .bridge-message {
             font-size: 28px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .source-close:hover {
-            color: #fff;
-        }
-        
-        .source-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 20px;
-            padding-right: 40px;
-        }
-        
-        .source-content {
-            line-height: 1.6;
-        }
-        
-        .source-content h3 {
-            color: #ffd700;
-            margin: 20px 0 10px 0;
-            font-size: 18px;
-        }
-        
-        .source-content p {
-            margin-bottom: 15px;
-            color: #e0e7ff;
-        }
-        
-        .source-content ul {
-            margin-left: 20px;
+            color: #ffffff;
+            line-height: 1.4;
             margin-bottom: 15px;
         }
         
-        .source-content li {
-            margin-bottom: 8px;
-            color: #e0e7ff;
+        .bridge-highlight {
+            color: #ffd700;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 32px;
+            display: block;
+            margin-top: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
-        .source-content strong {
+        .bridge-arrow {
+            font-size: 36px;
             color: #ffd700;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
         
         /* Mobile Optimization - Galaxy Smartphone Specific */
@@ -494,35 +270,12 @@
                 gap: 30px;
             }
             
-            .paradox-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            
-            .timing-factors {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .timing-item {
-                justify-content: center;
-                text-align: center;
-            }
-            
             /* Apply mobile alignment principles */
             .main-header {
                 text-align: center;
             }
             
             .section-title {
-                text-align: center;
-            }
-            
-            .market-title, .opportunity-title {
-                text-align: center;
-            }
-            
-            .growth-result {
                 text-align: center;
             }
             
@@ -544,17 +297,9 @@
                 text-align: center;
             }
             
-            /* Paradox items: center for mobile */
-            .paradox-item {
+            /* Bridge section: already centered */
+            .bridge-section {
                 text-align: center;
-            }
-            
-            /* Growth items: center for mobile */
-            .growth-item {
-                justify-content: center;
-                text-align: center;
-                flex-direction: column;
-                gap: 5px;
             }
         }
         
@@ -621,44 +366,20 @@
                 line-height: 1.3;
             }
             
-            .market-title {
+            .bridge-message {
                 font-size: 20px;
                 text-align: center;
-                margin-bottom: 20px;
+                line-height: 1.4;
             }
             
-            .opportunity-title {
-                font-size: 16px;
+            .bridge-highlight {
+                font-size: 24px;
                 text-align: center;
-                margin-bottom: 12px;
             }
             
-            .paradox-value {
-                font-size: 14px;
-                line-height: 1.2;
-            }
-            
-            .paradox-label {
-                font-size: 12px;
-            }
-            
-            .growth-arrow {
-                font-size: 16px;
-            }
-            
-            .growth-label {
-                font-size: 14px;
-            }
-            
-            .timing-result {
-                font-size: 14px;
-                text-align: center;
-                line-height: 1.3;
-                padding: 10px;
-            }
-            
-            .timing-text {
-                font-size: 14px;
+            .bridge-section {
+                padding: 25px;
+                margin-top: 30px;
             }
             
             /* Mobile-specific adjustments for better visual flow */
@@ -782,124 +503,24 @@
                 border-radius: 12px;
             }
             
-            .market-summary {
+            .bridge-section {
                 padding: 20px;
                 border-radius: 15px;
+                margin-top: 25px;
             }
             
-            .market-title {
+            .bridge-message {
                 font-size: 18px;
-                margin-bottom: 15px;
-            }
-            
-            .market-content {
-                gap: 15px;
-            }
-            
-            .opportunity-section {
-                padding: 15px;
-                border-radius: 12px;
-            }
-            
-            .opportunity-title {
-                font-size: 15px;
-                margin-bottom: 10px;
-            }
-            
-            .paradox-item {
-                padding: 12px;
-                border-radius: 8px;
-            }
-            
-            .paradox-label {
-                font-size: 11px;
-                margin-bottom: 4px;
-            }
-            
-            .paradox-value {
-                font-size: 13px;
-                line-height: 1.2;
-            }
-            
-            .timing-item {
-                padding: 8px 12px;
-                border-radius: 6px;
-            }
-            
-            .timing-icon {
-                font-size: 16px;
-            }
-            
-            .timing-text {
-                font-size: 12px;
-            }
-            
-            .timing-plus, .timing-equals {
-                font-size: 16px;
-            }
-            
-            .timing-result {
-                font-size: 13px;
-                padding: 8px;
-                border-radius: 6px;
-            }
-            
-            .growth-item {
-                padding: 10px;
-                border-radius: 6px;
-                flex-direction: column;
-                gap: 3px;
-            }
-            
-            .growth-arrow {
-                font-size: 14px;
-            }
-            
-            .growth-label {
-                font-size: 12px;
-            }
-            
-            .growth-result {
-                font-size: 14px;
-                padding: 12px;
-                border-radius: 8px;
-            }
-            
-            .source-popup {
-                max-width: 90%;
-                padding: 25px;
-                margin: 20px;
-                border-radius: 15px;
-                max-height: 70vh;
-            }
-            
-            .source-title {
-                font-size: 18px;
-                margin-bottom: 15px;
-                padding-right: 30px;
-            }
-            
-            .source-content h3 {
-                font-size: 15px;
-                margin: 15px 0 8px 0;
-            }
-            
-            .source-content p {
-                font-size: 13px;
                 margin-bottom: 12px;
-                line-height: 1.4;
             }
             
-            .source-content li {
-                font-size: 13px;
-                margin-bottom: 6px;
-                line-height: 1.4;
+            .bridge-highlight {
+                font-size: 20px;
             }
             
-            .source-close {
-                font-size: 24px;
-                top: 12px;
-                right: 15px;
+            .bridge-arrow {
+                font-size: 28px;
+                margin: 15px 0;
             }
         }
         
@@ -953,24 +574,12 @@
                 font-size: 11px;
             }
             
-            .market-title {
+            .bridge-message {
                 font-size: 16px;
             }
             
-            .opportunity-title {
-                font-size: 14px;
-            }
-            
-            .paradox-value {
-                font-size: 12px;
-            }
-            
-            .timing-text {
-                font-size: 11px;
-            }
-            
-            .timing-result {
-                font-size: 12px;
+            .bridge-highlight {
+                font-size: 18px;
             }
         }
         
@@ -1130,83 +739,14 @@
             </div>
         </div>
         
-        <!-- Bottom Market Opportunity -->
-        <div class="market-summary">
-            <div class="market-title">The Untapped Opportunity</div>
-            <div class="market-content">
-                
-                <!-- America's Paradox -->
-                <div class="opportunity-section">
-                    <h3 class="opportunity-title">🇺🇸 America's Paradox</h3>
-                    <div class="paradox-grid">
-                        <div class="paradox-item">
-                            <div class="paradox-label">Richest Country</div>
-                            <div class="paradox-value clickable" data-source="patient-population">178M Patients Need Treatment</div>
-                        </div>
-                        <div class="paradox-item">
-                            <div class="paradox-label">Poorest Access</div>
-                            <div class="paradox-value clickable" data-source="penetration-rate">Only 5.7% Can Get It</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Growth Potential -->
-                <div class="opportunity-section">
-                    <h3 class="opportunity-title">🚀 Why Market is Growing Now</h3>
-                    <div class="timing-factors">
-                        <div class="timing-item">
-                            <span class="timing-icon">👴</span>
-                            <span class="timing-text">Aging Population</span>
-                        </div>
-                        <div class="timing-plus">+</div>
-                        <div class="timing-item">
-                            <span class="timing-icon">💡</span>
-                            <span class="timing-text">Post-COVID Pent-Up Demand</span>
-                        </div>
-                        <div class="timing-equals">=</div>
-                        <div class="timing-result">Perfect Storm for Growth</div>
-                    </div>
-                </div>
-                
-                <!-- Market Growth Trajectory -->
-                <div class="opportunity-section">
-                    <h3 class="opportunity-title">📈 Market Growth Trajectory</h3>
-                    <div class="growth-grid">
-                        <div class="growth-item">
-                            <div class="growth-arrow clickable" data-source="market-forecast">$1.5B → $3.0B</div>
-                            <div class="growth-label">Industry Forecast by 2030</div>
-                        </div>
-                        <div class="growth-item">
-                            <div class="growth-arrow clickable" data-source="penetration-trend">5.7% → 8-10%</div>
-                            <div class="growth-label">Gradual Penetration Growth</div>
-                        </div>
-                        <div class="growth-result">178M Patients Creating Sustained Demand</div>
-                    </div>
-                </div>
-                
-                <!-- KiiS Positioning -->
-                <div class="opportunity-section">
-                    <h3 class="opportunity-title">🎯 KiiS Rides the Wave</h3>
-                    <div style="text-align: center; padding: 20px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; border: 2px solid #ffd700;">
-                        <div style="font-size: 24px; font-weight: bold; color: #ffd700; margin-bottom: 10px;">
-                            "Right Technology. Right Time. Real Impact."
-                        </div>
-                        <div style="font-size: 16px; color: #e0e7ff; font-style: italic;">
-                            KiiS accelerates market growth into patient access
-                        </div>
-                    </div>
-                </div>
-                
+        <!-- Bridge to Next Slide -->
+        <div class="bridge-section">
+            <div class="bridge-message">
+                Every patient deserves One More Chance.
             </div>
+            <div class="bridge-arrow">↓</div>
+            <span class="bridge-highlight">Let's show you how big this opportunity really is.</span>
         </div>
-    </div>
-    
-    <!-- Source popup system -->
-    <div class="source-overlay" id="sourceOverlay"></div>
-    <div class="source-popup" id="sourcePopup">
-        <button class="source-close" id="sourceCloseBtn">&times;</button>
-        <div class="source-title" id="sourceTitle"></div>
-        <div class="source-content" id="sourceContent"></div>
     </div>
     
     <!-- Navigation -->
@@ -1219,111 +759,8 @@
     
     <script>
         // Global variables
-        let isPopupOpen = false;
         let isNavigationVisible = false;
         let hideTimeout;
-        
-        // Source data for popups
-        const sources = {
-            'patient-population': {
-                title: '178M Americans Need Dental Implants',
-                content: `
-                    <h3>📊 Population Data</h3>
-                    <p><strong>Source:</strong> American Dental Association (ADA) 2024 Health Statistics</p>
-                    <ul>
-                        <li><strong>Total affected:</strong> 178 million Americans have lost one or more teeth</li>
-                        <li><strong>Age breakdown:</strong> 35% adults 35-44, 65% adults 65+</li>
-                        <li><strong>Geographic spread:</strong> Nationwide, higher rates in rural areas</li>
-                        <li><strong>Annual increase:</strong> 3-5 million new cases yearly</li>
-                    </ul>
-                    <h3>🔍 Methodology</h3>
-                    <p>Data collected from national health surveys, dental practice records, and insurance claims analysis across all 50 states.</p>
-                `
-            },
-            'penetration-rate': {
-                title: '5.7% Implant Penetration Rate',
-                content: `
-                    <h3>📈 Current Access Rate</h3>
-                    <p><strong>Source:</strong> International Dental Implant Market Analysis 2024</p>
-                    <ul>
-                        <li><strong>US Rate:</strong> 5.7% (lowest among developed nations)</li>
-                        <li><strong>Comparison:</strong> Switzerland 38%, Germany 25%, South Korea 13.3%</li>
-                        <li><strong>Barriers:</strong> Cost (70%), procedure complexity (20%), awareness (10%)</li>
-                        <li><strong>Growth trend:</strong> +0.3% annually (very slow)</li>
-                    </ul>
-                    <h3>🌍 Global Context</h3>
-                    <p>Despite being the world's largest economy, the US ranks 6th in implant accessibility among developed nations.</p>
-                `
-            },
-            'market-forecast': {
-                title: '$1.5B → $3.0B Industry Forecast',
-                content: `
-                    <h3>📈 Conservative Market Projections</h3>
-                    <p><strong>Sources:</strong> iData Research 2025, ADA Market Reports, Industry Consensus</p>
-                    <ul>
-                        <li><strong>Current market:</strong> $1.5B (manufacturer level, 2024)</li>
-                        <li><strong>Industry forecast:</strong> $3.0B by 2030 (6-8% CAGR)</li>
-                        <li><strong>Growth drivers:</strong> Aging population, improved technology, insurance coverage</li>
-                        <li><strong>Conservative estimate:</strong> Based on multiple independent analyses</li>
-                    </ul>
-                    <h3>🎯 Market Reality</h3>
-                    <p>This growth represents natural market evolution driven by demographic trends and technological advancement, not dependent on any single innovation.</p>
-                `
-            },
-            'penetration-trend': {
-                title: '5.7% → 8-10% Gradual Growth',
-                content: `
-                    <h3>📊 Realistic Penetration Increase</h3>
-                    <p><strong>Analysis:</strong> Conservative projection based on demographic trends</p>
-                    <ul>
-                        <li><strong>Current rate:</strong> 5.7% (2024)</li>
-                        <li><strong>Natural growth:</strong> 8-10% by 2030 (industry consensus)</li>
-                        <li><strong>Key drivers:</strong> Baby Boomer aging, technology improvements</li>
-                        <li><strong>Comparison:</strong> Still below South Korea (13.3%) and Germany (25%)</li>
-                    </ul>
-                    <h3>🌍 Global Context</h3>
-                    <p>Even reaching 10% would keep the US below average among developed nations, indicating significant room for continued growth.</p>
-                `
-            }
-        };
-        
-        // Source popup functions
-        function showSource(sourceId) {
-            const source = sources[sourceId];
-            if (!source) return;
-            
-            // Set popup content
-            document.getElementById('sourceTitle').textContent = source.title;
-            document.getElementById('sourceContent').innerHTML = source.content;
-            
-            // Show popup
-            const overlay = document.getElementById('sourceOverlay');
-            const popup = document.getElementById('sourcePopup');
-            
-            overlay.style.display = 'block';
-            popup.style.display = 'block';
-            
-            // Store original overflow style and set hidden
-            document.body.dataset.originalOverflow = document.body.style.overflow || 'auto';
-            document.body.style.overflow = 'hidden';
-            
-            isPopupOpen = true;
-        }
-        
-        function hideSource() {
-            const overlay = document.getElementById('sourceOverlay');
-            const popup = document.getElementById('sourcePopup');
-            
-            if (overlay) overlay.style.display = 'none';
-            if (popup) popup.style.display = 'none';
-            
-            // Restore original overflow
-            const originalOverflow = document.body.dataset.originalOverflow || 'auto';
-            document.body.style.overflow = originalOverflow;
-            delete document.body.dataset.originalOverflow;
-            
-            isPopupOpen = false;
-        }
         
         // Navigation functions
         function showNavigation() {
@@ -1349,32 +786,6 @@
                 }
             }, delay);
         }
-        
-        // Initialize event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            // Close popup with overlay click
-            document.getElementById('sourceOverlay').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    hideSource();
-                }
-            });
-            
-            // Close popup with close button
-            document.getElementById('sourceCloseBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                hideSource();
-            });
-            
-            // Add click events to all clickable data elements
-            document.querySelectorAll('.clickable[data-source]').forEach(element => {
-                element.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    showSource(this.dataset.source);
-                });
-            });
-        });
         
         // Touch and mouse navigation
         const navigation = document.getElementById('navigation');
@@ -1450,10 +861,7 @@
             let tapCount = 0;
             document.addEventListener('touchend', (e) => {
                 // Exclude interactive areas
-                if (e.target.closest('.clickable') || 
-                    e.target.closest('.navigation') ||
-                    e.target.closest('.source-popup') ||
-                    e.target.closest('.source-overlay')) {
+                if (e.target.closest('.navigation')) {
                     return;
                 }
                 
@@ -1478,18 +886,6 @@
         
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            // Handle ESC for popup first
-            if (e.key === 'Escape') {
-                if (isPopupOpen) {
-                    e.preventDefault();
-                    hideSource();
-                    return;
-                }
-            }
-            
-            // Only handle navigation if popup is not open
-            if (isPopupOpen) return;
-            
             switch(e.key) {
                 case 'ArrowLeft':
                 case 'ArrowUp':
@@ -1520,12 +916,12 @@
         window.addEventListener('load', function() {
             const header = document.querySelector('.main-header');
             const mainContent = document.querySelector('.main-content');
-            const marketSummary = document.querySelector('.market-summary');
+            const bridgeSection = document.querySelector('.bridge-section');
             const crisisCards = document.querySelectorAll('.crisis-card');
             const solutionCards = document.querySelectorAll('.solution-card');
             
             // Initial state
-            [header, mainContent, marketSummary].forEach(el => {
+            [header, mainContent, bridgeSection].forEach(el => {
                 if (el) {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(30px)';
@@ -1573,9 +969,9 @@
                 }, 400);
                 
                 setTimeout(() => {
-                    if (marketSummary) {
-                        marketSummary.style.opacity = '1';
-                        marketSummary.style.transform = 'translateY(0)';
+                    if (bridgeSection) {
+                        bridgeSection.style.opacity = '1';
+                        bridgeSection.style.transform = 'translateY(0)';
                     }
                 }, 1200);
                 
