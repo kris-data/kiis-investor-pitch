@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KiiS - Go-To-Market Strategy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 60px 80px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .left-side {
+            flex: 1;
+            padding-right: 60px;
+            max-width: 700px;
+        }
+        
+        .right-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+        }
+        
+        .title {
+            font-size: 56px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 60px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            line-height: 1.1;
+        }
+        
+        .strategy-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .strategy-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 25px 30px;
+            background: linear-gradient(145deg, #1e40af, #1d4ed8);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #ffd700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .strategy-item:hover {
+            transform: translateY(-5px) translateX(10px);
+            border-left-color: #ffffff;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, #2563eb, #1e40af);
+        }
+        
+        .strategy-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-right: 25px;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .strategy-text {
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: white;
+        }
+        
+        .strategy-text .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .rocket-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+            height: 600px;
+            position: relative;
+        }
+        
+        .rocket {
+            position: relative;
+            width: 80px;
+            height: 200px;
+            margin-bottom: 60px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .rocket-body {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(145deg, #3b82f6, #1e40af);
+            border-radius: 40px 40px 10px 10px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .rocket-nose {
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 60px solid #ffd700;
+            position: absolute;
+            top: -60px;
+            left: 0;
+            filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.4));
+        }
+        
+        .rocket-fin {
+            width: 30px;
+            height: 50px;
+            background: linear-gradient(145deg, #1e40af, #1d4ed8);
+            position: absolute;
+            bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .rocket-fin.left {
+            left: -15px;
+            transform: skew(-10deg);
+        }
+        
+        .rocket-fin.right {
+            right: -15px;
+            transform: skew(10deg);
+        }
+        
+        .rocket-window {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #87ceeb 0%, #4682b4 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            left: 25px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .rocket-fire {
+            width: 40px;
+            height: 80px;
+            background: linear-gradient(180deg, #ff6b35 0%, #f7931e 30%, #ffd700 70%, transparent 100%);
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            bottom: -70px;
+            left: 20px;
+            animation: flicker 0.5s ease-in-out infinite alternate;
+            filter: blur(2px);
+        }
+        
+        .strategy-label {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 2px dashed rgba(255, 215, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .label-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .label-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(-5px) rotate(-1deg); }
+        }
+        
+        @keyframes flicker {
+            0% { transform: scaleY(1) scaleX(1); opacity: 1; }
+            100% { transform: scaleY(1.1) scaleX(0.9); opacity: 0.8; }
+        }
+        
+        .implant-visual {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.8)) brightness(1.2) contrast(1.3);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .implant-visual:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        .visual-placeholder {
+            width: 500px;
+            height: 600px;
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.3), rgba(30, 64, 175, 0.2));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 2px dashed rgba(255, 215, 0, 0.5);
+            text-align: center;
+        }
+        
+        .placeholder-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            color: #ffd700;
+        }
+        
+        .placeholder-text {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .placeholder-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* 네비게이션 호버 감지 영역 */
+        .hover-zone {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 998;
+            pointer-events: auto;
+        }
+        
+        /* 네비게이션 스타일 */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .navigation.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 80px;
+            justify-content: center;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.prev::before {
+            content: "←";
+            font-size: 16px;
+        }
+        
+        .nav-btn.next::after {
+            content: "→";
+            font-size: 16px;
+        }
+        
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 0;
+            }
+            
+            .left-side {
+                padding-right: 0;
+                margin-bottom: 40px;
+                max-width: 100%;
+            }
+            
+            .title {
+                font-size: 42px;
+                margin-bottom: 40px;
+            }
+            
+            .strategy-item {
+                padding: 20px 25px;
+                margin-bottom: 20px;
+            }
+            
+            .strategy-number {
+                font-size: 28px;
+                margin-right: 20px;
+            }
+            
+            .strategy-text {
+                font-size: 18px;
+            }
+            
+            .rocket-container {
+                width: 350px;
+                height: 400px;
+            }
+            
+            .rocket {
+                width: 60px;
+                height: 150px;
+                margin-bottom: 40px;
+            }
+            
+            .rocket-body {
+                width: 60px;
+                height: 90px;
+                border-radius: 30px 30px 8px 8px;
+            }
+            
+            .rocket-nose {
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+                border-bottom: 45px solid #ffd700;
+                top: -45px;
+            }
+            
+            .rocket-fin {
+                width: 20px;
+                height: 35px;
+            }
+            
+            .rocket-fin.left {
+                left: -10px;
+            }
+            
+            .rocket-fin.right {
+                right: -10px;
+            }
+            
+            .rocket-window {
+                width: 20px;
+                height: 20px;
+                top: 20px;
+                left: 20px;
+            }
+            
+            .rocket-fire {
+                width: 30px;
+                height: 60px;
+                bottom: -50px;
+                left: 15px;
+            }
+            
+            .label-title {
+                font-size: 22px;
+            }
+            
+            .label-subtitle {
+                font-size: 14px;
+            }
+            
+            body {
+                padding: 40px;
+            }
+            
+            .navigation {
+                padding: 12px 20px;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <h1 class="title">Go-To-Market Strategy</h1>
+            
+            <ol class="strategy-list">
+                <li class="strategy-item">
+                    <span class="strategy-number">1.</span>
+                    <span class="strategy-text">Product Positioning for <span class="highlight">Dual Market Expansion</span></span>
+                </li>
+                
+                <li class="strategy-item">
+                    <span class="strategy-number">2.</span>
+                    <span class="strategy-text"><span class="highlight">Superiority Claims</span> Marketing</span>
+                </li>
+                
+                <li class="strategy-item">
+                    <span class="strategy-number">3.</span>
+                    <span class="strategy-text"><span class="highlight">Digital First</span> Sales Channel</span>
+                </li>
+                
+                <li class="strategy-item">
+                    <span class="strategy-number">4.</span>
+                    <span class="strategy-text">Manufacturing Partnership in <span class="highlight">Korea</span></span>
+                </li>
+                
+                <li class="strategy-item">
+                    <span class="strategy-number">5.</span>
+                    <span class="strategy-text">Seasoned Leadership in <span class="highlight">global Life sciences</span></span>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="right-side">
+            <!-- CSS로 만든 로켓 아이콘 -->
+            <div class="rocket-container">
+                <div class="rocket">
+                    <div class="rocket-body"></div>
+                    <div class="rocket-nose"></div>
+                    <div class="rocket-fin left"></div>
+                    <div class="rocket-fin right"></div>
+                    <div class="rocket-window"></div>
+                    <div class="rocket-fire"></div>
+                </div>
+                <div class="strategy-label">
+                    <div class="label-title">Go-To-Market Strategy</div>
+                    <div class="label-subtitle">Strategic Market Expansion</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 네비게이션 호버 감지 영역 -->
+    <div class="hover-zone" id="hoverZone"></div>
+    
+    <!-- 네비게이션 -->
+    <div class="navigation" id="navigation">
+        <a href="slide7.html" class="nav-btn prev">Back</a>
+        <a href="slide9.html" class="nav-btn next">Next</a>
+    </div>
+    
+    <script>
+        // CSS 애니메이션 로켓 표시 (이미지 없음)
+        console.log('🎯 KiiS Slide8 로드됨 - CSS 로켓 애니메이션으로 표시');
+        console.log('🚀 GitHub Pages에서는 heroproduct1.png 이미지로 교체 가능');
+        
+        // 네비게이션 기능
+        const navigation = document.getElementById('navigation');
+        const hoverZone = document.getElementById('hoverZone');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let hideTimeout;
+        let isNavigationVisible = false;
+        
+        // 네비게이션 표시
+        function showNavigation() {
+            clearTimeout(hideTimeout);
+            navigation.classList.add('visible');
+            isNavigationVisible = true;
+        }
+        
+        // 네비게이션 숨기기
+        function hideNavigation(delay = 2000) {
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+            }, delay);
+        }
+        
+        // PC/데스크톱: 마우스 호버 기능
+        if (!isTouchDevice) {
+            let lastMouseY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                lastMouseY = e.clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (lastMouseY > windowHeight - 120) {
+                    if (!isNavigationVisible) {
+                        showNavigation();
+                    }
+                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                    hideNavigation(1500);
+                }
+            });
+            
+            navigation.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+                showNavigation();
+            });
+            
+            navigation.addEventListener('mouseleave', () => {
+                hideNavigation(1000);
+            });
+        }
+        
+        // 터치 디바이스: 터치 및 스와이프 기능
+        if (isTouchDevice) {
+            let startX = 0;
+            let startY = 0;
+            let startTime = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                
+                const touchY = e.touches[0].clientY;
+                const windowHeight = window.innerHeight;
+                
+                if (touchY > windowHeight - 120) {
+                    showNavigation();
+                    hideNavigation(3000);
+                }
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const endTime = Date.now();
+                
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const deltaTime = endTime - startTime;
+                
+                if (Math.abs(deltaX) > 50 && 
+                    deltaTime < 300 && 
+                    Math.abs(deltaX) > Math.abs(deltaY)) {
+                    
+                    if (deltaX > 0) {
+                        window.location.href = 'slide7.html';
+                    } else {
+                        window.location.href = 'slide9.html';
+                    }
+                }
+            });
+            
+            let tapCount = 0;
+            document.addEventListener('touchend', (e) => {
+                if (e.target.closest('.strategy-item') || 
+                    e.target.closest('.implant-visual') || 
+                    e.target.closest('.navigation')) {
+                    return;
+                }
+                
+                tapCount++;
+                if (tapCount === 1) {
+                    setTimeout(() => {
+                        if (tapCount === 1) {
+                            if (isNavigationVisible) {
+                                navigation.classList.remove('visible');
+                                isNavigationVisible = false;
+                                clearTimeout(hideTimeout);
+                            } else {
+                                showNavigation();
+                                hideNavigation(3000);
+                            }
+                        }
+                        tapCount = 0;
+                    }, 300);
+                }
+            });
+        }
+        
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    window.location.href = 'slide7.html';
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    e.preventDefault();
+                    window.location.href = 'slide9.html';
+                    break;
+                case 'Escape':
+                    navigation.classList.remove('visible');
+                    isNavigationVisible = false;
+                    clearTimeout(hideTimeout);
+                    break;
+                case 'n':
+                case 'N':
+                    if (isNavigationVisible) {
+                        navigation.classList.remove('visible');
+                        isNavigationVisible = false;
+                        clearTimeout(hideTimeout);
+                    } else {
+                        showNavigation();
+                        hideNavigation(3000);
+                    }
+                    break;
+            }
+        });
+        
+        // 페이지 로드 시 애니메이션
+        window.addEventListener('load', function() {
+            const title = document.querySelector('.title');
+            const strategyItems = document.querySelectorAll('.strategy-item');
+            const rocketContainer = document.querySelector('.rocket-container');
+            
+            // 초기 상태 설정
+            title.style.opacity = '0';
+            title.style.transform = 'translateY(-30px) scale(0.9)';
+            title.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            strategyItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-100px)';
+                item.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            if (rocketContainer) {
+                rocketContainer.style.opacity = '0';
+                rocketContainer.style.transform = 'translateX(50px) scale(0.8)';
+                rocketContainer.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            }
+            
+            // 순차적 애니메이션 실행
+            setTimeout(() => {
+                // 1. 타이틀 애니메이션
+                title.style.opacity = '1';
+                title.style.transform = 'translateY(0) scale(1)';
+                
+                // 2. 전략 아이템들 순차 애니메이션
+                setTimeout(() => {
+                    strategyItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateX(0)';
+                        }, index * 150);
+                    });
+                }, 400);
+                
+                // 3. 로켓 컨테이너 애니메이션
+                setTimeout(() => {
+                    if (rocketContainer) {
+                        rocketContainer.style.opacity = '1';
+                        rocketContainer.style.transform = 'translateX(0) scale(1)';
+                    }
+                }, 800);
+                
+                // 4. 네비게이션 힌트
+                setTimeout(() => {
+                    showNavigation();
+                    hideNavigation(2500);
+                }, 2200);
+                
+            }, 500);
+        });
+        
+        // 전략 아이템 클릭 이벤트
+        document.querySelectorAll('.strategy-item').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                console.log(`전략 ${index + 1} 클릭됨`);
+                // 클릭 효과 추가
+                item.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    item.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // 접근성 향상
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                showNavigation();
+                hideNavigation(5000);
+            }
+        });
+        
+        // 브라우저 크기 변경 대응
+        window.addEventListener('resize', () => {
+            if (isNavigationVisible) {
+                clearTimeout(hideTimeout);
+                hideNavigation(1000);
+            }
+        });
+        
+        // 네비게이션 링크 이벤트
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+            
+            btn.addEventListener('focus', () => {
+                showNavigation();
+                clearTimeout(hideTimeout);
+            });
+        });
+    </script>
+</body>
+</html>
