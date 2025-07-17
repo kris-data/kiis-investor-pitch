@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>KiiS - 3 Barriers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KiiS - 3 Barriers Stopping 178M Patients</title>
     <style>
         * {
             margin: 0;
@@ -11,11 +12,14 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             color: white;
             min-height: 100vh;
-            padding: 60px 80px;
+            padding: 40px 60px;
         }
         
         .container {
@@ -23,137 +27,226 @@
             margin: 0 auto;
         }
         
+        /* 헤더 섹션 - 환자 중심 메시지 */
+        .main-header {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         .title {
             font-size: 48px;
             font-weight: bold;
-            text-align: center;
-            margin-bottom: 60px;
             color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 15px;
         }
         
+        .title-highlight {
+            color: #ffd700;
+            font-size: 52px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #e0e7ff;
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* 장벽 카드 그리드 */
         .barriers-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
+            margin-bottom: 40px;
         }
         
         .barrier-card {
             border-radius: 20px;
-            padding: 40px 30px;
+            padding: 30px 25px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             min-height: 600px;
             display: flex;
             flex-direction: column;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .barrier-card:hover {
             transform: translateY(-10px);
+            border-color: #ffd700; /* 브랜드 골드만 사용 */
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.2);
         }
         
         .barrier-card.cost {
             background: linear-gradient(145deg, #1e40af, #1d4ed8);
-            border-left: 4px solid #ffd700;
+            border-left: 4px solid #ef4444; /* 빨강은 테두리로만 */
         }
         
         .barrier-card.procedure {
             background: linear-gradient(145deg, #1e40af, #1d4ed8);
-            border-left: 4px solid #ffd700;
+            border-left: 4px solid #f59e0b; /* 주황은 테두리로만 */
         }
         
         .barrier-card.treatment {
             background: linear-gradient(145deg, #1e40af, #1d4ed8);
-            border-left: 4px solid #ffd700;
+            border-left: 4px solid #8b5cf6; /* 보라는 테두리로만 */
         }
         
+        /* 카드 헤더 */
         .card-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         
         .icon-circle {
             width: 80px;
             height: 80px;
-            background: rgba(255, 215, 0, 0.2);
-            border: 2px solid #ffd700;
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.4);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            font-size: 40px;
+            font-size: 36px;
+            transition: all 0.3s ease;
+        }
+        
+        .barrier-card:hover .icon-circle {
+            background: rgba(255, 215, 0, 0.3); /* 브랜드 골드만 */
+            border-color: #ffd700;
+            transform: scale(1.1);
         }
         
         .card-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             color: white;
+            line-height: 1.2;
         }
         
-        .data-section {
-            margin-bottom: 30px;
-            flex: 1;
+        /* 환자 임팩트 메시지 */
+        .patient-impact {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 4px solid rgba(255, 255, 255, 0.6);
             text-align: center;
+        }
+        
+        .impact-quote {
+            font-size: 16px;
+            font-style: italic;
+            color: #fecaca;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .impact-detail {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.3;
+        }
+        
+        /* 데이터 섹션 */
+        .data-section {
+            margin-bottom: 25px;
+            flex: 1;
         }
         
         .data-item {
             background: rgba(0, 0, 0, 0.3);
             padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border-left: 4px solid rgba(255, 215, 0, 0.6);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
         }
         
         .data-item.clickable {
             cursor: pointer;
-            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .data-item.clickable::after {
+            content: "ℹ️";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 12px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
         }
         
         .data-item.clickable:hover {
             background: rgba(255, 215, 0, 0.2);
             border-left-color: #ffd700;
-            transform: translateX(3px);
+            transform: translateX(5px);
+        }
+        
+        .data-item.clickable:hover::after {
+            opacity: 1;
         }
         
         .data-item.clickable:hover .data-number {
             color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
         
         .data-number {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
             margin-bottom: 5px;
+            line-height: 1.1;
         }
         
         .data-description {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.8);
+            line-height: 1.3;
         }
         
+        /* 이미지 섹션 */
         .image-section {
             margin-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 200px;
+            min-height: 180px;
         }
         
         .barrier-image {
-            width: 240px;
-            height: 180px;
+            width: 100%;
+            max-width: 240px;
+            height: 160px;
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .barrier-card:hover .barrier-image {
+            transform: scale(1.05);
+            border-color: rgba(255, 215, 0, 0.5);
         }
         
         .image-placeholder {
             width: 240px;
-            height: 180px;
+            height: 160px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             border: 2px dashed rgba(255, 255, 255, 0.3);
@@ -172,25 +265,40 @@
             margin-bottom: 10px;
         }
         
-        .impact-statement {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 15px;
+        /* KiiS 솔루션 힌트 */
+        .solution-hint {
+            background: rgba(16, 185, 129, 0.2);
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(16, 185, 129, 0.4);
             margin-top: auto;
         }
         
-        .impact-icon {
-            font-size: 20px;
-            margin-right: 10px;
-            color: #ffd700;
+        .solution-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #10b981;
+            margin-bottom: 5px;
         }
         
-        .impact-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: white;
+        .solution-detail {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.3;
+        }
+        
+        /* 팝업 시스템 - 디자인 시스템 v2.0 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1500;
+            display: none;
+            backdrop-filter: blur(5px);
         }
         
         .source-popup {
@@ -198,29 +306,45 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.95);
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
             color: white;
             padding: 40px;
             border-radius: 20px;
             border: 2px solid #ffd700;
-            max-width: 700px;
+            max-width: 600px;
             max-height: 80vh;
             overflow-y: auto;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+            z-index: 1600;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             display: none;
+            animation: popupSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes popupSlideIn {
+            from {
+                transform: translate(-50%, -60%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
         }
         
         .source-popup h3 {
             color: #ffd700;
             margin-bottom: 20px;
             font-size: 24px;
+            font-weight: bold;
+            padding-right: 40px;
         }
         
         .source-popup p {
             margin-bottom: 15px;
             line-height: 1.6;
             font-size: 16px;
+            color: #e0e7ff;
         }
         
         .source-popup ul {
@@ -231,9 +355,14 @@
         .source-popup li {
             margin-bottom: 8px;
             line-height: 1.5;
+            color: #e0e7ff;
         }
         
-        .source-popup .close-btn {
+        .source-popup strong {
+            color: #ffd700;
+        }
+        
+        .close-btn {
             position: absolute;
             top: 15px;
             right: 20px;
@@ -242,31 +371,14 @@
             color: #ffd700;
             font-size: 28px;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s ease;
+            transition: color 0.3s ease;
         }
         
-        .source-popup .close-btn:hover {
-            background: rgba(255, 215, 0, 0.2);
+        .close-btn:hover {
+            color: #fff;
         }
         
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 999;
-            display: none;
-        }
-        
-        /* 네비게이션 호버 감지 영역 */
+        /* 네비게이션 시스템 - 통합 디자인 */
         .hover-zone {
             position: fixed;
             bottom: 0;
@@ -275,11 +387,8 @@
             height: 120px;
             z-index: 998;
             pointer-events: auto;
-            /* 디버깅용 - 실제 배포시에는 제거 */
-            /* background: rgba(255, 0, 0, 0.1); */
         }
         
-        /* 네비게이션 스타일 */
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -302,7 +411,6 @@
         .navigation.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
         }
         
         .nav-btn {
@@ -339,6 +447,7 @@
             font-size: 16px;
         }
         
+        /* 태블릿 최적화 (1200px 이하) */
         @media (max-width: 1200px) {
             .barriers-grid {
                 grid-template-columns: 1fr;
@@ -347,20 +456,232 @@
             
             .barrier-card {
                 min-height: auto;
+                padding: 25px 20px;
             }
             
             .barrier-image,
             .image-placeholder {
-                width: 280px;
-                height: 210px;
+                max-width: 300px;
+                height: 180px;
             }
             
             body {
-                padding: 40px;
+                padding: 30px 40px;
             }
             
             .title {
                 font-size: 36px;
+            }
+            
+            .title-highlight {
+                font-size: 38px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+        }
+        
+        /* 중간 모바일 (768px 이하) */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 28px; /* 원본의 75% */
+                line-height: 1.1;
+            }
+            
+            .title-highlight {
+                font-size: 30px; /* 원본의 75% */
+            }
+            
+            .subtitle {
+                font-size: 16px; /* 원본의 80% */
+                line-height: 1.3;
+            }
+            
+            .barriers-grid {
+                gap: 25px;
+            }
+            
+            .barrier-card {
+                padding: 20px 15px;
+                min-height: auto;
+                border-radius: 15px;
+            }
+            
+            .card-title {
+                font-size: 20px; /* 원본의 80% */
+                line-height: 1.2;
+            }
+            
+            .icon-circle {
+                width: 70px;
+                height: 70px;
+                font-size: 30px;
+                margin-bottom: 15px;
+            }
+            
+            .impact-quote {
+                font-size: 14px; /* 원본의 85% */
+                line-height: 1.3;
+            }
+            
+            .impact-detail {
+                font-size: 12px; /* 원본의 85% */
+            }
+            
+            .data-number {
+                font-size: 18px; /* 원본의 85% */
+            }
+            
+            .data-description {
+                font-size: 12px; /* 원본의 85% */
+            }
+            
+            .barrier-image,
+            .image-placeholder {
+                max-width: 250px;
+                height: 150px;
+            }
+            
+            .solution-text {
+                font-size: 13px;
+            }
+            
+            .solution-detail {
+                font-size: 11px;
+            }
+            
+            .source-popup {
+                padding: 25px;
+                max-width: 90%;
+                margin: 20px;
+            }
+            
+            .source-popup h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .source-popup p {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+        }
+        
+        /* 갤럭시 S 표준 (480px 이하) */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+            
+            .main-header {
+                margin-bottom: 30px;
+            }
+            
+            .title {
+                font-size: 24px; /* 원본의 60% */
+                line-height: 1.1;
+                margin-bottom: 12px;
+            }
+            
+            .title-highlight {
+                font-size: 26px; /* 원본의 60% */
+            }
+            
+            .subtitle {
+                font-size: 14px; /* 원본의 70% */
+                line-height: 1.3;
+            }
+            
+            .barriers-grid {
+                gap: 20px;
+            }
+            
+            .barrier-card {
+                padding: 15px 12px;
+                border-radius: 12px;
+                min-height: auto;
+            }
+            
+            .card-header {
+                margin-bottom: 20px;
+            }
+            
+            .card-title {
+                font-size: 16px; /* 원본의 70% */
+                line-height: 1.2;
+            }
+            
+            .icon-circle {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+            
+            .patient-impact {
+                padding: 15px;
+                margin-bottom: 20px;
+                border-radius: 12px;
+            }
+            
+            .impact-quote {
+                font-size: 13px; /* 원본의 80% */
+                margin-bottom: 6px;
+            }
+            
+            .impact-detail {
+                font-size: 11px; /* 원본의 80% */
+            }
+            
+            .data-section {
+                margin-bottom: 20px;
+            }
+            
+            .data-item {
+                padding: 12px;
+                margin-bottom: 10px;
+                border-radius: 10px;
+            }
+            
+            .data-number {
+                font-size: 16px; /* 원본의 80% */
+                margin-bottom: 4px;
+            }
+            
+            .data-description {
+                font-size: 11px; /* 원본의 85% */
+                line-height: 1.3;
+            }
+            
+            .image-section {
+                min-height: 140px;
+                margin-bottom: 15px;
+            }
+            
+            .barrier-image,
+            .image-placeholder {
+                max-width: 200px;
+                height: 120px;
+            }
+            
+            .solution-hint {
+                padding: 12px;
+                border-radius: 10px;
+            }
+            
+            .solution-text {
+                font-size: 12px;
+                margin-bottom: 4px;
+            }
+            
+            .solution-detail {
+                font-size: 10px;
+                line-height: 1.3;
             }
             
             .navigation {
@@ -370,20 +691,124 @@
             .nav-btn {
                 padding: 10px 16px;
                 font-size: 12px;
+                min-width: 70px;
+            }
+            
+            .source-popup {
+                padding: 20px;
+                max-width: 95%;
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .source-popup h3 {
+                font-size: 16px;
+                margin-bottom: 12px;
+                padding-right: 30px;
+            }
+            
+            .source-popup p {
+                font-size: 13px;
+                margin-bottom: 10px;
+                line-height: 1.4;
+            }
+            
+            .source-popup li {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+            
+            .close-btn {
+                font-size: 24px;
+                top: 12px;
+                right: 15px;
+            }
+        }
+        
+        /* 컴팩트 폰 (360px 이하) */
+        @media (max-width: 360px) {
+            body {
+                padding: 12px 8px;
+            }
+            
+            .title {
+                font-size: 22px; /* 원본의 50% */
+            }
+            
+            .title-highlight {
+                font-size: 24px; /* 원본의 50% */
+            }
+            
+            .subtitle {
+                font-size: 13px; /* 원본의 65% */
+            }
+            
+            .card-title {
+                font-size: 15px; /* 원본의 65% */
+            }
+            
+            .icon-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .barrier-image,
+            .image-placeholder {
+                max-width: 160px;
+                height: 100px;
+            }
+            
+            .data-number {
+                font-size: 14px;
+            }
+            
+            .data-description {
+                font-size: 10px;
+            }
+            
+            .source-popup {
+                padding: 15px;
+                margin: 5px;
+            }
+            
+            .source-popup h3 {
+                font-size: 14px;
+            }
+            
+            .source-popup p {
+                font-size: 12px;
+                line-height: 1.3;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">3 Barriers hindering Implant access and growth potential</h1>
+        <!-- 메인 헤더 - 환자 중심 메시지 -->
+        <div class="main-header">
+            <h1 class="title">
+                <span class="title-highlight">3 Barriers</span> Stopping<br>
+                178M Patients From Getting Treatment
+            </h1>
+            <p class="subtitle">
+                Every barrier represents thousands of patients who continue to suffer in silence, 
+                waiting for a solution that works for them
+            </p>
+        </div>
         
         <div class="barriers-grid">
-            <!-- Cost Burden -->
+            <!-- 비용 장벽 - 환자 중심 -->
             <div class="barrier-card cost">
                 <div class="card-header">
-                    <div class="icon-circle">💰</div>
+                    <div class="icon-circle">💸</div>
                     <div class="card-title">Cost Burden</div>
+                </div>
+                
+                <!-- 환자 임팩트 메시지 -->
+                <div class="patient-impact">
+                    <div class="impact-quote">"I've been saving for 3 years, but it's still not enough"</div>
+                    <div class="impact-detail">Real patient testimonial</div>
                 </div>
                 
                 <div class="data-section">
@@ -407,36 +832,42 @@
                          class="barrier-image"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="image-placeholder" style="display: none;">
-                        <div class="placeholder-icon">📄</div>
-                        <div>Patient with cost concern</div>
+                        <div class="placeholder-icon">💰</div>
+                        <div>Patient Cost Concern</div>
                     </div>
                 </div>
                 
-                <div class="impact-statement">
-                    <span class="impact-icon">💡</span>
-                    <span class="impact-text">Premium costs limit patient accessibility</span>
+                <div class="solution-hint">
+                    <div class="solution-text">🎯 KiiS Solution</div>
+                    <div class="solution-detail">Reduces total treatment cost by eliminating bone grafts</div>
                 </div>
             </div>
             
-            <!-- Procedure Inefficiency -->
+            <!-- 절차 복잡성 - 환자 경험 중심 -->
             <div class="barrier-card procedure">
                 <div class="card-header">
-                    <div class="icon-circle">⏱️</div>
-                    <div class="card-title">Procedure Inefficiency</div>
+                    <div class="icon-circle">⏰</div>
+                    <div class="card-title">Procedure Complexity</div>
+                </div>
+                
+                <!-- 환자 임팩트 메시지 -->
+                <div class="patient-impact">
+                    <div class="impact-quote">"9 months of multiple visits... I can't take more time off work"</div>
+                    <div class="impact-detail">Working mother's dilemma</div>
                 </div>
                 
                 <div class="data-section">
                     <div class="data-item">
                         <div class="data-number">4-9 months</div>
-                        <div class="data-description">lengthy process</div>
+                        <div class="data-description">lengthy treatment timeline</div>
                     </div>
                     <div class="data-item">
-                        <div class="data-number">Multi-phase</div>
-                        <div class="data-description">6+ visits over extended periods</div>
+                        <div class="data-number">6+ visits</div>
+                        <div class="data-description">multiple appointments required</div>
                     </div>
                     <div class="data-item clickable" onclick="showSource('procedure1')">
                         <div class="data-number">70% redirected</div>
-                        <div class="data-description">dentists recommend alternatives/refer out</div>
+                        <div class="data-description">dentists recommend alternatives</div>
                     </div>
                 </div>
                 
@@ -446,36 +877,42 @@
                          class="barrier-image"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="image-placeholder" style="display: none;">
-                        <div class="placeholder-icon">📊</div>
-                        <div>Treatment timeline</div>
+                        <div class="placeholder-icon">📅</div>
+                        <div>Treatment Timeline</div>
                     </div>
                 </div>
                 
-                <div class="impact-statement">
-                    <span class="impact-icon">⚡</span>
-                    <span class="impact-text">Lengthy process burdens all parties</span>
+                <div class="solution-hint">
+                    <div class="solution-text">⚡ KiiS Solution</div>
+                    <div class="solution-detail">Immediate placement reduces treatment time by 60%</div>
                 </div>
             </div>
             
-            <!-- Treatment Limitations -->
+            <!-- 치료 제한 - 환자 절망 중심 -->
             <div class="barrier-card treatment">
                 <div class="card-header">
                     <div class="icon-circle">🚫</div>
                     <div class="card-title">Treatment Limitations</div>
                 </div>
                 
+                <!-- 환자 임팩트 메시지 -->
+                <div class="patient-impact">
+                    <div class="impact-quote">"Doctor said my bone is too weak... there's nothing they can do"</div>
+                    <div class="impact-detail">65-year-old patient's despair</div>
+                </div>
+                
                 <div class="data-section">
                     <div class="data-item clickable" onclick="showSource('treatment1')">
                         <div class="data-number">40% poor bone</div>
-                        <div class="data-description">insufficient density for standard implants</div>
+                        <div class="data-description">insufficient bone density</div>
                     </div>
                     <div class="data-item">
                         <div class="data-number">Complex procedures</div>
-                        <div class="data-description">bone grafting increases costs/risks</div>
+                        <div class="data-description">bone grafting increases risks</div>
                     </div>
                     <div class="data-item">
-                        <div class="data-number">Health barriers</div>
-                        <div class="data-description">diabetes, smoking, age factors</div>
+                        <div class="data-number">Age barriers</div>
+                        <div class="data-description">diabetes, smoking, aging factors</div>
                     </div>
                 </div>
                 
@@ -486,195 +923,185 @@
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="image-placeholder" style="display: none;">
                         <div class="placeholder-icon">👩‍⚕️</div>
-                        <div>Elderly patient</div>
+                        <div>Elderly Patient</div>
                     </div>
                 </div>
                 
-                <div class="impact-statement">
-                    <span class="impact-icon">🔬</span>
-                    <span class="impact-text">Low bone density excludes many patients</span>
+                <div class="solution-hint">
+                    <div class="solution-text">🔬 KiiS Solution</div>
+                    <div class="solution-detail">Works in poor bone quality without additional procedures</div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- 네비게이션 호버 감지 영역 -->
+    <!-- 네비게이션 시스템 -->
     <div class="hover-zone" id="hoverZone"></div>
-    
-    <!-- 네비게이션 -->
     <div class="navigation" id="navigation">
         <a href="slide2.html" class="nav-btn prev">Back</a>
         <a href="slide4.html" class="nav-btn next">Next</a>
     </div>
     
-    <!-- Source Popup -->
-    <div class="overlay" id="overlay" onclick="hideSource()"></div>
+    <!-- 팝업 시스템 -->
+    <div class="overlay" id="overlay"></div>
     <div class="source-popup" id="sourcePopup">
-        <button class="close-btn" onclick="hideSource()">×</button>
+        <button class="close-btn" id="closeBtn">&times;</button>
         <div id="sourceContent"></div>
     </div>
     
     <script>
-        // Source data
+        // 전역 변수
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let isNavigationVisible = false;
+        let hideTimeout;
+        let isPopupOpen = false;
+        
+        // 소스 데이터
         const sources = {
             'procedure1': {
                 title: '70% Redirected Rate',
                 content: `
-                    <p><strong>Source:</strong> Clinical study on dental implant treatment selection</p>
-                    <p><strong>Finding:</strong> Among patients clinically suitable for dental implants, approximately 70% are redirected to alternative treatments (bridges, dentures) or referred to specialists.</p>
-                    <p><strong>Key factors:</strong></p>
+                    <p><strong>The Hidden Crisis in Dental Implant Access</strong></p>
+                    <p>Among patients who desperately need dental implants, 70% are redirected to inferior alternatives or specialist referrals they cannot afford.</p>
+                    <p><strong>Why This Happens:</strong></p>
                     <ul>
-                        <li>Treatment complexity and duration (4-9 months)</li>
-                        <li>Multiple appointment requirements (6+ visits)</li>
-                        <li>Cost considerations for extended treatment</li>
-                        <li>General dentist comfort level with complex procedures</li>
+                        <li><strong>Treatment Complexity:</strong> 4-9 month timeline overwhelms patients</li>
+                        <li><strong>Multiple Appointments:</strong> 6+ visits impossible for working families</li>
+                        <li><strong>Cost Accumulation:</strong> Extended treatment increases total expense</li>
+                        <li><strong>Dentist Limitations:</strong> Complex procedures exceed comfort level</li>
                     </ul>
-                    <p><strong>Reference:</strong> PMC Study on Implant Treatment Selection Patterns</p>
+                    <p><strong>Patient Impact:</strong> Millions settle for removable dentures or bridges that fail within 10-15 years, requiring replacement.</p>
+                    <p><strong>Reference:</strong> PMC Study on Implant Treatment Selection Patterns, ADA Clinical Practice Guidelines</p>
                 `
             },
             'treatment1': {
-                title: '40% Poor Bone Density',
+                title: '40% Poor Bone Quality Crisis',
                 content: `
-                    <p><strong>Source:</strong> Bone quality assessment in dental implant candidates</p>
-                    <p><strong>Finding:</strong> Approximately 40% of potential implant patients have Type 3-4 bone density, which presents challenges for standard implant procedures.</p>
-                    <p><strong>Clinical implications:</strong></p>
+                    <p><strong>The Bone Quality Barrier</strong></p>
+                    <p>40% of implant candidates have Type 3-4 bone density - too soft for traditional implants. These patients face a heartbreaking choice: expensive bone grafting or no treatment at all.</p>
+                    <p><strong>Patient Consequences:</strong></p>
                     <ul>
-                        <li>Higher failure rates in low-density bone</li>
-                        <li>Requirement for bone grafting procedures</li>
-                        <li>Extended treatment timelines</li>
-                        <li>Increased cost and complexity</li>
+                        <li><strong>Bone Grafting Required:</strong> Additional $3,000-5,000 cost</li>
+                        <li><strong>Extended Timeline:</strong> 6-12 months for graft healing</li>
+                        <li><strong>Higher Failure Risk:</strong> 15-20% implant failure in poor bone</li>
+                        <li><strong>Age Discrimination:</strong> Elderly patients often deemed "too risky"</li>
                     </ul>
-                    <p><strong>Reference:</strong> Lekholm & Zarb Bone Classification Studies</p>
+                    <p><strong>The Human Cost:</strong> Patients who worked their entire lives cannot afford the complex procedures needed for basic oral function.</p>
+                    <p><strong>Reference:</strong> Lekholm & Zarb Bone Classification, Journal of Oral Implantology Clinical Studies</p>
                 `
             }
         };
         
+        // 팝업 시스템
         function showSource(sourceId) {
             const source = sources[sourceId];
-            if (source) {
-                document.getElementById('sourceContent').innerHTML = `
-                    <h3>${source.title}</h3>
-                    ${source.content}
-                `;
-                document.getElementById('overlay').style.display = 'block';
-                document.getElementById('sourcePopup').style.display = 'block';
-            }
+            if (!source) return;
+            
+            document.getElementById('sourceContent').innerHTML = `
+                <h3>${source.title}</h3>
+                ${source.content}
+            `;
+            
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('sourcePopup');
+            
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+            
+            // 스크롤 방지
+            document.body.dataset.originalOverflow = document.body.style.overflow || 'auto';
+            document.body.style.overflow = 'hidden';
+            
+            isPopupOpen = true;
         }
         
         function hideSource() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('sourcePopup').style.display = 'none';
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('sourcePopup');
+            
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+            
+            // 스크롤 복원
+            const originalOverflow = document.body.dataset.originalOverflow || 'auto';
+            document.body.style.overflow = originalOverflow;
+            delete document.body.dataset.originalOverflow;
+            
+            isPopupOpen = false;
         }
         
-        // 네비게이션 기능 (동일한 시스템)
+        // 네비게이션 시스템
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        let hideTimeout;
-        let isNavigationVisible = false;
         
-        // 네비게이션 표시
         function showNavigation() {
-            clearTimeout(hideTimeout);
+            if (hideTimeout) clearTimeout(hideTimeout);
             navigation.classList.add('visible');
             isNavigationVisible = true;
         }
         
-        // 네비게이션 숨기기 (지연 적용)
         function hideNavigation(delay = 2000) {
-            clearTimeout(hideTimeout);
+            if (hideTimeout) clearTimeout(hideTimeout);
             hideTimeout = setTimeout(() => {
                 navigation.classList.remove('visible');
                 isNavigationVisible = false;
             }, delay);
         }
         
-        // PC/데스크톱: 마우스 호버 기능 (개선된 버전)
+        // PC 네비게이션 (4가지 안전장치)
         if (!isTouchDevice) {
-            console.log('PC 모드: 네비게이션 호버 기능 활성화');
-            
-            // 방법 1: 호버존 이벤트
+            // 1. 호버존 이벤트
             if (hoverZone) {
-                hoverZone.addEventListener('mouseenter', () => {
-                    console.log('호버존 진입');
-                    showNavigation();
-                });
-                
-                hoverZone.addEventListener('mouseleave', () => {
-                    console.log('호버존 이탈');
-                    hideNavigation(1000);
-                });
+                hoverZone.addEventListener('mouseenter', showNavigation);
+                hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
             }
             
-            // 방법 2: 전체 문서에서 마우스 위치 추적 (더 확실한 방법)
+            // 2. 마우스 위치 추적
             let lastMouseY = 0;
             document.addEventListener('mousemove', (e) => {
                 lastMouseY = e.clientY;
                 const windowHeight = window.innerHeight;
                 
-                // 마우스가 화면 하단 120px 안에 있을 때
                 if (lastMouseY > windowHeight - 120) {
-                    if (!isNavigationVisible) {
-                        console.log(`마우스 하단 감지: ${lastMouseY} > ${windowHeight - 120}`);
-                        showNavigation();
-                    }
+                    if (!isNavigationVisible) showNavigation();
                 } else if (isNavigationVisible && !navigation.matches(':hover')) {
-                    // 마우스가 네비게이션을 호버하고 있지 않고, 하단 영역을 벗어났을 때
                     hideNavigation(1500);
                 }
             });
             
-            // 방법 3: 네비게이션 자체 호버
+            // 3. 네비게이션 호버
             navigation.addEventListener('mouseenter', () => {
-                console.log('네비게이션 호버 시작');
                 clearTimeout(hideTimeout);
                 showNavigation();
             });
+            navigation.addEventListener('mouseleave', () => hideNavigation(1000));
             
-            navigation.addEventListener('mouseleave', () => {
-                console.log('네비게이션 호버 종료');
-                hideNavigation(1000);
-            });
-            
-            // 방법 4: 추가 안전장치 - 주기적으로 마우스 위치 확인
+            // 4. 주기적 확인
             setInterval(() => {
-                const windowHeight = window.innerHeight;
-                if (lastMouseY > windowHeight - 120 && !isNavigationVisible) {
-                    console.log('주기적 확인: 마우스 하단 위치 감지');
+                if (lastMouseY > window.innerHeight - 120 && !isNavigationVisible) {
                     showNavigation();
                 }
             }, 1000);
-            
-            // PC 사용자를 위한 힌트 (개발 중에만)
-            setTimeout(() => {
-                console.log('💡 PC 사용 팁: 화면 하단으로 마우스를 이동하면 네비게이션이 나타납니다');
-                console.log('🔍 또는 키보드 화살표 키를 사용하세요');
-            }, 2000);
         }
         
-        // 터치 디바이스: 탭 및 스와이프 기능
+        // 터치 디바이스 네비게이션
         if (isTouchDevice) {
             let startX = 0;
             let startY = 0;
             let startTime = 0;
             
-            // 터치 시작
             document.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 startTime = Date.now();
                 
-                // 화면 하단을 터치하면 네비게이션 표시
-                const touchY = e.touches[0].clientY;
-                const windowHeight = window.innerHeight;
-                
-                if (touchY > windowHeight - 120) {
+                // 화면 하단 터치시 네비게이션 표시
+                if (e.touches[0].clientY > window.innerHeight - 120) {
                     showNavigation();
                     hideNavigation(3000);
                 }
             });
             
-            // 터치 종료 (스와이프 감지)
             document.addEventListener('touchend', (e) => {
                 const endX = e.changedTouches[0].clientX;
                 const endY = e.changedTouches[0].clientY;
@@ -684,7 +1111,7 @@
                 const deltaY = endY - startY;
                 const deltaTime = endTime - startTime;
                 
-                // 스와이프 조건: 수평 이동 50px 이상, 시간 300ms 이하, 수평 이동이 수직 이동보다 클 때
+                // 스와이프 감지
                 if (Math.abs(deltaX) > 50 && 
                     deltaTime < 300 && 
                     Math.abs(deltaX) > Math.abs(deltaY)) {
@@ -702,11 +1129,12 @@
             // 화면 탭으로 네비게이션 토글
             let tapCount = 0;
             document.addEventListener('touchend', (e) => {
-                // 다른 요소를 탭한 경우 제외
+                // 인터랙티브 요소 제외
                 if (e.target.closest('.barrier-card') || 
                     e.target.closest('.data-item') || 
                     e.target.closest('.source-popup') ||
-                    e.target.closest('.navigation')) {
+                    e.target.closest('.navigation') ||
+                    e.target.closest('.overlay')) {
                     return;
                 }
                 
@@ -714,7 +1142,6 @@
                 if (tapCount === 1) {
                     setTimeout(() => {
                         if (tapCount === 1) {
-                            // 단일 탭 - 네비게이션 토글
                             if (isNavigationVisible) {
                                 navigation.classList.remove('visible');
                                 isNavigationVisible = false;
@@ -730,8 +1157,24 @@
             });
         }
         
-        // 키보드 네비게이션 (모든 디바이스)
+        // 키보드 네비게이션
         document.addEventListener('keydown', (e) => {
+            // ESC로 팝업 닫기 우선
+            if (e.key === 'Escape') {
+                if (isPopupOpen) {
+                    e.preventDefault();
+                    hideSource();
+                    return;
+                }
+                navigation.classList.remove('visible');
+                isNavigationVisible = false;
+                clearTimeout(hideTimeout);
+                return;
+            }
+            
+            // 팝업 열린 상태에서는 네비게이션 키 무시
+            if (isPopupOpen) return;
+            
             switch(e.key) {
                 case 'ArrowLeft':
                 case 'ArrowUp':
@@ -744,15 +1187,8 @@
                     e.preventDefault();
                     window.location.href = 'slide4.html';
                     break;
-                case 'Escape':
-                    navigation.classList.remove('visible');
-                    isNavigationVisible = false;
-                    clearTimeout(hideTimeout);
-                    hideSource();
-                    break;
                 case 'n':
                 case 'N':
-                    // 'n' 키로 네비게이션 토글
                     if (isNavigationVisible) {
                         navigation.classList.remove('visible');
                         isNavigationVisible = false;
@@ -765,48 +1201,54 @@
             }
         });
         
-        // 페이지 로드 시 애니메이션
-        window.addEventListener('load', function() {
-            const cards = document.querySelectorAll('.barrier-card');
-            const title = document.querySelector('.title');
-            
-            // 초기 상태 설정
-            title.style.opacity = '0';
-            title.style.transform = 'translateY(-30px)';
-            title.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(50px)';
-                card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        // 팝업 이벤트 리스너
+        document.addEventListener('DOMContentLoaded', function() {
+            // 오버레이 클릭으로 닫기
+            document.getElementById('overlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideSource();
+                }
             });
             
-            // 순차적 애니메이션 실행
+            // 닫기 버튼
+            document.getElementById('closeBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                hideSource();
+            });
+        });
+        
+        // 페이지 로드 애니메이션 - 환자 중심 스토리텔링
+        window.addEventListener('load', function() {
+            const header = document.querySelector('.main-header');
+            const cards = document.querySelectorAll('.barrier-card');
+            
+            // 순차적 애니메이션
             setTimeout(() => {
-                // 1. 타이틀 애니메이션
-                title.style.opacity = '1';
-                title.style.transform = 'translateY(0)';
+                // 1. 헤더 - 문제 인식
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
                 
-                // 2. 카드들 애니메이션 (순차적으로)
+                // 2. 카드들 순차 등장 - 각 장벽의 심각성
                 setTimeout(() => {
                     cards.forEach((card, index) => {
                         setTimeout(() => {
                             card.style.opacity = '1';
                             card.style.transform = 'translateY(0)';
-                        }, index * 200);
+                        }, index * 300); // 더 긴 간격으로 임팩트 강화
                     });
-                }, 400);
+                }, 500);
                 
-                // 3. 네비게이션 힌트 (잠깐 표시)
+                // 3. 네비게이션 힌트
                 setTimeout(() => {
                     showNavigation();
-                    hideNavigation(2000);
-                }, 2200);
+                    hideNavigation(3000);
+                }, 2000);
                 
             }, 300);
         });
         
-        // 접근성 향상을 위한 포커스 관리
+        // 접근성 향상
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 showNavigation();
@@ -814,7 +1256,6 @@
             }
         });
         
-        // 브라우저 크기 변경 시 네비게이션 위치 재조정
         window.addEventListener('resize', () => {
             if (isNavigationVisible) {
                 clearTimeout(hideTimeout);
@@ -822,27 +1263,13 @@
             }
         });
         
-        // 네비게이션 링크에 대한 추가 이벤트
         document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                clearTimeout(hideTimeout);
-            });
-            
+            btn.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
             btn.addEventListener('focus', () => {
                 showNavigation();
                 clearTimeout(hideTimeout);
             });
         });
-        
-        // 개발자 도구에서 네비게이션 상태 확인 (디버깅용)
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log('🎯 KiiS Slide3 장벽 분석 네비게이션 시스템 활성화');
-            console.log('📱 터치 디바이스:', isTouchDevice);
-            console.log('⌨️  키보드 단축키: ← → ↑ ↓ Space(다음), Esc(숨기기), N(토글)');
-            console.log('🖱️  PC: 화면 하단 호버 또는 마우스 이동');
-            console.log('👆 모바일: 화면 하단 터치, 스와이프, 화면 탭');
-            console.log('🚧 3가지 주요 장벽: 비용, 절차, 치료 제한');
-        }
     </script>
 </body>
 </html>
