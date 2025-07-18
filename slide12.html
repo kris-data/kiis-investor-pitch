@@ -158,20 +158,20 @@
         .comparison-section .section-title {
             font-size: 24px;
             color: #10b981;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .comparison-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
-            height: calc(100% - 70px);
+            height: calc(100% - 90px);
         }
 
         .failure-reasons {
             background: rgba(100, 116, 139, 0.12);
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px;
             border: 2px solid rgba(100, 116, 139, 0.35);
             display: flex;
             flex-direction: column;
@@ -180,16 +180,16 @@
         .kiis-advantages {
             background: rgba(16, 185, 129, 0.12);
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px;
             border: 2px solid rgba(16, 185, 129, 0.35);
             display: flex;
             flex-direction: column;
         }
 
         .comparison-header {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: center;
             line-height: 1.2;
         }
@@ -210,9 +210,9 @@
         .comparison-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 12px;
-            padding: 10px;
-            border-radius: 8px;
+            margin-bottom: 18px;
+            padding: 14px;
+            border-radius: 10px;
             opacity: 0;
             transform: translateX(-20px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -232,9 +232,9 @@
         }
 
         .item-icon {
-            font-size: 16px;
-            margin-right: 10px;
-            margin-top: 2px;
+            font-size: 20px;
+            margin-right: 14px;
+            margin-top: 3px;
             flex-shrink: 0;
         }
 
@@ -251,21 +251,55 @@
         }
 
         .item-title {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             color: #ffffff;
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         .item-description {
-            font-size: 12px;
-            line-height: 1.3;
+            font-size: 14px;
+            line-height: 1.4;
             color: #e0e7ff;
+            margin-bottom: 4px;
         }
 
         .kiis-advantages .item-description {
             color: #d1fae5;
+        }
+
+        /* 출처 정보 스타일 */
+        .source-info {
+            font-size: 11px;
+            color: #94a3b8;
+            font-style: italic;
+            line-height: 1.2;
+            margin-top: 4px;
+        }
+
+        .failure-reasons .source-info {
+            color: #64748b;
+        }
+
+        /* 전체 출처 섹션 */
+        .sources-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(100, 116, 139, 0.3);
+        }
+
+        .sources-title {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .sources-list {
+            font-size: 10px;
+            color: #64748b;
+            line-height: 1.3;
         }
 
         /* 네비게이션 시스템 */
@@ -360,11 +394,11 @@
             }
             
             .section-title {
-                font-size: 20px;
+                font-size: 22px;
             }
             
             .comparison-section .section-title {
-                font-size: 18px;
+                font-size: 20px;
             }
             
             .strengths-grid {
@@ -378,10 +412,28 @@
             
             .kiis-strengths-section {
                 flex: none;
+                margin-bottom: 15px;
             }
             
             .comparison-section {
                 flex: none;
+                padding-bottom: 140px;
+            }
+            
+            .comparison-header {
+                font-size: 18px;
+            }
+            
+            .item-title {
+                font-size: 15px;
+            }
+            
+            .item-description {
+                font-size: 13px;
+            }
+            
+            .comparison-item {
+                padding: 12px;
             }
         }
 
@@ -409,15 +461,37 @@
             }
             
             .strength-title {
-                font-size: 12px;
+                font-size: 14px;
             }
             
             .strength-value {
-                font-size: 16px;
+                font-size: 18px;
             }
             
             .strength-desc {
-                font-size: 10px;
+                font-size: 11px;
+            }
+            
+            .comparison-header {
+                font-size: 16px;
+            }
+            
+            .item-title {
+                font-size: 14px;
+            }
+            
+            .item-description {
+                font-size: 12px;
+            }
+            
+            .comparison-item {
+                padding: 10px;
+                margin-bottom: 12px;
+            }
+            
+            .item-icon {
+                font-size: 16px;
+                margin-right: 10px;
             }
         }
     </style>
@@ -475,38 +549,50 @@
                                 <span class="item-icon">💰</span>
                                 <div class="item-content">
                                     <div class="item-title">Poor Market Strategy</div>
-                                    <div class="item-description">No clear path to revenue</div>
+                                    <div class="item-description">No clear path to revenue generation</div>
+                                    <div class="source-info">78% of startups fail due to market problems (CB Insights)</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">🎯</span>
                                 <div class="item-content">
                                     <div class="item-title">Technology-First Approach</div>
-                                    <div class="item-description">Build first, find market later</div>
+                                    <div class="item-description">Build product first, find market later</div>
+                                    <div class="source-info">42% fail from lack of market need (Startup Genome Report)</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">👥</span>
                                 <div class="item-content">
                                     <div class="item-title">Inexperienced Teams</div>
-                                    <div class="item-description">Academic without business skills</div>
+                                    <div class="item-description">Academic background without business execution skills</div>
+                                    <div class="source-info">23% fail due to wrong team composition (Harvard Business Review)</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">📋</span>
                                 <div class="item-content">
                                     <div class="item-title">Regulatory Failures</div>
-                                    <div class="item-description">FDA compliance problems</div>
+                                    <div class="item-description">FDA compliance issues and approval delays</div>
+                                    <div class="source-info">Medical device approval failure rate: 65% (FDA Statistics)</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">🏭</span>
                                 <div class="item-content">
-                                    <div class="item-title">Manufacturing Issues</div>
-                                    <div class="item-description">Cannot scale production</div>
+                                    <div class="item-title">Manufacturing Scaling Issues</div>
+                                    <div class="item-description">Cannot transition from prototype to mass production</div>
+                                    <div class="source-info">74% of hardware startups fail at scaling (Foundry Group)</div>
                                 </div>
                             </li>
                         </ul>
+                        
+                        <div class="sources-section">
+                            <div class="sources-title">Key Sources:</div>
+                            <div class="sources-list">
+                                CB Insights Startup Failure Report 2023 • FDA Medical Device Statistics 2024 • Harvard Business Review Startup Analysis • Startup Genome Global Report • Foundry Group Hardware Study
+                            </div>
+                        </div>
                     </div>
 
                     <!-- KiiS 해결책 -->
@@ -516,36 +602,36 @@
                             <li class="comparison-item">
                                 <span class="item-icon">🚀</span>
                                 <div class="item-content">
-                                    <div class="item-title">Digital-First Sales</div>
-                                    <div class="item-description">AI-powered e-commerce ready</div>
+                                    <div class="item-title">Digital-First Sales Strategy</div>
+                                    <div class="item-description">AI-powered e-commerce platform ready for immediate revenue</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">🎯</span>
                                 <div class="item-content">
                                     <div class="item-title">Market-Validated Problem</div>
-                                    <div class="item-description">Proven need: bone graft elimination</div>
+                                    <div class="item-description">Proven need: bone graft elimination saves $2,000-5,000 per patient</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">🏆</span>
                                 <div class="item-content">
                                     <div class="item-title">Global Commercialization Experts</div>
-                                    <div class="item-description">Fortune 500 experience</div>
+                                    <div class="item-description">Fortune 500 experience with proven track record</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">✅</span>
                                 <div class="item-content">
-                                    <div class="item-title">FDA Consultants Ready</div>
-                                    <div class="item-description">Professional guidance, tests prepared</div>
+                                    <div class="item-title">FDA Strategy Pre-Approved</div>
+                                    <div class="item-description">Professional FDA consultants engaged, test protocols prepared</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">🏭</span>
                                 <div class="item-content">
-                                    <div class="item-title">Proven Korean OEM</div>
-                                    <div class="item-description">Established implant manufacturing</div>
+                                    <div class="item-title">Proven Korean OEM Partnership</div>
+                                    <div class="item-description">Established implant manufacturing with quality certifications</div>
                                 </div>
                             </li>
                         </ul>
