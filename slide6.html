@@ -65,7 +65,7 @@
         .barriers-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto 80px auto auto;
+            grid-template-rows: auto 80px auto;
             gap: 40px;
             flex: 1;
             position: relative;
@@ -176,7 +176,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        /* 이미지 Fallback 시스템 - v2.1 */
+        /* 이미지 Fallback 시스템 */
         .image-placeholder {
             width: 100%;
             max-width: 280px;
@@ -294,7 +294,7 @@
             font-weight: 600;
         }
         
-        /* 클릭 가능한 텍스트 - 골드 시스템 */
+        /* 클릭 가능한 텍스트 */
         .clickable-text {
             color: #ffd700;
             cursor: pointer;
@@ -416,43 +416,6 @@
         
         .close-btn:hover {
             color: #fff;
-        }
-        
-        /* KiiS 솔루션 섹션 */
-        .kiis-solution {
-            grid-column: 1 / 4;
-            grid-row: 3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        
-        .kiis-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ffd700, #f59e0b);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            font-size: 30px;
-            font-weight: bold;
-            color: #000;
-        }
-        
-        .kiis-logo:hover {
-            transform: scale(1.1);
-        }
-        
-        .kiis-text {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ffd700;
         }
         
         /* 네비게이션 시스템 */
@@ -608,16 +571,6 @@
                 font-size: 13px;
             }
             
-            .kiis-logo {
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
-            }
-            
-            .kiis-text {
-                font-size: 20px;
-            }
-            
             .source-popup {
                 padding: 25px;
                 max-width: 90%;
@@ -690,17 +643,6 @@
                 font-size: 12px;
             }
             
-            .kiis-logo {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-                margin-right: 15px;
-            }
-            
-            .kiis-text {
-                font-size: 18px;
-            }
-            
             .source-popup {
                 padding: 20px;
                 max-width: 95%;
@@ -742,10 +684,6 @@
             
             .barrier-description, .solution-benefit {
                 font-size: 11px;
-            }
-            
-            .kiis-text {
-                font-size: 16px;
             }
         }
         
@@ -873,12 +811,6 @@
                 </div>
             </div>
         </div>
-        
-        <!-- KiiS 통합 솔루션 섹션 -->
-        <div class="kiis-solution" style="margin-top: 40px; opacity: 0; transform: scale(0.8); transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);">
-            <div class="kiis-logo" onclick="showSource('kiissolution')">K</div>
-            <div class="kiis-text">KiiS: Unified Solution for All 3 Barriers</div>
-        </div>
     </div>
     
     <!-- 네비게이션 -->
@@ -977,31 +909,6 @@
                     </ul>
                     
                     <p><strong>Market Opportunity:</strong> Converting excluded patients into treatable candidates represents massive market expansion potential.</p>
-                `
-            },
-            'kiissolution': {
-                title: 'KiiS: Unified Breakthrough Solution',
-                content: `
-                    <p><strong>Revolutionary Technology Platform:</strong></p>
-                    <p>KiiS represents a paradigm shift that simultaneously addresses all three major market barriers through innovative design and enhanced biological performance.</p>
-                    
-                    <p><strong>Unified Solution Approach:</strong></p>
-                    <ul>
-                        <li><strong>Cost Barrier:</strong> Eliminates need for bone grafts in most cases</li>
-                        <li><strong>Complexity Barrier:</strong> Enables simplified, faster procedures</li>
-                        <li><strong>Exclusion Barrier:</strong> Works effectively in compromised bone conditions</li>
-                        <li><strong>Quality Enhancement:</strong> Superior outcomes with existing tools</li>
-                    </ul>
-                    
-                    <p><strong>Market Transformation Impact:</strong></p>
-                    <ul>
-                        <li>Converts excluded patients into treatment candidates</li>
-                        <li>Reduces financial barriers to treatment adoption</li>
-                        <li>Simplifies practice workflows and training requirements</li>
-                        <li>Creates competitive advantages for early adopters</li>
-                    </ul>
-                    
-                    <p><strong>Investment Thesis:</strong> KiiS doesn't just improve existing solutions—it fundamentally transforms the market by eliminating barriers that have constrained growth for decades.</p>
                 `
             },
             'costsolution': {
@@ -1315,7 +1222,6 @@
             const header = document.querySelector('.main-header');
             const barriersGrid = document.querySelector('.barriers-grid');
             const pairs = document.querySelectorAll('.barrier-solution-pair');
-            const kiisSection = document.querySelector('.kiis-solution');
             
             setTimeout(() => {
                 if (header) {
@@ -1354,16 +1260,9 @@
                 }, 400);
                 
                 setTimeout(() => {
-                    if (kiisSection) {
-                        kiisSection.style.opacity = '1';
-                        kiisSection.style.transform = 'scale(1)';
-                    }
-                }, 3000);
-                
-                setTimeout(() => {
                     showNavigation();
                     hideNavigation(3000);
-                }, 4000);
+                }, 3000);
                 
             }, 300);
         });
