@@ -30,7 +30,7 @@
             position: relative;
         }
 
-        /* 헤더 */
+        /* 헤더 - 간소화 */
         .main-header {
             text-align: center;
             margin-bottom: 50px;
@@ -48,115 +48,11 @@
             font-size: 48px;
             line-height: 1.1;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 0;
             background: linear-gradient(135deg, #ffd700, #ffffff);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            font-size: 26px;
-            line-height: 1.3;
-            font-weight: 600;
-            color: #e0e7ff;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* 투자 타임라인 섹션 */
-        .investment-timeline {
-            margin-bottom: 60px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .investment-timeline.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-title {
-            font-size: 32px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 30px;
-        }
-
-        .timeline-flow {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 20px;
-        }
-
-        .timeline-step {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            min-width: 200px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-step:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-        }
-
-        .timeline-step.current {
-            background: rgba(16, 185, 129, 0.2);
-            border-color: #10b981;
-        }
-
-        .timeline-step.investment-dependent {
-            background: rgba(255, 215, 0, 0.1);
-            border-left: 3px solid #ffd700;
-            font-style: italic;
-        }
-
-        .timeline-step.future {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: #3b82f6;
-        }
-
-        .timeline-step-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-
-        .timeline-step.current .timeline-step-title {
-            color: #10b981;
-        }
-
-        .timeline-step.future .timeline-step-title {
-            color: #3b82f6;
-        }
-
-        .timeline-step-content {
-            font-size: 14px;
-            color: #e0e7ff;
-        }
-
-        .timeline-arrow {
-            font-size: 24px;
-            color: #ffd700;
-        }
-
-        .timeline-note {
-            font-size: 14px;
-            color: #94a3b8;
-            font-style: italic;
-            margin-top: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* 특허 + FDA 통합 섹션 */
@@ -354,7 +250,7 @@
             color: #ffffff;
         }
 
-        /* 3단계 제품 로드맵 */
+        /* 3단계 제품 로드맵 - 간소화 */
         .product-roadmap {
             margin-bottom: 60px;
             opacity: 0;
@@ -529,80 +425,6 @@
             border-left-color: #a855f7;
         }
 
-        /* 투자자 신뢰도 섹션 - v2.1 보수적 표현 */
-        .investor-confidence {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-            border: 3px solid #ffd700;
-            border-radius: 25px;
-            padding: 40px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .investor-confidence.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .confidence-title {
-            font-size: 36px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        .confidence-message {
-            font-size: 22px;
-            color: #ffffff;
-            line-height: 1.4;
-            margin-bottom: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .confidence-pillars {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .confidence-pillar {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .confidence-pillar:hover {
-            background: rgba(255, 215, 0, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .pillar-icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .pillar-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 8px;
-        }
-
-        .pillar-description {
-            font-size: 14px;
-            color: #e0e7ff;
-            line-height: 1.3;
-        }
-
         /* 네비게이션 */
         .hover-zone {
             position: fixed;
@@ -676,11 +498,6 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-
-            .confidence-pillars {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -692,22 +509,8 @@
                 font-size: 28px;
             }
 
-            .subtitle {
-                font-size: 20px;
-            }
-
-            .timeline-title,
             .roadmap-title {
                 font-size: 24px;
-            }
-
-            .timeline-flow {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .timeline-arrow {
-                transform: rotate(90deg);
             }
 
             .innovation-showcase {
@@ -729,18 +532,6 @@
             .phase-description {
                 font-size: 16px;
             }
-
-            .confidence-title {
-                font-size: 28px;
-            }
-
-            .confidence-message {
-                font-size: 18px;
-            }
-
-            .confidence-pillars {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 480px) {
@@ -756,11 +547,6 @@
                 font-size: 24px;
             }
 
-            .subtitle {
-                font-size: 16px;
-            }
-
-            .timeline-title,
             .roadmap-title {
                 font-size: 20px;
             }
@@ -773,14 +559,6 @@
             .innovation-subtitle,
             .phase-description {
                 font-size: 14px;
-            }
-
-            .confidence-title {
-                font-size: 24px;
-            }
-
-            .confidence-message {
-                font-size: 16px;
             }
 
             .roadmap-phase {
@@ -801,49 +579,18 @@
                 font-size: 22px;
             }
 
-            .subtitle {
-                font-size: 14px;
-            }
-
             .innovation-card,
             .roadmap-phase {
                 padding: 20px 12px;
-            }
-
-            .timeline-step {
-                min-width: 160px;
-                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 메인 헤더 -->
+        <!-- 메인 헤더 - 완전 간소화 -->
         <div class="main-header" id="mainHeader">
             <h1 class="title">FDA-Validated Innovation Ready for Market</h1>
-            <p class="subtitle">US Patent Protection + Regulatory Pathway = Reduced Risk Investment in $3B Opportunity</p>
-        </div>
-
-        <!-- 투자 타임라인 -->
-        <div class="investment-timeline" id="investmentTimeline">
-            <div class="timeline-title">Market Entry Pathway</div>
-            <div class="timeline-flow">
-                <div class="timeline-step current">
-                    <div class="timeline-step-title">TODAY</div>
-                    <div class="timeline-step-content">✓ US Patent Secured<br>✓ FDA Pre-submission Positive</div>
-                </div>
-                <div class="timeline-arrow">→</div>
-                <div class="timeline-step investment-dependent">
-                    <div class="timeline-step-title">INVESTMENT</div>
-                    <div class="timeline-step-content">Final FDA 510K<br>Manufacturing Scale-up</div>
-                </div>
-                <div class="timeline-arrow">→</div>
-                <div class="timeline-step future">
-                    <div class="timeline-step-title">2026</div>
-                    <div class="timeline-step-content">Market Entry<br>Revenue Generation</div>
-                </div>
-            </div>
         </div>
 
         <!-- 특허 + FDA 통합 섹션 -->
@@ -981,35 +728,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- 투자자 신뢰도 섹션 -->
-        <div class="investor-confidence" id="investorConfidence">
-            <h3 class="confidence-title">Reduced Risk + Significant Opportunity</h3>
-            <p class="confidence-message">
-                Patent protection reduces competitive risk. FDA validation removes regulatory uncertainty. 
-                Result: Clear pathway to participate in $3B market opportunity.
-            </p>
-            
-            <div class="confidence-pillars">
-                <div class="confidence-pillar">
-                    <span class="pillar-icon">🛡️</span>
-                    <div class="pillar-title">IP PROTECTION</div>
-                    <div class="pillar-description">20-year market exclusivity with broad patent claims</div>
-                </div>
-                
-                <div class="confidence-pillar">
-                    <span class="pillar-icon">✅</span>
-                    <div class="pillar-title">FDA VALIDATION</div>
-                    <div class="pillar-description">Regulatory pathway confirmed, submission-ready</div>
-                </div>
-                
-                <div class="confidence-pillar">
-                    <span class="pillar-icon">🎯</span>
-                    <div class="pillar-title">PLATFORM POTENTIAL</div>
-                    <div class="pillar-description">3-phase roadmap from dental to orthopedic markets</div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- 네비게이션 -->
@@ -1032,20 +750,12 @@
             }, 400);
 
             setTimeout(function() {
-                document.getElementById('investmentTimeline').classList.add('visible');
+                document.getElementById('innovationShowcase').classList.add('visible');
             }, 700);
 
             setTimeout(function() {
-                document.getElementById('innovationShowcase').classList.add('visible');
-            }, 1000);
-
-            setTimeout(function() {
                 document.getElementById('productRoadmap').classList.add('visible');
-            }, 1300);
-
-            setTimeout(function() {
-                document.getElementById('investorConfidence').classList.add('visible');
-            }, 1600);
+            }, 1000);
 
             // 네비게이션 힌트 (2초간 표시)
             setTimeout(function() {
@@ -1053,7 +763,7 @@
                 setTimeout(function() {
                     hideNavigation(0);
                 }, 2000);
-            }, 2200);
+            }, 1600);
         }
 
         // 네비게이션 표시/숨김
