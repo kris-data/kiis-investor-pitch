@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KiiS - 178M Patients Are Waiting for One More Chance</title>
+    <title>KiiS - 178M Patients Are Waiting</title>
     <style>
         * {
             margin: 0;
@@ -144,28 +144,6 @@
             border: 2px solid rgba(255, 215, 0, 0.3);
         }
         
-        .hope-main {
-            background: linear-gradient(135deg, #ffd700, #f59e0b); /* 기존 골드 그라디언트 유지 */
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-        }
-        
-        .hope-main-title {
-            font-size: 32px;
-            font-weight: bold;
-            color: #000000; /* 골드 배경에 검은 글씨 */
-            margin-bottom: 10px;
-        }
-        
-        .hope-main-subtitle {
-            font-size: 18px;
-            color: #1f2937; /* 진한 회색으로 가독성 확보 */
-            line-height: 1.4;
-        }
-        
         /* 솔루션 카드 - 기존 골드 시스템 유지 */
         .solution-card {
             background: rgba(255, 215, 0, 0.15); /* 연한 골드 배경 */
@@ -210,53 +188,6 @@
             line-height: 1.3;
         }
         
-        /* Bridge Section */
-        .bridge-section {
-            text-align: center;
-            margin-top: 40px;
-            padding: 40px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 25px;
-            border: 2px solid rgba(255, 215, 0, 0.4);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-        }
-        
-        .bridge-message {
-            font-size: 28px;
-            color: #ffffff;
-            line-height: 1.4;
-            margin-bottom: 15px;
-        }
-        
-        .bridge-highlight {
-            color: #ffd700;
-            font-weight: 700;
-            font-style: italic;
-            font-size: 32px;
-            display: block;
-            margin-top: 10px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-        
-        .bridge-arrow {
-            font-size: 36px;
-            color: #ffd700;
-            margin: 20px 0;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-        
         /* Mobile Optimization - Galaxy Smartphone Specific */
         @media (max-width: 1200px) {
             .main-content {
@@ -282,14 +213,6 @@
             
             .solution-header {
                 justify-content: center;
-            }
-            
-            .hope-main {
-                text-align: center;
-            }
-            
-            .bridge-section {
-                text-align: center;
             }
         }
         
@@ -322,17 +245,6 @@
                 margin-bottom: 20px;
             }
             
-            .hope-main-title {
-                font-size: 22px;
-                text-align: center;
-                line-height: 1.2;
-            }
-            
-            .hope-main-subtitle {
-                font-size: 14px;
-                line-height: 1.4;
-            }
-            
             .card-title {
                 font-size: 16px;
             }
@@ -354,22 +266,6 @@
             .solution-text {
                 font-size: 13px;
                 line-height: 1.3;
-            }
-            
-            .bridge-message {
-                font-size: 20px;
-                text-align: center;
-                line-height: 1.4;
-            }
-            
-            .bridge-highlight {
-                font-size: 24px;
-                text-align: center;
-            }
-            
-            .bridge-section {
-                padding: 25px;
-                margin-top: 30px;
             }
             
             /* Mobile-specific 테두리 변경 */
@@ -438,23 +334,6 @@
                 font-size: 18px;
             }
             
-            .hope-main {
-                padding: 20px;
-                border-radius: 15px;
-                margin-bottom: 20px;
-            }
-            
-            .hope-main-title {
-                font-size: 20px;
-                margin-bottom: 8px;
-                line-height: 1.2;
-            }
-            
-            .hope-main-subtitle {
-                font-size: 13px;
-                line-height: 1.4;
-            }
-            
             .card-icon, .solution-icon {
                 font-size: 20px;
                 width: 30px;
@@ -488,26 +367,6 @@
                 margin-bottom: 12px;
                 border-radius: 12px;
             }
-            
-            .bridge-section {
-                padding: 20px;
-                border-radius: 15px;
-                margin-top: 25px;
-            }
-            
-            .bridge-message {
-                font-size: 18px;
-                margin-bottom: 12px;
-            }
-            
-            .bridge-highlight {
-                font-size: 20px;
-            }
-            
-            .bridge-arrow {
-                font-size: 28px;
-                margin: 15px 0;
-            }
         }
         
         /* Extra small screens (Galaxy fold, older phones) */
@@ -526,14 +385,6 @@
             
             .section-title {
                 font-size: 16px;
-            }
-            
-            .hope-main-title {
-                font-size: 18px;
-            }
-            
-            .hope-main-subtitle {
-                font-size: 12px;
             }
             
             .crisis-section, .hope-section {
@@ -558,14 +409,6 @@
             
             .solution-text {
                 font-size: 11px;
-            }
-            
-            .bridge-message {
-                font-size: 16px;
-            }
-            
-            .bridge-highlight {
-                font-size: 18px;
             }
         }
         
@@ -644,7 +487,7 @@
     <div class="container">
         <!-- Main Header -->
         <div class="main-header">
-            <h1 class="title">178 Million Patients Are Waiting...<br>For One More Chance</h1>
+            <h1 class="title">178 Million Patients Are Waiting...</h1>
             <p class="subtitle">Before giving up. Before expensive procedures. Before complex surgeries. KiiS offers an alternative.</p>
         </div>
         
@@ -688,15 +531,9 @@
                 </div>
             </div>
             
-            <!-- Right Side: Hope Solution -->
+            <!-- Right Side: Solution -->
             <div class="hope-section">
-                <h2 class="section-title hope-title">The Power of "One More Chance"</h2>
-                
-                <!-- Main Hope Message -->
-                <div class="hope-main">
-                    <div class="hope-main-title">We Give One More Chance</div>
-                    <div class="hope-main-subtitle">Before bone grafting → Try KiiS first<br>Before revision → Try KiiS instead<br>Before giving up → Try KiiS technology</div>
-                </div>
+                <h2 class="section-title hope-title">KiiS Solution</h2>
                 
                 <!-- Solution Benefits -->
                 <div class="solution-card">
@@ -722,16 +559,23 @@
                     </div>
                     <div class="solution-text">Premium technology, affordable cost</div>
                 </div>
+                
+                <div class="solution-card">
+                    <div class="solution-header">
+                        <div class="solution-icon">🎯</div>
+                        <div class="solution-title">Better Results</div>
+                    </div>
+                    <div class="solution-text">40% improved bone contact vs traditional implants</div>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-header">
+                        <div class="solution-icon">🔧</div>
+                        <div class="solution-title">Simple Implementation</div>
+                    </div>
+                    <div class="solution-text">Compatible with existing tools and procedures</div>
+                </div>
             </div>
-        </div>
-        
-        <!-- Bridge to Next Slide -->
-        <div class="bridge-section">
-            <div class="bridge-message">
-                Every patient deserves One More Chance.
-            </div>
-            <div class="bridge-arrow">↓</div>
-            <span class="bridge-highlight">Let's show you how big this opportunity really is.</span>
         </div>
     </div>
     
@@ -902,12 +746,11 @@
         window.addEventListener('load', function() {
             const header = document.querySelector('.main-header');
             const mainContent = document.querySelector('.main-content');
-            const bridgeSection = document.querySelector('.bridge-section');
             const crisisCards = document.querySelectorAll('.crisis-card');
             const solutionCards = document.querySelectorAll('.solution-card');
             
             // Initial state
-            [header, mainContent, bridgeSection].forEach(el => {
+            [header, mainContent].forEach(el => {
                 if (el) {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(30px)';
@@ -953,13 +796,6 @@
                         }, index * 200 + 300);
                     });
                 }, 400);
-                
-                setTimeout(() => {
-                    if (bridgeSection) {
-                        bridgeSection.style.opacity = '1';
-                        bridgeSection.style.transform = 'translateY(0)';
-                    }
-                }, 1200);
                 
                 setTimeout(() => {
                     showNavigation();
