@@ -309,29 +309,31 @@
             text-transform: uppercase;
         }
         
-        /* 핵심 가치 제안 - 하단으로 */
+        /* 핵심 가치 제안 - 하단으로 (크기 축소) */
         .core-value {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
             border: 3px solid #ffd700;
-            border-radius: 25px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 25px 40px;
             text-align: center;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            flex: 1;
+            align-self: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .value-statement {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             color: #ffd700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
         .value-details {
-            font-size: 20px;
+            font-size: 18px;
             color: #ffffff;
             line-height: 1.4;
         }
@@ -429,11 +431,11 @@
             }
             
             .value-statement {
-                font-size: 28px;
+                font-size: 24px;
             }
             
             .value-details {
-                font-size: 18px;
+                font-size: 16px;
             }
             
             body {
@@ -504,9 +506,13 @@
                 font-size: 14px;
             }
             
-            .core-value,
+            .core-value {
+                padding: 15px 20px;
+                max-width: 450px;
+            }
+            
             .proven-success {
-                padding: 20px;
+                padding: 15px;
             }
             
             .proven-title {
