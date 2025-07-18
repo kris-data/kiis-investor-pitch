@@ -26,23 +26,25 @@
             max-width: 1400px;
             margin: 0 auto;
             min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
         }
         
         /* 헤더 섹션 */
         .main-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             opacity: 0;
             transform: translateY(-30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .title {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: bold;
             color: #ffffff;
-            line-height: 1.2;
-            margin-bottom: 15px;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
         
         .title-highlight {
@@ -50,21 +52,14 @@
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
-        .subtitle {
-            font-size: 22px;
-            color: #e0e7ff;
-            font-weight: 400;
-            line-height: 1.4;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+
         
         /* 파트너십 그리드 */
         .partnerships-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            flex: 1;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -73,13 +68,13 @@
         /* 파트너 이미지 스타일 */
         .partner-image {
             width: 100%;
-            max-width: 300px;
-            height: 150px;
-            border-radius: 12px;
+            max-width: 380px;
+            height: 180px;
+            border-radius: 15px;
             object-fit: cover;
             object-position: center;
-            margin: 10px auto 15px auto;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            margin: 15px auto 25px auto;
+            border: 3px solid rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease;
             display: block;
         }
@@ -90,27 +85,27 @@
         
         .partner-placeholder {
             width: 100%;
-            max-width: 300px;
-            height: 150px;
+            max-width: 380px;
+            height: 180px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            border: 3px dashed rgba(255, 255, 255, 0.3);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin: 10px auto 15px auto;
+            margin: 15px auto 25px auto;
         }
         
         .partner-placeholder-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
+            font-size: 48px;
+            margin-bottom: 12px;
             color: #ffd700;
         }
         
         .partner-placeholder-text {
-            font-size: 12px;
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.3;
         }
@@ -120,9 +115,12 @@
             background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
             border: 3px solid #ffd700;
             border-radius: 25px;
-            padding: 35px;
+            padding: 40px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .osu-partnership::before {
@@ -143,21 +141,22 @@
         .partnership-header {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .partner-logo {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: #ffd700;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 32px;
             font-weight: bold;
             color: #000;
-            margin-right: 20px;
+            margin-right: 25px;
+            flex-shrink: 0;
         }
         
         .partner-info {
@@ -165,57 +164,52 @@
         }
         
         .partner-name {
-            font-size: 28px;
+            font-size: 36px;
             font-weight: bold;
             color: #ffd700;
-            line-height: 1.2;
+            line-height: 1.1;
+            margin-bottom: 8px;
         }
         
         .partner-subtitle {
-            font-size: 16px;
+            font-size: 18px;
             color: #ffffff;
             font-style: italic;
-            margin-top: 5px;
         }
         
         .partnership-benefits {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
+            flex: 1;
         }
         
         .benefit-category {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px;
             border-left: 4px solid #ffd700;
         }
         
         .category-title {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: bold;
             color: #ffd700;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
         }
         
         .category-icon {
-            margin-right: 10px;
-            font-size: 20px;
+            margin-right: 15px;
+            font-size: 26px;
+            flex-shrink: 0;
         }
         
         .category-description {
-            font-size: 15px;
+            font-size: 17px;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.4;
-            margin-bottom: 10px;
-        }
-        
-        .category-value {
-            font-size: 14px;
-            color: #10b981;
-            font-weight: 600;
         }
         
         /* 한국 제조 파트너십 카드 */
@@ -223,9 +217,12 @@
             background: linear-gradient(145deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1));
             border: 3px solid #10b981;
             border-radius: 25px;
-            padding: 35px;
+            padding: 40px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .korea-partnership::before {
@@ -260,260 +257,31 @@
             border-left-color: #10b981;
         }
         
-        /* SKU 호환성 섹션 */
-        .sku-compatibility-section {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
-            padding: 35px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #3b82f6;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .sku-title {
-            font-size: 28px;
-            font-weight: bold;
-            color: #3b82f6;
-            margin-bottom: 25px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .sku-title-icon {
-            margin-right: 15px;
-            font-size: 32px;
-        }
-        
-        .sku-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 25px;
-        }
-        
-        .sku-advantage {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .sku-advantage:hover {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        .advantage-icon {
-            font-size: 36px;
-            margin-bottom: 15px;
-            color: #3b82f6;
-            display: block;
-        }
-        
-        .advantage-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #3b82f6;
-            margin-bottom: 12px;
-        }
-        
-        .advantage-description {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.4;
-            margin-bottom: 10px;
-        }
-        
-        .advantage-metric {
-            font-size: 16px;
-            font-weight: bold;
-            color: #10b981;
-        }
-        
-        /* 종합 가치 제안 */
-        .value-proposition {
+        /* 하단 요약 섹션 */
+        .bottom-summary {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3));
             border: 3px solid rgba(255, 215, 0, 0.5);
             border-radius: 25px;
             padding: 35px;
             text-align: center;
+            margin-top: 40px;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .value-title {
-            font-size: 32px;
+        .summary-title {
+            font-size: 36px;
             font-weight: bold;
             color: #ffd700;
             margin-bottom: 20px;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
-        .value-message {
-            font-size: 20px;
+        .summary-message {
+            font-size: 22px;
             color: #ffffff;
             line-height: 1.4;
-            margin-bottom: 25px;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .value-metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-top: 25px;
-        }
-        
-        .metric-item {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .metric-item:hover {
-            background: rgba(255, 215, 0, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        .metric-number {
-            font-size: 36px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 8px;
-        }
-        
-        .metric-label {
-            font-size: 14px;
-            color: #e0e7ff;
-            line-height: 1.3;
-        }
-        
-        /* 팝업 시스템 */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1500;
-            display: none;
-            backdrop-filter: blur(5px);
-        }
-        
-        .source-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #1e40af, #1d4ed8);
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
-            border: 2px solid #ffd700;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            z-index: 1600;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            display: none;
-            animation: popupSlideIn 0.3s ease-out;
-        }
-        
-        @keyframes popupSlideIn {
-            from {
-                transform: translate(-50%, -60%);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-50%, -50%);
-                opacity: 1;
-            }
-        }
-        
-        .source-popup h3 {
-            color: #ffd700;
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            padding-right: 40px;
-        }
-        
-        .source-popup p {
-            margin-bottom: 15px;
-            line-height: 1.6;
-            font-size: 16px;
-            color: #e0e7ff;
-        }
-        
-        .source-popup ul {
-            margin: 15px 0;
-            padding-left: 20px;
-        }
-        
-        .source-popup li {
-            margin-bottom: 8px;
-            line-height: 1.5;
-            color: #e0e7ff;
-        }
-        
-        .source-popup strong {
-            color: #ffd700;
-        }
-        
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #ffd700;
-            font-size: 28px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .close-btn:hover {
-            color: #fff;
-        }
-        
-        /* 클릭 가능한 요소 스타일 */
-        .clickable {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .clickable::after {
-            content: "ⓘ";
-            position: absolute;
-            top: -5px;
-            right: -15px;
-            font-size: 12px;
-            color: #ffd700;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-        
-        .clickable:hover::after {
-            opacity: 1;
-        }
-        
-        .clickable:hover {
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
         
         /* 네비게이션 시스템 */
@@ -592,18 +360,8 @@
                 gap: 30px;
             }
             
-            .sku-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .value-metrics {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
             .title {
-                font-size: 36px;
+                font-size: 42px;
             }
             
             .subtitle {
@@ -618,18 +376,18 @@
         @media (max-width: 768px) {
             .partner-image,
             .partner-placeholder {
-                max-width: 250px;
-                height: 120px;
-                margin: 8px auto 12px auto;
+                max-width: 280px;
+                height: 140px;
+                margin: 12px auto 15px auto;
             }
             
             .partner-placeholder-icon {
-                font-size: 28px;
-                margin-bottom: 6px;
+                font-size: 36px;
+                margin-bottom: 8px;
             }
             
             .partner-placeholder-text {
-                font-size: 11px;
+                font-size: 14px;
             }
             
             body {
@@ -637,64 +395,51 @@
             }
             
             .title {
-                font-size: 28px;
+                font-size: 32px;
                 line-height: 1.1;
             }
             
             .subtitle {
                 font-size: 16px;
-                line-height: 1.3;
             }
             
             .partner-name {
-                font-size: 24px;
+                font-size: 28px;
             }
             
-            .sku-title {
-                font-size: 24px;
-            }
-            
-            .value-title {
-                font-size: 26px;
-            }
-            
-            .value-message {
+            .category-title {
                 font-size: 18px;
             }
             
-            .source-popup {
-                padding: 25px;
-                max-width: 90%;
-                margin: 20px;
+            .category-description {
+                font-size: 15px;
             }
             
-            .source-popup h3 {
+            .summary-title {
+                font-size: 28px;
+            }
+            
+            .summary-message {
                 font-size: 18px;
-                margin-bottom: 15px;
-            }
-            
-            .source-popup p {
-                font-size: 14px;
-                margin-bottom: 12px;
             }
         }
         
         @media (max-width: 480px) {
             .partner-image,
             .partner-placeholder {
-                max-width: 200px;
-                height: 100px;
-                border-radius: 10px;
-                margin: 6px auto 10px auto;
+                max-width: 220px;
+                height: 120px;
+                border-radius: 12px;
+                margin: 10px auto 12px auto;
             }
             
             .partner-placeholder-icon {
-                font-size: 24px;
-                margin-bottom: 4px;
+                font-size: 32px;
+                margin-bottom: 6px;
             }
             
             .partner-placeholder-text {
-                font-size: 10px;
+                font-size: 12px;
             }
             
             body {
@@ -702,8 +447,8 @@
             }
             
             .title {
-                font-size: 24px;
-                margin-bottom: 12px;
+                font-size: 26px;
+                margin-bottom: 15px;
             }
             
             .subtitle {
@@ -715,18 +460,26 @@
                 padding: 25px 20px;
             }
             
-            .sku-compatibility-section {
+            .bottom-summary {
                 padding: 25px 20px;
             }
             
-            .value-proposition {
-                padding: 25px 20px;
+            .partner-name {
+                font-size: 24px;
+            }
+            
+            .summary-title {
+                font-size: 24px;
+            }
+            
+            .summary-message {
+                font-size: 16px;
             }
         }
         
         @media (max-width: 360px) {
             .title {
-                font-size: 22px;
+                font-size: 24px;
             }
             
             .subtitle {
@@ -743,9 +496,6 @@
                 <span class="title-highlight">Strategic Partnerships</span><br>
                 for Scale
             </h1>
-            <p class="subtitle">
-                Academic Authority + Manufacturing Excellence + SKU Compatibility = Market Success
-            </p>
         </div>
         
         <!-- 파트너십 그리드 -->
@@ -774,34 +524,21 @@
                     <div class="benefit-category">
                         <div class="category-title">
                             <span class="category-icon">🎓</span>
-                            Academic Authority & Credibility
+                            Academic Authority
                         </div>
                         <div class="category-description">
-                            <span class="clickable" onclick="showSource('authority')">Professor-inventor backing</span> provides credibility for practitioner adoption
+                            Professor-inventor backing provides credibility for practitioner adoption
                         </div>
-                        <div class="category-value">Enhanced practitioner confidence and trust</div>
                     </div>
                     
                     <div class="benefit-category">
                         <div class="category-title">
                             <span class="category-icon">🌐</span>
-                            Professional Network Access
+                            Network Access
                         </div>
                         <div class="category-description">
-                            <span class="clickable" onclick="showSource('network')">OSU dental alumni network</span> creates early adoption pathway and testimonials
+                            OSU dental alumni network creates early adoption pathway
                         </div>
-                        <div class="category-value">Direct access to influential dental practitioners</div>
-                    </div>
-                    
-                    <div class="benefit-category">
-                        <div class="category-title">
-                            <span class="category-icon">🔗</span>
-                            Research Network Collaboration
-                        </div>
-                        <div class="category-description">
-                            <span class="clickable" onclick="showSource('collaboration')">Multi-university partnerships</span> expand validation opportunities
-                        </div>
-                        <div class="category-value">Broader academic validation through network effects</div>
                     </div>
                 </div>
             </div>
@@ -830,97 +567,31 @@
                     <div class="benefit-category">
                         <div class="category-title">
                             <span class="category-icon">🏆</span>
-                            Global Manufacturing Ecosystem
+                            Manufacturing Excellence
                         </div>
                         <div class="category-description">
-                            <span class="clickable" onclick="showSource('quality')">World-class manufacturing hub</span> with multiple top-tier companies
+                            World-class manufacturing hub with multiple top-tier companies
                         </div>
-                        <div class="category-value">Rich ecosystem for KiiS partnership opportunities</div>
                     </div>
                     
                     <div class="benefit-category">
                         <div class="category-title">
                             <span class="category-icon">⚡</span>
-                            Value Manufacturing Model
+                            Cost Leadership
                         </div>
                         <div class="category-description">
-                            <span class="clickable" onclick="showSource('cost')">Proven value-focused approach</span> with competitive economics
+                            Proven value-focused approach with competitive economics
                         </div>
-                        <div class="category-value">Swiss-level quality with competitive economics</div>
-                    </div>
-                    
-                    <div class="benefit-category">
-                        <div class="category-title">
-                            <span class="category-icon">🏭</span>
-                            Strategic Partnership Access
-                        </div>
-                        <div class="category-description">
-                            <span class="clickable" onclick="showSource('scale')">Multiple qualified OEM partners</span> with flexible capabilities
-                        </div>
-                        <div class="category-value">KiiS can select optimal manufacturing partner</div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- SKU 호환성 섹션 -->
-        <div class="sku-compatibility-section" id="skuSection">
-            <div class="sku-title">
-                <span class="sku-title-icon">🔗</span>
-                Market Penetration Through SKU Compatibility
-            </div>
-            
-            <div class="sku-grid">
-                <div class="sku-advantage">
-                    <div class="advantage-icon">🎯</div>
-                    <div class="advantage-title">Strategic SKU Efficiency</div>
-                    <div class="advantage-description">
-                        <span class="clickable" onclick="showSource('nobel')">KiiS 3-diameter strategy</span> covers major market segments with minimal SKU count
-                    </div>
-                    <div class="advantage-metric">Strategic focus on core sizes</div>
-                </div>
-                
-                <div class="sku-advantage">
-                    <div class="advantage-icon">⚡</div>
-                    <div class="advantage-title">Direct Compatibility</div>
-                    <div class="advantage-description">
-                        <span class="clickable" onclick="showSource('learning')">Universal connection system</span> - works with existing Nobel components
-                    </div>
-                    <div class="advantage-metric">Plug-and-play integration</div>
-                </div>
-                
-                <div class="sku-advantage">
-                    <div class="advantage-icon">📊</div>
-                    <div class="advantage-title">Manufacturing Efficiency</div>
-                    <div class="advantage-description">
-                        <span class="clickable" onclick="showSource('efficiency')">Single system approach</span> - shared tooling across all diameters
-                    </div>
-                    <div class="advantage-metric">Optimized production economics</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 종합 가치 제안 -->
-        <div class="value-proposition" id="valueProposition">
-            <div class="value-title">🏆 Competitive Advantage Through Strategic Alliances</div>
-            <div class="value-message">
-                Academic credibility + Korean manufacturing excellence + proven SKU strategy = 
-                Strong market entry advantage and sustainable competitive positioning
-            </div>
-            
-            <div class="value-metrics">
-                <div class="metric-item">
-                    <div class="metric-number">Significant</div>
-                    <div class="metric-label">Cost savings vs traditional academic trials</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-number">Competitive</div>
-                    <div class="metric-label">Price advantage strategy vs premium brands</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-number">Enhanced</div>
-                    <div class="metric-label">Adoption potential with university backing</div>
-                </div>
+        <!-- 하단 요약 -->
+        <div class="bottom-summary" id="bottomSummary">
+            <div class="summary-title">⚡ Smart SKU Strategy: Maximum Market Impact, Minimum Complexity</div>
+            <div class="summary-message">
+                3 strategic diameters (3.5, 4.3, 5.0mm) + 5 lengths = 15 focused SKUs covering 60%+ of market demand
             </div>
         </div>
     </div>
@@ -932,87 +603,11 @@
         <a href="slide10.html" class="nav-btn next">Next</a>
     </div>
     
-    <!-- 팝업 시스템 -->
-    <div class="overlay" id="overlay"></div>
-    <div class="source-popup" id="sourcePopup">
-        <button class="close-btn" id="closeBtn">&times;</button>
-        <div id="sourceContent"></div>
-    </div>
-    
     <script>
         // 전역 변수
         var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         var isNavigationVisible = false;
         var hideTimeout;
-        var isPopupOpen = false;
-        
-        // 소스 데이터
-        var sources = {
-            'authority': {
-                title: 'OSU Academic Authority & Credibility',
-                content: '<p><strong>Professor-Inventor Academic Backing:</strong></p><p>OSU professor-inventor status provides powerful academic credibility that significantly enhances practitioner confidence and adoption rates.</p><p><strong>Academic Credibility Benefits:</strong></p><ul><li><strong>Professor Authority:</strong> University professor endorsement carries significant weight with dental professionals</li><li><strong>Peer Influence:</strong> Academic credentials create trust and credibility in professional community</li><li><strong>Educational Backing:</strong> University association validates technology sophistication</li><li><strong>Professional Confidence:</strong> Academic authority reduces practitioner adoption risk perception</li></ul><p><strong>Market Impact:</strong></p><ul><li>Healthcare professionals demonstrate higher confidence in professor-developed technologies</li><li>Academic backing accelerates word-of-mouth adoption among practitioners</li><li>University association provides competitive differentiation vs commercial-only products</li><li>Academic credibility enables premium positioning and pricing support</li></ul><p><strong>Note:</strong> Due to OSU\'s equity stake in KiiS, direct clinical validation through OSU requires careful COI management.</p>'
-            },
-            'network': {
-                title: 'OSU Professional Network & Early Adoption',
-                content: '<p><strong>Strategic Network Access:</strong></p><p>OSU dental alumni network and professional connections create systematic early adoption pathway and powerful testimonial generation.</p><p><strong>Network Advantages:</strong></p><ul><li><strong>Alumni Network:</strong> Direct access to OSU dental graduates in practice across the country</li><li><strong>Professional Relationships:</strong> Professor connections with leading dental practitioners and opinion leaders</li><li><strong>Early Adopter Pipeline:</strong> Systematic identification and engagement of innovation-forward practitioners</li><li><strong>Testimonial Generation:</strong> Credible early adopters provide powerful peer testimonials</li></ul><p><strong>Adoption Strategy:</strong></p><ul><li><strong>Strategic Pilot Programs:</strong> Selective early adoption with influential network practitioners</li><li><strong>Case Study Development:</strong> Document successful outcomes for broader marketing</li><li><strong>Peer-to-Peer Influence:</strong> Leverage network effects for organic adoption growth</li><li><strong>Professional Referrals:</strong> Network practitioners refer colleagues and expand adoption</li></ul><p><strong>Competitive Advantage:</strong> Established professional relationships provide unique market entry pathway unavailable to competitors.</p>'
-            },
-            'collaboration': {
-                title: 'Multi-University Research Network',
-                content: '<p><strong>Expanded Research Partnerships:</strong></p><p>OSU connections enable collaboration with other universities for broader academic validation while managing conflict of interest considerations.</p><p><strong>Network Collaboration Model:</strong></p><ul><li><strong>Multi-University Studies:</strong> OSU facilitates connections with other dental schools for independent research</li><li><strong>Academic Partnerships:</strong> Collaborative research projects with universities having no financial stake</li><li><strong>Research Coordination:</strong> OSU professor expertise guides research design at partner institutions</li><li><strong>Publication Strategy:</strong> Multi-site studies provide stronger academic validation</li></ul><p><strong>COI Management:</strong></p><ul><li><strong>Independent Research:</strong> Partner universities conduct studies without OSU direct involvement</li><li><strong>Transparent Disclosure:</strong> Full disclosure of OSU equity stake in all academic interactions</li><li><strong>Third-Party Validation:</strong> Independent university research eliminates bias concerns</li><li><strong>Academic Integrity:</strong> Maintain highest standards of research independence and transparency</li></ul><p><strong>Strategic Value:</strong> Academic network effects provide broader validation while maintaining research integrity and transparency.</p>'
-            },
-            'quality': {
-                title: 'Korean Dental Manufacturing Ecosystem',
-                content: '<p><strong>World-Class Manufacturing Hub:</strong></p><p>Korea has developed into a sophisticated dental implant manufacturing ecosystem with multiple world-class companies, creating ideal conditions for KiiS partnership opportunities.</p><p><strong>Ecosystem Advantages:</strong></p><ul><li><strong>Market Leadership:</strong> Korean companies hold significant global market positions in dental implants</li><li><strong>Multiple Players:</strong> Diverse range of manufacturers with different specializations and capabilities</li><li><strong>Export Excellence:</strong> Established presence in 60+ countries worldwide</li><li><strong>Innovation Focus:</strong> Continuous R&D investment with university and government support</li></ul><p><strong>Quality Standards:</strong></p><ul><li><strong>International Compliance:</strong> ISO 13485, FDA registration, CE compliance across major manufacturers</li><li><strong>Proven Track Record:</strong> Years of successful international partnerships and exports</li><li><strong>Supply Chain Maturity:</strong> Established titanium sourcing and component ecosystem</li><li><strong>Technology Transfer:</strong> Proven ability to work with international partners</li></ul><p><strong>KiiS Strategic Advantage:</strong> Rich ecosystem provides multiple partnership options, allowing KiiS to select optimal manufacturing partner based on specific requirements and capabilities.</p>'
-            },
-            'cost': {
-                title: 'Korean Value Manufacturing Model',
-                content: '<p><strong>Proven Value Approach:</strong></p><p>Korean manufacturers have successfully demonstrated the value model - delivering premium quality at competitive pricing through operational excellence and innovation rather than premium brand positioning.</p><p><strong>Market Success Indicators:</strong></p><ul><li><strong>Global Recognition:</strong> Korean implants widely adopted in international markets</li><li><strong>Value Positioning:</strong> Competitive pricing with maintained quality standards</li><li><strong>Quality Maintenance:</strong> Same materials and manufacturing standards as premium brands</li><li><strong>Volume Economics:</strong> High-volume production enables cost efficiency</li></ul><p><strong>Cost Structure Benefits:</strong></p><ul><li><strong>Operational Efficiency:</strong> Streamlined manufacturing processes and supply chains</li><li><strong>Scale Advantages:</strong> Large domestic market provides volume foundation for efficiency</li><li><strong>Innovation Focus:</strong> Practical innovation focused on real-world clinical needs</li><li><strong>Competitive Ecosystem:</strong> Multiple manufacturers create competitive pricing environment</li></ul><p><strong>KiiS Strategic Benefit:</strong> Access to this proven value manufacturing model enables KiiS to offer compelling value proposition while maintaining healthy margins and premium quality standards.</p>'
-            },
-            'scale': {
-                title: 'Strategic Partnership Opportunities',
-                content: '<p><strong>Rich Manufacturing Ecosystem:</strong></p><p>Korea\'s mature dental manufacturing ecosystem provides KiiS with multiple qualified OEM partners, each with different strengths and capabilities for optimal strategic fit.</p><p><strong>Partnership Advantages:</strong></p><ul><li><strong>Multiple Options:</strong> Diverse range of manufacturers with different specializations</li><li><strong>Proven Capabilities:</strong> Established track record in international partnerships</li><li><strong>Flexible Production:</strong> Ability to accommodate different volume requirements and specifications</li><li><strong>Technology Integration:</strong> Experience working with international companies and technologies</li></ul><p><strong>Manufacturing Infrastructure:</strong></p><ul><li><strong>Quality Systems:</strong> Established QC processes and international certifications</li><li><strong>Supply Chain:</strong> Mature relationships with titanium and component suppliers</li><li><strong>Export Experience:</strong> Proven international distribution and regulatory compliance</li><li><strong>Scalability:</strong> Infrastructure capable of supporting growth from startup to high volume</li></ul><p><strong>KiiS Strategic Benefit:</strong> This rich ecosystem allows KiiS to carefully select manufacturing partners based on specific needs, quality requirements, and strategic fit, rather than being limited to single-source relationships.</p>'
-            },
-            'nobel': {
-                title: 'KiiS Strategic Size Approach',
-                content: '<p><strong>Efficient Coverage Strategy:</strong></p><p>KiiS has designed a highly efficient 3-diameter strategy that focuses on the most commonly used sizes in clinical practice, optimizing both manufacturing efficiency and broad market applicability.</p><p><strong>KiiS Size Strategy:</strong></p><ul><li><strong>3 Core Sizes:</strong> 3.5mm, 4.3mm, 5.0mm cover the most common clinical needs</li><li><strong>Multiple Lengths:</strong> 8, 10, 11.5, 13, 16mm options for optimal fit</li><li><strong>Single System:</strong> Same surgical approach across all sizes</li><li><strong>Universal Connection:</strong> Compatible with major industry systems</li></ul><p><strong>Clinical Applications:</strong></p><ul><li><strong>3.5mm:</strong> Narrow spaces and front teeth applications</li><li><strong>4.3mm:</strong> Most common size for general applications</li><li><strong>5.0mm:</strong> Back teeth and wider spaces</li><li><strong>Strategic Focus:</strong> These sizes address the majority of typical clinical scenarios</li></ul><p><strong>Competitive Advantage:</strong> While competitors may offer many more size variations, KiiS achieves broad clinical applicability with focused efficiency, enabling superior manufacturing economics and simplified inventory management.</p>'
-            },
-            'learning': {
-                title: 'Direct System Compatibility',
-                content: '<p><strong>Universal Connection Standard:</strong></p><p>KiiS utilizes industry-standard connection systems, providing direct compatibility with major implant systems and enabling seamless integration into existing dental practices.</p><p><strong>Compatibility Features:</strong></p><ul><li><strong>Standard Connection:</strong> Works with existing Nobel system components</li><li><strong>Same Surgical Tools:</strong> Uses familiar drilling and placement techniques</li><li><strong>Existing Components:</strong> Compatible with current crown and bridge systems</li><li><strong>Proven Protocol:</strong> Same placement procedure and healing timeline</li></ul><p><strong>Practice Integration Benefits:</strong></p><ul><li><strong>No Retraining:</strong> Dentists use familiar procedures</li><li><strong>Current Inventory:</strong> Works with existing crown and bridge components</li><li><strong>Same Tools:</strong> No additional surgical equipment needed</li><li><strong>Immediate Use:</strong> Drop-in replacement capability</li></ul><p><strong>FDA Validation:</strong> KiiS and Nobel systems approved under the same FDA standards, confirming technical compatibility and regulatory alignment for seamless clinical implementation.</p>'
-            },
-            'efficiency': {
-                title: 'Production Efficiency Through Strategic Focus',
-                content: '<p><strong>Strategic SKU Focus:</strong></p><p>Focused SKU strategy maximizes Korean manufacturing scale advantages by concentrating production on highest-impact sizes that serve majority of market demand.</p><p><strong>SKU Optimization Approach:</strong></p><ul><li><strong>Market Research:</strong> Analysis of competitor sales data identifies volume patterns</li><li><strong>Strategic Focus:</strong> Concentration on core SKUs that handle majority of clinical cases</li><li><strong>Production Efficiency:</strong> Higher volumes per SKU enable better economies of scale</li><li><strong>Inventory Optimization:</strong> Reduced complexity improves inventory management</li></ul><p><strong>Manufacturing Advantages:</strong></p><ul><li><strong>Volume Concentration:</strong> Increased production runs reduce setup costs</li><li><strong>Quality Consistency:</strong> Fewer variations improve process control</li><li><strong>Supply Chain Efficiency:</strong> Simplified material requirements and logistics</li><li><strong>Cost Optimization:</strong> Scale economies on focused product line</li></ul><p><strong>Market Strategy:</strong> Capture significant market share with efficient SKU selection, then expand coverage based on demonstrated demand patterns.</p>'
-            }
-        };
-        
-        // 팝업 시스템
-        function showSource(sourceId) {
-            var source = sources[sourceId];
-            if (!source) return;
-            
-            document.getElementById('sourceContent').innerHTML = '<h3>' + source.title + '</h3>' + source.content;
-            
-            var overlay = document.getElementById('overlay');
-            var popup = document.getElementById('sourcePopup');
-            
-            overlay.style.display = 'block';
-            popup.style.display = 'block';
-            
-            document.body.style.overflow = 'hidden';
-            isPopupOpen = true;
-        }
-        
-        function hideSource() {
-            var overlay = document.getElementById('overlay');
-            var popup = document.getElementById('sourcePopup');
-            
-            overlay.style.display = 'none';
-            popup.style.display = 'none';
-            
-            document.body.style.overflow = 'auto';
-            isPopupOpen = false;
-        }
         
         // 네비게이션 시스템
         var navigation = document.getElementById('navigation');
@@ -1035,20 +630,6 @@
         
         // 이벤트 리스너
         document.addEventListener('DOMContentLoaded', function() {
-            // 오버레이 클릭으로 닫기
-            document.getElementById('overlay').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    hideSource();
-                }
-            });
-            
-            // 닫기 버튼
-            document.getElementById('closeBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                hideSource();
-            });
-            
             // 호버존 이벤트
             if (hoverZone) {
                 hoverZone.addEventListener('mouseenter', showNavigation);
@@ -1061,18 +642,11 @@
         // 키보드 네비게이션
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                if (isPopupOpen) {
-                    e.preventDefault();
-                    hideSource();
-                    return;
-                }
                 navigation.classList.remove('visible');
                 isNavigationVisible = false;
                 clearTimeout(hideTimeout);
                 return;
             }
-            
-            if (isPopupOpen) return;
             
             switch(e.key) {
                 case 'ArrowLeft':
@@ -1104,8 +678,7 @@
         window.addEventListener('load', function() {
             var header = document.querySelector('.main-header');
             var partnershipsGrid = document.querySelector('.partnerships-grid');
-            var skuSection = document.querySelector('.sku-compatibility-section');
-            var valueProposition = document.querySelector('.value-proposition');
+            var bottomSummary = document.querySelector('.bottom-summary');
             
             setTimeout(function() {
                 header.style.opacity = '1';
@@ -1117,14 +690,9 @@
                 }, 400);
                 
                 setTimeout(function() {
-                    skuSection.style.opacity = '1';
-                    skuSection.style.transform = 'translateY(0)';
+                    bottomSummary.style.opacity = '1';
+                    bottomSummary.style.transform = 'translateY(0)';
                 }, 800);
-                
-                setTimeout(function() {
-                    valueProposition.style.opacity = '1';
-                    valueProposition.style.transform = 'translateY(0)';
-                }, 1200);
                 
                 setTimeout(function() {
                     showNavigation();
@@ -1190,13 +758,9 @@
             var tapCount = 0;
             document.addEventListener('touchend', function(e) {
                 // Exclude interactive areas
-                if (e.target.closest('.clickable') || 
-                    e.target.closest('.navigation') ||
-                    e.target.closest('.source-popup') ||
-                    e.target.closest('.overlay') ||
+                if (e.target.closest('.navigation') ||
                     e.target.closest('.osu-partnership') ||
-                    e.target.closest('.korea-partnership') ||
-                    e.target.closest('.sku-advantage')) {
+                    e.target.closest('.korea-partnership')) {
                     return;
                 }
                 
