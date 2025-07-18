@@ -44,7 +44,7 @@
             font-weight: bold;
             color: #ffffff;
             line-height: 1.1;
-            margin-bottom: 15px;
+            margin-bottom: 0;
         }
         
         .title-highlight {
@@ -52,50 +52,16 @@
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
-        .subtitle {
-            font-size: 22px;
-            color: #e0e7ff;
-            font-weight: 400;
-            line-height: 1.3;
-        }
-        
-        /* 핵심 가치 제안 - 강화 */
-        .core-value {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-            border: 3px solid #ffd700;
-            border-radius: 25px;
-            padding: 30px;
-            margin-bottom: 40px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .value-statement {
-            font-size: 32px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-        
-        .value-details {
-            font-size: 20px;
-            color: #ffffff;
-            line-height: 1.4;
-        }
-        
-        /* 성공 모델 - 확대 강조 */
+        /* 성공 모델 - 최상단으로 */
         .proven-success {
             background: rgba(0, 0, 0, 0.3);
             padding: 40px;
             border-radius: 25px;
             border-left: 6px solid #10b981;
+            margin-bottom: 40px;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            flex: 1;
         }
         
         .proven-title {
@@ -155,7 +121,7 @@
             font-style: italic;
         }
         
-        /* 핵심 차별화 - 실제 경쟁사 이미지 활용 */
+        /* 핵심 차별화 - 경쟁사 비교 */
         .innovation-edge {
             margin-bottom: 40px;
             opacity: 0;
@@ -214,7 +180,7 @@
             opacity: 0.9;
         }
         
-        /* KiiS 혁신 비전 섹션 - 이미지 대신 인터랙티브 콘텐츠 */
+        /* KiiS 혁신 비전 섹션 */
         .kiis-vision {
             width: 100%;
             height: 160px;
@@ -342,6 +308,34 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+        
+        /* 핵심 가치 제안 - 하단으로 */
+        .core-value {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            border: 3px solid #ffd700;
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
+        }
+        
+        .value-statement {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .value-details {
+            font-size: 20px;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+        
         .hover-zone {
             position: fixed;
             bottom: 0;
@@ -457,10 +451,6 @@
                 line-height: 1.1; 
             }
             
-            .subtitle { 
-                font-size: 18px; 
-            }
-            
             .value-statement {
                 font-size: 24px;
                 line-height: 1.2;
@@ -506,10 +496,6 @@
                 font-size: 24px; 
             }
             
-            .subtitle { 
-                font-size: 16px; 
-            }
-            
             .value-statement {
                 font-size: 20px;
             }
@@ -547,10 +533,6 @@
                 font-size: 22px; 
             }
             
-            .subtitle { 
-                font-size: 14px; 
-            }
-            
             .value-statement {
                 font-size: 18px;
             }
@@ -574,7 +556,34 @@
                 <span class="title-highlight">Go-To-Market</span>:<br>
                 Digital-First Disruption
             </h1>
-            <!-- 핵심 차별화 - 실제 경쟁사 분석 -->
+        </div>
+        
+        <!-- 1. 성공 모델 증거 - 최상단 (시장 검증된 성공) -->
+        <div class="proven-success" id="provenSuccess">
+            <h2 class="proven-title">
+                ✅ Benchmarking Digital-First Success
+            </h2>
+            
+            <div class="success-metrics">
+                <div class="metric-card" onclick="showSource('acquisition')">
+                    <span class="metric-number">$225M</span>
+                    <div class="metric-label">Exit Value</div>
+                    <div class="metric-sublabel">Implant Direct (2010)</div>
+                </div>
+                <div class="metric-card" onclick="showSource('marketshare')">
+                    <span class="metric-number">7%</span>
+                    <div class="metric-label">Market Share</div>
+                    <div class="metric-sublabel">in 18 Years</div>
+                </div>
+                <div class="metric-card" onclick="showSource('advantage')">
+                    <span class="metric-number">50%+</span>
+                    <div class="metric-label">Cost Savings</div>
+                    <div class="metric-sublabel">Direct Model</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 2. 핵심 차별화 - 경쟁사 비교 (우리가 더 우월한 이유) -->
         <div class="innovation-edge" id="innovationEdge">
             <h2 class="comparison-title">🔍 Competitive Intelligence Analysis</h2>
             
@@ -627,38 +636,13 @@
             </div>
         </div>
         
-        <!-- 핵심 가치 제안 - 강화 -->
+        <!-- 3. 핵심 가치 제안 - 하단 (실현 가능한 목표) -->
         <div class="core-value" id="coreValue">
             <div class="value-statement">
                 🚀 Better Tools, Proven Playbook, Realistic Goals
             </div>
             <div class="value-details">
                 Following proven $225M digital-first model
-            </div>
-        </div>
-        
-        <!-- 성공 모델 증거 - 확대 강조 -->
-        <div class="proven-success" id="provenSuccess">
-            <h2 class="proven-title">
-                ✅ Benchmarking Digital-First Success
-            </h2>
-            
-            <div class="success-metrics">
-                <div class="metric-card" onclick="showSource('acquisition')">
-                    <span class="metric-number">$225M</span>
-                    <div class="metric-label">Exit Value</div>
-                    <div class="metric-sublabel">Implant Direct (2010)</div>
-                </div>
-                <div class="metric-card" onclick="showSource('marketshare')">
-                    <span class="metric-number">7%</span>
-                    <div class="metric-label">Market Share</div>
-                    <div class="metric-sublabel">in 18 Years</div>
-                </div>
-                <div class="metric-card" onclick="showSource('advantage')">
-                    <span class="metric-number">50%+</span>
-                    <div class="metric-label">Cost Savings</div>
-                    <div class="metric-sublabel">Direct Model</div>
-                </div>
             </div>
         </div>
     </div>
@@ -843,13 +827,13 @@
             }
         });
         
-        // 페이지 로드 애니메이션
+        // 페이지 로드 애니메이션 - 새로운 순서 반영
         window.addEventListener('load', function() {
             const elements = [
                 { selector: '.main-header', delay: 0 },
-                { selector: '.core-value', delay: 400 },
-                { selector: '.proven-success', delay: 600 },
-                { selector: '.innovation-edge', delay: 800 }
+                { selector: '.proven-success', delay: 400 },      // 1순위: 성공 증거
+                { selector: '.innovation-edge', delay: 600 },    // 2순위: 경쟁 비교
+                { selector: '.core-value', delay: 800 }          // 3순위: 가치 제안
             ];
             
             elements.forEach(({ selector, delay }) => {
