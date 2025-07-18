@@ -19,20 +19,20 @@
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             color: white;
             min-height: 100vh;
-            padding: 40px 60px;
+            padding: 30px 40px;
             overflow-x: hidden;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            min-height: calc(100vh - 80px);
+            min-height: calc(100vh - 60px);
         }
 
-        /* 헤더 섹션 */
+        /* 헤더 섹션 - 압축 */
         .main-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
             opacity: 0;
             transform: translateY(-30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,11 +44,11 @@
         }
 
         .title {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: bold;
             color: #ffffff;
-            line-height: 1.2;
-            margin-bottom: 15px;
+            line-height: 1.1;
+            margin-bottom: 8px;
         }
 
         .title-highlight {
@@ -57,31 +57,34 @@
         }
 
         .subtitle {
-            font-size: 22px;
+            font-size: 18px;
             color: #e0e7ff;
             font-weight: 400;
-            line-height: 1.4;
-            max-width: 900px;
+            line-height: 1.3;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .content-sections {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 25px;
+            height: calc(100vh - 180px);
         }
 
-        /* 매출 성장 그래프 섹션 */
+        /* 매출 성장 그래프 섹션 - 압축된 크기 (30%) */
         .growth-chart-section {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 35px;
+            border-radius: 15px;
+            padding: 20px 25px;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #ffd700;
+            border-top: 3px solid #ffd700;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 0 0 30%;
+            min-height: 250px;
         }
 
         .growth-chart-section.visible {
@@ -90,21 +93,21 @@
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 22px;
             color: #ffd700;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             text-align: center;
             font-weight: bold;
         }
 
         .chart-container {
             position: relative;
-            height: 320px;
-            margin: 40px 0;
+            height: 100px;
+            margin: 15px 0;
             display: flex;
             align-items: end;
             justify-content: space-between;
-            padding: 60px 50px 20px 50px;
+            padding: 25px 30px 10px 30px;
         }
 
         .chart-bar {
@@ -116,47 +119,47 @@
         }
 
         .bar {
-            width: 65px;
-            border-radius: 8px 8px 0 0;
-            margin-bottom: 15px;
+            width: 45px;
+            border-radius: 6px 6px 0 0;
+            margin-bottom: 8px;
             position: relative;
             transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             transform-origin: bottom;
             opacity: 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .bar.visible {
             opacity: 1;
         }
 
-        /* 통일된 골드 그라디언트 */
+        /* 더 압축된 바 높이 */
         .bar-2025 { 
-            height: 8px; 
+            height: 3px; 
             background: linear-gradient(to top, #4b5563, #6b7280);
         }
         .bar-2026 { 
-            height: 45px; 
+            height: 18px; 
             background: linear-gradient(to top, #b45309, #d97706, #ffd700);
         }
         .bar-2027 { 
-            height: 110px; 
+            height: 35px; 
             background: linear-gradient(to top, #b45309, #d97706, #ffd700);
         }
         .bar-2028 { 
-            height: 190px; 
+            height: 55px; 
             background: linear-gradient(to top, #b45309, #d97706, #ffd700);
         }
         .bar-2029 { 
-            height: 260px; 
+            height: 75px; 
             background: linear-gradient(to top, #b45309, #d97706, #ffd700);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
         }
 
         .bar-value {
             position: absolute;
-            top: -45px;
-            font-size: 18px;
+            top: -25px;
+            font-size: 13px;
             font-weight: bold;
             color: #ffd700;
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
@@ -164,29 +167,27 @@
         }
 
         .bar-year {
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 600;
             color: #e0e7ff;
-            margin-top: 12px;
+            margin-top: 6px;
         }
 
-
-
-        /* 성장률 표시 */
+        /* 성장률 표시 - 압축 */
         .growth-indicators {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-top: 25px;
+            gap: 15px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
 
         .growth-badge {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 15px;
-            padding: 8px 16px;
-            font-size: 14px;
+            border-radius: 12px;
+            padding: 4px 10px;
+            font-size: 11px;
             color: #e0e7ff;
             backdrop-filter: blur(10px);
         }
@@ -196,17 +197,19 @@
             font-weight: bold;
         }
 
-        /* Phase 기반 로드맵 섹션 */
+        /* Phase 기반 로드맵 섹션 - 확대된 크기 (70%) */
         .roadmap-section {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 35px;
+            padding: 30px;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-top: 4px solid #10b981;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
+            min-height: 400px;
         }
 
         .roadmap-section.visible {
@@ -214,21 +217,30 @@
             transform: translateY(0);
         }
 
+        .roadmap-section .section-title {
+            font-size: 26px;
+            color: #10b981;
+            margin-bottom: 25px;
+        }
+
         .roadmap-timeline {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-top: 30px;
+            gap: 20px;
+            height: calc(100% - 80px);
         }
 
         .phase-group {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
-            padding: 25px 20px;
+            padding: 20px 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .phase-group.visible {
@@ -237,37 +249,40 @@
         }
 
         .phase-group:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.3);
         }
 
         .phase-group-title {
-            font-size: 18px;
+            font-size: 16px;
             color: #ffd700;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             text-align: center;
             border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
         .phase-item {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             border-left: 2px solid rgba(16, 185, 129, 0.5);
-            padding-left: 15px;
+            padding-left: 14px;
+            flex-shrink: 0;
         }
 
         .phase-header {
             font-size: 14px;
             color: #10b981;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            line-height: 1.3;
         }
 
         .phase-period {
-            font-size: 12px;
+            font-size: 11px;
             color: #94a3b8;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .phase-activities {
@@ -280,7 +295,7 @@
             margin-bottom: 4px;
             list-style: none;
             position: relative;
-            padding-left: 15px;
+            padding-left: 14px;
         }
 
         .phase-activities li:before {
@@ -289,15 +304,16 @@
             font-weight: bold;
             position: absolute;
             left: 0;
+            font-size: 10px;
         }
 
         /* 제품 혁신 하이라이트 */
         .product-innovation {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
             border: 1px solid rgba(255, 215, 0, 0.5);
-            border-radius: 8px;
-            padding: 3px 8px;
-            margin-left: 8px;
+            border-radius: 6px;
+            padding: 2px 6px;
+            margin-left: 6px;
             font-size: 10px;
             color: #ffd700;
             font-weight: bold;
@@ -377,11 +393,16 @@
         @media (max-width: 1200px) {
             .roadmap-timeline {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .content-sections {
                 gap: 20px;
             }
             
-            .growth-indicators {
-                gap: 20px;
+            .phase-group {
+                height: auto;
+                min-height: 200px;
             }
         }
 
@@ -391,49 +412,62 @@
             }
             
             .title {
-                font-size: 28px;
+                font-size: 24px;
                 line-height: 1.1;
             }
             
             .subtitle {
-                font-size: 16px;
+                font-size: 14px;
                 line-height: 1.3;
             }
             
             .section-title {
+                font-size: 18px;
+            }
+            
+            .roadmap-section .section-title {
                 font-size: 20px;
             }
             
-            .roadmap-timeline {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
             .chart-container {
-                padding: 40px 20px 20px 20px;
-                height: 280px;
+                padding: 30px 15px 8px 15px;
+                height: 120px;
             }
             
             .bar {
-                width: 50px;
+                width: 35px;
             }
             
             .bar-value {
-                font-size: 15px;
-                top: -35px;
+                font-size: 12px;
+                top: -25px;
             }
             
             .bar-year {
-                font-size: 14px;
+                font-size: 11px;
             }
             
             .growth-indicators {
-                gap: 15px;
+                gap: 10px;
             }
             
             .growth-badge {
-                font-size: 12px;
-                padding: 6px 12px;
+                font-size: 10px;
+                padding: 3px 8px;
+            }
+            
+            .content-sections {
+                height: auto;
+            }
+            
+            .growth-chart-section {
+                flex: none;
+                min-height: 200px;
+            }
+            
+            .roadmap-section {
+                flex: none;
+                min-height: 350px;
             }
         }
 
@@ -443,59 +477,57 @@
             }
             
             .title {
-                font-size: 24px;
-                margin-bottom: 12px;
+                font-size: 20px;
+                margin-bottom: 6px;
             }
             
             .subtitle {
-                font-size: 14px;
-            }
-            
-            .section-title {
-                font-size: 18px;
-            }
-            
-            .chart-container {
-                padding: 30px 15px 15px 15px;
-                height: 240px;
-            }
-            
-            .bar {
-                width: 35px;
-            }
-            
-            .bar-value {
-                font-size: 13px;
-                top: -30px;
-            }
-            
-            .bar-year {
                 font-size: 12px;
-            }
-            
-            .growth-indicators {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-            }
-            
-            .growth-badge {
-                font-size: 11px;
-                padding: 5px 10px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .title {
-                font-size: 22px;
-            }
-            
-            .subtitle {
-                font-size: 13px;
             }
             
             .section-title {
                 font-size: 16px;
+            }
+            
+            .roadmap-section .section-title {
+                font-size: 18px;
+            }
+            
+            .chart-container {
+                padding: 25px 10px 6px 10px;
+                height: 100px;
+            }
+            
+            .bar {
+                width: 28px;
+            }
+            
+            .bar-value {
+                font-size: 11px;
+                top: -22px;
+            }
+            
+            .bar-year {
+                font-size: 10px;
+            }
+            
+            .growth-indicators {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+            }
+            
+            .growth-badge {
+                font-size: 9px;
+                padding: 2px 6px;
+            }
+            
+            .phase-activities {
+                font-size: 10px;
+            }
+            
+            .phase-header {
+                font-size: 12px;
             }
         }
     </style>
@@ -507,13 +539,10 @@
             <h1 class="title">
                 Financial Projections & <span class="title-highlight">Milestones</span>
             </h1>
-            <p class="subtitle">
-                Data-Driven Growth Strategy with Clear Execution Roadmap
-            </p>
         </div>
 
         <div class="content-sections">
-            <!-- 매출 성장 그래프 -->
+            <!-- 매출 성장 그래프 - 압축된 크기 -->
             <div class="growth-chart-section">
                 <div class="section-title">4-Year Accelerating Growth: $0M → $12M+</div>
                 <div class="chart-container">
@@ -547,7 +576,6 @@
                         </div>
                         <div class="bar-year">2029</div>
                     </div>
-
                 </div>
                 
                 <!-- 성장률 표시 -->
@@ -567,7 +595,7 @@
                 </div>
             </div>
 
-            <!-- Phase 기반 로드맵 -->
+            <!-- Phase 기반 로드맵 - 확대된 크기 -->
             <div class="roadmap-section">
                 <div class="section-title">Strategic Execution Roadmap by Phase</div>
                 <div class="roadmap-timeline">
@@ -576,8 +604,8 @@
                         <div class="phase-group-title">Foundation & Certification</div>
                         
                         <div class="phase-item">
-                            <div class="phase-header">Phase 1: Business Foundation</div>
-                            <div class="phase-period">2025 Q3-Q4</div>
+                            <div class="phase-header">2025 Q3-Q4: Business Foundation</div>
+                            <div class="phase-period"></div>
                             <ul class="phase-activities">
                                 <li>Investment funding completion</li>
                                 <li>AI-integrated e-commerce development</li>
@@ -586,8 +614,8 @@
                         </div>
 
                         <div class="phase-item">
-                            <div class="phase-header">Phase 2: Certification & Systems</div>
-                            <div class="phase-period">2026 Q1-Q2</div>
+                            <div class="phase-header">2026 Q1-Q2: Certification & Systems</div>
+                            <div class="phase-period"></div>
                             <ul class="phase-activities">
                                 <li>Korean manufacturing certification + FDA registration</li>
                                 <li>Quality monitoring systems</li>
@@ -596,8 +624,8 @@
                         </div>
 
                         <div class="phase-item">
-                            <div class="phase-header">Phase 3: Launch Preparation</div>
-                            <div class="phase-period">2026 Q2-Q3</div>
+                            <div class="phase-header">2026 Q2-Q3: Launch Preparation</div>
+                            <div class="phase-period"></div>
                             <ul class="phase-activities">
                                 <li>FDA 510K approval <span class="product-innovation">PRODUCT</span></li>
                                 <li>E-commerce platform completion</li>
@@ -611,8 +639,8 @@
                         <div class="phase-group-title">Market Entry & Growth</div>
                         
                         <div class="phase-item">
-                            <div class="phase-header">Phase 4: Market Entry</div>
-                            <div class="phase-period">2026 Q3-Q4</div>
+                            <div class="phase-header">2026 Q3-Q4: Market Entry</div>
+                            <div class="phase-period"></div>
                             <ul class="phase-activities">
                                 <li>E-commerce platform launch</li>
                                 <li>Early adopter campaigns</li>
@@ -621,8 +649,8 @@
                         </div>
 
                         <div class="phase-item">
-                            <div class="phase-header">Phase 5: Growth Acceleration</div>
-                            <div class="phase-period">2027-2028</div>
+                            <div class="phase-header">2027-2028: Growth Acceleration</div>
+                            <div class="phase-period"></div>
                             <ul class="phase-activities">
                                 <li>Direct sales expansion</li>
                                 <li>Major dental partnerships</li>
@@ -637,8 +665,8 @@
                         <div class="phase-group-title">Premium & Expansion</div>
                         
                         <div class="phase-item">
-                            <div class="phase-header">Phase 6: Premium Launch</div>
-                            <div class="phase-period">2029</div>
+                            <div class="phase-header">2029: Premium Launch</div>
+                            <div class="phase-period"></div>
                             <ul class="phase-activities">
                                 <li>KiiS-Relax injectable system <span class="product-innovation">PRODUCT</span></li>
                                 <li>Premium market penetration</li>
@@ -648,8 +676,8 @@
                         </div>
 
                         <div class="phase-item">
-                            <div class="phase-header">Phase 7: Market Expansion</div>
-                            <div class="phase-period">2030+</div>
+                            <div class="phase-header">2030+: Market Expansion</div>
+                            <div class="phase-period"></div>
                             <ul class="phase-activities">
                                 <li>US orthopedic market entry <span class="product-innovation">EXPANSION</span></li>
                                 <li>Global market expansion</li>
@@ -676,7 +704,6 @@
         
         let isNavigationVisible = false;
         let hideTimeout;
-        let lastMouseY = 0;
 
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
@@ -712,12 +739,12 @@
                 growthSection.classList.add('visible');
             }, 700);
             
-            // 차트 바 순차 애니메이션 (가속화 패턴)
+            // 차트 바 순차 애니메이션
             setTimeout(() => {
                 const bars = document.querySelectorAll('.bar');
-                const delays = [0, 300, 600, 1000, 1500]; // 가속화되는 딜레이
+                const delays = [0, 200, 400, 700, 1000];
                 bars.forEach((bar, index) => {
-                    if (index > 0) { // 첫 번째 바는 이미 visible
+                    if (index > 0) {
                         setTimeout(() => {
                             bar.classList.add('visible');
                         }, delays[index]);
@@ -728,7 +755,7 @@
             // 로드맵 섹션
             setTimeout(() => {
                 roadmapSection.classList.add('visible');
-            }, 2200);
+            }, 1800);
             
             // Phase 그룹 순차 애니메이션
             setTimeout(() => {
@@ -736,30 +763,33 @@
                 phaseGroups.forEach((group, index) => {
                     setTimeout(() => {
                         group.classList.add('visible');
-                    }, index * 200);
+                    }, index * 150);
                 });
-            }, 2500);
+            }, 2000);
             
             // 네비게이션 힌트 표시
             setTimeout(() => {
                 showNavigation();
                 hideNavigation(3000);
-            }, 3800);
+            }, 3000);
         }
 
         // 호버존 이벤트
-        hoverZone.addEventListener('mouseenter', showNavigation);
-        hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+        if (hoverZone) {
+            hoverZone.addEventListener('mouseenter', showNavigation);
+            hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+        }
 
         // 마우스 위치 추적 (PC만)
         if (!isTouchDevice) {
+            let lastMouseY = 0;
             document.addEventListener('mousemove', (e) => {
                 lastMouseY = e.clientY;
                 const windowHeight = window.innerHeight;
                 
                 if (lastMouseY > windowHeight - 120) {
                     if (!isNavigationVisible) showNavigation();
-                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                } else if (isNavigationVisible && navigation && !navigation.matches(':hover')) {
                     hideNavigation(1500);
                 }
             });
