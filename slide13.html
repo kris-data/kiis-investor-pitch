@@ -19,20 +19,20 @@
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             color: white;
             min-height: 100vh;
-            padding: 40px 60px;
+            padding: 25px 40px;
             overflow-x: hidden;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            min-height: calc(100vh - 80px);
+            min-height: calc(100vh - 50px);
         }
 
-        /* 헤더 섹션 */
+        /* 헤더 섹션 - 압축 */
         .main-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
             opacity: 0;
             transform: translateY(-30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,11 +44,11 @@
         }
 
         .title {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: bold;
             color: #ffffff;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
         }
 
         .title-highlight {
@@ -56,38 +56,34 @@
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
-        .subtitle {
-            font-size: 22px;
-            color: #e0e7ff;
-            font-weight: 400;
-            line-height: 1.3;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
         .content-sections {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 20px;
+            height: calc(100vh - 120px);
         }
 
-        /* 투자 조건 섹션 */
+        /* 투자 조건 섹션 - 상단 40% */
         .investment-terms {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: 20px;
+            flex: 0 0 40%;
         }
 
         .term-card {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             backdrop-filter: blur(15px);
             border: 2px solid rgba(255, 255, 255, 0.15);
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
         }
 
         .term-card.visible {
@@ -104,62 +100,38 @@
         }
 
         .term-title {
-            font-size: 24px;
+            font-size: 20px;
             color: #ffd700;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.2;
-        }
-
-        .term-content {
-            font-size: 16px;
-            color: #e0e7ff;
-            line-height: 1.4;
-            margin-bottom: 20px;
         }
 
         .term-highlight {
             font-size: 32px;
             color: #ffffff;
             font-weight: bold;
-            margin: 15px 0;
-            text-align: center;
+            margin: 10px 0;
         }
 
         .term-details {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 15px;
+            font-size: 13px;
+            color: #e0e7ff;
+            line-height: 1.4;
         }
 
-        .detail-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .detail-label {
-            color: #94a3b8;
-        }
-
-        .detail-value {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        /* 자금 사용 계획 섹션 */
+        /* 자금 사용 계획 섹션 - 중간 35% */
         .funding-section {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 20px;
-            padding: 40px;
+            padding: 20px;
             backdrop-filter: blur(15px);
             border: 2px solid rgba(255, 255, 255, 0.15);
             border-top: 4px solid #3b82f6;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 0 0 35%;
         }
 
         .funding-section.visible {
@@ -168,9 +140,9 @@
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 24px;
             color: #ffd700;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-align: center;
             font-weight: bold;
             line-height: 1.2;
@@ -179,14 +151,13 @@
         .funding-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-top: 30px;
+            gap: 15px;
         }
 
         .funding-item {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
+            border-radius: 12px;
+            padding: 15px 10px;
             text-align: center;
             opacity: 0;
             transform: translateY(20px);
@@ -200,128 +171,46 @@
         }
 
         .funding-icon {
-            font-size: 36px;
-            margin-bottom: 15px;
+            font-size: 28px;
+            margin-bottom: 8px;
             display: block;
         }
 
         .funding-percentage {
-            font-size: 24px;
+            font-size: 20px;
             color: #ffd700;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
 
         .funding-label {
-            font-size: 14px;
+            font-size: 13px;
             color: #e0e7ff;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .funding-description {
-            font-size: 12px;
+            font-size: 10px;
             color: #94a3b8;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
-        /* 마일스톤 섹션 */
-        .milestone-section {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            border-top: 4px solid #10b981;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .milestone-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .milestone-timeline {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            position: relative;
-        }
-
-        .milestone-timeline::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(to right, #ffd700, #10b981);
-            z-index: 1;
-        }
-
-        .milestone-item {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            flex: 1;
-            margin: 0 10px;
-            position: relative;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .milestone-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .milestone-item.current {
-            border-color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .milestone-item.future {
-            border-color: #10b981;
-            background: rgba(16, 185, 129, 0.1);
-        }
-
-        .milestone-quarter {
-            font-size: 16px;
-            color: #ffd700;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .milestone-title {
-            font-size: 14px;
-            color: #ffffff;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .milestone-desc {
-            font-size: 11px;
-            color: #94a3b8;
-            line-height: 1.3;
-        }
-
-        /* CTA 섹션 */
+        /* CTA 섹션 - 하단 25% */
         .cta-section {
             background: rgba(255, 215, 0, 0.1);
             border-radius: 20px;
-            padding: 40px;
+            padding: 20px;
             backdrop-filter: blur(15px);
             border: 2px solid rgba(255, 215, 0, 0.3);
             text-align: center;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .cta-section.visible {
@@ -330,25 +219,25 @@
         }
 
         .cta-title {
-            font-size: 28px;
+            font-size: 24px;
             color: #ffd700;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .cta-text {
-            font-size: 18px;
+            font-size: 14px;
             color: #e0e7ff;
             line-height: 1.4;
-            margin-bottom: 30px;
-            max-width: 800px;
+            margin-bottom: 20px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -357,15 +246,15 @@
             background: rgba(255, 215, 0, 0.2);
             border: 2px solid #ffd700;
             color: #ffd700;
-            padding: 15px 30px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 13px;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
 
         .cta-button:hover {
@@ -381,27 +270,6 @@
 
         .cta-button.primary:hover {
             background: #ffffff;
-        }
-
-        /* 출처 표시 */
-        .data-source-section {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            transition: color 0.3s ease;
-            margin-top: 15px;
-            text-align: center;
-            padding: 5px 10px;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.05);
-            border: none;
-            font-family: inherit;
-            width: 100%;
-        }
-
-        .data-source-section:hover {
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
         }
 
         /* 네비게이션 시스템 */
@@ -478,16 +346,7 @@
             .investment-terms,
             .funding-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            
-            .milestone-timeline {
-                flex-direction: column;
                 gap: 15px;
-            }
-            
-            .milestone-timeline::before {
-                display: none;
             }
         }
 
@@ -497,17 +356,11 @@
             }
             
             .title {
-                font-size: 36px;
-                line-height: 1.1;
-            }
-            
-            .subtitle {
-                font-size: 18px;
-                line-height: 1.3;
+                font-size: 32px;
             }
             
             .section-title {
-                font-size: 24px;
+                font-size: 20px;
             }
             
             .investment-terms,
@@ -522,7 +375,13 @@
             }
             
             .content-sections {
-                gap: 30px;
+                height: auto;
+            }
+            
+            .investment-terms,
+            .funding-section,
+            .cta-section {
+                flex: none;
             }
         }
 
@@ -532,37 +391,35 @@
             }
             
             .title {
-                font-size: 28px;
-                margin-bottom: 15px;
-            }
-            
-            .subtitle {
-                font-size: 16px;
-            }
-            
-            .section-title {
-                font-size: 20px;
-            }
-            
-            .term-card,
-            .funding-section,
-            .milestone-section,
-            .cta-section {
-                padding: 25px 20px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .title {
                 font-size: 24px;
-            }
-            
-            .subtitle {
-                font-size: 14px;
+                margin-bottom: 6px;
             }
             
             .section-title {
                 font-size: 18px;
+            }
+            
+            .term-card,
+            .funding-section,
+            .cta-section {
+                padding: 15px;
+            }
+            
+            .funding-icon {
+                font-size: 24px;
+                margin-bottom: 6px;
+            }
+            
+            .funding-percentage {
+                font-size: 18px;
+            }
+            
+            .funding-label {
+                font-size: 12px;
+            }
+            
+            .funding-description {
+                font-size: 9px;
             }
         }
     </style>
@@ -574,9 +431,6 @@
             <h1 class="title">
                 Valuation & <span class="title-highlight">Terms</span>
             </h1>
-            <p class="subtitle">
-                Conservative valuation, transparent terms, and clear execution roadmap for sustainable growth and investor protection.
-            </p>
         </div>
 
         <div class="content-sections">
@@ -585,102 +439,62 @@
                 <!-- 밸류에이션 -->
                 <div class="term-card primary">
                     <div class="term-title">Current Valuation</div>
-                    <div class="term-content">
-                        Pre-money valuation based on conservative peer analysis and risk-adjusted projections, ensuring sustainable growth trajectory.
-                    </div>
                     <div class="term-highlight">$8M - $12M</div>
                     <div class="term-details">
-                        <div class="detail-item">
-                            <span class="detail-label">Methodology:</span>
-                            <span class="detail-value">Peer Comparison</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Stage:</span>
-                            <span class="detail-value">FDA Ready</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Risk Profile:</span>
-                            <span class="detail-value">Lower than Average</span>
-                        </div>
+                        Conservative peer analysis<br>
+                        FDA Ready stage<br>
+                        Lower risk profile
                     </div>
-                    <button class="data-source-section" onclick="window.alert('Valuation Guide: Hiossen $50M+, BioHorizons $200M, MegaGen $1B+. FDA Ready stage $8-12M. KiiS premiums: Tech +20%, FDA +15%, Team +10%.')">ℹ️ Valuation Sources</button>
                 </div>
 
                 <!-- 투자 조건 -->
                 <div class="term-card secondary">
                     <div class="term-title">Investment Opportunity</div>
-                    <div class="term-content">
-                        Seeking strategic investors who understand medtech fundamentals and value patient-centered innovation with proven commercial potential.
-                    </div>
                     <div class="term-highlight">$1M - $2M</div>
                     <div class="term-details">
-                        <div class="detail-item">
-                            <span class="detail-label">Equity Offered:</span>
-                            <span class="detail-value">8-17%</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Minimum Investment:</span>
-                            <span class="detail-value">$50K</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Target Close:</span>
-                            <span class="detail-value">Q3 2025</span>
-                        </div>
+                        8-17% Equity<br>
+                        $50K Minimum<br>
+                        Q3 2025 Close
                     </div>
-                    <button class="data-source-section" onclick="window.alert('Investment Terms: Based on revised funding requirements for optimized market entry strategy and 12-month focused execution plan. Equity range reflects conservative to optimistic valuation scenarios with reduced dilution.')">ℹ️ Terms Basis</button>
                 </div>
             </div>
 
             <!-- 자금 사용 계획 -->
             <div class="funding-section">
-                <div class="section-title">Transparent Use of Funds</div>
+                <div class="section-title">Use of Funds</div>
                 <div class="funding-grid">
                     <div class="funding-item">
                         <span class="funding-icon">🚀</span>
                         <div class="funding-percentage">40%</div>
                         <div class="funding-label">Market Entry</div>
-                        <div class="funding-description">Digital platform scale-up, marketing campaigns, sales team expansion, customer acquisition</div>
+                        <div class="funding-description">Digital platform, marketing, sales expansion</div>
                     </div>
                     <div class="funding-item">
                         <span class="funding-icon">🏭</span>
                         <div class="funding-percentage">30%</div>
                         <div class="funding-label">Manufacturing</div>
-                        <div class="funding-description">Korean OEM partnership, inventory scale-up, quality systems enhancement</div>
+                        <div class="funding-description">OEM partnership, inventory, quality systems</div>
                     </div>
                     <div class="funding-item">
                         <span class="funding-icon">📋</span>
                         <div class="funding-percentage">20%</div>
                         <div class="funding-label">FDA & Regulatory</div>
-                        <div class="funding-description">510K maintenance, additional testing, regulatory compliance, quality assurance</div>
+                        <div class="funding-description">510K maintenance, testing, compliance</div>
                     </div>
                     <div class="funding-item">
                         <span class="funding-icon">⚖️</span>
                         <div class="funding-percentage">10%</div>
                         <div class="funding-label">Operations</div>
-                        <div class="funding-description">Working capital, legal, accounting, contingency fund for unexpected costs</div>
+                        <div class="funding-description">Working capital, legal, contingency</div>
                     </div>
                 </div>
             </div>
-
-
 
             <!-- CTA 섹션 -->
             <div class="cta-section">
                 <div class="cta-title">Join Us in Transforming Lives</div>
                 <div class="cta-text">
-                    We're looking for partners to join this journey of changing many people's lives.<br><br>
-                    This isn't just an investment opportunity—it's a chance to be part of a mission that will fundamentally change how 1.78 million patients access better dental treatments. Together, we can build something meaningful.
-                </div>
-                <div class="cta-buttons">
-                    <a href="mailto:invest@kiis.com" class="cta-button primary">
-                        📧 Schedule Due Diligence
-                    </a>
-                    <a href="tel:+1-555-KIIS-INV" class="cta-button">
-                        📞 Contact Investment Team
-                    </a>
-                    <a href="/kiis-investor-pitch/documents/executive-summary.pdf" class="cta-button">
-                        📄 Download Full Deck
-                    </a>
+                    Partner with us to change how 1.78 million patients access better dental treatments.
                 </div>
             </div>
         </div>
@@ -690,7 +504,7 @@
     <div class="hover-zone" id="hoverZone"></div>
     <div class="navigation" id="navigation">
         <a href="slide12.html" class="nav-btn prev">Back</a>
-        <a href="index.html" class="nav-btn next">Finish Presentation</a>
+        <a href="index.html" class="nav-btn next">Finish</a>
     </div>
 
     <script>
@@ -699,7 +513,6 @@
         
         let isNavigationVisible = false;
         let hideTimeout;
-        let lastMouseY = 0;
 
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
@@ -725,8 +538,6 @@
             const termCards = document.querySelectorAll('.term-card');
             const fundingSection = document.querySelector('.funding-section');
             const fundingItems = document.querySelectorAll('.funding-item');
-            const milestoneSection = null;
-            const milestoneItems = [];
             const ctaSection = document.querySelector('.cta-section');
             
             // 헤더 애니메이션
@@ -770,18 +581,21 @@
         }
 
         // 호버존 이벤트
-        hoverZone.addEventListener('mouseenter', showNavigation);
-        hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+        if (hoverZone) {
+            hoverZone.addEventListener('mouseenter', showNavigation);
+            hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+        }
 
         // 마우스 위치 추적 (PC만)
         if (!isTouchDevice) {
+            let lastMouseY = 0;
             document.addEventListener('mousemove', (e) => {
                 lastMouseY = e.clientY;
                 const windowHeight = window.innerHeight;
                 
                 if (lastMouseY > windowHeight - 120) {
                     if (!isNavigationVisible) showNavigation();
-                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                } else if (isNavigationVisible && navigation && !navigation.matches(':hover')) {
                     hideNavigation(1500);
                 }
             });
@@ -830,8 +644,7 @@
             document.addEventListener('touchend', (e) => {
                 if (e.target.closest('.navigation') || 
                     e.target.closest('.hover-zone') ||
-                    e.target.closest('.cta-button') ||
-                    e.target.closest('.data-source-section')) {
+                    e.target.closest('.cta-button')) {
                     return;
                 }
                 
