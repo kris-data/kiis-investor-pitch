@@ -68,7 +68,7 @@
         .content-sections {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 30px;
             height: calc(100vh - 180px);
         }
 
@@ -197,14 +197,8 @@
             font-weight: bold;
         }
 
-        /* Phase 기반 로드맵 섹션 - 확대된 크기 (70%) */
+        /* 로드맵 섹션 - 배경 박스 제거 */
         .roadmap-section {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #10b981;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -218,29 +212,33 @@
         }
 
         .roadmap-section .section-title {
-            font-size: 26px;
+            font-size: 28px;
             color: #10b981;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
         }
 
         .roadmap-timeline {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 25px;
             height: calc(100% - 80px);
         }
 
         .phase-group {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             height: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .phase-group.visible {
@@ -249,26 +247,26 @@
         }
 
         .phase-group:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
-            border-color: rgba(16, 185, 129, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.4);
         }
 
         .phase-group-title {
-            font-size: 18px;
+            font-size: 20px;
             color: #ffd700;
             font-weight: bold;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 12px;
             flex-shrink: 0;
         }
 
         .phase-item {
-            margin-bottom: 20px;
-            border-left: 3px solid rgba(16, 185, 129, 0.5);
-            padding-left: 16px;
+            margin-bottom: 22px;
+            border-left: 4px solid rgba(16, 185, 129, 0.6);
+            padding-left: 18px;
             flex-shrink: 0;
         }
 
@@ -276,7 +274,7 @@
             font-size: 16px;
             color: #10b981;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             line-height: 1.3;
         }
 
@@ -293,10 +291,10 @@
         }
 
         .phase-activities li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             list-style: none;
             position: relative;
-            padding-left: 16px;
+            padding-left: 18px;
         }
 
         .phase-activities li:before {
@@ -305,20 +303,21 @@
             font-weight: bold;
             position: absolute;
             left: 0;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         /* 제품 혁신 하이라이트 */
         .product-innovation {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.15));
+            border: 1px solid rgba(255, 215, 0, 0.6);
             border-radius: 8px;
-            padding: 3px 8px;
+            padding: 4px 8px;
             margin-left: 8px;
             font-size: 11px;
             color: #ffd700;
             font-weight: bold;
             display: inline-block;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
         }
 
         /* 네비게이션 시스템 */
@@ -394,17 +393,17 @@
         @media (max-width: 1200px) {
             .roadmap-timeline {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 20px;
             }
             
             .content-sections {
-                gap: 20px;
+                gap: 25px;
                 height: auto;
             }
             
             .phase-group {
                 height: auto;
-                min-height: 200px;
+                min-height: 220px;
             }
         }
 
@@ -432,13 +431,9 @@
                 font-size: 18px;
             }
             
-            .roadmap-section {
-                padding: 20px 15px;
-            }
-            
             .roadmap-section .section-title {
-                font-size: 20px;
-                margin-bottom: 20px;
+                font-size: 22px;
+                margin-bottom: 25px;
             }
             
             .chart-container {
@@ -470,6 +465,7 @@
             
             .content-sections {
                 height: auto;
+                gap: 20px;
             }
             
             .growth-chart-section {
@@ -480,28 +476,28 @@
             .roadmap-section {
                 flex: none;
                 min-height: auto;
-                padding-bottom: 120px; /* 네비게이션을 위한 여백 */
+                padding-bottom: 140px; /* 네비게이션을 위한 여백 */
             }
             
             /* 모바일에서 phase 그룹 간격 조정 */
             .phase-group {
-                padding: 18px 15px;
+                padding: 20px 15px;
                 margin-bottom: 15px;
             }
             
             .phase-group-title {
-                font-size: 16px;
-                margin-bottom: 15px;
+                font-size: 18px;
+                margin-bottom: 18px;
             }
             
             .phase-item {
-                margin-bottom: 15px;
-                padding-left: 14px;
+                margin-bottom: 18px;
+                padding-left: 16px;
             }
             
             .phase-header {
                 font-size: 15px;
-                margin-bottom: 6px;
+                margin-bottom: 8px;
                 line-height: 1.3;
             }
             
@@ -511,13 +507,13 @@
             }
             
             .phase-activities li {
-                margin-bottom: 5px;
-                padding-left: 14px;
+                margin-bottom: 6px;
+                padding-left: 16px;
             }
             
             .product-innovation {
                 font-size: 10px;
-                padding: 2px 6px;
+                padding: 3px 6px;
             }
         }
 
@@ -539,14 +535,9 @@
                 font-size: 16px;
             }
             
-            .roadmap-section {
-                padding: 15px 10px;
-                padding-bottom: 120px;
-            }
-            
             .roadmap-section .section-title {
-                font-size: 18px;
-                margin-bottom: 15px;
+                font-size: 20px;
+                margin-bottom: 20px;
             }
             
             .chart-container {
@@ -579,23 +570,23 @@
             }
             
             .phase-group {
-                padding: 15px 10px;
+                padding: 18px 12px;
                 margin-bottom: 12px;
             }
             
             .phase-group-title {
-                font-size: 15px;
-                margin-bottom: 12px;
+                font-size: 16px;
+                margin-bottom: 15px;
             }
             
             .phase-item {
-                margin-bottom: 12px;
-                padding-left: 12px;
+                margin-bottom: 15px;
+                padding-left: 14px;
             }
             
             .phase-header {
                 font-size: 14px;
-                margin-bottom: 5px;
+                margin-bottom: 6px;
                 line-height: 1.3;
             }
             
@@ -605,8 +596,8 @@
             }
             
             .phase-activities li {
-                margin-bottom: 4px;
-                padding-left: 12px;
+                margin-bottom: 5px;
+                padding-left: 14px;
             }
             
             .product-innovation {
@@ -623,16 +614,15 @@
             }
             
             .roadmap-section {
-                padding: 10px 5px;
-                padding-bottom: 120px;
+                padding-bottom: 130px;
             }
             
             .phase-group {
-                padding: 12px 8px;
+                padding: 15px 10px;
             }
             
             .phase-group-title {
-                font-size: 14px;
+                font-size: 15px;
             }
             
             .phase-header {
@@ -712,7 +702,7 @@
                 </div>
             </div>
 
-            <!-- Phase 기반 로드맵 - 확대된 크기 -->
+            <!-- 로드맵 섹션 - 배경 박스 제거 -->
             <div class="roadmap-section">
                 <div class="section-title">Strategic Execution Roadmap by Phase</div>
                 <div class="roadmap-timeline">
