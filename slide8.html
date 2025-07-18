@@ -33,14 +33,14 @@
         /* 헤더 - 간결화 */
         .main-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             opacity: 0;
             transform: translateY(-30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .title {
-            font-size: 42px;
+            font-size: 48px;
             font-weight: bold;
             color: #ffffff;
             line-height: 1.1;
@@ -59,7 +59,7 @@
             line-height: 1.3;
         }
         
-        /* 핵심 가치 제안 - 새로운 최상단 섹션 */
+        /* 핵심 가치 제안 - 강화 */
         .core-value {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
             border: 3px solid #ffd700;
@@ -73,7 +73,7 @@
         }
         
         .value-statement {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
             color: #ffd700;
             margin-bottom: 15px;
@@ -81,43 +81,45 @@
         }
         
         .value-details {
-            font-size: 18px;
+            font-size: 20px;
             color: #ffffff;
             line-height: 1.4;
         }
         
-        /* 성공 모델 - 단순화 */
+        /* 성공 모델 - 확대 강조 */
         .proven-success {
             background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 20px;
-            border-left: 4px solid #10b981;
-            margin-bottom: 40px;
+            padding: 40px;
+            border-radius: 25px;
+            border-left: 6px solid #10b981;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
         }
         
         .proven-title {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             color: #10b981;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            text-align: center;
+            justify-content: center;
         }
         
         .success-metrics {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            gap: 40px;
         }
         
         .metric-card {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 35px 25px;
             text-align: center;
             border: 2px solid rgba(16, 185, 129, 0.3);
             transition: all 0.3s ease;
@@ -125,23 +127,32 @@
         }
         
         .metric-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: #10b981;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3);
         }
         
         .metric-number {
-            font-size: 32px;
+            font-size: 48px;
             font-weight: bold;
             color: #10b981;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
             display: block;
+            line-height: 1;
         }
         
         .metric-label {
-            font-size: 14px;
+            font-size: 18px;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.3;
+            font-weight: 500;
+        }
+        
+        .metric-sublabel {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 5px;
+            font-style: italic;
         }
         
         /* 핵심 차별화 - 실제 경쟁사 이미지 활용 */
@@ -153,7 +164,7 @@
         }
         
         .comparison-title {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
             color: #ffd700;
             text-align: center;
@@ -171,7 +182,7 @@
         .comparison-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             border: 2px solid rgba(255, 255, 255, 0.1);
             text-align: center;
             transition: all 0.3s ease;
@@ -195,10 +206,10 @@
         /* 경쟁사 실제 웹사이트 이미지 */
         .competitor-image {
             width: 100%;
-            height: 200px;
+            height: 160px;
             border-radius: 12px;
             object-fit: cover;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             opacity: 0.9;
         }
@@ -206,9 +217,9 @@
         /* KiiS 혁신 비전 섹션 - 이미지 대신 인터랙티브 콘텐츠 */
         .kiis-vision {
             width: 100%;
-            height: 200px;
+            height: 160px;
             border-radius: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             background: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa);
             border: 2px solid #ffd700;
             display: flex;
@@ -248,7 +259,7 @@
         }
         
         .vision-icon {
-            font-size: 48px;
+            font-size: 40px;
             margin-bottom: 8px;
             z-index: 2;
             position: relative;
@@ -256,7 +267,7 @@
         
         .vision-text {
             color: #ffd700;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
             z-index: 2;
             position: relative;
@@ -277,7 +288,7 @@
         }
         
         .company-name {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
             margin-bottom: 12px;
         }
@@ -286,14 +297,14 @@
         .kiis-name { color: #ffd700; }
         
         .key-advantage {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 8px;
             color: #ffd700;
         }
         
         .advantage-desc {
-            font-size: 14px;
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.4;
         }
@@ -331,87 +342,6 @@
             font-weight: bold;
             text-transform: uppercase;
         }
-        
-        /* 실행 전략 - 단순화 */
-        .execution-strategy {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
-            border: 2px solid #ffd700;
-            border-radius: 25px;
-            padding: 30px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .strategy-title {
-            font-size: 26px;
-            font-weight: bold;
-            color: #ffd700;
-            text-align: center;
-            margin-bottom: 25px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-        
-        .strategy-flow {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-        
-        .step-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .step-card:hover {
-            background: rgba(255, 215, 0, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        .step-number {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-        
-        .step-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-        
-        .step-desc {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.3;
-        }
-        
-        .target-goal {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .goal-highlight {
-            font-size: 22px;
-            color: #ffd700;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        
-        .goal-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        /* 네비게이션 시스템 */
         .hover-zone {
             position: fixed;
             bottom: 0;
@@ -473,7 +403,7 @@
         .nav-btn.prev::before { content: "←"; font-size: 16px; }
         .nav-btn.next::after { content: "→"; font-size: 16px; }
         
-        /* 반응형 디자인 - v2.1 기준 */
+        /* 반응형 디자인 */
         @media (max-width: 1200px) {
             .comparison-grid {
                 grid-template-columns: 1fr;
@@ -497,17 +427,30 @@
             
             .success-metrics {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 25px;
             }
             
-            .strategy-flow {
-                grid-template-columns: 1fr;
-                gap: 15px;
+            .title {
+                font-size: 36px;
+            }
+            
+            .value-statement {
+                font-size: 28px;
+            }
+            
+            .value-details {
+                font-size: 18px;
+            }
+            
+            body {
+                padding: 30px 40px;
             }
         }
         
         @media (max-width: 768px) {
-            body { padding: 20px 15px; }
+            body { 
+                padding: 20px 15px; 
+            }
             
             .title { 
                 font-size: 28px; 
@@ -515,36 +458,93 @@
             }
             
             .subtitle { 
-                font-size: 16px; 
-                line-height: 1.3; 
+                font-size: 18px; 
             }
             
             .value-statement {
-                font-size: 20px;
+                font-size: 24px;
                 line-height: 1.2;
             }
             
             .value-details {
-                font-size: 15px;
+                font-size: 16px;
             }
             
-            .proven-success,
-            .execution-strategy {
-                padding: 20px;
+            .proven-success {
+                padding: 25px;
             }
             
-            .comparison-card {
-                padding: 20px;
+            .proven-title {
+                font-size: 22px;
+                margin-bottom: 25px;
             }
             
-            .strategy-title {
-                font-size: 20px;
+            .metric-card {
+                padding: 25px 20px;
+            }
+            
+            .metric-number {
+                font-size: 36px;
+                margin-bottom: 12px;
+            }
+            
+            .metric-label {
+                font-size: 16px;
+            }
+            
+            .metric-sublabel {
+                font-size: 12px;
             }
         }
         
         @media (max-width: 480px) {
+            .main-header {
+                margin-bottom: 25px;
+            }
+            
             .title { 
                 font-size: 24px; 
+            }
+            
+            .subtitle { 
+                font-size: 16px; 
+            }
+            
+            .value-statement {
+                font-size: 20px;
+            }
+            
+            .value-details {
+                font-size: 14px;
+            }
+            
+            .core-value,
+            .proven-success {
+                padding: 20px;
+            }
+            
+            .proven-title {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+            
+            .metric-number {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+            
+            .metric-label {
+                font-size: 14px;
+            }
+            
+            .metric-sublabel {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .title { 
+                font-size: 22px; 
             }
             
             .subtitle { 
@@ -555,56 +555,13 @@
                 font-size: 18px;
             }
             
-            .value-details {
-                font-size: 13px;
-            }
-            
-            .kiis-vision {
-                height: 150px;
-                margin-bottom: 15px;
-            }
-            
-            .vision-icon {
-                font-size: 36px;
-                margin-bottom: 6px;
-            }
-            
-            .vision-text {
-                font-size: 12px;
-            }
-            
-            .vs-badge {
-                width: 50px;
-                height: 50px;
-                font-size: 18px;
+            .core-value,
+            .proven-success {
+                padding: 15px;
             }
             
             .metric-number {
                 font-size: 24px;
-            }
-            
-            .metric-label {
-                font-size: 12px;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .title { 
-                font-size: 22px; 
-            }
-            
-            .subtitle { 
-                font-size: 13px; 
-            }
-            
-            .value-statement {
-                font-size: 16px;
-            }
-            
-            .core-value,
-            .proven-success,
-            .execution-strategy {
-                padding: 15px;
             }
         }
     </style>
@@ -617,44 +574,7 @@
                 <span class="title-highlight">Go-To-Market</span>:<br>
                 Digital-First Disruption
             </h1>
-            <p class="subtitle">
-                Proven model + Revolutionary technology = Market leadership
-            </p>
-        </div>
-        
-        <!-- 핵심 가치 제안 - 새로 추가 -->
-        <div class="core-value" id="coreValue">
-            <div class="value-statement">
-                🚀 Better Tools, Proven Playbook, Realistic Goals
-            </div>
-            <div class="value-details">
-                Following Implant Direct's $225M success with breakthrough technology and smarter execution
-            </div>
-        </div>
-        
-        <!-- 성공 모델 증거 - 단순화 -->
-        <div class="proven-success" id="provenSuccess">
-            <h2 class="proven-title">
-                ✅ Benchmarking Digital-First Success
-            </h2>
-            
-            <div class="success-metrics">
-                <div class="metric-card" onclick="showSource('acquisition')">
-                    <span class="metric-number">$225M</span>
-                    <div class="metric-label">Implant Direct<br>Acquisition Value</div>
-                </div>
-                <div class="metric-card" onclick="showSource('marketshare')">
-                    <span class="metric-number">7%</span>
-                    <div class="metric-label">Market Share<br>in 4 Years</div>
-                </div>
-                <div class="metric-card" onclick="showSource('advantage')">
-                    <span class="metric-number">65%</span>
-                    <div class="metric-label">Cost Savings<br>vs Premium</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 핵심 차별화 - 실제 경쟁사 분석 -->
+            <!-- 핵심 차별화 - 실제 경쟁사 분석 -->
         <div class="innovation-edge" id="innovationEdge">
             <h2 class="comparison-title">🔍 Competitive Intelligence Analysis</h2>
             
@@ -665,9 +585,9 @@
                          alt="Implant Direct Website - Market Leader Analysis" 
                          class="competitor-image"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="image-placeholder" style="display: none; height: 200px;">
-                        <div class="placeholder-icon">🌐</div>
-                        <div class="placeholder-text">Implant Direct<br>Market Leader<br>E-commerce Platform</div>
+                    <div class="image-placeholder" style="display: none; height: 160px; background: rgba(255, 255, 255, 0.1); border: 2px dashed rgba(255, 255, 255, 0.3); border-radius: 12px; align-items: center; justify-content: center; flex-direction: column; text-align: center; margin-bottom: 15px;">
+                        <div style="font-size: 36px; margin-bottom: 8px; color: #ffd700;">🌐</div>
+                        <div style="font-size: 14px; color: rgba(255, 255, 255, 0.7);">Implant Direct<br>Market Leader<br>E-commerce Platform</div>
                     </div>
                     
                     <div class="company-name competitor-name">Implant Direct</div>
@@ -707,33 +627,38 @@
             </div>
         </div>
         
-        <!-- 실행 전략 - 단순화 -->
-        <div class="execution-strategy" id="executionStrategy">
-            <h2 class="strategy-title">🎯 Smart Execution Strategy</h2>
-            
-            <div class="strategy-flow">
-                <div class="step-card">
-                    <div class="step-number">Year 1</div>
-                    <div class="step-title">OSU Launch</div>
-                    <div class="step-desc">Academic network + early validation</div>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">Year 2-3</div>
-                    <div class="step-title">Digital Scale</div>
-                    <div class="step-desc">AI platform + proven tactics</div>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">Year 4-5</div>
-                    <div class="step-title">Leadership</div>
-                    <div class="step-desc">Sustainable growth + category definition</div>
-                </div>
+        <!-- 핵심 가치 제안 - 강화 -->
+        <div class="core-value" id="coreValue">
+            <div class="value-statement">
+                🚀 Better Tools, Proven Playbook, Realistic Goals
             </div>
+            <div class="value-details">
+                Following proven $225M digital-first model
+            </div>
+        </div>
+        
+        <!-- 성공 모델 증거 - 확대 강조 -->
+        <div class="proven-success" id="provenSuccess">
+            <h2 class="proven-title">
+                ✅ Benchmarking Digital-First Success
+            </h2>
             
-            <div class="target-goal">
-                <div class="goal-highlight">Year 4 Target: 0.5% Market Share (~$12M Revenue)</div>
-                <div class="goal-subtitle">Focused approach • Quality over speed • Proven digital model</div>
+            <div class="success-metrics">
+                <div class="metric-card" onclick="showSource('acquisition')">
+                    <span class="metric-number">$225M</span>
+                    <div class="metric-label">Exit Value</div>
+                    <div class="metric-sublabel">Implant Direct (2010)</div>
+                </div>
+                <div class="metric-card" onclick="showSource('marketshare')">
+                    <span class="metric-number">7%</span>
+                    <div class="metric-label">Market Share</div>
+                    <div class="metric-sublabel">in 18 Years</div>
+                </div>
+                <div class="metric-card" onclick="showSource('advantage')">
+                    <span class="metric-number">50%+</span>
+                    <div class="metric-label">Cost Savings</div>
+                    <div class="metric-sublabel">Direct Model</div>
+                </div>
             </div>
         </div>
     </div>
@@ -758,12 +683,12 @@
                 content: 'Implant Direct acquired by Danaher for $225M in 2010, just 4 years after launching digital-first model in 2006.'
             },
             'marketshare': {
-                title: '7% Market Domination',
-                content: 'Achieved 7% US market share (~$147M revenue) through direct-to-dentist model and disruptive pricing.'
+                title: '7% Market Share in 18 Years',
+                content: 'Implant Direct founded in 2006, achieved ~7% US market share by 2024 through direct-to-dentist digital model and value pricing strategy.'
             },
             'advantage': {
-                title: '65% Cost Innovation',
-                content: 'Direct sales model eliminated distribution costs, enabling 65% savings vs premium competitors while maintaining quality.'
+                title: '50%+ Cost Innovation',
+                content: 'Direct sales model eliminated distribution markups, enabling 50%+ cost savings vs premium competitors while maintaining quality standards.'
             }
         };
         
@@ -918,14 +843,13 @@
             }
         });
         
-        // 페이지 로드 애니메이션 - v2.1 최적화
+        // 페이지 로드 애니메이션
         window.addEventListener('load', function() {
             const elements = [
                 { selector: '.main-header', delay: 0 },
                 { selector: '.core-value', delay: 400 },
                 { selector: '.proven-success', delay: 600 },
-                { selector: '.innovation-edge', delay: 800 },
-                { selector: '.execution-strategy', delay: 1000 }
+                { selector: '.innovation-edge', delay: 800 }
             ];
             
             elements.forEach(({ selector, delay }) => {
@@ -942,7 +866,7 @@
             setTimeout(() => {
                 showNavigation();
                 hideNavigation(3000);
-            }, 1500);
+            }, 1400);
         });
         
         // 접근성 향상
@@ -953,11 +877,11 @@
             }
         });
         
-        window.addEventListener('resize', () => {
-            if (isNavigationVisible) {
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('focus', () => {
+                showNavigation();
                 clearTimeout(hideTimeout);
-                hideNavigation(1000);
-            }
+            });
         });
     </script>
 </body>
