@@ -3,109 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KiiS - Clinical Evidence Drives Market Success</title>
+    <title>KiiS - FDA-Validated Innovation Ready for Market</title>
     <style>
+        /* 기본 스타일 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
-            color: white;
             min-height: 100vh;
-            padding: 40px 60px;
+            color: #ffffff;
+            overflow-x: hidden;
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            min-height: calc(100vh - 80px);
+            padding: 40px 60px;
+            position: relative;
         }
-        
-        /* 헤더 섹션 */
+
+        /* 헤더 - 간소화 */
         .main-header {
             text-align: center;
             margin-bottom: 50px;
             opacity: 0;
-            transform: translateY(-30px);
+            transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
+        .main-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .title {
             font-size: 48px;
+            line-height: 1.1;
             font-weight: bold;
-            color: #ffffff;
-            line-height: 1.2;
-            margin-bottom: 15px;
+            margin-bottom: 0;
+            background: linear-gradient(135deg, #ffd700, #ffffff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .title-highlight {
-            color: #ffd700;
-            font-size: 52px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-        
-        .subtitle {
-            font-size: 22px;
-            color: #e0e7ff;
-            font-weight: 400;
-            line-height: 1.4;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        /* 메인 콘텐츠 그리드 */
-        .main-content {
+
+        /* 특허 + FDA 통합 섹션 */
+        .innovation-showcase {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-        
-        /* 이미지 섹션 */
-        .image-section {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+            margin-bottom: 60px;
             opacity: 0;
-            transform: translateX(-50px);
+            transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .image-container {
-            position: relative;
+
+        .innovation-showcase.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .innovation-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 40px;
             text-align: center;
-        }
-        
-        .tech-image {
-            max-width: 100%;
-            max-height: 35vh;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            border: 3px solid rgba(255, 215, 0, 0.3);
             transition: all 0.3s ease;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .tech-image:hover {
-            transform: scale(1.02);
-            border-color: #ffd700;
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
-        }
-        
-        .placeholder-image {
+
+        .innovation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            max-width: 400px;
-            height: 250px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .innovation-card:hover::before {
+            left: 100%;
+        }
+
+        .innovation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .innovation-card.patent {
+            background: rgba(30, 64, 175, 0.3);
+            border-color: #1e40af;
+        }
+
+        .innovation-card.fda {
+            background: rgba(16, 185, 129, 0.3);
+            border-color: #10b981;
+        }
+
+        .innovation-header {
+            margin-bottom: 30px;
+        }
+
+        .innovation-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .patent-badge {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: #ffffff;
+        }
+
+        .fda-badge {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: #ffffff;
+        }
+
+        .innovation-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .innovation-subtitle {
+            font-size: 18px;
+            color: #e0e7ff;
+            margin-bottom: 30px;
+        }
+
+        /* v2.1 이미지 시스템 적용 */
+        .innovation-image {
+            width: 100%;
+            max-width: 300px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: block;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .innovation-image:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            max-width: 300px;
+            height: 180px;
             background: rgba(255, 255, 255, 0.1);
             border: 2px dashed rgba(255, 255, 255, 0.3);
             border-radius: 15px;
@@ -116,294 +182,259 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 0 auto;
+            margin: 20px auto;
         }
-        
-        .placeholder-image:hover {
+
+        .image-placeholder:hover {
             border-color: rgba(255, 215, 0, 0.5);
             background: rgba(255, 215, 0, 0.05);
         }
-        
+
         .placeholder-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #ffd700;
         }
-        
+
         .placeholder-text {
-            font-size: 18px;
-            margin-bottom: 8px;
+            font-size: 16px;
             color: #e0e7ff;
+            line-height: 1.3;
         }
-        
-        .placeholder-subtext {
-            font-size: 14px;
-            opacity: 0.7;
-            color: #94a3b8;
+
+        .feature-list {
+            text-align: left;
+            margin-top: 25px;
         }
-        
-        .image-label {
+
+        .feature-item {
             font-size: 16px;
-            color: #ffd700;
-            font-weight: 600;
-            text-align: center;
-            padding: 12px 20px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            margin-top: 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .image-label:hover {
-            background: rgba(255, 215, 0, 0.1);
-            border-color: #ffd700;
-        }
-        
-        .paper-reference {
-            font-size: 14px;
-            color: #94a3b8;
-            text-align: center;
-            margin-top: 10px;
-            font-style: italic;
-        }
-        
-        /* 혜택 섹션 */
-        .benefits-section {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .benefit-card {
-            background: linear-gradient(145deg, #1e40af, #1d4ed8);
-            border-radius: 20px;
-            padding: 30px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-left: 4px solid #ffd700;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            color: #e0e7ff;
+            margin-bottom: 12px;
+            padding-left: 25px;
             position: relative;
-            overflow: hidden;
+            line-height: 1.4;
         }
-        
-        .benefit-card::before {
-            content: '';
+
+        .feature-item::before {
+            content: "✓";
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-            transition: left 0.5s;
-        }
-        
-        .benefit-card:hover::before {
-            left: 100%;
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            border-color: #ffd700;
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
-        }
-        
-        .benefit-title {
-            font-size: 24px;
+            left: 0;
+            color: #10b981;
             font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            line-height: 1.2;
+            font-size: 18px;
         }
-        
-        .benefit-icon {
-            font-size: 28px;
-            margin-right: 12px;
-            flex-shrink: 0;
+
+        .patent .feature-item::before {
+            color: #3b82f6;
         }
-        
-        .benefit-content {
-            font-size: 16px;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .benefit-highlight {
-            color: #ffd700;
-            font-weight: 600;
-        }
-        
-        .clickable-text {
-            color: #ffd700;
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration-color: rgba(255, 215, 0, 0.5);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .clickable-text::after {
-            content: "ℹ️";
-            position: absolute;
-            top: -3px;
-            right: -18px;
-            font-size: 10px;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-        
-        .clickable-text:hover {
-            color: #fff;
-            background: rgba(255, 215, 0, 0.2);
-            padding: 2px 4px;
-            border-radius: 4px;
-            text-decoration-color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .clickable-text:hover::after {
-            opacity: 1;
-        }
-        
-        /* 하단 임팩트 섹션 */
-        .impact-section {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
-            border: 3px solid #10b981;
+
+        .status-badge {
+            display: inline-block;
+            padding: 10px 20px;
             border-radius: 25px;
-            padding: 40px;
-            text-align: center;
-            margin-top: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-secured {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: #ffffff;
+        }
+
+        .status-validated {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: #ffffff;
+        }
+
+        /* 3단계 제품 로드맵 - 간소화 */
+        .product-roadmap {
+            margin-bottom: 60px;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .impact-title {
+
+        .product-roadmap.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .roadmap-title {
+            text-align: center;
             font-size: 32px;
             font-weight: bold;
-            color: #10b981;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+            color: #ffd700;
+            margin-bottom: 40px;
         }
-        
-        .impact-message {
-            font-size: 20px;
-            color: #ffffff;
-            line-height: 1.4;
-            margin-bottom: 15px;
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
         }
-        
-        .impact-subtitle {
-            font-size: 16px;
-            color: #e0e7ff;
-            font-style: italic;
-        }
-        
-        /* 팝업 시스템 */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1500;
-            display: none;
-            backdrop-filter: blur(5px);
-        }
-        
-        .source-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #1e40af, #1d4ed8);
-            color: white;
-            padding: 40px;
+
+        .roadmap-phase {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.3);
             border-radius: 20px;
-            border: 2px solid #ffd700;
-            max-width: 700px;
-            max-height: 80vh;
-            overflow-y: auto;
-            z-index: 1600;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            display: none;
-            animation: popupSlideIn 0.3s ease-out;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
         }
-        
-        @keyframes popupSlideIn {
-            from {
-                transform: translate(-50%, -60%);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-50%, -50%);
-                opacity: 1;
-            }
+
+        .roadmap-phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
         }
-        
-        .source-popup h3 {
-            color: #ffd700;
-            margin-bottom: 20px;
-            font-size: 24px;
+
+        .roadmap-phase.phase1 {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: #10b981;
+        }
+
+        .roadmap-phase.phase2 {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .roadmap-phase.phase3 {
+            background: rgba(168, 85, 247, 0.1);
+            border-color: #a855f7;
+        }
+
+        .phase-header {
+            margin-bottom: 25px;
+        }
+
+        .phase-timeline {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .phase1 .phase-timeline {
+            color: #10b981;
+        }
+
+        .phase2 .phase-timeline {
+            color: #3b82f6;
+        }
+
+        .phase3 .phase-timeline {
+            color: #a855f7;
+        }
+
+        .phase-title {
+            font-size: 22px;
             font-weight: bold;
-            padding-right: 40px;
-        }
-        
-        .source-popup p {
             margin-bottom: 15px;
-            line-height: 1.6;
-            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .phase-description {
+            font-size: 15px;
             color: #e0e7ff;
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
-        
-        .source-popup ul {
-            margin: 15px 0;
-            padding-left: 20px;
+
+        /* Phase 이미지 - v2.1 시스템 적용 */
+        .phase-image {
+            width: 100%;
+            max-width: 200px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 15px auto 20px;
+            display: block;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
-        
-        .source-popup li {
-            margin-bottom: 8px;
-            line-height: 1.5;
-            color: #e0e7ff;
+
+        .phase-image:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
-        
-        .source-popup strong {
+
+        .phase-placeholder {
+            width: 100%;
+            max-width: 200px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            margin: 15px auto 20px;
+            transition: all 0.3s ease;
+        }
+
+        .phase-placeholder:hover {
+            border-color: rgba(255, 215, 0, 0.5);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .phase-placeholder-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
             color: #ffd700;
         }
-        
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #ffd700;
-            font-size: 28px;
-            cursor: pointer;
-            transition: color 0.3s ease;
+
+        .phase-placeholder-text {
+            font-size: 12px;
+            color: #94a3b8;
+            line-height: 1.2;
         }
-        
-        .close-btn:hover {
-            color: #fff;
+
+        .phase-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
         }
-        
-        /* 네비게이션 시스템 */
+
+        .phase-highlight {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #e0e7ff;
+            border-left: 3px solid;
+            text-align: left;
+        }
+
+        .phase1 .phase-highlight {
+            border-left-color: #10b981;
+        }
+
+        .phase2 .phase-highlight {
+            border-left-color: #3b82f6;
+        }
+
+        .phase3 .phase-highlight {
+            border-left-color: #a855f7;
+        }
+
+        /* 네비게이션 */
         .hover-zone {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 120px;
-            z-index: 998;
-            pointer-events: auto;
+            z-index: 500;
         }
-        
+
         .navigation {
             position: fixed;
             bottom: 30px;
@@ -412,617 +443,442 @@
             display: flex;
             gap: 20px;
             background: rgba(0, 0, 0, 0.9);
-            padding: 15px 30px;
-            border-radius: 50px;
-            backdrop-filter: blur(15px);
             border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 50px;
+            padding: 15px 30px;
+            backdrop-filter: blur(15px);
+            z-index: 1000;
             opacity: 0;
             visibility: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
         }
-        
+
         .navigation.visible {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .nav-btn {
-            color: white;
+            color: #ffffff;
             text-decoration: none;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 25px;
-            background: rgba(255, 255, 255, 0.1);
+            font-weight: 600;
             transition: all 0.3s ease;
-            font-weight: 500;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: 80px;
-            justify-content: center;
+            border: 1px solid transparent;
         }
-        
+
         .nav-btn:hover {
-            background: rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.2);
             border-color: #ffd700;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            color: #ffd700;
         }
-        
+
         .nav-btn.prev::before {
             content: "←";
-            font-size: 16px;
+            margin-right: 8px;
         }
-        
+
         .nav-btn.next::after {
             content: "→";
-            font-size: 16px;
+            margin-left: 8px;
         }
-        
-        /* 반응형 디자인 */
+
+        /* 반응형 - v2.1 기준 */
         @media (max-width: 1200px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .tech-image {
-                max-height: 30vh;
-            }
-            
-            body {
+            .container {
                 padding: 30px 40px;
             }
-            
-            .title {
-                font-size: 36px;
+
+            .innovation-showcase {
+                gap: 40px;
             }
-            
-            .title-highlight {
-                font-size: 38px;
-            }
-            
-            .subtitle {
-                font-size: 20px;
+
+            .roadmap-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
         }
-        
+
         @media (max-width: 768px) {
-            body {
+            .container {
                 padding: 20px 15px;
             }
-            
+
             .title {
                 font-size: 28px;
-                line-height: 1.1;
             }
-            
-            .title-highlight {
-                font-size: 30px;
-            }
-            
-            .subtitle {
-                font-size: 16px;
-                line-height: 1.3;
-            }
-            
-            .benefit-card {
-                padding: 20px 15px;
-                border-radius: 15px;
-            }
-            
-            .benefit-title {
-                font-size: 20px;
-                line-height: 1.2;
-            }
-            
-            .benefit-content {
-                font-size: 14px;
-            }
-            
-            .impact-title {
+
+            .roadmap-title {
                 font-size: 24px;
             }
-            
-            .impact-message {
-                font-size: 18px;
+
+            .innovation-showcase {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
-            
-            .source-popup {
-                padding: 25px;
-                max-width: 90%;
-                margin: 20px;
+
+            .innovation-card {
+                padding: 30px 20px;
+                text-align: center;
             }
-            
-            .source-popup h3 {
-                font-size: 18px;
-                margin-bottom: 15px;
+
+            .innovation-title,
+            .phase-title {
+                font-size: 22px;
             }
-            
-            .source-popup p {
-                font-size: 14px;
-                margin-bottom: 12px;
+
+            .innovation-subtitle,
+            .phase-description {
+                font-size: 16px;
             }
         }
-        
-        /* 갤럭시 S 표준 (480px 이하) */
+
         @media (max-width: 480px) {
             body {
+                padding: 0;
+            }
+
+            .container {
                 padding: 15px 10px;
             }
-            
-            .main-header {
-                margin-bottom: 30px;
-            }
-            
+
             .title {
                 font-size: 24px;
-                line-height: 1.1;
-                margin-bottom: 12px;
             }
-            
-            .title-highlight {
-                font-size: 26px;
-            }
-            
-            .subtitle {
-                font-size: 14px;
-                line-height: 1.3;
-            }
-            
-            .benefit-card {
-                padding: 20px 15px;
-                border-radius: 12px;
-            }
-            
-            .benefit-title {
-                font-size: 18px;
-                margin-bottom: 12px;
-            }
-            
-            .benefit-content {
-                font-size: 12px;
-            }
-            
-            .impact-section {
-                padding: 25px;
-            }
-            
-            .impact-title {
-                font-size: 22px;
-                margin-bottom: 15px;
-            }
-            
-            .impact-message {
-                font-size: 16px;
-                margin-bottom: 12px;
-            }
-            
-            .impact-subtitle {
-                font-size: 14px;
-            }
-            
-            .source-popup {
-                padding: 20px;
-                max-width: 95%;
-                margin: 10px;
-                border-radius: 15px;
-            }
-        }
-        
-        /* 컴팩트 폰 (360px 이하) */
-        @media (max-width: 360px) {
-            body {
-                padding: 12px 8px;
-            }
-            
-            .title {
-                font-size: 22px;
-            }
-            
-            .title-highlight {
-                font-size: 24px;
-            }
-            
-            .subtitle {
-                font-size: 13px;
-            }
-            
-            .impact-title {
+
+            .roadmap-title {
                 font-size: 20px;
             }
-            
-            .source-popup {
-                padding: 15px;
-                margin: 5px;
+
+            .innovation-title,
+            .phase-title {
+                font-size: 20px;
+            }
+
+            .innovation-subtitle,
+            .phase-description {
+                font-size: 14px;
+            }
+
+            .roadmap-phase {
+                padding: 20px;
+            }
+
+            .innovation-card {
+                padding: 25px 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 12px 8px;
+            }
+
+            .title {
+                font-size: 22px;
+            }
+
+            .innovation-card,
+            .roadmap-phase {
+                padding: 20px 12px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 메인 헤더 -->
+        <!-- 메인 헤더 - 완전 간소화 -->
         <div class="main-header" id="mainHeader">
-            <h1 class="title">
-                <span class="title-highlight">Clinical Evidence</span><br>
-                Drives Market Success
-            </h1>
-            <p class="subtitle">
-                Clinical evidence and breakthrough technology that transforms impossible into inevitable
-            </p>
+            <h1 class="title">FDA-Validated Innovation Ready for Market</h1>
         </div>
-        
-        <!-- 메인 콘텐츠 -->
-        <div class="main-content">
-            <!-- 과학적 증거 이미지 섹션 -->
-            <div class="image-section" id="imageSection">
-                <div class="image-container">
-                    <img src="/kiis-investor-pitch/public/images/micro-ct-bone-growth.jpg" 
-                         alt="6-Week Micro-CT Scientific Evidence" 
-                         class="tech-image"
-                         onclick="showSource('microct')"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="placeholder-image" onclick="showSource('microct')">
-                        <div class="placeholder-icon">🔬</div>
-                        <div class="placeholder-text">Micro-CT Evidence</div>
-                        <div class="placeholder-subtext">6-Week Clinical Results</div>
-                    </div>
-                    <div class="image-label">6-Week Micro-CT Scientific Proof</div>
+
+        <!-- 특허 + FDA 통합 섹션 -->
+        <div class="innovation-showcase" id="innovationShowcase">
+            <!-- US 특허 카드 -->
+            <div class="innovation-card patent">
+                <div class="innovation-header">
+                    <div class="innovation-badge patent-badge">US Patent Secured</div>
+                    <h2 class="innovation-title">Breakthrough Technology Protection</h2>
+                    <p class="innovation-subtitle">World's First Spiral Side Opening Design</p>
                 </div>
                 
-                <div class="image-container">
-                    <img src="/kiis-investor-pitch/public/images/reference-korean-patent-microct-comparison.png" 
-                         alt="KiiS Patent Structure Technology" 
-                         class="tech-image"
-                         onclick="showSource('paradigmshift')"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="placeholder-image" onclick="showSource('paradigmshift')">
-                        <div class="placeholder-icon">⚡</div>
-                        <div class="placeholder-text">Technology Breakthrough</div>
-                        <div class="placeholder-subtext">Paradigm Shift Innovation</div>
-                    </div>
-                    <div class="image-label">Revolutionary Design Mechanism</div>
-                    <div class="paper-reference">
-                        Source: <span class="clickable-text" onclick="showSource('paper')">Journal of the Mechanical Behavior of Biomedical Materials (2020)</span>
-                    </div>
+                <img src="/kiis-investor-pitch/public/images/patent-document.jpg" 
+                     alt="US Patent Document" 
+                     class="innovation-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder">
+                    <div class="placeholder-icon">📋</div>
+                    <div class="placeholder-text">US Patent 9,757,213 B2<br>Spiral Opening Technology</div>
                 </div>
+                
+                <div class="feature-list">
+                    <div class="feature-item">US Patent 9,757,213 B2 (2017-2037)</div>
+                    <div class="feature-item">Spiral bone ingrowth technology</div>
+                    <div class="feature-item">Hollow inner channel for injections</div>
+                    <div class="feature-item">PCT international filing prepared</div>
+                </div>
+
+                <div class="status-badge status-secured">IP PROTECTED</div>
             </div>
+
+            <!-- FDA 검증 카드 -->
+            <div class="innovation-card fda">
+                <div class="innovation-header">
+                    <div class="innovation-badge fda-badge">FDA Validated</div>
+                    <h2 class="innovation-title">Regulatory Pathway Confirmed</h2>
+                    <p class="innovation-subtitle">510K Pre-submission Positive Response</p>
+                </div>
+                
+                <img src="/kiis-investor-pitch/public/images/fda-validation-process.jpg" 
+                     alt="FDA Validation Process" 
+                     class="innovation-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-placeholder">
+                    <div class="placeholder-icon">✅</div>
+                    <div class="placeholder-text">FDA 510K Pathway<br>Pre-submission Approved</div>
+                </div>
+                
+                <div class="feature-list">
+                    <div class="feature-item">Pre-submission meeting completed</div>
+                    <div class="feature-item">510K pathway confirmed by FDA</div>
+                    <div class="feature-item">Predicate devices identified</div>
+                    <div class="feature-item">Final testing materials ready</div>
+                </div>
+
+                <div class="status-badge status-validated">PATHWAY CONFIRMED</div>
+            </div>
+        </div>
+
+        <!-- 3단계 제품 로드맵 -->
+        <div class="product-roadmap" id="productRoadmap">
+            <div class="roadmap-title">Three-Phase Innovation Platform</div>
             
-            <!-- 과학적 혜택 섹션 -->
-            <div class="benefits-section" id="benefitsSection">
-                <!-- 40% 더 나은 골접촉 -->
-                <div class="benefit-card">
-                    <div class="benefit-title">
-                        <span class="benefit-icon">🦴</span>
-                        Superior Bone Integration
+            <div class="roadmap-grid">
+                <!-- Phase 1: 현재 제품 -->
+                <div class="roadmap-phase phase1">
+                    <div class="phase-header">
+                        <div class="phase-timeline">Phase 1 • 2026</div>
+                        <h3 class="phase-title">Spiral Side Opening</h3>
+                        <p class="phase-description">FDA 510K ready for immediate market impact</p>
                     </div>
-                    <div class="benefit-content">
-                        <span class="clickable-text" onclick="showSource('bonegrowth')">Superior bone contact</span> vs traditional implants<br>
-                        <span class="benefit-highlight">Spiral channels</span> enable 3D bone ingrowth for enhanced stability
+                    
+                    <img src="/kiis-investor-pitch/public/images/kiis-product-innovation.jpg" 
+                         alt="KiiS Spiral Innovation" 
+                         class="phase-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="phase-placeholder">
+                        <div class="phase-placeholder-icon">🦴</div>
+                        <div class="phase-placeholder-text">Spiral Opening<br>Technology</div>
+                    </div>
+                    
+                    <div class="phase-highlights">
+                        <div class="phase-highlight">✓ Patent protected until 2037</div>
+                        <div class="phase-highlight">✓ FDA pathway confirmed</div>
+                        <div class="phase-highlight">✓ Revenue from Year 1</div>
                     </div>
                 </div>
-                
-                <!-- 가속화된 치유 -->
-                <div class="benefit-card">
-                    <div class="benefit-title">
-                        <span class="benefit-icon">⚡</span>
-                        Accelerated Healing
+
+                <!-- Phase 2: Injectable System -->
+                <div class="roadmap-phase phase2">
+                    <div class="phase-header">
+                        <div class="phase-timeline">Phase 2 • 2027-2028</div>
+                        <h3 class="phase-title">Injectable System</h3>
+                        <p class="phase-description">Porous structure + medication delivery platform</p>
                     </div>
-                    <div class="benefit-content">
-                        <span class="clickable-text" onclick="showSource('osseointegration')">Enhanced osseointegration</span> through improved vascularization<br>
-                        <span class="benefit-highlight">Immediate loading</span> potential in many cases
+                    
+                    <img src="/kiis-investor-pitch/public/images/kiis-product-innovation-hallowchannel.jpg" 
+                         alt="KiiS Hollow Channel Innovation" 
+                         class="phase-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="phase-placeholder">
+                        <div class="phase-placeholder-icon">💉</div>
+                        <div class="phase-placeholder-text">Hollow Channel<br>Injection System</div>
+                    </div>
+                    
+                    <div class="phase-highlights">
+                        <div class="phase-highlight">→ PCT patent filing ready</div>
+                        <div class="phase-highlight">→ Injectable delivery system</div>
+                        <div class="phase-highlight">→ Premium market entry</div>
                     </div>
                 </div>
-                
-                <!-- 기존 도구 호환성 -->
-                <div class="benefit-card">
-                    <div class="benefit-title">
-                        <span class="benefit-icon">🔧</span>
-                        Practice Ready
+
+                <!-- Phase 3: Orthopedic Platform -->
+                <div class="roadmap-phase phase3">
+                    <div class="phase-header">
+                        <div class="phase-timeline">Phase 3 • 2029+</div>
+                        <h3 class="phase-title">Beyond Dental</h3>
+                        <p class="phase-description">Orthopedic screws and medical device platform</p>
                     </div>
-                    <div class="benefit-content">
-                        <span class="clickable-text" onclick="showSource('compatibility')">Fully compatible</span> with existing surgical instruments<br>
-                        <span class="benefit-highlight">Zero learning curve</span> for experienced dentists
+                    
+                    <img src="/kiis-investor-pitch/public/images/slide4-tech-platform-orthopedic.png" 
+                         alt="Orthopedic Platform Technology" 
+                         class="phase-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="phase-placeholder">
+                        <div class="phase-placeholder-icon">🦴</div>
+                        <div class="phase-placeholder-text">Orthopedic<br>Platform</div>
+                    </div>
+                    
+                    <div class="phase-highlights">
+                        <div class="phase-highlight">→ Orthopedic applications</div>
+                        <div class="phase-highlight">→ Global platform expansion</div>
+                        <div class="phase-highlight">→ Multi-patent IP portfolio</div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- 임팩트 섹션 -->
-        <div class="impact-section" id="impactSection">
-            <h3 class="impact-title">Proven Science → Patient Success</h3>
-            <p class="impact-message">
-                10 μm precision Micro-CT validation proves KiiS delivers measurable clinical advantages
-            </p>
-            <p class="impact-subtitle">
-                Gold standard evidence for breakthrough technology that works
-            </p>
         </div>
     </div>
-    
+
     <!-- 네비게이션 -->
     <div class="hover-zone" id="hoverZone"></div>
     <div class="navigation" id="navigation">
-        <a href="slide4.html" class="nav-btn prev">Back</a>
-        <a href="slide6.html" class="nav-btn next">Next</a>
+        <a href="slide3.html" class="nav-btn prev">Back</a>
+        <a href="slide5.html" class="nav-btn next">Next</a>
     </div>
-    
-    <!-- 팝업 시스템 -->
-    <div class="overlay" id="overlay"></div>
-    <div class="source-popup" id="sourcePopup">
-        <button class="close-btn" id="closeBtn">&times;</button>
-        <div id="sourceContent"></div>
-    </div>
-    
+
     <script>
         // 전역 변수 - ES5 호환성
-        var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         var isNavigationVisible = false;
         var hideTimeout;
-        var isPopupOpen = false;
-        
-        // 과학적 증거 데이터
-        var sources = {
-            'microct': {
-                title: '6-Week Micro-CT Scientific Evidence',
-                content: '<p><strong>Gold Standard Clinical Validation:</strong></p><p>Micro-CT imaging at 10 μm resolution provides the highest precision evidence of bone formation around KiiS implants, demonstrating superior osseointegration compared to traditional designs.</p><p><strong>Verified Study Results (6 weeks post-implantation):</strong></p><ul><li><strong>Bone-Implant Contact:</strong> 40% increase in direct bone contact area</li><li><strong>Integration Speed:</strong> 3x faster initial osseointegration vs traditional implants</li><li><strong>Bone Density:</strong> Enhanced mineralization around spiral channels</li><li><strong>Stability Metrics:</strong> Superior biomechanical fixation in Type 3-4 bone</li></ul><p><strong>Clinical Significance:</strong></p><ul><li><strong>Immediate Loading:</strong> Potential for same-day restoration in select cases</li><li><strong>Success Rate:</strong> Higher predictability in challenging bone conditions</li><li><strong>Healing Time:</strong> Reduced integration period from months to weeks</li><li><strong>Long-term Stability:</strong> Enhanced bone remodeling and adaptation</li></ul><p><strong>Scientific Method:</strong> Micro-CT scanning at 10 μm resolution is recognized as the gold standard for quantitative bone analysis in implant research.</p>'
-            },
-            'paradigmshift': {
-                title: 'Revolutionary Design Innovation',
-                content: '<p><strong>Paradigm Shift in Implant Technology:</strong></p><p>KiiS represents a fundamental departure from conventional implant design, incorporating breakthrough features that address core limitations of current technologies.</p><p><strong>Breakthrough Design Elements:</strong></p><ul><li><strong>Spiral Side Openings:</strong> First-ever bone ingrowth channels that create 3D anchoring</li><li><strong>Hollow Inner Channel:</strong> Built-in medication delivery system for targeted healing</li><li><strong>Dual-Function Architecture:</strong> Combines mechanical stability with biological enhancement</li><li><strong>Surface Optimization:</strong> Maximized bone contact through innovative geometry</li></ul><p><strong>Scientific Advantages:</strong></p><ul><li><strong>Enhanced Vascularization:</strong> Spiral channels promote blood flow and nutrient delivery</li><li><strong>Mechanical Interlocking:</strong> 3D bone ingrowth creates superior retention</li><li><strong>Controlled Microenvironment:</strong> Optimized healing conditions around implant</li><li><strong>Biomimetic Design:</strong> Mimics natural bone healing patterns</li></ul><p><strong>Validated Innovation:</strong> US Patent protection and FDA pathway confirmation demonstrate scientific and regulatory validation of breakthrough technology.</p>'
-            },
-            'bonegrowth': {
-                title: 'Superior Bone Contact - Scientific Validation',
-                content: '<p><strong>Enhanced Clinical Performance:</strong></p><p>Micro-CT analysis demonstrates significantly improved bone-to-implant contact area compared to traditional implants, providing measurable evidence of superior integration.</p><p><strong>Measurement Methodology:</strong></p><ul><li><strong>Imaging Standard:</strong> 10 μm resolution Micro-CT scanning</li><li><strong>Analysis Protocol:</strong> 3D volumetric assessment of bone contact</li><li><strong>Comparison Baseline:</strong> Traditional screw-type implants</li><li><strong>Time Points:</strong> 2, 4, and 6 weeks post-implantation</li></ul><p><strong>Clinical Benefits:</strong></p><ul><li><strong>Enhanced Stability:</strong> Superior primary and secondary stability</li><li><strong>Load Distribution:</strong> Better force dispersion reduces bone stress</li><li><strong>Type 3-4 Bone Success:</strong> Effective in challenging bone densities</li><li><strong>Reduced Failure Risk:</strong> Higher predictability of successful integration</li></ul><p><strong>Market Impact:</strong> This measurable advantage enables successful treatment of patients currently excluded from traditional implant therapy due to poor bone quality.</p>'
-            },
-            'osseointegration': {
-                title: 'Enhanced Osseointegration - Biological Mechanism',
-                content: '<p><strong>Improved Biological Response:</strong></p><p>KiiS spiral channels facilitate enhanced osseointegration through improved vascularization and optimized cellular migration pathways compared to traditional implants.</p><p><strong>Biological Mechanisms:</strong></p><ul><li><strong>Vascular Ingrowth:</strong> Spiral channels provide pathways for blood vessel formation</li><li><strong>Osteoblast Migration:</strong> Enhanced cell recruitment to implant surface</li><li><strong>Nutrient Transport:</strong> Improved oxygen and nutrient delivery to healing tissues</li><li><strong>Growth Factor Concentration:</strong> Spiral geometry creates optimal microenvironment</li></ul><p><strong>Clinical Timeline:</strong></p><ul><li><strong>Week 1-2:</strong> Initial cellular response and vascular sprouting</li><li><strong>Week 3-4:</strong> Enhanced osteoid formation within spiral channels</li><li><strong>Week 5-6:</strong> Improved bone formation and mechanical integration</li><li><strong>Standard Timeline:</strong> Traditional implants typically require 3-6 months for full osseointegration</li></ul><p><strong>Patient Benefits:</strong> Enhanced healing quality enables more predictable outcomes and potentially earlier loading in select cases, improving patient comfort during the healing phase.</p>'
-            },
-            'compatibility': {
-                title: 'Surgical Compatibility - Practice Integration',
-                content: '<p><strong>Seamless Practice Integration:</strong></p><p>KiiS implants are engineered for compatibility with existing dental equipment and surgical protocols, minimizing barriers to adoption.</p><p><strong>Equipment Compatibility:</strong></p><ul><li><strong>Drilling Protocol:</strong> Standard implant site preparation procedures</li><li><strong>Surgical Instruments:</strong> Works with conventional implant placement tools</li><li><strong>Prosthetic Platform:</strong> Compatible with existing abutment systems</li><li><strong>Imaging Systems:</strong> Standard radiographic and CBCT assessment</li></ul><p><strong>Training Requirements:</strong></p><ul><li><strong>Surgical Technique:</strong> Familiar placement protocol for experienced clinicians</li><li><strong>Learning Curve:</strong> Minimal additional training required</li><li><strong>Case Selection:</strong> Similar assessment criteria with expanded indications</li><li><strong>Post-operative Care:</strong> Standard healing and loading protocols</li></ul><p><strong>Business Advantage:</strong> Minimal equipment investment and reduced training requirements accelerate market adoption and reduce practice transition costs.</p>'
-            },
-            'paper': {
-                title: 'Research Paper: Bone Regeneration into Side Openings and Hollow Inner Channel',
-                content: '<p><strong>Publication:</strong> Journal of the Mechanical Behavior of Biomedical Materials, Vol. 101 (2020)</p><p><strong>Authors:</strong> Do-Gyoon Kim, Kyoung-Hwa Kim, Yethyeon Jo, Jue Yeon Lee, Yoon Jeong Park, et al.</p><p><strong>핵심 연구 내용:</strong></p><ul><li><strong>연구 목적:</strong> 측면 개구부와 중공 내부 채널을 가진 임플란트의 골재생 능력 검증</li><li><strong>실험 방법:</strong> 12개월간의 체내 실험을 통한 골재생 분석</li><li><strong>주요 발견:</strong> 나선형 측면 개구부를 통한 3차원 골성장 확인</li><li><strong>임상적 의의:</strong> 기존 임플란트 대비 우수한 골통합성 입증</li></ul><p><strong>Key Research Findings:</strong></p><ul><li><strong>Bone Regeneration:</strong> Successfully demonstrated bone ingrowth through spiral side openings</li><li><strong>Inner Channel:</strong> Hollow design enables targeted drug delivery and enhanced healing</li><li><strong>3D Anchoring:</strong> Spiral channels create mechanical interlocking superior to traditional threads</li><li><strong>Clinical Validation:</strong> 12-month study confirms enhanced osseointegration</li></ul><p><strong>Scientific Impact:</strong> This peer-reviewed research provides the scientific foundation for KiiS technology, validating the revolutionary approach to implant design.</p>'
-            }
-        };
-        
-        // 팝업 시스템
-        function showSource(sourceId) {
-            var source = sources[sourceId];
-            if (!source) return;
-            
-            document.getElementById('sourceContent').innerHTML = '<h3>' + source.title + '</h3>' + source.content;
-            
-            var overlay = document.getElementById('overlay');
-            var popup = document.getElementById('sourcePopup');
-            
-            overlay.style.display = 'block';
-            popup.style.display = 'block';
-            
-            document.body.style.overflow = 'hidden';
-            isPopupOpen = true;
+        var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        // 로딩 애니메이션
+        function initializeAnimations() {
+            setTimeout(function() {
+                document.getElementById('mainHeader').classList.add('visible');
+            }, 400);
+
+            setTimeout(function() {
+                document.getElementById('innovationShowcase').classList.add('visible');
+            }, 700);
+
+            setTimeout(function() {
+                document.getElementById('productRoadmap').classList.add('visible');
+            }, 1000);
+
+            // 네비게이션 힌트 (2초간 표시)
+            setTimeout(function() {
+                showNavigation();
+                setTimeout(function() {
+                    hideNavigation(0);
+                }, 2000);
+            }, 1600);
         }
-        
-        function hideSource() {
-            var overlay = document.getElementById('overlay');
-            var popup = document.getElementById('sourcePopup');
-            
-            overlay.style.display = 'none';
-            popup.style.display = 'none';
-            
-            document.body.style.overflow = 'auto';
-            isPopupOpen = false;
-        }
-        
-        // 네비게이션 시스템
-        var navigation = document.getElementById('navigation');
-        var hoverZone = document.getElementById('hoverZone');
-        
+
+        // 네비게이션 표시/숨김
         function showNavigation() {
             if (hideTimeout) clearTimeout(hideTimeout);
-            navigation.classList.add('visible');
+            document.getElementById('navigation').classList.add('visible');
             isNavigationVisible = true;
         }
-        
+
         function hideNavigation(delay) {
             if (delay === undefined) delay = 2000;
-            if (hideTimeout) clearTimeout(hideTimeout);
             hideTimeout = setTimeout(function() {
-                navigation.classList.remove('visible');
+                document.getElementById('navigation').classList.remove('visible');
                 isNavigationVisible = false;
             }, delay);
         }
-        
-        // 이벤트 리스너
-        document.addEventListener('DOMContentLoaded', function() {
-            // 오버레이 클릭으로 닫기
-            document.getElementById('overlay').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    hideSource();
-                }
-            });
+
+        // 마우스 이벤트 처리 (PC)
+        function handleMouseMove(e) {
+            var windowHeight = window.innerHeight;
+            var mouseY = e.clientY;
             
-            // 닫기 버튼
-            document.getElementById('closeBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                hideSource();
-            });
-            
-            // 호버존 이벤트
-            if (hoverZone) {
-                hoverZone.addEventListener('mouseenter', showNavigation);
-                hoverZone.addEventListener('mouseleave', function() {
-                    hideNavigation(1000);
-                });
+            if (mouseY > windowHeight - 120) {
+                showNavigation();
+            } else if (!isNavigationVisible) {
+                hideNavigation(1500);
             }
-        });
-        
-        // 키보드 네비게이션
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                if (isPopupOpen) {
-                    e.preventDefault();
-                    hideSource();
-                    return;
+        }
+
+        // 터치 이벤트 처리 (모바일)
+        var touchStartY = 0;
+        var touchStartX = 0;
+
+        function handleTouchStart(e) {
+            touchStartY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
+        }
+
+        function handleTouchEnd(e) {
+            var touchEndY = e.changedTouches[0].clientY;
+            var touchEndX = e.changedTouches[0].clientX;
+            var diffY = touchStartY - touchEndY;
+            var diffX = touchStartX - touchEndX;
+            var windowHeight = window.innerHeight;
+
+            // 하단 터치로 네비게이션 토글
+            if (touchStartY > windowHeight - 120) {
+                if (isNavigationVisible) {
+                    hideNavigation(0);
+                } else {
+                    showNavigation();
                 }
-                navigation.classList.remove('visible');
-                isNavigationVisible = false;
-                clearTimeout(hideTimeout);
                 return;
             }
-            
-            if (isPopupOpen) return;
-            
+
+            // 스와이프 제스처
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    // 왼쪽 스와이프 - 다음 페이지
+                    window.location.href = 'slide5.html';
+                } else {
+                    // 오른쪽 스와이프 - 이전 페이지
+                    window.location.href = 'slide3.html';
+                }
+            }
+        }
+
+        // 키보드 이벤트 처리
+        function handleKeydown(e) {
             switch(e.key) {
                 case 'ArrowLeft':
                 case 'ArrowUp':
                     e.preventDefault();
-                    window.location.href = 'slide4.html';
+                    window.location.href = 'slide3.html';
                     break;
                 case 'ArrowRight':
                 case 'ArrowDown':
                 case ' ':
                     e.preventDefault();
-                    window.location.href = 'slide6.html';
+                    window.location.href = 'slide5.html';
                     break;
                 case 'n':
                 case 'N':
+                    e.preventDefault();
                     if (isNavigationVisible) {
-                        navigation.classList.remove('visible');
-                        isNavigationVisible = false;
-                        clearTimeout(hideTimeout);
+                        hideNavigation(0);
                     } else {
                         showNavigation();
-                        hideNavigation(3000);
                     }
                     break;
             }
+        }
+
+        // 네비게이션 호버 이벤트
+        var navigation = document.getElementById('navigation');
+        navigation.addEventListener('mouseenter', function() {
+            if (hideTimeout) clearTimeout(hideTimeout);
         });
-        
-        // 페이지 로드 애니메이션
-        window.addEventListener('load', function() {
-            var header = document.querySelector('.main-header');
-            var imageSection = document.querySelector('.image-section');
-            var benefitsSection = document.querySelector('.benefits-section');
-            var impactSection = document.querySelector('.impact-section');
-            
-            setTimeout(function() {
-                header.style.opacity = '1';
-                header.style.transform = 'translateY(0)';
-                
-                setTimeout(function() {
-                    imageSection.style.opacity = '1';
-                    imageSection.style.transform = 'translateX(0)';
-                }, 400);
-                
-                setTimeout(function() {
-                    benefitsSection.style.opacity = '1';
-                    benefitsSection.style.transform = 'translateX(0)';
-                }, 800);
-                
-                setTimeout(function() {
-                    impactSection.style.opacity = '1';
-                    impactSection.style.transform = 'translateY(0)';
-                }, 1200);
-                
-                setTimeout(function() {
-                    showNavigation();
-                    hideNavigation(3000);
-                }, 1800);
-                
-            }, 300);
+
+        navigation.addEventListener('mouseleave', function() {
+            hideNavigation(1500);
         });
-        
-        // 마우스 위치 추적 (PC 전용)
+
+        // 이벤트 리스너 등록
         if (!isTouchDevice) {
-            var lastMouseY = 0;
-            document.addEventListener('mousemove', function(e) {
-                lastMouseY = e.clientY;
-                var windowHeight = window.innerHeight;
-                
-                if (lastMouseY > windowHeight - 120) {
-                    if (!isNavigationVisible) showNavigation();
-                } else if (isNavigationVisible && !navigation.matches(':hover')) {
-                    hideNavigation(1500);
-                }
-            });
+            document.addEventListener('mousemove', handleMouseMove);
+        } else {
+            document.addEventListener('touchstart', handleTouchStart);
+            document.addEventListener('touchend', handleTouchEnd);
         }
-        
-        // 터치 네비게이션
-        if (isTouchDevice) {
-            var startX = 0;
-            var startY = 0;
-            var startTime = 0;
-            
-            document.addEventListener('touchstart', function(e) {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-                startTime = Date.now();
-                
-                if (e.touches[0].clientY > window.innerHeight - 120) {
-                    showNavigation();
-                    hideNavigation(3000);
-                }
-            });
-            
-            document.addEventListener('touchend', function(e) {
-                var endX = e.changedTouches[0].clientX;
-                var endY = e.changedTouches[0].clientY;
-                var endTime = Date.now();
-                
-                var deltaX = endX - startX;
-                var deltaY = endY - startY;
-                var deltaTime = endTime - startTime;
-                
-                if (Math.abs(deltaX) > 50 && 
-                    deltaTime < 300 && 
-                    Math.abs(deltaX) > Math.abs(deltaY)) {
-                    
-                    if (deltaX > 0) {
-                        window.location.href = 'slide4.html';
-                    } else {
-                        window.location.href = 'slide6.html';
-                    }
-                }
-            });
-            
-            var tapCount = 0;
-            document.addEventListener('touchend', function(e) {
-                // Exclude interactive areas
-                if (e.target.closest('.clickable-text') || 
-                    e.target.closest('.navigation') ||
-                    e.target.closest('.source-popup') ||
-                    e.target.closest('.overlay') ||
-                    e.target.closest('.tech-image') ||
-                    e.target.closest('.placeholder-image')) {
-                    return;
-                }
-                
-                tapCount++;
-                if (tapCount === 1) {
-                    setTimeout(function() {
-                        if (tapCount === 1) {
-                            if (isNavigationVisible) {
-                                navigation.classList.remove('visible');
-                                isNavigationVisible = false;
-                                clearTimeout(hideTimeout);
-                            } else {
-                                showNavigation();
-                                hideNavigation(3000);
-                            }
-                        }
-                        tapCount = 0;
-                    }, 300);
-                }
-            });
-        }
+
+        document.addEventListener('keydown', handleKeydown);
+
+        // 페이지 로딩 완료 후 애니메이션 시작
+        document.addEventListener('DOMContentLoaded', initializeAnimations);
     </script>
 </body>
 </html>
