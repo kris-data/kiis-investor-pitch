@@ -19,20 +19,20 @@
             background: radial-gradient(ellipse at center, #1e40af 0%, #0f172a 70%, #000000 100%);
             color: white;
             min-height: 100vh;
-            padding: 40px 60px;
+            padding: 25px 40px;
             overflow-x: hidden;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            min-height: calc(100vh - 80px);
+            min-height: calc(100vh - 50px);
         }
 
-        /* 헤더 섹션 - v2.1 타이포그래피 적용 */
+        /* 헤더 섹션 - 압축 */
         .main-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
             opacity: 0;
             transform: translateY(-30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,11 +44,11 @@
         }
 
         .title {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: bold;
             color: #ffffff;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
         }
 
         .title-highlight {
@@ -56,127 +56,98 @@
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
-        .subtitle {
-            font-size: 22px;
-            color: #e0e7ff;
-            font-weight: 400;
-            line-height: 1.3;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
         .content-sections {
             display: flex;
             flex-direction: column;
-            gap: 50px;
+            gap: 25px;
+            height: calc(100vh - 140px);
         }
 
-        /* 핵심 통계 섹션 - v2.1 중립적 색상 */
-        .stats-section {
-            background: rgba(100, 116, 139, 0.15);
+        /* KiiS 핵심 강점 섹션 - 상단 40% */
+        .kiis-strengths-section {
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 35px;
+            padding: 25px;
             backdrop-filter: blur(15px);
-            border: 2px solid rgba(100, 116, 139, 0.4);
-            border-top: 4px solid #64748b;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-top: 4px solid #ffd700;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
-            position: relative;
+            flex: 0 0 40%;
         }
 
-        .stats-section.visible {
+        .kiis-strengths-section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .stats-header {
+        .section-title {
             font-size: 28px;
-            color: #cbd5e1;
-            margin-bottom: 25px;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
             font-weight: bold;
             line-height: 1.2;
         }
 
-        .failure-stats {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-bottom: 30px;
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
 
-        .stat-item {
+        .strength-item {
             text-align: center;
-            min-width: 120px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .stat-number {
-            font-size: 40px;
-            color: #f1f5f9;
-            font-weight: bold;
-            margin-bottom: 8px;
-            line-height: 1.1;
+        .strength-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .stat-label {
+        .strength-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .strength-title {
             font-size: 15px;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .strength-value {
+            font-size: 22px;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .strength-desc {
+            font-size: 12px;
             color: #e0e7ff;
             line-height: 1.3;
-            font-weight: 500;
         }
 
-        .but-text {
-            font-size: 22px;
-            color: #ffd700;
-            font-weight: bold;
-            margin: 25px 0;
-            line-height: 1.2;
-        }
-
-        /* 출처 표시 섹션 - v2.1 신뢰도 강화 */
-        .data-source-section {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            transition: color 0.3s ease;
-            margin-bottom: 15px;
-            text-align: center;
-            padding: 5px 10px;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .data-source-section:hover {
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .data-source {
-            position: absolute;
-            bottom: 8px;
-            right: 12px;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .data-source:hover {
-            color: #ffd700;
-        }
-
-        /* 대비 분석 섹션 - v2.1 가독성 향상 */
+        /* 비교 분석 섹션 - 하단 60% */
         .comparison-section {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 20px;
-            padding: 40px;
+            padding: 25px;
             backdrop-filter: blur(15px);
             border: 2px solid rgba(255, 255, 255, 0.15);
             border-top: 4px solid #10b981;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
         }
 
         .comparison-section.visible {
@@ -184,40 +155,41 @@
             transform: translateY(0);
         }
 
-        .section-title {
-            font-size: 32px;
-            color: #ffd700;
-            margin-bottom: 35px;
-            text-align: center;
-            font-weight: bold;
-            line-height: 1.2;
+        .comparison-section .section-title {
+            font-size: 24px;
+            color: #10b981;
+            margin-bottom: 20px;
         }
 
         .comparison-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-bottom: 30px;
+            gap: 25px;
+            height: calc(100% - 70px);
         }
 
         .failure-reasons {
             background: rgba(100, 116, 139, 0.12);
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             border: 2px solid rgba(100, 116, 139, 0.35);
+            display: flex;
+            flex-direction: column;
         }
 
         .kiis-advantages {
             background: rgba(16, 185, 129, 0.12);
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             border: 2px solid rgba(16, 185, 129, 0.35);
+            display: flex;
+            flex-direction: column;
         }
 
         .comparison-header {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             text-align: center;
             line-height: 1.2;
         }
@@ -232,14 +204,15 @@
 
         .comparison-list {
             list-style: none;
+            flex: 1;
         }
 
         .comparison-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 18px;
-            padding: 15px;
-            border-radius: 10px;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 8px;
             opacity: 0;
             transform: translateX(-20px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -259,8 +232,8 @@
         }
 
         .item-icon {
-            font-size: 20px;
-            margin-right: 15px;
+            font-size: 16px;
+            margin-right: 10px;
             margin-top: 2px;
             flex-shrink: 0;
         }
@@ -278,116 +251,21 @@
         }
 
         .item-title {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             color: #ffffff;
             line-height: 1.2;
         }
 
         .item-description {
-            font-size: 13px;
-            line-height: 1.4;
+            font-size: 12px;
+            line-height: 1.3;
             color: #e0e7ff;
         }
 
         .kiis-advantages .item-description {
             color: #d1fae5;
-        }
-
-        /* 투자 하이라이트 섹션 - v2.1 완성도 강화 */
-        .highlights-section {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            border-top: 4px solid #ffd700;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .highlights-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 35px;
-        }
-
-        .highlight-card {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 15px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .highlight-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.25);
-            border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .highlight-icon {
-            font-size: 40px;
-            margin-bottom: 18px;
-            display: block;
-        }
-
-        .highlight-title {
-            font-size: 20px;
-            color: #ffd700;
-            font-weight: bold;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .highlight-content {
-            font-size: 15px;
-            color: #e0e7ff;
-            line-height: 1.4;
-            margin-bottom: 20px;
-        }
-
-        .highlight-metrics {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .metric {
-            text-align: center;
-            flex: 1;
-        }
-
-        .metric-value {
-            font-size: 18px;
-            color: #ffd700;
-            font-weight: bold;
-            display: block;
-            line-height: 1.1;
-        }
-
-        .metric-label {
-            font-size: 11px;
-            color: #94a3b8;
-            margin-top: 4px;
-            line-height: 1.2;
         }
 
         /* 네비게이션 시스템 */
@@ -459,16 +337,16 @@
             font-size: 16px;
         }
 
-        /* 반응형 디자인 - v2.1 최적화 */
+        /* 반응형 디자인 */
         @media (max-width: 1200px) {
-            .comparison-grid,
-            .highlights-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
+            .strengths-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
             
-            .failure-stats {
-                gap: 35px;
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
 
@@ -478,49 +356,32 @@
             }
             
             .title {
-                font-size: 36px;
-                line-height: 1.1;
-            }
-            
-            .subtitle {
-                font-size: 18px;
-                line-height: 1.3;
-            }
-            
-            .section-title {
-                font-size: 24px;
-            }
-            
-            .stats-header {
-                font-size: 22px;
-            }
-            
-            .stat-number {
                 font-size: 32px;
             }
             
-            .stat-label {
-                font-size: 13px;
+            .section-title {
+                font-size: 20px;
             }
             
-            .but-text {
+            .comparison-section .section-title {
                 font-size: 18px;
             }
             
-            .failure-stats {
-                flex-direction: column;
-                gap: 20px;
-                align-items: center;
-            }
-            
-            .comparison-grid,
-            .highlights-grid {
+            .strengths-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 15px;
             }
             
             .content-sections {
-                gap: 35px;
+                height: auto;
+            }
+            
+            .kiis-strengths-section {
+                flex: none;
+            }
+            
+            .comparison-section {
+                flex: none;
             }
         }
 
@@ -530,96 +391,34 @@
             }
             
             .title {
-                font-size: 28px;
-                margin-bottom: 15px;
-            }
-            
-            .subtitle {
-                font-size: 16px;
-            }
-            
-            .section-title {
-                font-size: 20px;
-            }
-            
-            .stats-header {
-                font-size: 18px;
-            }
-            
-            .stat-number {
-                font-size: 28px;
-            }
-            
-            .stat-label {
-                font-size: 12px;
-            }
-            
-            .but-text {
-                font-size: 16px;
-            }
-            
-            .comparison-header {
-                font-size: 18px;
-            }
-            
-            .highlight-title {
-                font-size: 17px;
-            }
-            
-            .highlight-content {
-                font-size: 13px;
-            }
-            
-            .stats-section,
-            .comparison-section,
-            .highlights-section {
-                padding: 25px 20px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .title {
                 font-size: 24px;
-            }
-            
-            .subtitle {
-                font-size: 14px;
+                margin-bottom: 6px;
             }
             
             .section-title {
                 font-size: 18px;
             }
             
-            .stats-header {
+            .comparison-section .section-title {
                 font-size: 16px;
             }
             
-            .stat-number {
+            .strength-icon {
                 font-size: 24px;
+                margin-bottom: 6px;
             }
             
-            .comparison-header {
-                font-size: 16px;
-            }
-            
-            .highlight-title {
-                font-size: 15px;
-            }
-            
-            .highlight-content {
+            .strength-title {
                 font-size: 12px;
             }
-        }
-
-        /* 팝업 시스템 - 완전히 숨김 처리 */
-        .popup-hidden {
-            display: none !important;
-            opacity: 0 !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-            position: absolute !important;
-            top: -9999px !important;
-            left: -9999px !important;
+            
+            .strength-value {
+                font-size: 16px;
+            }
+            
+            .strength-desc {
+                font-size: 10px;
+            }
         }
     </style>
 </head>
@@ -630,235 +429,126 @@
             <h1 class="title">
                 Investment <span class="title-highlight">Highlights</span>
             </h1>
-            <p class="subtitle">
-                178M Patients Deserve One More Chance. We have the technology, team, and unwavering conviction to be that chance. This is why KiiS exists.
-            </p>
         </div>
 
         <div class="content-sections">
-            <!-- 실패 통계 섹션 -->
-            <div class="stats-section">
-                <div class="stats-header">The MedTech Startup Challenge</div>
-                <div class="failure-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">75%</div>
-                        <div class="stat-label">Medical Device<br>Startups Fail</div>
+            <!-- KiiS 핵심 강점 섹션 -->
+            <div class="kiis-strengths-section">
+                <div class="section-title">Why KiiS Will Succeed</div>
+                <div class="strengths-grid">
+                    <div class="strength-item">
+                        <span class="strength-icon">🎯</span>
+                        <div class="strength-title">Validated Market</div>
+                        <div class="strength-value">178M</div>
+                        <div class="strength-desc">Patients Need<br>Better Solutions</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">$31M</div>
-                        <div class="stat-label">Average Cost<br>510K to Market</div>
+                    <div class="strength-item">
+                        <span class="strength-icon">🚀</span>
+                        <div class="strength-title">Fast Track FDA</div>
+                        <div class="strength-value">510K</div>
+                        <div class="strength-desc">Path Ready<br>95% Complete</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3-7Y</div>
-                        <div class="stat-label">Development<br>Timeline</div>
+                    <div class="strength-item">
+                        <span class="strength-icon">🤝</span>
+                        <div class="strength-title">Strategic Partnership</div>
+                        <div class="strength-value">Scale</div>
+                        <div class="strength-desc">Korean OEM<br>Proven Manufacturing</div>
+                    </div>
+                    <div class="strength-item">
+                        <span class="strength-icon">🏆</span>
+                        <div class="strength-title">Expert Team</div>
+                        <div class="strength-value">Fortune 500</div>
+                        <div class="strength-desc">J&J, P&G, Samsung<br>Veterans</div>
                     </div>
                 </div>
-                <div class="but-text">We Won't Let Them Down. Every Risk Factor = Solved.</div>
-                <div class="data-source" onclick="alert('Sources: MedTech Breakthrough Report 2024, CB Insights Healthcare Analysis, FDA Economic Impact Analysis 2024')">ℹ️ Sources</div>
             </div>
 
-            <!-- 대비 분석 섹션 -->
+            <!-- 비교 분석 섹션 -->
             <div class="comparison-section">
-                <div class="section-title">Why Most Fail vs Why We Will Succeed</div>
+                <div class="section-title">Why Others Fail vs Why We Win</div>
                 <div class="comparison-grid">
-                    <!-- 실패 원인 -->
+                    <!-- 일반적인 실패 요인 -->
                     <div class="failure-reasons">
-                        <div class="comparison-header">❌ Common Failure Reasons</div>
-                        <div class="data-source-section" onclick="alert('Research Sources: Analysis of 500+ failed MedTech startups (2019-2024). Primary Sources: CB Insights, MedTech Breakthrough, FDA, PwC reports.')">ℹ️ Research Sources</div>
+                        <div class="comparison-header">❌ Common MedTech Failures</div>
                         <ul class="comparison-list">
-                            <li class="comparison-item">
-                                <span class="item-icon">🏢</span>
-                                <div class="item-content">
-                                    <div class="item-title">Poor Commercialization Strategy</div>
-                                    <div class="item-description">No clear path to market or sales strategy</div>
-                                </div>
-                            </li>
                             <li class="comparison-item">
                                 <span class="item-icon">💰</span>
                                 <div class="item-content">
-                                    <div class="item-title">Funding & Cash Flow Issues</div>
-                                    <div class="item-description">Run out of money before revenue generation</div>
+                                    <div class="item-title">Poor Market Strategy</div>
+                                    <div class="item-description">No clear path to revenue</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">🎯</span>
                                 <div class="item-content">
-                                    <div class="item-title">Technology-First Thinking</div>
-                                    <div class="item-description">Build first, find market later approach</div>
+                                    <div class="item-title">Technology-First Approach</div>
+                                    <div class="item-description">Build first, find market later</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">👥</span>
                                 <div class="item-content">
-                                    <div class="item-title">Inexperienced Management</div>
-                                    <div class="item-description">Academic teams lacking business execution skills</div>
-                                </div>
-                            </li>
-                            <li class="comparison-item">
-                                <span class="item-icon">🏭</span>
-                                <div class="item-content">
-                                    <div class="item-title">Manufacturing Scalability</div>
-                                    <div class="item-description">Cannot scale from prototype to commercial production</div>
+                                    <div class="item-title">Inexperienced Teams</div>
+                                    <div class="item-description">Academic without business skills</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">📋</span>
                                 <div class="item-content">
-                                    <div class="item-title">Regulatory & Quality Issues</div>
-                                    <div class="item-description">FDA compliance failures and quality control problems</div>
+                                    <div class="item-title">Regulatory Failures</div>
+                                    <div class="item-description">FDA compliance problems</div>
+                                </div>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="item-icon">🏭</span>
+                                <div class="item-content">
+                                    <div class="item-title">Manufacturing Issues</div>
+                                    <div class="item-description">Cannot scale production</div>
                                 </div>
                             </li>
                         </ul>
                     </div>
 
-                    <!-- KiiS 장점 -->
+                    <!-- KiiS 해결책 -->
                     <div class="kiis-advantages">
-                        <div class="comparison-header">✅ Why KiiS Will Transform Lives</div>
-                        <div class="data-source-section" onclick="alert('Evidence Sources: KiiS internal strategy documents, FDA Pre-Submission Q-Sub meeting minutes, OSU clinical study results, verified Fortune 500 employment history, Korean OEM audit reports, testing protocol completion (95%)')">ℹ️ Evidence Sources</div>
+                        <div class="comparison-header">✅ KiiS Risk Elimination</div>
                         <ul class="comparison-list">
                             <li class="comparison-item">
                                 <span class="item-icon">🚀</span>
                                 <div class="item-content">
-                                    <div class="item-title">Digital-First Sales Strategy</div>
-                                    <div class="item-description">AI-powered e-commerce + major dental partnerships</div>
-                                </div>
-                            </li>
-                            <li class="comparison-item">
-                                <span class="item-icon">💎</span>
-                                <div class="item-content">
-                                    <div class="item-title">510K Path + Self-Pay Market</div>
-                                    <div class="item-description">Lower cost, faster approval, immediate revenue</div>
+                                    <div class="item-title">Digital-First Sales</div>
+                                    <div class="item-description">AI-powered e-commerce ready</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">🎯</span>
                                 <div class="item-content">
                                     <div class="item-title">Market-Validated Problem</div>
-                                    <div class="item-description">Solves proven need: bone grafting elimination</div>
+                                    <div class="item-description">Proven need: bone graft elimination</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">🏆</span>
                                 <div class="item-content">
-                                    <div class="item-title">J&J, P&G, Samsung Veterans</div>
-                                    <div class="item-description">Global commercialization + regulatory expertise</div>
-                                </div>
-                            </li>
-                            <li class="comparison-item">
-                                <span class="item-icon">🏭</span>
-                                <div class="item-content">
-                                    <div class="item-title">Korean OEM + Proven Process</div>
-                                    <div class="item-description">Established manufacturing with implant expertise</div>
+                                    <div class="item-title">Global Commercialization Experts</div>
+                                    <div class="item-description">Fortune 500 experience</div>
                                 </div>
                             </li>
                             <li class="comparison-item">
                                 <span class="item-icon">✅</span>
                                 <div class="item-content">
-                                    <div class="item-title">FDA Consultants + Tests Ready</div>
-                                    <div class="item-description">Professional guidance, samples prepared</div>
+                                    <div class="item-title">FDA Consultants Ready</div>
+                                    <div class="item-description">Professional guidance, tests prepared</div>
+                                </div>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="item-icon">🏭</span>
+                                <div class="item-content">
+                                    <div class="item-title">Proven Korean OEM</div>
+                                    <div class="item-description">Established implant manufacturing</div>
                                 </div>
                             </li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 투자 하이라이트 -->
-            <div class="highlights-section">
-                <div class="section-title">4 Reasons to Believe in KiiS</div>
-                <div class="highlights-grid">
-                    <!-- 시장 기회 -->
-                    <div class="highlight-card">
-                        <span class="highlight-icon">🌍</span>
-                        <div class="highlight-title">Their Last Hope, Our Greatest Opportunity</div>
-                        <div class="highlight-content">
-                            178 million patients have been failed by inadequate solutions. They deserve one more chance—and we're it. This isn't just market size; it's moral urgency.
-                        </div>
-                        <div class="highlight-metrics">
-                            <div class="metric">
-                                <span class="metric-value">$24B</span>
-                                <div class="metric-label">Global Market</div>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">178M</span>
-                                <div class="metric-label">Target Patients</div>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">ONE</span>
-                                <div class="metric-label">More Chance</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 검증된 기술 -->
-                    <div class="highlight-card">
-                        <span class="highlight-icon">🔬</span>
-                        <div class="highlight-title">This Time We Won't Fail Them</div>
-                        <div class="highlight-content">
-                            While others built technology and hoped for markets, we listened to patients first. Our validated pathway means their wait ends here.
-                        </div>
-                        <div class="highlight-metrics">
-                            <div class="metric">
-                                <span class="metric-value">2037</span>
-                                <div class="metric-label">Patent Protected</div>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">95%</span>
-                                <div class="metric-label">FDA Ready</div>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">510K</span>
-                                <div class="metric-label">Fast Track</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 경험진 팀 -->
-                    <div class="highlight-card">
-                        <span class="highlight-icon">👥</span>
-                        <div class="highlight-title">The Team That Won't Give Up</div>
-                        <div class="highlight-content">
-                            We've seen patients suffer through inadequate treatments. This isn't just business expertise—it's personal mission. Failure is not an option.
-                        </div>
-                        <div class="highlight-metrics">
-                            <div class="metric">
-                                <span class="metric-value">Fortune 500</span>
-                                <div class="metric-label">Corporate Experience</div>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">OSU</span>
-                                <div class="metric-label">University Partner</div>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">KOL</span>
-                                <div class="metric-label">Clinical Network</div>
-                            </div>
-                        </div>
-                        <div class="data-source-section" onclick="alert('Credential Sources: Verified employment at Fortune 500 companies, medical device commercialization experience, global market expansion track record, Ohio State University collaboration agreement, Key Opinion Leader relationships.')">ℹ️ Credential Sources</div>
-                    </div>
-
-                    <!-- 수익성 경로 -->
-                    <div class="highlight-card">
-                        <span class="highlight-icon">📈</span>
-                        <div class="highlight-title">Sustainable Success Model</div>
-                        <div class="highlight-content">
-                            Every strategic decision we make serves two masters: patient outcomes and investor returns. Success means helping millions while building lasting value.
-                        </div>
-                        <div class="highlight-metrics">
-                            <div class="metric">
-                                <span class="metric-value">Phase-7</span>
-                                <div class="metric-label">Execution Plan</div>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">Digital</span>
-                                <div class="metric-label">Sales Strategy</div>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">Premium</span>
-                                <div class="metric-label">Margin Profile</div>
-                            </div>
-                        </div>
-                        <div class="data-source-section" onclick="alert('Financial Model: Phase-based approach (1-2: Product development & FDA approval, 3-4: Market entry & initial commercialization, 5-7: Scale-up & market expansion), asset-light manufacturing model, digital-first sales approach, premium positioning strategy.')">ℹ️ Financial Model</div>
                     </div>
                 </div>
             </div>
@@ -878,7 +568,6 @@
         
         let isNavigationVisible = false;
         let hideTimeout;
-        let lastMouseY = 0;
 
         const navigation = document.getElementById('navigation');
         const hoverZone = document.getElementById('hoverZone');
@@ -901,24 +590,33 @@
         // 페이지 로드 애니메이션
         function startLoadingAnimation() {
             const header = document.getElementById('mainHeader');
-            const statsSection = document.querySelector('.stats-section');
+            const strengthsSection = document.querySelector('.kiis-strengths-section');
             const comparisonSection = document.querySelector('.comparison-section');
-            const highlightsSection = document.querySelector('.highlights-section');
             
             // 헤더 애니메이션
             setTimeout(() => {
                 header.classList.add('visible');
             }, 300);
             
-            // 통계 섹션
+            // 강점 섹션
             setTimeout(() => {
-                statsSection.classList.add('visible');
+                strengthsSection.classList.add('visible');
             }, 700);
+            
+            // 강점 아이템 순차 애니메이션
+            setTimeout(() => {
+                const strengthItems = document.querySelectorAll('.strength-item');
+                strengthItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 150);
+                });
+            }, 1000);
             
             // 비교 섹션
             setTimeout(() => {
                 comparisonSection.classList.add('visible');
-            }, 1200);
+            }, 1600);
             
             // 비교 아이템 순차 애니메이션
             setTimeout(() => {
@@ -928,43 +626,31 @@
                         item.classList.add('visible');
                     }, index * 100);
                 });
-            }, 1500);
-            
-            // 하이라이트 섹션
-            setTimeout(() => {
-                highlightsSection.classList.add('visible');
-            }, 2400);
-            
-            // 하이라이트 카드 순차 애니메이션
-            setTimeout(() => {
-                const highlightCards = document.querySelectorAll('.highlight-card');
-                highlightCards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, index * 150);
-                });
-            }, 2700);
+            }, 1900);
             
             // 네비게이션 힌트 표시
             setTimeout(() => {
                 showNavigation();
                 hideNavigation(3000);
-            }, 3400);
+            }, 2800);
         }
 
         // 호버존 이벤트
-        hoverZone.addEventListener('mouseenter', showNavigation);
-        hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+        if (hoverZone) {
+            hoverZone.addEventListener('mouseenter', showNavigation);
+            hoverZone.addEventListener('mouseleave', () => hideNavigation(1000));
+        }
 
         // 마우스 위치 추적 (PC만)
         if (!isTouchDevice) {
+            let lastMouseY = 0;
             document.addEventListener('mousemove', (e) => {
                 lastMouseY = e.clientY;
                 const windowHeight = window.innerHeight;
                 
                 if (lastMouseY > windowHeight - 120) {
                     if (!isNavigationVisible) showNavigation();
-                } else if (isNavigationVisible && !navigation.matches(':hover')) {
+                } else if (isNavigationVisible && navigation && !navigation.matches(':hover')) {
                     hideNavigation(1500);
                 }
             });
@@ -1013,10 +699,8 @@
             document.addEventListener('touchend', (e) => {
                 if (e.target.closest('.navigation') || 
                     e.target.closest('.hover-zone') ||
-                    e.target.closest('.highlight-card') ||
-                    e.target.closest('.comparison-item') ||
-                    e.target.closest('.data-source') ||
-                    e.target.closest('.data-source-section')) {
+                    e.target.closest('.strength-item') ||
+                    e.target.closest('.comparison-item')) {
                     return;
                 }
                 
