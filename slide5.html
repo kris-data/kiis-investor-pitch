@@ -260,34 +260,6 @@
             opacity: 1;
         }
         
-        /* 하단 임팩트 섹션 - 간소화 */
-        .impact-section {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
-            border: 3px solid #10b981;
-            border-radius: 25px;
-            padding: 40px;
-            text-align: center;
-            margin-top: 40px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .impact-title {
-            font-size: 32px;
-            font-weight: bold;
-            color: #10b981;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
-        }
-        
-        .impact-message {
-            font-size: 20px;
-            color: #ffffff;
-            line-height: 1.4;
-            margin-bottom: 0;
-        }
-        
         /* 팝업 시스템 */
         .overlay {
             position: fixed;
@@ -499,14 +471,6 @@
                 font-size: 14px;
             }
             
-            .impact-title {
-                font-size: 24px;
-            }
-            
-            .impact-message {
-                font-size: 18px;
-            }
-            
             .source-popup {
                 padding: 25px;
                 max-width: 90%;
@@ -558,20 +522,6 @@
                 font-size: 12px;
             }
             
-            .impact-section {
-                padding: 25px;
-            }
-            
-            .impact-title {
-                font-size: 22px;
-                margin-bottom: 15px;
-            }
-            
-            .impact-message {
-                font-size: 16px;
-                margin-bottom: 0;
-            }
-            
             .source-popup {
                 padding: 20px;
                 max-width: 95%;
@@ -592,10 +542,6 @@
             
             .title-highlight {
                 font-size: 24px;
-            }
-            
-            .impact-title {
-                font-size: 20px;
             }
             
             .source-popup {
@@ -689,14 +635,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- 임팩트 섹션 - 간소화 -->
-        <div class="impact-section" id="impactSection">
-            <h3 class="impact-title">Proven Science → Patient Success</h3>
-            <p class="impact-message">
-                Gold standard evidence for breakthrough technology that works
-            </p>
         </div>
     </div>
     
@@ -868,7 +806,6 @@
             var header = document.querySelector('.main-header');
             var imageSection = document.querySelector('.image-section');
             var benefitsSection = document.querySelector('.benefits-section');
-            var impactSection = document.querySelector('.impact-section');
             
             setTimeout(function() {
                 header.style.opacity = '1';
@@ -885,14 +822,9 @@
                 }, 800);
                 
                 setTimeout(function() {
-                    impactSection.style.opacity = '1';
-                    impactSection.style.transform = 'translateY(0)';
-                }, 1200);
-                
-                setTimeout(function() {
                     showNavigation();
                     hideNavigation(3000);
-                }, 1800);
+                }, 1200);
                 
             }, 300);
         });
