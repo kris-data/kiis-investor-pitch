@@ -1,160 +1,144 @@
-# KiiS 1차 데이터 소스 관리 시스템
-**목적:** 신뢰할 수 있는 1차 소스 확보 및 관리  
-**업데이트:** 2025년 7월 19일
-
----
-
-## 🚨 **현재 문제 진단**
-
-### **우리가 범한 근본적 오류**
-```
-문제 상황:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-❌ 1차 소스 없이 2차/3차 가공 데이터에 의존
-❌ 출처 추적 없이 숫자만 사용
-❌ 검증 없이 서로 다른 소스 혼용
-❌ "신뢰할 만하다"는 가정하에 분석 진행
-
-결과: 120M vs 178M vs 1.78M 혼란
-```
-
-### **진짜 필요한 것**
-- ✅ **직접 접근 가능한 1차 소스**
-- ✅ **소스별 신뢰도 등급 시스템**
-- ✅ **정기 업데이트 가능한 데이터**
-- ✅ **검증 프로세스 표준화**
-
----
-
-## 📋 **1차 소스 확보 액션 플랜**
-
-### **Phase 1: 즉시 확보해야 할 1차 소스 (이번 주)**
-
-#### **1) American Academy of Implant Dentistry (AAID)**
-- **목표**: PDF에서 인용한 "120M" 원본 확인
-- **액션**: AAID 공식 웹사이트에서 최신 통계 다운로드
-- **담당**: Claude web search + CEO 검토
-- **기한**: 7/20 일요일
-
-#### **2) American Dental Association (ADA)**
-- **목표**: 미국 임플란트 시장 공식 통계
-- **액션**: ADA Health Policy Institute 데이터 확보
-- **링크**: ada.org → Research → Health Policy Institute
-- **기한**: 7/21 월요일
-
-#### **3) Bureau of Labor Statistics (BLS)**
-- **목표**: 치과의사 수, 지역별 분포
-- **액션**: BLS Occupational Employment Statistics 확보
-- **기한**: 7/21 월요일
-
-### **Phase 2: 업계 1차 소스 확보 (다음 주)**
-
-#### **4) FDA Medical Device Database**
-- **목표**: 임플란트 승인 현황, 시장 데이터
-- **액션**: FDA 510(k) 데이터베이스 검색
-
-#### **5) 주요 임플란트 업체 공개 자료**
-- **Straumann**: Annual Report, Investor Relations
-- **Nobel Biocare**: Market Research Publications  
-- **Dentsply Sirona**: Industry Reports
-
-#### **6) 학술 논문 데이터**
-- **PubMed**: 최근 5년 임플란트 시장 연구
-- **Journal of Dental Research**: 시장 동향 논문
-
-## 📁 **GitHub 1차 소스 관리 시스템**
-
-### **폴더 구조**
-```
-📁 kiis-investor-pitch/
-├── 📁 docs/
-│   ├── 📄 KIIS_Project_Master.md
-│   ├── 📁 data-sources/                    ← 새로 생성
-│   │   ├── 📁 primary-sources/
-│   │   │   ├── 📄 DATA_REGISTRY.md         ← 1차 소스 레지스트리
-│   │   │   ├── 📄 ACP_Statistics.md        ← ACP 공식 데이터
-│   │   │   ├── 📄 AAID_Statistics.md       ← AAID 공식 데이터  
-│   │   │   ├── 📄 ADA_MarketData.md        ← ADA 시장 데이터
-│   │   │   ├── 📄 FDA_DeviceData.md        ← FDA 의료기기 데이터
-│   │   │   └── 📄 Academic_Papers.md       ← 학술 논문 모음
-│   │   ├── 📁 verification-logs/
-│   │   │   ├── 📄 2025-07-19_Verification.md ← 오늘 검증 로그
-│   │   │   └── 📄 Monthly_Updates.md        ← 월간 업데이트 로그
-│   │   └── 📁 conflicting-sources/
-│   │       └── 📄 Discrepancy_Analysis.md   ← 상충 데이터 분석
-│   ├── 📄 Dentist_Interview_Results.md
-│   └── 📄 Financial_Model_Updates.md
-```
-
-### **핵심 파일 역할**
-
-#### **📄 DATA_REGISTRY.md**
-**목적:** 모든 1차 소스의 마스터 인덱스
-```markdown
 # KiiS 1차 데이터 소스 레지스트리
+**최종 업데이트:** 2025년 7월 19일  
+**목적:** 모든 KiiS 관련 데이터의 마스터 인덱스 및 신뢰도 관리
 
-## 검증 완료 데이터 (Tier 1)
-| 지표 | 수치 | 출처 | 업데이트 | 신뢰도 | 파일 |
-|------|------|------|----------|--------|------|
-| 미국 치아상실자 | 178M | ACP | 2024 | AAA+ | ACP_Statistics.md |
-| 임플란트 보유자 | 3M | AAID | 2025 | AAA+ | AAID_Statistics.md |
-| 보급률 증가 | 0.7%→5.7% | Harvard/PMC | 2018 | AA+ | Academic_Papers.md |
+---
 
-## 검증 필요 데이터 (Tier 2)
-| 지표 | 수치 | 출처 | 상태 | 액션 |
-|------|------|------|------|------|
-| 연간 시술 건수 | 1.5M/년 | PDF 인용 | 1차 소스 확인 필요 | AAID 직접 확인 |
+## 🏆 **검증 완료 데이터 (Tier AAA+)**
+
+| 지표 | 수치 | 출처 | 최종 확인 | 신뢰도 | 파일 링크 |
+|------|------|------|----------|--------|-----------|
+| **미국 치아상실자** | **178M명** | ACP | 2025-07-19 | AAA+ | [ACP_Statistics.md](ACP_Statistics.md) |
+| **현재 임플란트 보유** | **3M명** | AAID | 2025-07-19 | AAA+ | [AAID_Statistics.md](AAID_Statistics.md) |
+| **현재 침투율** | **1.7%** | 계산값 | 2025-07-19 | AAA+ | 3M ÷ 178M |
+| **연간 신규 증가** | **500K명/년** | AAID | 2025-07-19 | AAA+ | [AAID_Statistics.md](AAID_Statistics.md) |
+| **미참여 시장** | **175M명** | 계산값 | 2025-07-19 | AAA+ | 178M - 3M |
+
+---
+
+## 📊 **핵심 재무 모델링 데이터**
+
+### **Market Size Calculations**
+```
+검증된 TAM 계산:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+전체 치아상실자: 178M명 (ACP 공식)
+현재 임플란트 보유: 3M명 (AAID 공식)
+현재 침투율: 1.7% (3M ÷ 178M)
+미참여 시장: 175M명 (98.3%)
+
+성장률:
+연간 신규: 500K명 (현재)
+성장률: 16.7%/년 (500K ÷ 3M)
 ```
 
-#### **📄 ACP_Statistics.md**
-**목적:** American College of Prosthodontists 공식 데이터 관리
-```markdown
-# ACP (American College of Prosthodontists) 공식 통계
+### **KiiS Target Market**
+```
+Service Obtainable Market (SOM):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+복합 사례 대상: 30% × 175M = 52.5M명
+가격 민감 계층: 60% × 175M = 105M명
+KiiS 최적 타겟: 35M명 (교집합 추정)
 
-## 핵심 데이터
-- **치아상실자**: 178 million Americans missing at least one tooth
-- **완전 무치악**: 40 million Americans missing all teeth
-- **출처**: gotoapro.org/facts-figures/
-- **최종 확인**: 2025-07-19
-- **신뢰도**: AAA+ (공식 기관)
-
-## 원문 인용
-"The American College of Prosthodontists (ACP) found that 178 million people 
-in the United States are missing at least one tooth. The ACP also found that 
-40 million Americans are missing all of their top and bottom rows of teeth."
-
-## 검증 내역
-- ✅ 2025-07-19: 웹 검색으로 재확인
-- ✅ 다중 소스에서 동일 수치 확인
-- ✅ 공식 웹사이트 직접 확인
+시장 가치:
+평균 임플란트 비용: $2,500-4,000
+TAM 잠재가치: $445B-712B
+SOM 추정가치: $87.5B-140B
 ```
 
-### **관리 워크플로우**
+---
 
-#### **일일 데이터 체크**
-```bash
-# 매일 아침 루틴
-1. DATA_REGISTRY.md 확인
-2. 사용할 데이터의 최신성 점검
-3. 새로운 데이터 발견 시 즉시 기록
-4. 상충 데이터 발견 시 Discrepancy_Analysis.md에 기록
+## ⚠️ **검증 필요 데이터 (Tier A)**
+
+| 지표 | 수치 | 출처 | 상태 | 우선순위 | 액션 |
+|------|------|------|------|----------|------|
+| **연간 시술 건수** | 1.5M명/년 | PDF 인용 | 1차 소스 확인 필요 | High | AAID 직접 확인 |
+| **연간 임플란트 개수** | 2.7M개/년 | PDF 인용 | 1차 소스 확인 필요 | High | AAID 직접 확인 |
+| **미국 시장 규모** | $2.3B | PDF 인용 | 공식 출처 확인 필요 | Medium | ADA/IBISWorld 확인 |
+| **지역별 분포** | 불명 | 없음 | 신규 조사 필요 | Medium | BLS 지역 데이터 |
+
+---
+
+## 🚨 **데이터 불일치 해결 완료**
+
+### **해결된 충돌 (2025-07-19)**
+| 이슈 | 이전 데이터 | 수정 데이터 | 해결 방법 |
+|------|-------------|-------------|-----------|
+| 치아상실자 수 | 1.78M | **178M** | ACP 공식 출처 확인 |
+| 치아상실자 수 | 120M (PDF) | **178M** | ACP가 더 포괄적 |
+| 침투율 | 5.7% | **1.7%** | 정확한 분모(178M) 적용 |
+
+### **해결 논리**
+1. **ACP (178M) vs PDF (120M)**: ACP가 "missing at least one tooth"로 더 포괄적
+2. **Harvard 5.7%**: "adults missing teeth" 중 임플란트 보유 비율 (분모가 다름)
+3. **우리 1.7%**: 전체 치아상실자 중 임플란트 보유 비율 (정확한 시장 침투율)
+
+---
+
+## 📅 **정기 업데이트 스케줄**
+
+### **주간 업데이트 (매주 금요일)**
+- [ ] Tier AAA+ 데이터 재검증
+- [ ] 새로운 Tier A 데이터 → AAA+ 승격 검토
+- [ ] 시장 변화 및 경쟁사 동향 모니터링
+
+### **월간 업데이트 (매월 셋째 주)**
+- [ ] 공식 기관 웹사이트 직접 확인
+- [ ] 신규 학술 논문 및 연구 검토
+- [ ] 재무 모델 가정 재검토
+
+### **분기 업데이트 (분기별)**
+- [ ] 전체 데이터 아키텍처 검토
+- [ ] 새로운 1차 소스 발굴
+- [ ] 투자자 질문 대비 데이터 보완
+
+---
+
+## 🎯 **재무 모델링 직접 연결**
+
+### **Bottom-up Model 기반 데이터**
+```python
+# 검증된 파라미터
+TOTAL_MISSING_TEETH = 178_000_000  # ACP 공식
+CURRENT_IMPLANT_USERS = 3_000_000  # AAID 공식
+CURRENT_PENETRATION = 0.017        # 1.7%
+ANNUAL_NEW_USERS = 500_000         # AAID 공식
+GROWTH_RATE = 0.167                # 16.7%
+
+# KiiS 타겟 계산
+ADDRESSABLE_MARKET = TOTAL_MISSING_TEETH - CURRENT_IMPLANT_USERS
+KIIS_TARGET_SEGMENT = ADDRESSABLE_MARKET * 0.20  # 20% (복합사례+가격민감)
 ```
 
-#### **주간 검증 프로세스**
-```bash
-# 매주 금요일 루틴
-1. 모든 Tier 1 데이터 재검증
-2. Tier 2 데이터 → Tier 1 승격 검토
-3. 오래된 데이터 업데이트 확인
-4. Monthly_Updates.md 갱신
-```
+### **5년 예측 기반**
+- **Year 1**: 현재 500K → KiiS 효과로 750K 목표
+- **Year 5**: 침투율 1.7% → 5-8% 목표 (KiiS 기여도 2-3%)
 
-#### **신규 데이터 추가 프로세스**
-```bash
-# 새로운 데이터 발견 시
-1. 출처 신뢰도 평가 (AAA+ ~ C)
-2. 기존 데이터와 교차 검증
-3. 해당 파일에 원문 + 검증 내역 기록
-4. DATA_REGISTRY.md 업데이트
-5. CEO 보고 (중요 데이터의 경우)
-```
+---
+
+## 📞 **데이터 출처 연락처**
+
+### **공식 기관**
+- **ACP**: contact@gotoapro.org
+- **AAID**: info@aaid.com / 312.335.1550
+- **ADA**: HPI@ada.org (Health Policy Institute)
+
+### **학술 기관**
+- **Harvard School of Dental Medicine**: Elani 연구팀
+- **NHANES**: CDC National Health Survey
+
+---
+
+## 📝 **변경 이력**
+
+### **2025-07-19**
+- ✅ 최초 레지스트리 생성
+- ✅ ACP 178M 데이터 검증 완료
+- ✅ AAID 3M + 500K 데이터 검증 완료
+- ✅ 데이터 불일치 해결 완료
+- ✅ 재무 모델링 기반 데이터 확정
+
+### **향후 계획**
+- [ ] AAID 공식 컨택으로 추가 세부 데이터 확보
+- [ ] 지역별 분포 데이터 조사 (BLS)
+- [ ] 경쟁 분석 데이터 보강
