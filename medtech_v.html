@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiiS Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .slide h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        
+        .slide h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #74b9ff;
+        }
+        
+        .slide h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+        
+        .highlight {
+            color: #ffd700;
+            font-weight: 700;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+            max-width: 1200px;
+        }
+        
+        .problem-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .problem-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ff6b6b;
+        }
+        
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin-top: 50px;
+            max-width: 1000px;
+        }
+        
+        .solution-card {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .solution-card h4 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #00b894;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            max-width: 800px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffd700;
+            display: block;
+        }
+        
+        .stat .label {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            max-width: 1000px;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #74b9ff;
+            z-index: 1;
+        }
+        
+        .timeline-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+            min-width: 120px;
+        }
+        
+        .timeline-item .year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+        }
+        
+        .timeline-item .milestone {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+            max-width: 1000px;
+        }
+        
+        .team-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .team-card .name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #74b9ff;
+        }
+        
+        .team-card .role {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .team-card .background {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .cta {
+            background: rgba(255,255,255,0.2);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin-top: 50px;
+            max-width: 600px;
+        }
+        
+        .cta h3 {
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .investment-terms {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+            max-width: 800px;
+        }
+        
+        .term-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .term-card .amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00b894;
+            margin-bottom: 10px;
+        }
+        
+        .term-card .description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .nav-dot.active {
+            background: #ffd700;
+        }
+        
+        .implant-image {
+            width: 300px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            font-size: 1.2rem;
+            color: #74b9ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <div class="slide" id="slide1">
+        <div class="slide-number">1/8</div>
+        <h1>KiiS</h1>
+        <h3>Kim's Ingrowth Implant System</h3>
+        <p style="font-size: 1.5rem; margin-top: 40px; opacity: 0.9;">
+            "Making premium dental care accessible to every patient who needs it"
+        </p>
+        <div class="implant-image">
+            🦷 Revolutionary Spiral Design
+        </div>
+    </div>
+
+    <!-- Slide 2: Problem -->
+    <div class="slide" id="slide2">
+        <div class="slide-number">2/8</div>
+        <h1><span class="highlight">178 Million</span> Americans Are Waiting</h1>
+        <h3>Before giving up. Before expensive procedures. Before complex surgeries.</h3>
+        
+        <div class="problem-grid">
+            <div class="problem-card">
+                <h4>💰 High Cost Barrier</h4>
+                <p>$3K-$6K per tooth + grafting costs exclude many patients</p>
+            </div>
+            <div class="problem-card">
+                <h4>⏰ Complex Procedures</h4>
+                <p>4-9 months timeline with multiple visits reduces adoption</p>
+            </div>
+            <div class="problem-card">
+                <h4>🚫 Patient Exclusion</h4>
+                <p>Poor bone quality excludes significant patient population</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Solution -->
+    <div class="slide" id="slide3">
+        <div class="slide-number">3/8</div>
+        <h1>KiiS Breaks All 3 Barriers</h1>
+        
+        <div class="solution-grid">
+            <div class="solution-card">
+                <h4>KiiS-Plus</h4>
+                <p><strong>Mid-Premium Market</strong></p>
+                <p>Premium Performance at Competitive Price</p>
+                <p>• 15-20% cost reduction vs premium brands</p>
+                <p>• FDA 510K pathway - proven safety</p>
+            </div>
+            <div class="solution-card">
+                <h4>KiiS-Relax</h4>
+                <p><strong>Untapped Market</strong></p>
+                <p>Making the Impossible Possible</p>
+                <p>• No bone grafting required for poor bone</p>
+                <p>• 40% excluded patients can now be treated</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Market Opportunity -->
+    <div class="slide" id="slide4">
+        <div class="slide-number">4/8</div>
+        <h1>Massive Market Opportunity</h1>
+        
+        <div class="stats">
+            <div class="stat">
+                <span class="number">$256M</span>
+                <span class="label">Medium Segment Gap<br>No Strong Players</span>
+            </div>
+            <div class="stat">
+                <span class="number">27K</span>
+                <span class="label">Independent GPs<br>Primary Target</span>
+            </div>
+            <div class="stat">
+                <span class="number">$3.0B</span>
+                <span class="label">Market by 2030<br>Conservative Baseline</span>
+            </div>
+        </div>
+        
+        <p style="font-size: 1.3rem; margin-top: 50px; opacity: 0.9;">
+            Following proven <span class="highlight">Implant Direct $225M</span> digital-first model
+        </p>
+    </div>
+
+    <!-- Slide 5: 18-Month Execution Plan -->
+    <div class="slide" id="slide5">
+        <div class="slide-number">5/8</div>
+        <h1>18-Month Execution Plan</h1>
+        <h3>From Investment to Market Launch</h3>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">Q3 25</div>
+                <div class="milestone">Investment Close<br>FDA Submission<br>Platform Development</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">Q4 25</div>
+                <div class="milestone">FDA Approval<br>Manufacturing Setup<br>Team Building</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">Q1 26</div>
+                <div class="milestone">Pilot Launch<br>50 Early Adopters<br>First Revenue</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">Q2 26</div>
+                <div class="milestone">Scale Marketing<br>350 GP Network<br>$1M Run Rate</div>
+            </div>
+        </div>
+        
+        <p style="font-size: 1.2rem; margin-top: 40px;">
+            <span class="highlight">$1M Investment → $1M ARR</span> | Proof of Market Fit in 12 Months
+        </p>
+    </div>
+
+    <!-- Slide 6: Long-term Vision -->
+    <div class="slide" id="slide6">
+        <div class="slide-number">6/8</div>
+        <h1>5-Year Growth Vision</h1>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">Y1</div>
+                <div class="milestone">Market Entry<br>350 GPs<br>$1M Revenue</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">Y2</div>
+                <div class="milestone">Early Growth<br>1,150 GPs<br>$2.5M Revenue</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">Y3</div>
+                <div class="milestone">Market Expansion<br>2,350 GPs<br>$4.5M Revenue</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">Y4</div>
+                <div class="milestone">Growth Acceleration<br>3,850 GPs<br>$7M Revenue</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">Y5</div>
+                <div class="milestone">Market Leadership<br>5,450 GPs<br>$10M Revenue</div>
+            </div>
+        </div>
+        
+        <p style="font-size: 1.2rem; margin-top: 40px;">
+            <span class="highlight">LTV/CAC: 7-11x</span> | Healthy Unit Economics from Day 1
+        </p>
+    </div>
+
+    <!-- Slide 7: Proven Technology -->
+    <div class="slide" id="slide7">
+        <div class="slide-number">7/8</div>
+        <h1>FDA-Ready Innovation</h1>
+        
+        <div class="solution-grid">
+            <div class="solution-card">
+                <h4>🛡️ Breakthrough Technology</h4>
+                <p><strong>US Patent Secured</strong></p>
+                <p>World's First Spiral Side Opening Design</p>
+                <p>40% improved bone contact vs traditional implants</p>
+            </div>
+            <div class="solution-card">
+                <h4>✅ Regulatory Pathway</h4>
+                <p><strong>FDA Validated</strong></p>
+                <p>510K Pre-submission Positive Response</p>
+                <p>Testing 85% Complete | Submission Q3 2025</p>
+            </div>
+        </div>
+        
+        <p style="font-size: 1.3rem; margin-top: 40px; color: #00b894;">
+            <strong>Ready for Market Entry 2026</strong>
+        </p>
+    </div>
+
+    <!-- Slide 8: Team -->
+    <div class="slide" id="slide8">
+        <div class="slide-number">8/8</div>
+        <h1>Proven Team</h1>
+        
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="name">Do-Gyoon Kim</div>
+                <div class="role">Co-Founder & CTO</div>
+                <div class="background">KiiS Technology Inventor<br>Professor, Ohio State University<br>PhD Mechanical Engineering, RPI</div>
+            </div>
+            <div class="team-card">
+                <div class="name">Jinyong Oh</div>
+                <div class="role">Co-Founder & Advisor</div>
+                <div class="background">J&J, P&G Experience<br>MIT MBA, Harvard AMP<br>Angel Investor & Mentor</div>
+            </div>
+            <div class="team-card">
+                <div class="name">John Hong</div>
+                <div class="role">CEO</div>
+                <div class="background">Practicing Dentist & Entrepreneur<br>DDS University of Oklahoma<br>MS Industrial Engineering</div>
+            </div>
+        </div>
+        
+        <p style="font-size: 1.1rem; margin-top: 40px; opacity: 0.8;">
+            <strong>Strategic Advisors:</strong> Paul Fagan ($270M Exit), Dr. Sreenivas Koka (Mayo Clinic), Tomas Cole (Dentsply Sirona)
+        </p>
+    </div>
+
+    <!-- Slide 9: Investment -->
+    <div class="slide" id="slide9">
+        <div class="slide-number">9/9</div>
+        <h1>Join Us in Transforming Lives</h1>
+        <h3>Partner with us to change how 178 million patients access dental care</h3>
+        
+        <div class="investment-terms">
+            <div class="term-card">
+                <div class="amount">$1M - $2M</div>
+                <div class="description">Series A Investment<br>8-17% Equity<br>Q3 2025 Close</div>
+            </div>
+            <div class="term-card">
+                <div class="amount">$10M</div>
+                <div class="description">Y4 Revenue Target<br>5,450 GP Network<br>Market Leadership</div>
+            </div>
+        </div>
+        
+        <div class="cta">
+            <h3>Use of Funds</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6;">
+                <strong>40%</strong> Market Entry & Digital Platform<br>
+                <strong>30%</strong> Manufacturing & Inventory<br>
+                <strong>20%</strong> FDA & Regulatory<br>
+                <strong>10%</strong> Operations & Team
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="nav-dot active" onclick="goToSlide(1)"></div>
+        <div class="nav-dot" onclick="goToSlide(2)"></div>
+        <div class="nav-dot" onclick="goToSlide(3)"></div>
+        <div class="nav-dot" onclick="goToSlide(4)"></div>
+        <div class="nav-dot" onclick="goToSlide(5)"></div>
+        <div class="nav-dot" onclick="goToSlide(6)"></div>
+        <div class="nav-dot" onclick="goToSlide(7)"></div>
+        <div class="nav-dot" onclick="goToSlide(8)"></div>
+        <div class="nav-dot" onclick="goToSlide(9)"></div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 9;
+
+        function goToSlide(slideNumber) {
+            // Hide current slide
+            document.getElementById(`slide${currentSlide}`).style.display = 'none';
+            
+            // Show new slide
+            document.getElementById(`slide${slideNumber}`).style.display = 'flex';
+            
+            // Update navigation
+            document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
+            document.querySelectorAll('.nav-dot')[slideNumber - 1].classList.add('active');
+            
+            currentSlide = slideNumber;
+        }
+
+        // Initialize - hide all slides except first
+        for (let i = 2; i <= totalSlides; i++) {
+            document.getElementById(`slide${i}`).style.display = 'none';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' && currentSlide < totalSlides) {
+                goToSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' && currentSlide > 1) {
+                goToSlide(currentSlide - 1);
+            }
+        });
+
+        // Touch navigation for mobile
+        let startX = 0;
+        let endX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const threshold = 50;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0 && currentSlide < totalSlides) {
+                    // Swipe left - next slide
+                    goToSlide(currentSlide + 1);
+                } else if (diff < 0 && currentSlide > 1) {
+                    // Swipe right - previous slide
+                    goToSlide(currentSlide - 1);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
